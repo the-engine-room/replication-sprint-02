@@ -1,0 +1,50 @@
+{% extends "layout/layout_8-4.html" %}
+{% load crowdataapp_tags %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% load cache %}
+{% load pagination_tags %}
+{% load humanize %}
+
+{% block headercontent %}
+  {{ _('Users Ranking') }}
+{% endblock %}
+
+{% block maincolumn %}
+
+<div class="caja001 cont_ranking_all">
+  {% autopaginate users_list %}
+
+  <table class="table table-striped">
+  {% for user in users_list %}
+
+    <tr>
+      <td><img src="{{ user.get_image }}" width="45" height="45" /></td>
+      <td>{% index_in_ranking page forloop.counter 20 %}</td>
+      <td><a href="/cd/{{document_set.slug}}/users/{{user.username}}">{{user.get_full_name}}</a></td>
+      <td>{{ user.num_entries }}</td>
+    </tr>
+
+  {% endfor %}
+  </table>
+
+  {% paginate %}
+
+</div>
+
+{% endblock %}
+
+{% block rightcolumn %}
+
+  {% call_to_action document_set %}
+  {% documents_verified document_set %}
+
+  {% list_ranking_user document_set.leaderboard|slice:":10" %}
+
+<div class="herramientasSociales social" style="overflow:hidden">
+</div>
+<script type="text/javascript">
+$(document).ready(function(){ create_sosial($('.herramientasSociales.social')); });
+</script>
+
+{% endblock %}

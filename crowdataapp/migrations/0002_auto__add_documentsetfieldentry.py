@@ -14,6 +14,7 @@ class Migration(SchemaMigration):
             ('field_id', self.gf('django.db.models.fields.IntegerField')()),
             ('value', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True)),
             ('entry', self.gf('django.db.models.fields.related.ForeignKey')(related_name='fields', to=orm['crowdataapp.DocumentSetFormEntry'])),
+            ('group', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True)),
         ))
         db.send_create_signal(u'crowdataapp', ['DocumentSetFieldEntry'])
 
@@ -113,6 +114,7 @@ class Migration(SchemaMigration):
             'autocomplete': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'choices': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'blank': 'True'}),
             'default': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'blank': 'True'}),
+            'group': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'blank': 'True'}),
             'field_type': ('django.db.models.fields.IntegerField', [], {}),
             'form': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': u"orm['crowdataapp.DocumentSetForm']"}),
             'help_text': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),

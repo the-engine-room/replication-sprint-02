@@ -114,6 +114,7 @@ class Migration(SchemaMigration):
             'autocomplete': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'choices': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'blank': 'True'}),
             'default': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'blank': 'True'}),
+            'group': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'blank': 'True'}),
             'field_type': ('django.db.models.fields.IntegerField', [], {}),
             'form': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': u"orm['crowdataapp.DocumentSetForm']"}),
             'help_text': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),

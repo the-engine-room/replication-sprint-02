@@ -1,4 +1,13 @@
-.DS_Store
-Dockerfile
+*.pyc
+*.log
+*.pot
 local_settings.py
-
+.crowdenv
+TAGS
+.DS_Store
+venv
+crowdataapp/static/documents/
+.idea/
+Dockerfile
+New
+Updated

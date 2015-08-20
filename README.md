@@ -1,4 +1,4 @@
-CrowData
+Quien Compro is build based on CrowData
 ========
 
 ``CrowData`` is a tool to collaborate on the verification or release of data that otherwise would be hard or impossible to get via automatic tools. This is the software we used to create [VozData](http://vozdata.lanacion.com.ar).

@@ -29,6 +29,9 @@ class BuiltFormNode(template.Node):
                             form_for_form.form_fields):
             form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
 
+        for field_ in form_for_form.form_fields:
+            form_for_form.fields[field_.slug].widget.attrs['group'] = field_.group
+            form_for_form.fields[field_.slug].group = field_.group
         context["form_for_form"] = form_for_form
         return t.render(context)
 
@@ -44,9 +47,12 @@ def render_form(parser, token):
     try:
         _, arg = token.split_contents()
         arg = "form=" + arg
+
         name, value = arg.split("=", 1)
+        print arg, value
     except ValueError:
         raise template.TemplateSyntaxError(render_form.__doc__)
+
     return BuiltFormNode(name, value)
 
 @register.simple_tag(takes_context=True)

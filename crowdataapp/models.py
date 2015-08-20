@@ -221,8 +221,9 @@ class DocumentSetFormField(forms_builder.forms.models.AbstractField):
         help_text=_("If checked, this text field will have autocompletion"))
     form = models.ForeignKey(DocumentSetForm, related_name="fields")
     order = models.IntegerField(_("Order"), null=True, blank=True)
+    group = models.CharField(_("Group"),max_length= 200 ,
+        help_text=_("If checked, this text field will have autocompletion"))
     verify = models.BooleanField(_("Verify"), default=True)
-
     objects = DocumentSetFormFieldManager()
 
     def save(self, *args, **kwargs):
@@ -292,7 +293,7 @@ class DocumentSetFieldEntry(forms_builder.forms.models.AbstractFieldEntry):
     entry = models.ForeignKey("DocumentSetFormEntry", related_name="fields")
     verified = models.BooleanField(default=False, null=False)
     canonical_label = models.ForeignKey("CanonicalFieldEntryLabel", related_name="fields", null=True)
-
+    group = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add = True, null=True)
     updated_at = models.DateTimeField(auto_now = True, null=True)
 

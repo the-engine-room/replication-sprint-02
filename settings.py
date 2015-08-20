@@ -48,7 +48,7 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
-STATIC_URL = '/static/'
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -98,6 +98,7 @@ FORMS_BUILDER_USE_HTML5  = True
 
 INSTALLED_APPS = [
     'admintheme',
+    'multiforloop',
     'django.contrib.auth',
     'django_browserid', # mozilla persona
     'django.contrib.contenttypes',
@@ -114,10 +115,15 @@ INSTALLED_APPS = [
     'django_ace',
     'djorm_pgtrgm',
     'pagination',
+
+    'debug_toolbar',
     'crowdata.crowdataapp',
+
+
+
 ]
 
-
+STATIC_URL = '/static/'
 AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend',
    'django_browserid.auth.BrowserIDBackend',

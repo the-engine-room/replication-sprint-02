@@ -131,7 +131,8 @@ nav .username .caret {
 
 #document-viewer-container,
 #document-transcript {
-  max-height: 73vh;
+  max-height: 100%;
+  max-width: 100%;
   overflow: auto;
   padding: 0;
 }

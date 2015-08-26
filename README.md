@@ -1,4 +1,4 @@
-CrowData
+Quien Compro is build based on CrowData
 ========
 
 ``CrowData`` is a tool to collaborate on the verification or release of data that otherwise would be hard or impossible to get via automatic tools. This is the software we used to create [VozData](http://vozdata.lanacion.com.ar).
@@ -30,7 +30,7 @@ In 2014, La Nacion in Argentina launched [VozData](http://vozdata.lanacion.com.a
 
 5. Install dependencies:
 
-    Ubuntu users: before you can move forward, please make sure you have the following packages installed: `python-dev`, `postgresql-9.3`, `postgresql-server-dev-9.3`, `postgresql-contrib`, and `libgeos-dev`
+    Ubuntu users: before you can move forward, please make sure you have the following packages installed: `python-dev`, `postgresql-9.3`, `postgresql-server-dev-9.3`, `postgresql-contrib-9.3`, and `libgeos-dev`
 
     ```bash
     pip install -r requirements.txt

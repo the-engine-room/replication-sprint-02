@@ -11,3 +11,5 @@ crowdataapp/static/documents/
 Dockerfile
 New
 Updated
+.gitignore.save
+_dirs/

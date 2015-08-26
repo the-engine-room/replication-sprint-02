@@ -22,8 +22,11 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es_ES'
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale')
+)
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -115,8 +118,6 @@ INSTALLED_APPS = [
     'django_ace',
     'djorm_pgtrgm',
     'pagination',
-
-    'debug_toolbar',
     'crowdata.crowdataapp',
 
 

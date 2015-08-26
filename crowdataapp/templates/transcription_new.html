@@ -47,7 +47,7 @@
     	</div>
     </div>
 
-    <div class="herramientasSociales" style="height:auto;">
+    <div class="herramientasSociales" style="display:none; height:auto;">
     	<div class="evaluaste" style="margin-bottom: 5px; width: auto;">You reviewed <strong>{{ reviewed_documents_count }} {{ _('documents') }}.</strong></div>
       <div class="regla"><div class="medidor" style="width:{% widthratio document.document_set.get_verified_documents.count document.document_set.documents.count 100 %}%"> </div></div>
       <div class="evaluaste"> {{ _('We already reviewed')}} <strong>{{ document.document_set.get_verified_documents.count }} {{ _('documents') }}</strong> {{ _('of') }} {{ document.document_set.documents.count }}.</div>

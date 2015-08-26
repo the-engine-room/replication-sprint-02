@@ -8,7 +8,7 @@
 
     <script src="/static/crowdataapp/js/jquery.tinysort.min.js"></script>
 
-    <div class="btn-group">
+    <div style="display: none;" class="btn-group">
       <button type="button" class="btn btn-default btn-sm sort-name asc">Sort name</button>
       <button type="button" class="btn btn-default btn-sm sort-count">Sort count</button>
       <button type="button" class="btn btn-default btn-sm sort-percentage">Sort percentage</button>
@@ -24,7 +24,7 @@
           {% endif %}
 
           <div class="media-body">
-            <h4 class="media-heading"><a href="{{ds.get_absolute_url}}">{{ds.name}}</a></h4>
+            <h4 class="media-heading">{{ds.name}}</h4>
     		    {{ds.description}}
             <div class="cta">
               {% call_to_action ds %}

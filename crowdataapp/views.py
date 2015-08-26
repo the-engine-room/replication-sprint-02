@@ -150,6 +150,39 @@ def login(request):
     else:
         return { }
 
+@render_to('login_anonymously.html')
+def login_anonymously(request):
+
+    from django.contrib.auth.models import User
+    from django.contrib.auth import authenticate, login
+    next_page = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, reverse('document_set_index'))
+
+    username = randomword(5)
+    password = randomword(5)
+
+    created_user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
+    # if request.user.is_authenticated():
+    #     return HttpResponseRedirect(next_page)
+
+    print request
+    user = authenticate(username=username, password=password)
+    auth.login(request, user)
+
+    request.session['redirect_after_login'] = next_page
+    if user is not None:
+
+        print 'User authenticated '
+        auth.login(request, user)
+        return HttpResponseRedirect(reverse('after_login'))
+    else:
+        print 'User not authenticated '
+        return { }
+
+import random, string
+
+def randomword(length):
+   return ''.join(random.choice(string.lowercase) for i in range(length))
+
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('document_set_index'))

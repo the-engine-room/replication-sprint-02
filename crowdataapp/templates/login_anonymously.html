@@ -1,0 +1,21 @@
+{% extends "layout/layout_8-4.html" %}
+{% load crowdataapp_tags %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block maincolumn %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+  <form action="" method="post">
+  {% csrf_token %}
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+  </form>
+{% endblock %}

@@ -30,6 +30,7 @@
           </li>
         {% else %}
           <li>{% browserid_login text=_('Login') %}</li>
+          <li><a href="{% url 'login_anonymously' %}">Contribute Anonymously</a></li>
         {% endif %}
       </ul>
     </div>

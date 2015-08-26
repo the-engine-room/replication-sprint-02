@@ -1,13 +1,102 @@
 {% load static from staticfiles %}
 {% load multifor %}
+<style>
+    .checkbox-btn{
+         color: black ;
+         background-color: #DAAFD8 ;
+        font-size:11px;
+    }
+
+    .checkbox-btn:focus,
+    .checkbox-btn.active{
+        color:white;
+         background-color:#A530A2 ;
+         font-weight: bolder;
+         font-size:11px;
+    }
+
+</style>
 <script>
     $( document ).ready(function() {
 
+        $( "#elForm input:radio" )
+              .parent().parent().parent().addClass("btn-group");
+        $( "#elForm input:radio" )
+              .parent().parent().addClass("btn checkbox-btn ");
+        $("#elForm input:radio").parent().attr("data-toggle", "tab");
+        $( "#elForm input:radio" )
+              .parent().parent().css('width','45%').css('border','1px solid white');
+
+         $(':radio').toggle();
         buildSlider();
 
-        $('.bxslideri').bxSlider();
 
-});
+        var slider = $('.bxslideri').bxSlider({
+            adaptiveHeight:true,
+            infiniteLoop: false,
+            hideControlOnEnd: true,
+        });
+
+        $('.bx-next').click(function(){
+            slider.goToNextSlide();
+            navigatedToLastSlide(slider);
+            return false;
+        });
+
+        $('.bx-prev').click(function(){
+            slider.goToPrevSlide();
+            navigatedToLastSlide(slider);
+            return false;
+        });
+
+        $(".bx-pager-link").click(function(){
+            var slideData = $(this).data();
+            if(slideData.slideIndex == slider.getSlideCount() -1){
+                addSubmitButtonLastSlide();
+            }else{
+                removeSubmitButtonLastSlide();
+            }
+        });
+
+    });
+    function navigatedToLastSlide(slider){
+        var numberOfSlides = slider.getSlideCount() -1;
+
+        var navigatedToLastSlide = false;
+
+        if(slider.getCurrentSlide() == numberOfSlides){
+            navigatedToLastSlide = true;
+        }
+
+        if(navigatedToLastSlide == true){
+            addSubmitButtonLastSlide();
+        }
+        else{
+             removeSubmitButtonLastSlide();
+        }
+        return navigatedToLastSlide;
+    }
+
+    function addSubmitButtonLastSlide(){
+        $('.bx-wrapper .bx-controls-direction a').children().eq(1).remove();
+
+        // First we check if there is a submit button added
+        // Doing this so we don't end up adding buttons everytime we click the slide controlls.
+        if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
+            $('.bx-wrapper .bx-controls-direction').append('<button style="float:right; margin-top:10px;" class="btn btn-success" type="submit">Submit</button>');
+
+        }else{
+            $('.bx-wrapper .bx-controls-direction button').remove();
+        }
+
+    }
+
+    function removeSubmitButtonLastSlide(){
+        // This function should be called only when you need to remove the submit button which comes
+        // instead of the arrow in the slides.
+         $('.bx-wrapper .bx-controls-direction button').remove();
+    }
+
     function buildSlider(){
         // Get all the elements that have class="sections"
         var groupOfElements = document.getElementsByClassName('sections');
@@ -30,11 +119,12 @@
             for (var j = 0; j < uniqueSections.length; j++) {
                 if(slugify(jQuery.trim(groupOfElements[i].attributes.id.nodeValue)) == uniqueSections[j]){
                     if($("."+uniqueSections[j]).length > 0){
+                        // Adding other elements of the group(section)
                         $('.'+uniqueSections[j]).append('<div class="form-group">'+groupOfElements[i].innerHTML+ '</div>');
-
                     }
                     else{
-                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3>'+uniqueSections[j]+'</h3>'+'<div class="form-group">' + groupOfElements[i].innerHTML + '</div></li>');
+                        // If we are showing the first element of the form group(section) we are showing the tittle too.
+                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3>'+groupOfElements[i].id+'</h3>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
                     }
 
 
@@ -42,6 +132,11 @@
 
             }
         }
+    }
+
+    function getFormElement(element){
+
+        return element.innerHTML;
     }
 
     // Slugify the strings
@@ -62,13 +157,25 @@
 <script src="{% static "/static/js/jquery.bxslider.min.js" %}"></script>
 <!-- bxSlider CSS file -->
 <link href="{% static "/static/css/jquery.bxslider.css" %}" rel="stylesheet"></link>
-
-<form action="{{ form.get_absolute_url }}" method="post"
+ <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
-  <fieldset>
+         <!-- This section is using Multifor module to be able to identify the section of the field-->
+        <div style="display:none;" class="form">
+            {% for field in form_for_form; field_group in form_for_form.form_fields %}
+                  <div class="sections" id="{{ field_group.group }}">
+                <label for="">{{field.label_tag}}</label>
+                <span class="help-block">{{field.help_text}}</span>
+                {% if field.type == 'choicefield' %}
+                      {% endif %}
+                {{ field }}
+              </div>
+            {% endfor %} <!--  field in form_for_form -->
+      </div>
+ </form>
+
+<form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
+      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
     <legend>{{ form.title }}</legend>
-
-
     {% if form.intro %}
     <div class="subtitulo">
       {{ form.intro|safe }}
@@ -76,23 +183,12 @@
     {% endif %}
 
     {% csrf_token %}
-    <div id="slidedform">
-        <ul class="bxslideri">
+    <div id="slidedform" class="form">
+        <ul style="list-style-type: none; padding: 0px; margin: 0px;" class="bxslideri">
         </ul>
     </div>
-    <!-- This is using Multifor module to be able to identify the section of the field-->
-        <div style="display:none;" class="form">
-            {% for field in form_for_form; field_group in form_for_form.form_fields %}
-                  <div class="sections" id="{{ field_group.group }}">
-                <label for="">{{field.label_tag}}</label>
-                <span class="help-block">{{field.help_text}}</span>
 
-                {{ field }} <!-- <img class="spinner" src="{% static 'img/ajax-loader.gif'%}">-->
-              </div>
-            {% endfor %} <!--  field in form_for_form -->
-      </div>
     <button href="" class="btn btn-success" type="submit" onClick="ga('send', 'event', 'New_trancription','Enviar')">Send it</button>
-    <button type="submit">Save it</button>
     <div class="btn-group">
       <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
         Skip it
@@ -100,63 +196,12 @@
       </button>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="#" onClick="ga('send', 'event', 'New_trancription','No tiene importe final', '{{document.url}}')">{{ _('It does not have a price') }}</a>
+          <a class="btn btn-success" href="#" onClick="ga('send', 'event', 'New_trancription','No tiene importe final', '{{document.url}}')">{{ _('It does not have a price') }}</a>
         </li>
         <li>
-          <a href="#" onClick="ga('send', 'event', 'New_trancription','Quiero otro documento', '{{document.url}}')">{{ _('I just want another document') }}</a>
+          <a class="btn btn-success" href="#" onClick="ga('send', 'event', 'New_trancription','Quiero otro documento', '{{document.url}}')">{{ _('I just want another document') }}</a>
         </li>
       </ul>
     </div>
 
-<!--    <div class="contenedor">
-      <div class="head_especial">
-        <div class="cajas">
-          <div class="mapa">
-            <div class="titulo">
-              <legend>{{ form.title }}</legend>
-            </div>
-            {% if form.intro %}
-            <div class="subtitulo">
-              {{ form.intro|safe }}
-            </div>
-            {% endif %}
-            {% csrf_token %}
-            {% for field in form_for_form %}
-            <div class="vd_label {% if forloop.counter|divisibleby:"2" %}label_gris{% else %}label_bco{% endif %}">
-              <div class="ayuda">
-                <a href="#" onclick="ga('send', 'event', 'New_trancription','BTN_HELP'); return false;"><img src='{% static "img/ayuda.png" %}' width="49" height="17" border="0" alt="ayuda" /></a>
-              </div>
-              <!--
-              <div id="help_{{forloop.counter}}" class="ayuda_hidden">
-                <b>{{field.label}}</b><br />
-                {{field.help_text}}
-              </div>
-
-              <b>{{field.label_tag}}</b>
-              <p class="field_help">{{field.help_text}}</p>
-              {{ field }} <img class="spinner" src="{% static 'img/ajax-loader.gif'%}">
-            </div>
-            {% endfor %} {% comment %} for field in form_for_form {% endcomment %}
-
-            <div class="label_bco_enviar">
-              <div style="clear:left;">&nbsp;</div>
-              <input type="image" src="{% static "img/bot_enviar.png" %}" alt="Enviar" onClick="ga('send', 'event', 'New_trancription','Enviar')" class="btn btn-default">
-              <br />
-              <br />
-              -- o <b>saltear</b> porque --
-              <br />
-              <br />
-              <a href="#" onClick="ga('send', 'event', 'New_trancription','No tiene importe final', '{{document.url}}')" class="vd_btn btn_bg_l red">No tiene importe final</a>
-              <br />
-              <br />
-              <a href="#" onClick="ga('send', 'event', 'New_trancription','Es un llamado a licitación', '{{document.url}}')" class="vd_btn btn_bg_l red">Es un llamado a licitación</a>
-              <br />
-              <br />
-              <a href="#" onClick="ga('send', 'event', 'New_trancription','Quiero otro documento', '{{document.url}}')" class="vd_btn btn_bg_l red">Quiero otro documento</a>
-          </div>
-        </div>   /div.mapa
-        </div> /div.cajas
-      </div>  /div.head_especial
-    </div>   /div.contenedor -->
-  </fieldset>
 </form>

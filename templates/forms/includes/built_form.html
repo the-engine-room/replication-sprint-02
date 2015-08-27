@@ -25,6 +25,7 @@
 <script>
     $( document ).ready(function() {
 
+
         $( "#elForm input:radio" ).parent().parent().parent().addClass("btn-group");
         $( "#elForm input:radio" ).parent().parent().addClass("btn checkbox-btn ");
         $("#elForm input:radio").parent().parent().parent().attr("data-toggle", "buttons");
@@ -36,8 +37,15 @@
             $(this).prop('checked', true).parent().addClass('active');
             $('[id*="radio-popup-style-"]').not($(this)).removeAttr('checked').prop('checked', false).parent().removeClass('active');
         });
-        buildSlider();
 
+
+        $('#id_other_category').parent().css('display','none');
+
+        $('#id_category_13').click(function(){
+            $('#id_other_category').parent().css('display','block');
+        });
+
+        buildSlider();
         var slider = $('.bxslideri').bxSlider({
             adaptiveHeight:true,
             infiniteLoop: false,

@@ -17,20 +17,20 @@
               <span class="name">{{ user }}</span>
 
               {% if request.user.is_admin or request.user.is_staff %}
-                <span class="role">Admin</span>
+                <span class="role">{{ _('Admin')  }}</span>
               {% endif %}
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{% url 'edit_profile' %}">Profile</a></li>
-              <li><a href="{% url 'admin:index' %}">Admin</a></li>
+              <li><a href="{% url 'edit_profile' %}">{{ _('Profile')  }}</a></li>
+              <li><a href="{% url 'admin:index' %}">{{ _('Admin')  }}</a></li>
               <li class="divider"></li>
               <li>{% browserid_logout text=_('Logout')  %}</li>
             </ul>
           </li>
         {% else %}
             <a href="#" data-next="/cd/afterlogin" class="browserid-login persona-button">
-                <span>Login</span>
+                <span>{{ _('Login')  }}</span>
             </a>
             <a href="{% url 'login_anonymously' %}"  class=" persona-button">
                 <span>{{_('Contribute Anonymously') }}</span>

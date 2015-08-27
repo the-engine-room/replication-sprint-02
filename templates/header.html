@@ -1,42 +1,42 @@
 {% load browserid %}
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'document_set_index' %}">
-      <div class = "navbar-logo"><img style="margin-top:-10px; width:110px; height:50px;" src="http://quiencompro.com/images/QC.png"> </div>
-      </a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        {% browserid_info %}
-        {% if user.is_authenticated %}
-          <li class="dropdown">
-            <a href=""reverse('user_profile', kwargs={'document_set':{{document_set}}, 'username':{{ user.username }} })"" class="dropdown-toggle username" data-toggle="dropdown">
-              <span class="name">{{ user }}</span>
-
-              {% if request.user.is_admin or request.user.is_staff %}
-                <span class="role">{{ _('Admin')  }}</span>
-              {% endif %}
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="{% url 'edit_profile' %}">{{ _('Profile')  }}</a></li>
-              <li><a href="{% url 'admin:index' %}">{{ _('Admin')  }}</a></li>
-              <li class="divider"></li>
-              <li>{% browserid_logout text=_('Logout')  %}</li>
-            </ul>
-          </li>
-        {% else %}
-            <a href="#" data-next="/cd/afterlogin" class="browserid-login persona-button">
-                <span>{{ _('Login')  }}</span>
-            </a>
-            <a href="{% url 'login_anonymously' %}"  class=" persona-button">
-                <span>{{_('Contribute Anonymously') }}</span>
-            </a>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
+{#<nav class="navbar navbar-default" role="navigation">#}
+{#  <div class="container-fluid">#}
+{#    <div class="navbar-header">#}
+{#      <a class="navbar-brand" href="{% url 'document_set_index' %}">#}
+{#      <div class = "navbar-logo"><img style="margin-top:-10px; width:110px; height:50px;" src="http://quiencompro.com/images/QC.png"> </div>#}
+{#      </a>#}
+{#    </div>#}
+{##}
+{#    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#      <ul class="nav navbar-nav navbar-right">#}
+{#        {% browserid_info %}#}
+{#        {% if user.is_authenticated %}#}
+{#          <li class="dropdown">#}
+{#            <a href=""reverse('user_profile', kwargs={'document_set':{{document_set}}, 'username':{{ user.username }} })"" class="dropdown-toggle username" data-toggle="dropdown">#}
+{#              <span class="name">{{ user }}</span>#}
+{##}
+{#              {% if request.user.is_admin or request.user.is_staff %}#}
+{#                <span class="role">{{ _('Admin')  }}</span>#}
+{#              {% endif %}#}
+{#              <span class="caret"></span>#}
+{#            </a>#}
+{#            <ul class="dropdown-menu" role="menu">#}
+{#              <li><a href="{% url 'edit_profile' %}">{{ _('Profile')  }}</a></li>#}
+{#              <li><a href="{% url 'admin:index' %}">{{ _('Admin')  }}</a></li>#}
+{#              <li class="divider"></li>#}
+{#              <li>{% browserid_logout text=_('Logout')  %}</li>#}
+{#            </ul>#}
+{#          </li>#}
+{#        {% else %}#}
+{#            <a href="#" data-next="/cd/afterlogin" class="browserid-login persona-button">#}
+{#                <span>{{ _('Login')  }}</span>#}
+{#            </a>#}
+{#            <a href="{% url 'login_anonymously' %}"  class=" persona-button">#}
+{#                <span>{{_('Contribute Anonymously') }}</span>#}
+{#            </a>#}
+{#        {% endif %}#}
+{#      </ul>#}
+{#    </div>#}
+{#  </div>#}
+{#</nav>#}

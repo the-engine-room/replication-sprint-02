@@ -40,7 +40,11 @@
 
           <div  align="center" class="media-body">
             <h4 class="media-heading">{{ds.name}}</h4>
-    		    {{ds.description}}
+              <p>{{  _('¿Quién Compró? is a project that looks at the way the Mexican congress spends public funds. The platform holds digitized receipts showing politicians expenses. With your help we can highlight   discrepancies in public spending and encourage transparency within the Mexican government.') }}</p>
+                <p>{{  _('Please help us out by tagging politicians receipts and giving us your feedback! ') }}</p>
+                <p>{{  _('When you start using the platform you will be given a scanned receipt. Follow the instructions to tag the information you see on document. ') }}</p>
+                <p>{{  _('This project is currently in beta form so please be patient as we try things out. We hope everything runs smoothly, but if not, please let us know in the feedback form at the end of the session.') }}</p>
+{#    		    {{ds.description}}#}
             <div class="cta">
               {% call_to_action ds %}
 {#              {% documents_verified ds %}#}

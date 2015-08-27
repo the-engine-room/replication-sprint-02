@@ -81,7 +81,6 @@ def ranking_all(request, document_set, ranking_id):
 @login_required
 def transcription_new(request, document_set):
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
-
     document = None
     if request.GET.get('document_id') is not None and request.user.is_staff:
         document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
@@ -136,47 +135,46 @@ def autocomplete_field(request, document_set, field_name):
 
 @render_to('login_page.html')
 def login(request):
-    next_page = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, reverse('document_set_index'))
-
-    if request.user.is_authenticated():
-        return HttpResponseRedirect(next_page)
-
-    request.session['redirect_after_login'] = next_page
-
-    user = auth.authenticate(request=request)
-    if user is not None:
-        auth.login(request, user)
-        return HttpResponseRedirect(reverse('after_login'))
-    else:
-        return { }
+    return login_anonymously(request)
+    # next_page = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, reverse('document_set_index'))
+    #
+    # if request.user.is_authenticated():
+    #     return HttpResponseRedirect(next_page)
+    #
+    # request.session['redirect_after_login'] = next_page
+    #
+    # user = auth.authenticate(request=request)
+    # if user is not None:
+    #     auth.login(request, user)
+    #     return HttpResponseRedirect(reverse('after_login'))
+    # else:
+    #     return { }
 
 @render_to('login_anonymously.html')
 def login_anonymously(request):
 
-    from django.contrib.auth.models import User
-    from django.contrib.auth import authenticate, login
+
     next_page = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, reverse('document_set_index'))
 
-    username = randomword(5)
-    password = randomword(5)
-
-    created_user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
-    # if request.user.is_authenticated():
-    #     return HttpResponseRedirect(next_page)
-
-    print request
-    user = authenticate(username=username, password=password)
-    auth.login(request, user)
-
+    user = auth.authenticate(request=request)
     request.session['redirect_after_login'] = next_page
     if user is not None:
 
-        print 'User authenticated '
         auth.login(request, user)
         return HttpResponseRedirect(reverse('after_login'))
     else:
+        from django.contrib.auth.models import User
+        from django.contrib.auth import authenticate, login
         print 'User not authenticated '
-        return { }
+
+        username = randomword(5)
+        password = randomword(5)
+
+        created_user = User.objects.create_user(username, '', password, first_name=username, last_name=username)
+
+        user = authenticate(username=username, password=password)
+        auth.login(request, user)
+        return HttpResponseRedirect(reverse('after_login'))
 
 import random, string
 

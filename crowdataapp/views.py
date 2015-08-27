@@ -165,7 +165,6 @@ def login_anonymously(request):
     else:
         from django.contrib.auth.models import User
         from django.contrib.auth import authenticate, login
-        print 'User not authenticated '
 
         username = randomword(5)
         password = randomword(5)

@@ -251,7 +251,7 @@ msgstr ""
 
 #: crowdataapp/templates/call_to_action.html:5
 msgid "Free a file"
-msgstr ""
+msgstr "Get started"
 
 #: crowdataapp/templates/document_set_index.html:7
 msgid "Choose a project"

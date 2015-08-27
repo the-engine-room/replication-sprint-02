@@ -2,34 +2,41 @@
 {% load multifor %}
 <style>
     .checkbox-btn{
-         color: black ;
-         background-color: #DAAFD8 ;
+        color: black ;
+        background-color: #DAAFD8 ;
         font-size:11px;
     }
 
     .checkbox-btn:focus,
     .checkbox-btn.active{
         color:white;
-         background-color:#A530A2 ;
-         font-weight: bolder;
-         font-size:11px;
+        background-color:#A530A2 ;
+        font-weight: bolder;
+        font-size:11px;
     }
 
+    [data-toggle="button"] > .btn > input[type="radio"] {
+        display:inline;
+        position:absolute;
+        left:-9999px;
+    }
 </style>
+
 <script>
     $( document ).ready(function() {
 
-        $( "#elForm input:radio" )
-              .parent().parent().parent().addClass("btn-group");
-        $( "#elForm input:radio" )
-              .parent().parent().addClass("btn checkbox-btn ");
-        $("#elForm input:radio").parent().attr("data-toggle", "tab");
-        $( "#elForm input:radio" )
-              .parent().parent().css('width','45%').css('border','1px solid white');
+        $( "#elForm input:radio" ).parent().parent().parent().addClass("btn-group");
+        $( "#elForm input:radio" ).parent().parent().addClass("btn checkbox-btn ");
+        $("#elForm input:radio").parent().parent().parent().attr("data-toggle", "buttons");
+        $( "#elForm input:radio" ).parent().parent().css('width','45%').css('border','1px solid white');
 
-         $(':radio').toggle();
+         $('input:radio').toggle();
+
+        $('[id*="radio-popup-style-"]').click(function(){
+            $(this).prop('checked', true).parent().addClass('active');
+            $('[id*="radio-popup-style-"]').not($(this)).removeAttr('checked').prop('checked', false).parent().removeClass('active');
+        });
         buildSlider();
-
 
         var slider = $('.bxslideri').bxSlider({
             adaptiveHeight:true,
@@ -59,6 +66,7 @@
         });
 
     });
+
     function navigatedToLastSlide(slider){
         var numberOfSlides = slider.getSlideCount() -1;
 
@@ -83,12 +91,10 @@
         // First we check if there is a submit button added
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
-            $('.bx-wrapper .bx-controls-direction').append('<button style="float:right; margin-top:10px;" class="btn btn-success" type="submit">Submit</button>');
-
+            $('.bx-wrapper .bx-controls-direction').append('<button style="float:right; position:relative; z-index: 9999; margin-top:10px;" class="btn btn-success" type="submit">Submit</button>');
         }else{
             $('.bx-wrapper .bx-controls-direction button').remove();
         }
-
     }
 
     function removeSubmitButtonLastSlide(){
@@ -126,10 +132,7 @@
                         // If we are showing the first element of the form group(section) we are showing the tittle too.
                         $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3>'+groupOfElements[i].id+'</h3>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
                     }
-
-
                 }
-
             }
         }
     }
@@ -188,20 +191,7 @@
         </ul>
     </div>
 
-    <button href="" class="btn btn-success" type="submit" onClick="ga('send', 'event', 'New_trancription','Enviar')">Send it</button>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-        Skip it
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a class="btn btn-success" href="#" onClick="ga('send', 'event', 'New_trancription','No tiene importe final', '{{document.url}}')">{{ _('It does not have a price') }}</a>
-        </li>
-        <li>
-          <a class="btn btn-success" href="#" onClick="ga('send', 'event', 'New_trancription','Quiero otro documento', '{{document.url}}')">{{ _('I just want another document') }}</a>
-        </li>
-      </ul>
-    </div>
+    {{ _('Skip it')  }}:  <a class="btn btn-danger"  id="another" href="#" role="button">{{ _('I want another document') }}</a>
+
 
 </form>

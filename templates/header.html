@@ -29,8 +29,12 @@
             </ul>
           </li>
         {% else %}
-          <li>{% browserid_login text=_('Login') %}</li>
-          <li><a href="{% url 'login_anonymously' %}">Contribute Anonymously</a></li>
+            <a href="#" data-next="/cd/afterlogin" class="browserid-login persona-button">
+                <span>Login</span>
+            </a>
+            <a href="{% url 'login_anonymously' %}"  class=" persona-button">
+                <span>{{_('Contribute Anonymously') }}</span>
+            </a>
         {% endif %}
       </ul>
     </div>

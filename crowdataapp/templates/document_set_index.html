@@ -3,9 +3,24 @@
 {% load static from staticfiles %}
 
 {% block maincolumn %}
+    <style>
+    h2{
+        color:#A0269E;
+    }
+    h4{
+        color:#D5A7D3;
+    }
+    #get-started{
+        background:#A0269E;
+    }
+    .project-index {
+        margin: 0 0 20% 20%;
+        width: 100%;
+    }
+    </style>
   <div class="project-index">
-    <h2>{{ _('Choose a project') }}</h2>
-
+    <h2 style="display:none;">{{ _('Choose a project') }}</h2>
+    <h2 align="center">¿QuienCompro?</h2>
     <script src="/static/crowdataapp/js/jquery.tinysort.min.js"></script>
 
     <div style="display: none;" class="btn-group">
@@ -14,21 +29,21 @@
       <button type="button" class="btn btn-default btn-sm sort-percentage">Sort percentage</button>
     </div>
 
-    <div class = "media-wrapper">
+    <div  class = "media-wrapper">
       {% for ds in document_sets %}
     		<div class="media" data-name = "{{ds.name}}" data-count = "{{ ds.documents.count }}" data-complete = "{% widthratio ds.get_verified_documents.count ds.documents.count 100 %}">
-          {% if ds.header_image %}
-            <a class="pull-left" href="{{ds.get_absolute_url}}">
-              <img src="{{ ds.header_image }}" width="316" height="216" class="media-object" />
-            </a>
-          {% endif %}
+{#          {% if ds.header_image %}#}
+{#            <a class="pull-left" href="{{ds.get_absolute_url}}">#}
+{#              <img src="{{ ds.header_image }}" width="316" height="216" class="media-object" />#}
+{#            </a>#}
+{#          {% endif %}#}
 
-          <div class="media-body">
+          <div  align="center" class="media-body">
             <h4 class="media-heading">{{ds.name}}</h4>
     		    {{ds.description}}
             <div class="cta">
               {% call_to_action ds %}
-              {% documents_verified ds %}
+{#              {% documents_verified ds %}#}
             </div>
     		  </div>
     		</div>
@@ -50,12 +65,8 @@
   </div>
 {% endblock %}
 
-{% block rightcolumn %}
-  <h2>About Crowdata</h2>
-  <p>
-    CrowData is a tool to collaborate on the verification or release of data that otherwise would be hard or impossible to get via automatic tools. This is the software we used to create VozData.
-  </p>
-  <p>
-    In 2014, La Nacion in Argentina launched VozData, a website to crowdsourced senate spendings by asking people to transcribe information from 6500 scanned PDF documents from the senate. This is the code that created that website and it can be used with any document set and any data you may need to take from them.
-  </p>
-{% endblock %}
+{#{% block rightcolumn %}#}
+{#  <h2>About ¿Quién Compró?</h2>#}
+{#    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
+{#  <p> {{ _('¿Quién Compró? is a project that looks at the way the Mexican congress spends public funds. The platform holds digitized receipts showing politicians expenses. With your help we can highlight   discrepancies in public spending and encourage transparency within the Mexican government. <br/>Please help us out by tagging politicians receipts and giving us your feedback! When you start using the platform you will be given a scanned receipt. Follow the instructions to tag the information you see on document. This project is currently in beta form so please be patient as we try things out.</br> We hope everything runs smoothly, but if not, please let us know in the feedback form at the end of the session.')  }}</p>#}
+{#{% endblock %}#}

@@ -319,7 +319,7 @@ msgid "Choose one of this project"
 msgstr ""
 #: templates/footer.html:7
 msgid "Examples"
-msgstr ""
+msgstr "Ejemplos"
 
 #: templates/forms/includes/built_form.html:202
 msgid "Skip it"
@@ -331,7 +331,19 @@ msgstr "Quiero otro documento"
 
 #: templates/header.html:28
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar la sesión"
+
+#: templates/header.html:33
+msgid "Login"
+msgstr "Ingresar"
+
+#: templates/header.html:25
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/header.html:26
+msgid "Admin"
+msgstr "Administrador"
 
 #: templates/header.html:36
 msgid "Contribute Anonymously"

@@ -1,14 +1,15 @@
-# CrowData
-# Copyright (C) 2013 Manuel Aristaran
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Manuel Aristaran <manuel at jazzido dot com>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 18:39+0200\n"
-"PO-Revision-Date: 2013-10-11 13:59-0400\n"
+"POT-Creation-Date: 2015-08-27 13:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,330 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: crowdataapp/admin.py:99
-msgid "Cluster several canons into only one of them."
-msgstr ""
-
-#: crowdataapp/admin.py:165
-#, fuzzy
-msgid "Document Set Description"
-msgstr "Conjuntos de documentos"
-
-#: crowdataapp/admin.py:168
-#, fuzzy
-msgid "Document Set Behaviour"
-msgstr "Conjunto de documentos"
-
-#: crowdataapp/admin.py:224
-#, fuzzy
-#| msgid ""
-#| "Header cells must be <code>document_title</code> and <code>document_url</"
-#| "code>"
-msgid "Header cells must be document_title and document_url"
-msgstr ""
-"Las celdas del encabezado deben ser <code>document_title</code> y "
-"<code>document_url</code>"
-
-#: crowdataapp/admin.py:236
-msgid "Could not create documents"
-msgstr "No se pudieron crear los documentos"
-
-#: crowdataapp/admin.py:242
-#, python-format
-msgid "Successfully created %(count)d documents"
-msgstr "Se crearon %(count)d documentos"
-
-#: crowdataapp/admin.py:454 crowdataapp/models.py:109
-msgid "Document Set"
-msgstr "Conjunto de documentos"
-
-#: crowdataapp/admin.py:467
-msgid "Re-verify selected documents."
-msgstr ""
-
-#: crowdataapp/admin.py:483
-msgid "Personal info"
-msgstr ""
-
-#: crowdataapp/admin.py:484
-#: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/filer/folder/directory_table.html:78
-#: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/filer/folder/directory_table.html:78
-msgid "Permissions"
-msgstr ""
-
-#: crowdataapp/admin.py:485
-msgid "Important dates"
-msgstr ""
-
-#: crowdataapp/management/commands/remove_canons.py:8
-msgid ""
-"Removes the canonical field entry labels with the content of a csv file."
-msgstr ""
-
-#: crowdataapp/models.py:51
-msgid "Your Name"
-msgstr ""
-
-#: crowdataapp/models.py:52
-msgid "Your country"
-msgstr ""
-
-#: crowdataapp/models.py:53
-msgid "Appear in the leaderboards"
-msgstr ""
-
-#: crowdataapp/models.py:55
-msgid "If checked, you will appear in CrowData's leaderboards"
-msgstr ""
-
-#: crowdataapp/models.py:72
-msgid "Document set name"
-msgstr "Nombre del conjunto de documentos"
-
-#: crowdataapp/models.py:76
-#, fuzzy
-msgid "Description for this Document Set"
-msgstr "Agregar documentos a este Conjunto de Documentos"
-
-#: crowdataapp/models.py:80
-msgid "Header Image URL"
-msgstr ""
-
-#: crowdataapp/models.py:88
-msgid ""
-"Field from the form to sum total on. This will be displayed in the document "
-"set's homepage."
-msgstr ""
-
-#: crowdataapp/models.py:92
-msgid ""
-"Javascript function to insert the document into the DOM. Receives the URL of "
-"the document as its only parameter. Must be called insertDocument"
-msgstr ""
-"Función de javascript para insertar el document en el DOM. Recibe el URL del "
-"documento como único parámetro. Debe llamarse 'insertDocument'"
-
-#: crowdataapp/models.py:95
-msgid ""
-"Minimum number of coincidental answers for a field before marking it as valid"
-msgstr ""
-
-#: crowdataapp/models.py:99
-msgid "HTML to be inserted in the <head> element in this page"
-msgstr "HTML a ser insertado en el elemento <head>"
-
-#: crowdataapp/models.py:101
-msgid "Published"
-msgstr ""
-
-#: crowdataapp/models.py:103
-msgid "Is this Document Set published to non-admins?"
-msgstr ""
-
-#: crowdataapp/models.py:110
-msgid "Document Sets"
-msgstr "Conjuntos de documentos"
-
-#: crowdataapp/models.py:122
-msgid "Export all answers to CSV"
-msgstr "Exportar todas las respuestas a CSV"
-
-#: crowdataapp/models.py:123
-msgid "Add Documents to this document set"
-msgstr "Agregar documentos a este Conjunto de Documentos"
-
-#: crowdataapp/models.py:124
-#, fuzzy
-#| msgid "Add Documents to this document set"
-msgid "Update Canons to this document set"
-msgstr "Agregar documentos a este Conjunto de Documentos"
-
-#: crowdataapp/models.py:220
-msgid "Autocomplete"
-msgstr "Autocompletar"
-
-#: crowdataapp/models.py:221 crowdataapp/models.py:225
-msgid "If checked, this text field will have autocompletion"
-msgstr "Si está activado, este campo de texto tendrá autocompletado"
-
-#: crowdataapp/models.py:223
-#: venv/lib/python2.7/site-packages/django/forms/formsets.py:324
-#: venv/lib/python2.7/site-packages/django/forms/formsets.py:326
-msgid "Order"
-msgstr "Orden"
-
-#: crowdataapp/models.py:224
-msgid "Group"
-msgstr ""
-
-#: crowdataapp/models.py:226
-msgid "Verify"
-msgstr ""
-
-#: crowdataapp/models.py:348
-msgid "Average"
-msgstr ""
-
-#: crowdataapp/models.py:349
-msgid "Count"
-msgstr ""
-
-#: crowdataapp/models.py:350
-msgid "Sum"
-msgstr ""
-
-#: crowdataapp/models.py:377
-msgid "Ranking title"
-msgstr ""
-
-#: crowdataapp/models.py:386
-msgid "Cantidad de filas a mostrar en el home page."
-msgstr ""
-
-#: crowdataapp/models.py:388
-msgid "Grouping Function"
-msgstr ""
-
-#: crowdataapp/models.py:392
-msgid "Sort order"
-msgstr ""
-
-#: crowdataapp/models.py:394
-msgid "Ascending if checked, descending otherwise"
-msgstr ""
-
-#: crowdataapp/models.py:462
-msgid "Document title"
-msgstr "Título del documento"
-
-#: crowdataapp/models.py:463
-msgid "Document URL"
-msgstr "URL del documento"
-
-#: crowdataapp/models.py:465
-msgid "Verified"
-msgstr ""
-
-#: crowdataapp/models.py:466
-msgid "Is this document verified?"
-msgstr ""
-
-#: crowdataapp/models.py:470
-msgid ""
-"Minimum number of coincidental answers for a field before marking it as "
-"valid. Overrides the default value set in the Document Set this Document "
-"belongs to"
-msgstr ""
-
-#: crowdataapp/models.py:612
-msgid "Document"
-msgstr "Documento"
-
-#: crowdataapp/models.py:613
-msgid "Documents"
-msgstr "Documentos"
-
-#: crowdataapp/models.py:620
-msgid "Canonical value"
-msgstr ""
-
-#: crowdataapp/signals.py:20
-#, python-format
-msgid "The document %s already has an entry."
-msgstr ""
-
-#: crowdataapp/templates/call_to_action.html:5
-msgid "Free a file"
-msgstr ""
-
-#: crowdataapp/templates/document_set_index.html:7
-msgid "Choose a project"
-msgstr "Elige un proyecto"
-
-#: crowdataapp/templates/edit_profile.html:7
-msgid "Edit your profile"
-msgstr ""
-
-#: crowdataapp/templates/list_ranking_user.html:1
-msgid "User ranking"
-msgstr ""
-
-#: crowdataapp/templates/list_ranking_user.html:1
-#: crowdataapp/templates/ranking.html:29
-msgid "more"
-msgstr ""
-
-#: crowdataapp/templates/list_ranking_user.html:3
-msgid "Per reviewed documents"
-msgstr ""
-
-#: crowdataapp/templates/login_page.html:7
-msgid ""
-"<strong>Crowdata</strong> uses <a target=\"_blank\" href=\"http://www."
-"mozilla.org/en-US/persona/\">Mozilla Persona</a>. Please click on the button "
-"above to sign in.</p>"
-msgstr ""
-
-#: crowdataapp/templates/show_document.html:42
-#, python-format
-msgid ""
-"\n"
-"            ¡We already reviewed %(amount_reviewed)s of %(amount_total)s "
-"documents!\n"
-"          "
-msgstr ""
-
-#: crowdataapp/templates/show_profile.html:11
-msgid "Perfil de usuario"
-msgstr ""
-
-#: crowdataapp/templates/shutdown.html:44
-#, python-format
-msgid ""
-"\n"
-"          ¡We already reviewed %(amount_reviewed)s of %(amount_total)s "
-"documents!\n"
-"          "
-msgstr ""
-
-#: crowdataapp/templates/transcription_new.html:38
-msgid "Thanks for reviewing a document"
-msgstr ""
-
-#: crowdataapp/templates/transcription_new.html:39
-msgid "Once your data is verified, the results will come up in the database."
-msgstr ""
-
-#: crowdataapp/templates/transcription_new.html:44
-msgid "I want to review other document"
-msgstr ""
-
-#: crowdataapp/templates/transcription_new.html:51
-#: crowdataapp/templates/transcription_new.html:53
-#, fuzzy
-#| msgid "Documents"
-msgid "documents"
-msgstr "Documentos"
-
-#: crowdataapp/templates/transcription_new.html:53
-msgid "We already reviewed"
-msgstr ""
-
-#: crowdataapp/templates/transcription_new.html:53
-msgid "of"
-msgstr ""
-
-#: crowdataapp/templates/users_all.html:10
-msgid "Users Ranking"
-msgstr ""
-
-#: crowdataapp/views.py:28
-msgid "Choose one of this project"
-msgstr ""
-
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "CrowData Administration"
-msgstr "Administración de CrowData"
+msgstr "QuienCompro Administration"
 
 #: templates/footer.html:5
 msgid "Source"
@@ -349,32 +29,28 @@ msgstr ""
 #: templates/footer.html:6
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/base.html:109
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/base.html:107
-#, fuzzy
-#| msgid "Document"
 msgid "Documentation"
-msgstr "Documento"
+msgstr ""
 
 #: templates/footer.html:7
 msgid "Examples"
 msgstr ""
 
-#: templates/forms/includes/built_form.html:201
-msgid "It does not have a price"
-msgstr ""
+#: templates/forms/includes/built_form.html:202
+msgid "Skip it"
+msgstr "Saltar"
 
-#: templates/forms/includes/built_form.html:204
-#, fuzzy
-#| msgid "Could not create documents"
-msgid "I just want another document"
-msgstr "No se pudieron crear los documentos"
+#: templates/forms/includes/built_form.html:202
+msgid "I want another document"
+msgstr ""
 
 #: templates/header.html:28
 msgid "Logout"
 msgstr ""
 
-#: templates/header.html:32
-msgid "Login"
-msgstr ""
+#: templates/header.html:36
+msgid "Contribute Anonymously"
+msgstr "Contribuciones anónimas"
 
 #: venv/lib/python2.7/site-packages/IPython/external/argparse/_argparse.py:327
 #: venv/lib/python2.7/site-packages/argparse.py:313
@@ -964,6 +640,11 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:835
 #: venv/lib/python2.7/site-packages/django/forms/models.py:1022
 msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:324
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:326
+msgid "Order"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/forms/formsets.py:328
@@ -1638,10 +1319,8 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/app_index.html:18
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/app_index.html:18
-#, fuzzy
-#| msgid "CrowData Administration"
 msgid "administration"
-msgstr "Administración de CrowData"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/auth/user/add_form.html:6
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/auth/user/add_form.html:6
@@ -2360,6 +2039,11 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/filer/folder/directory_table.html:66
 #, python-format
 msgid "Delete '%(item_label)s'"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/filer/folder/directory_table.html:78
+#: venv/lib/python2.7/site-packages/django_admin_bootstrapped/templates/admin/filer/folder/directory_table.html:78
+msgid "Permissions"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_admin_bootstrapped/bootstrap3/templates/admin/filer/folder/directory_table.html:78
@@ -3541,6 +3225,3 @@ msgstr ""
 #, python-format
 msgid "Change %s"
 msgstr ""
-
-#~ msgid "Maximum number of times each document will be shown to users."
-#~ msgstr "Máxima cantidad de veces que se mostrará cada documento"

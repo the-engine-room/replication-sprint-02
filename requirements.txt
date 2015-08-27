@@ -7,7 +7,7 @@ django-ace==0.3.1
 django-admin-bootstrapped==1.6.5
 django-admintheme==0.2
 django-annoying==0.7.7
-django-browserid
+django-browserid==1.0.0
 django-countries==1.5
 django-email-extras==0.1.13
 django-extensions==1.2.5

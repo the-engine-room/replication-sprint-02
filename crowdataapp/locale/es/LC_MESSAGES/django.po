@@ -235,11 +235,27 @@ msgstr ""
 
 #: templates/call_to_action.html:5
 msgid "Get started"
-msgstr ""
+msgstr "Empezar"
 
 #: templates/document_set_index.html:22
 msgid "Choose a project"
 msgstr ""
+
+#: templates/document_set_index.html:43
+msgid "¿Quién Compró? is a project that looks at the way the Mexican congress spends public funds. The platform holds digitized receipts showing politicians expenses. With your help we can highlight   discrepancies in public spending and encourage transparency within the Mexican government."
+msgstr "¿Quién Compró? es un proyecto que observa la manera en que el Congreso mexicano gasta los recursos públicos. La plataforma de ¿Quién Compró? resalta las discrepancias en los gastos para promover la transparencia en el Gobierno Mexicano. ¿Quién Compró? Con su ayuda, podemos dar seguimiento al gasto público identificando las discrepancias y promoviendo el uso responsable de recursos y la transparencia."
+
+#: templates/document_set_index.html:44
+msgid "Please help us out by tagging politicians receipts and giving us your feedback! "
+msgstr "¡Ayúdanos identificando la información que contienen los recibos y facturas de los políticos! "
+
+#: templates/document_set_index.html:45
+msgid "When you start using the platform you will be given a scanned receipt. Follow the instructions to tag the information you see on document. "
+msgstr "Al comenzar a utilizar nuestra plataforma, ésta te proporcionará una factura escaneada. Sigue las instrucciones para etiquetar la información que aparece en el documento."
+
+#: templates/document_set_index.html:46
+msgid "This project is currently in beta form so please be patient as we try things out. We hope everything runs smoothly, but if not, please let us know in the feedback form at the end of the session."
+msgstr "La plataforma se encuentra en formato beta. Estamos en periodo de prueba y te pedimos paciencia mientras probamos su funcionamiento.Esperamos que todo funcione adecuadamente, pero si tienes problemas con la página, nos ayudarán mucho tus comentarios."
 
 #: templates/edit_profile.html:7
 msgid "Edit your profile"

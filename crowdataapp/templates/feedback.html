@@ -1,0 +1,19 @@
+
+{% load crowdataapp_tags %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block maincolumn %}
+<div class="feedbackform">
+                <img style="display: block;margin-left: auto;margin-right: auto" src="http://quiencompro.com/images/QC.png"/>
+                <br/><br/>
+                <h4 align="center">¡GRACIAS!</h4>
+                <p>{{ _('Thank you for helping us out!  We would love it if you could give us some feedback in the box below. Let us know what you found useful or unhelpful. Was there anything that did not work as it should have?') }}</p>
+                <form action="{% url 'feedback' %}" method="POST" name="feedback">
+                {% csrf_token %}
+                    </br><textarea name="feedback_text" rows="5" cols="60">Escriba su retroalimentacion aqui...</textarea></br>
+                    <button id="another" class="btn btn-primary btn-lg btn-block" type="submit">{{ _('I want to review other document') }}</button>
+                </form>
+{#                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" role="button">{{ _('I want to review other document') }}#}
+{#    	    	</a>#}
+        </div>
+{% endblock %}

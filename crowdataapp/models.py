@@ -648,3 +648,6 @@ class CanonicalFieldEntryLabel(models.Model):
     for entry in self.fields.all():
       entry.canonical_label = new_canon
       entry.save_without_setting_canon()
+
+class Feedback(models.Model):
+    feedback_text = models.CharField(max_length=10000)

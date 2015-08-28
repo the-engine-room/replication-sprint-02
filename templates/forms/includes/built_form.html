@@ -39,13 +39,26 @@
         });
 
 
-        $('#id_other_category').parent().css('display','none');
-
-        $('#id_category_13').click(function(){
-            $('#id_other_category').parent().css('display','block');
-        });
-
         buildSlider();
+        
+        $('.twitter-typeahead :input').prop('disabled', true);
+        $('.choicefield').change(function(){
+            console.log('Checked main');
+            if($('.choicefield#id_part_of_government_thats_responsible_7').is(':checked')) {
+                console.log('Checked otra');
+                 $('.twitter-typeahead :input').prop('disabled', false);
+            }else{
+                $('.twitter-typeahead :input').prop('disabled', true);
+            }
+
+        });
+{#        $('#id_other_category :radio').parent().css('display','none');#}
+
+{#        $('#id_category_13').click(function(){#}
+{#            $('#id_other_category').parent().css('display','block');#}
+{#        });#}
+
+
         var slider = $('.bxslideri').bxSlider({
             adaptiveHeight:true,
             infiniteLoop: false,

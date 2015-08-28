@@ -40,15 +40,24 @@
 
 
         buildSlider();
-        
-        $('.twitter-typeahead :input').prop('disabled', true);
+
+        $("input[name='other_category']").prop('disabled', true);
+        $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
+{#        var other_part_of_government = document.getElementsByName("other_part_of_government_thats_responsible");#}
+{##}
+{#        other_category[0]#}
+{#        other_part_of_government[0].prop('disabled', true);#}
         $('.choicefield').change(function(){
-            console.log('Checked main');
             if($('.choicefield#id_part_of_government_thats_responsible_7').is(':checked')) {
-                console.log('Checked otra');
-                 $('.twitter-typeahead :input').prop('disabled', false);
+                 $("input[name='other_part_of_government_thats_responsible']").prop('disabled', false);
             }else{
-                $('.twitter-typeahead :input').prop('disabled', true);
+                $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
+            }
+
+            if($('.choicefield#id_category_13').is(':checked')) {
+                 $("input[name='other_category']").prop('disabled', false);
+            }else{
+                $("input[name='other_category']").prop('disabled', true);
             }
 
         });

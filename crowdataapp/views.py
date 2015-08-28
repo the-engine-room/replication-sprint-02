@@ -150,6 +150,20 @@ def login(request):
     # else:
     #     return { }
 
+@render_to('feedback.html')
+def feedback(request):
+    feedback_model = models.Feedback()
+    if request.method == 'POST':
+        feedback_form = forms.FeedbackForm(data=request.POST, instance=feedback_model)
+        if feedback_form.is_valid():
+            feedback_result = feedback_form.save()
+    else:
+        feedback_form = forms.FeedbackForm()
+
+    return {
+        'feedback_form': feedback_form
+    }
+
 @render_to('login_anonymously.html')
 def login_anonymously(request):
 

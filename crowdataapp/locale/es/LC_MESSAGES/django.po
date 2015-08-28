@@ -316,11 +316,11 @@ msgstr "Quiero revisar otros documentos "
 
 #: templates/transcription_new.html:51 templates/transcription_new.html:53
 msgid "documents"
-msgstr ""
+msgstr "documento(s)"
 
 #: templates/transcription_new.html:53
 msgid "We already reviewed"
-msgstr ""
+msgstr "Ya hemos revisado"
 
 #: templates/transcription_new.html:53
 msgid "of"
@@ -364,6 +364,15 @@ msgstr "Administrador"
 #: templates/header.html:36
 msgid "Contribute Anonymously"
 msgstr "Contribuciones anónimas"
+
+#: templates/feedback.html:10
+msgid "Thank you for helping us out!  We would love it if you could give us some feedback in the box below. Let us know what you found useful or unhelpful. Was there anything that did not work as it should have?"
+msgstr "¡Gracias por tu apoyo! Tu retroalimentación sobre tu experiencia en la plataforma nos ayuda a mejorar el sitio. Deja tus comentarios y sugerencias abajo. Por ejemplo, comentanos si algún punto específico te resultó útil o confuso; o si alguna herramienta no funciona como debería."
+
+#: templates/transcription_new.html:56
+msgid "You reviewed "
+msgstr "Revisaste "
+
 
 #~ msgid "CrowData Administration"
 #~ msgstr "QuienCompro Administration"

@@ -11,7 +11,8 @@
 {% endblock %}
 
 {% block headercontent %}
-	{{ document.document_set }}
+    <img width="150px" height="80px;" src="http://quiencompro.com/images/QC.png"/>
+{#	{{ document.document_set }}#}
 {% endblock %}
 
 {% block leftcolumn %}
@@ -34,21 +35,12 @@
 
     <!-- Social  -->
     <div id="social_document" style="display:none" class="cajas">
-        <div class="feedbackform">
-                <img style="display: block;margin-left: auto;margin-right: auto" src="http://quiencompro.com/images/QC.png"/>
-                <br/><br/>
-                <h4 align="center">¡GRACIAS!</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <form name="feedback">
-                    </br><textarea name="feedback-text" rows="5" cols="60">Write your feedback here...</textarea></br>
-                </form>
-                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" onClick="ga('send', 'event', 'New_trancription','Quiero revisar otro documento')" role="button">{{ _('I want to review other document') }}
-    	    	</a>
-        </div>
-    	<div class="herramientasSociales">
-    	  <b>¡{{ _('Thanks for reviewing a document') }}!</b>
-    		<div class="subtitulo"> {{ _('Once your data is verified, the results will come up in the database.') }}</div>
 
+    	<div class="herramientasSociales">
+
+            {% include "feedback.html" %}
+            <b>¡{{ _('Thanks for reviewing a document') }}!</b>
+    		<div class="subtitulo"> {{ _('Once your data is verified, the results will come up in the database.') }}</div>
     	</div>
 
 {#    	<div class="liberar">#}
@@ -61,7 +53,7 @@
     </div>
 
     <div class="herramientasSociales" style="height:auto;">
-    	<div class="evaluaste" style="margin-bottom: 5px; width: auto;">You reviewed <strong>{{ reviewed_documents_count }} {{ _('documents') }}.</strong></div>
+    	<div class="evaluaste" style="margin-bottom: 5px; width: auto;">{{ _('You reviewed ')}}<strong>{{ reviewed_documents_count }} {{ _('documents') }}.</strong></div>
       <div class="regla"><div class="medidor" style="width:{% widthratio document.document_set.get_verified_documents.count document.document_set.documents.count 100 %}%"> </div></div>
       <div class="evaluaste"> {{ _('We already reviewed')}} <strong>{{ document.document_set.get_verified_documents.count }} {{ _('documents') }}</strong> {{ _('of') }} {{ document.document_set.documents.count }}.</div>
     </div>

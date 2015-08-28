@@ -15,3 +15,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = models.UserProfile
         exclude = ('user')
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = models.Feedback
+

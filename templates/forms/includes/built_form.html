@@ -41,12 +41,10 @@
 
         buildSlider();
 
+
         $("input[name='other_category']").prop('disabled', true);
         $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
-{#        var other_part_of_government = document.getElementsByName("other_part_of_government_thats_responsible");#}
-{##}
-{#        other_category[0]#}
-{#        other_part_of_government[0].prop('disabled', true);#}
+
         $('.choicefield').change(function(){
             if($('.choicefield#id_part_of_government_thats_responsible_7').is(':checked')) {
                  $("input[name='other_part_of_government_thats_responsible']").prop('disabled', false);
@@ -61,11 +59,6 @@
             }
 
         });
-{#        $('#id_other_category :radio').parent().css('display','none');#}
-
-{#        $('#id_category_13').click(function(){#}
-{#            $('#id_other_category').parent().css('display','block');#}
-{#        });#}
 
 
         var slider = $('.bxslideri').bxSlider({
@@ -94,6 +87,8 @@
                 removeSubmitButtonLastSlide();
             }
         });
+
+        buildToolTipText();
 
     });
 
@@ -183,11 +178,44 @@
         .replace(/-+$/, '');            // Trim - from end of text
     }
 
+    function buildToolTipText(){
+        var help_block = document.getElementsByClassName('help-block');
+
+        for (var i = 0; i < help_block.length; i++) {
+            console.log(help_block[i].innerText);
+
+
+        }
+        console.log(document.getElementsByClassName('.help-block'));
+       $('.help-block').each(function() {
+
+           if(this.innerText != ""){
+                $(this).qtip({ // Grab some elements to apply the tooltip to
+
+                        content: {
+                            text: this.innerText
+                        }
+                });
+               this.innerText = "";
+               var x = document.createElement("IMG");
+               x.src = "{% static '/static/img/about.png' %}";
+               this.appendChild(x);
+               this.style.float = "right";
+               this.style.margin = "-35px 0 0 170px";
+               this.style.padding ="20px";
+           }
+       });
+    }
+
 
 </script>
 
 <!-- bxSlider Javascript file -->
 <script src="{% static "/static/js/jquery.bxslider.min.js" %}"></script>
+
+<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
+
+<link href="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
 <!-- bxSlider CSS file -->
 <link href="{% static "/static/css/jquery.bxslider.css" %}" rel="stylesheet"></link>
  <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"

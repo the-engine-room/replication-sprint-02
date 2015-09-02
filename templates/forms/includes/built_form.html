@@ -20,6 +20,15 @@
         position:absolute;
         left:-9999px;
     }
+    #qtip-overlay{
+    position: fixed;
+    left: -10000em;
+    top: -10000em;
+    }
+    .qtip.qtip-default.qtip-pos-tl{
+    margin-left:-20px;
+        margin-top:-20px;
+    }
 </style>
 
 <script>
@@ -191,10 +200,20 @@
 
            if(this.innerText != ""){
                 $(this).qtip({ // Grab some elements to apply the tooltip to
-
-                        content: {
-                            text: this.innerText
+                    prerender: true,
+                    content: {
+                        text: this.innerText
+                    },
+                    style: {
+                        tip: {
+                            corner: true,
+                            offset: -100
                         }
+                    },
+                    position: {
+                        my: 'top left',
+                        at: 'bottom right'
+                    }
                 });
                this.innerText = "";
                var x = document.createElement("IMG");

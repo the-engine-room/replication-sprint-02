@@ -1,10 +1,8 @@
 {% load static from staticfiles %}
 {% load multifor %}
 <style>
-    input[disabled='disabled'] {
-        color: #666;
-        -webkit-text-fill-color: black;
-         background-color: #f4f4f4;
+    #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
+        background: #dddddd;
     }
     .checkbox-btn{
         color: black ;
@@ -57,7 +55,8 @@
         height: auto;
         min-height: auto;
         width: auto;
-        min-width: auto; }
+        min-width: auto;
+    }
 </style>
 
 <script>
@@ -102,11 +101,7 @@
             this.appendChild(cant_read_container);
         });
 
-{#        $('#cant_read').each(function(){#}
-{#                this.onclick(function() {#}
-{#                    console.log("clicked cant read");#}
-{#                });#}
-{#        });#}
+
         $('.undo').css('display','none');
         $('.cant_read').click(function(){
             if($(this).parent().parent().children('input').length > 0){
@@ -121,6 +116,7 @@
                 $(this).parent().find('.undo').css('display','block');
             }else if($(this).parent().parent().children().children('input').length>0){
                 $(this).parent().parent().children().children('input').prop('disabled',true);
+                $(this).parent().parent().children().children('input').css('background',"#dddddd")
                 $(this).parent().find('.undo').css('display','block');
             }
         });
@@ -137,6 +133,7 @@
                  $(this).parent().find('.undo').css('display','none');
             }else if($(this).parent().parent().children().children('input').length>0){
                 $(this).parent().parent().children().children('input').prop('disabled',false);
+                 $(this).parent().parent().children().children('input').css('background',"#fff")
                  $(this).parent().find('.undo').css('display','none');
             }
 

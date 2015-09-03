@@ -1,6 +1,11 @@
 {% load static from staticfiles %}
 {% load multifor %}
 <style>
+    input[disabled='disabled'] {
+        color: #666;
+        -webkit-text-fill-color: black;
+         background-color: #f4f4f4;
+    }
     .checkbox-btn{
         color: black ;
         background-color: #DAAFD8 ;
@@ -29,18 +34,19 @@
         margin-right:120px;
         margin-top:-20px;
     }
-    .cant_read_container{
+    #cant_read_container{
+        width:150px;
         height:10px;
         clear:both;
     }
-    #cant_read{
-        float:left;
+    .cant_read{
+        width:80px;
         padding-right:3px;
-        clear:both;
-    }
-    #undo{
         float:left;
-
+    }
+    .undo{
+        padding-right:3px;
+        float:right;
     }
     .qtip-pos-tr{
         left:1000px;
@@ -87,13 +93,53 @@
             cant_read_container.id = "cant_read_container";
             var cant_read = document.createElement('p');
             cant_read.innerText = "Can't read!";
-            cant_read.id = "cant_read";
+            cant_read.setAttribute("class", "cant_read");
             var undo = document.createElement('p');
-            undo.innerText = "Undo!"
-            undo.id = "undo";
+            undo.innerText = "Undo!";
+            undo.setAttribute("class", "undo");
             cant_read_container.appendChild(cant_read);
             cant_read_container.appendChild(undo);
             this.appendChild(cant_read_container);
+        });
+
+{#        $('#cant_read').each(function(){#}
+{#                this.onclick(function() {#}
+{#                    console.log("clicked cant read");#}
+{#                });#}
+{#        });#}
+        $('.undo').css('display','none');
+        $('.cant_read').click(function(){
+            if($(this).parent().parent().children('input').length > 0){
+                $(this).parent().parent().children('input').prop('disabled', true);
+                $(this).parent().find('.undo').css('display','block');
+            }
+            else if ($(this).parent().parent().children('textarea').length > 0){
+                $(this).parent().parent().children('textarea').prop('disabled', true);
+                $(this).parent().find('.undo').css('display','block');
+            }else if ($(this).parent().parent().children('text').length > 0){
+                $(this).parent().parent().children('text').prop('disabled', true);
+                $(this).parent().find('.undo').css('display','block');
+            }else if($(this).parent().parent().children().children('input').length>0){
+                $(this).parent().parent().children().children('input').prop('disabled',true);
+                $(this).parent().find('.undo').css('display','block');
+            }
+        });
+        $('.undo').click(function(){
+            if($(this).parent().parent().children('input').length > 0){
+                $(this).parent().parent().children('input').prop('disabled', false);
+                $(this).parent().find('.undo').css('display','none');
+            }
+            else if ($(this).parent().parent().children('textarea').length > 0){
+                $(this).parent().parent().children('textarea').prop('disabled', false);
+                 $(this).parent().find('.undo').css('display','none');
+            }else if ($(this).parent().parent().children('text').length > 0){
+                $(this).parent().parent().children('text').prop('disabled', false);
+                 $(this).parent().find('.undo').css('display','none');
+            }else if($(this).parent().parent().children().children('input').length>0){
+                $(this).parent().parent().children().children('input').prop('disabled',false);
+                 $(this).parent().find('.undo').css('display','none');
+            }
+
         });
     }
     function customSlideNavigationFunctions(){

@@ -25,51 +25,78 @@
     left: -10000em;
     top: -10000em;
     }
-    .qtip.qtip-default.qtip-pos-tl{
-    margin-left:-20px;
+    .qtip-default{
+        margin-right:120px;
         margin-top:-20px;
     }
+    .cant_read_container{
+        height:10px;
+        clear:both;
+    }
+    #cant_read{
+        float:left;
+        padding-right:3px;
+        clear:both;
+    }
+    #undo{
+        float:left;
+
+    }
+    .qtip-pos-tr{
+        left:1000px;
+    }
+    div.qtip{
+        padding: 0;
+        margin-left: -40px;
+        height: auto;
+        min-height: auto;
+        width: auto;
+        min-width: auto; }
 </style>
 
 <script>
     $( document ).ready(function() {
 
 
-        $( "#elForm input:radio" ).parent().parent().parent().addClass("btn-group");
-        $( "#elForm input:radio" ).parent().parent().addClass("btn checkbox-btn ");
-        $("#elForm input:radio").parent().parent().parent().attr("data-toggle", "buttons");
-        $( "#elForm input:radio" ).parent().parent().css('width','45%').css('border','1px solid white');
+        // Convert radio buttons into groups of toggle buttons.
+        convertRadioButtonsToToggle();
 
-         $('input:radio').toggle();
-
-        $('[id*="radio-popup-style-"]').click(function(){
-            $(this).prop('checked', true).parent().addClass('active');
-            $('[id*="radio-popup-style-"]').not($(this)).removeAttr('checked').prop('checked', false).parent().removeClass('active');
-        });
-
-
+        // Build the bxSlider
         buildSlider();
 
+        // When we click "Other", the field for Other text should be activated
+        disableButtonWhenClickingOther();
 
-        $("input[name='other_category']").prop('disabled', true);
-        $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
+        // Customize navigating through slides so we have the "Submit button" in the last slide
+        customSlideNavigationFunctions();
 
-        $('.choicefield').change(function(){
-            if($('.choicefield#id_part_of_government_thats_responsible_7').is(':checked')) {
-                 $("input[name='other_part_of_government_thats_responsible']").prop('disabled', false);
-            }else{
-                $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
-            }
+        // Add form enhancements
+        // When hovering in the "?" after a field, show the help-text as a tooltip.
+        buildToolTipText();
 
-            if($('.choicefield#id_category_13').is(':checked')) {
-                 $("input[name='other_category']").prop('disabled', false);
-            }else{
-                $("input[name='other_category']").prop('disabled', true);
-            }
+        // When a user can't read the data in the PDF he can click "Can't read" link and disable that field.
+        addCantReadLink();
 
+    });
+
+    function addCantReadLink(){
+
+
+        $('.form-group').each(function() {
+            var cant_read_container = document.createElement('div');
+            cant_read_container.id = "cant_read_container";
+            var cant_read = document.createElement('p');
+            cant_read.innerText = "Can't read!";
+            cant_read.id = "cant_read";
+            var undo = document.createElement('p');
+            undo.innerText = "Undo!"
+            undo.id = "undo";
+            cant_read_container.appendChild(cant_read);
+            cant_read_container.appendChild(undo);
+            this.appendChild(cant_read_container);
         });
-
-
+    }
+    function customSlideNavigationFunctions(){
         var slider = $('.bxslideri').bxSlider({
             adaptiveHeight:true,
             infiniteLoop: false,
@@ -96,10 +123,41 @@
                 removeSubmitButtonLastSlide();
             }
         });
+    }
 
-        buildToolTipText();
+    function disableButtonWhenClickingOther(){
+        $("input[name='other_category']").prop('disabled', true);
+        $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
 
-    });
+        $('.choicefield').change(function(){
+            if($('.choicefield#id_part_of_government_thats_responsible_7').is(':checked')) {
+                 $("input[name='other_part_of_government_thats_responsible']").prop('disabled', false);
+            }else{
+                $("input[name='other_part_of_government_thats_responsible']").prop('disabled', true);
+            }
+
+            if($('.choicefield#id_category_13').is(':checked')) {
+                 $("input[name='other_category']").prop('disabled', false);
+            }else{
+                $("input[name='other_category']").prop('disabled', true);
+            }
+
+        });
+    }
+
+    function convertRadioButtonsToToggle(){
+        $( "#elForm input:radio" ).parent().parent().parent().addClass("btn-group");
+        $( "#elForm input:radio" ).parent().parent().addClass("btn checkbox-btn ");
+        $("#elForm input:radio").parent().parent().parent().attr("data-toggle", "buttons");
+        $( "#elForm input:radio" ).parent().parent().css('width','45%').css('border','1px solid white');
+
+        $('input:radio').toggle();
+
+        $('[id*="radio-popup-style-"]').click(function(){
+            $(this).prop('checked', true).parent().addClass('active');
+            $('[id*="radio-popup-style-"]').not($(this)).removeAttr('checked').prop('checked', false).parent().removeClass('active');
+        });
+    }
 
     function navigatedToLastSlide(slider){
         var numberOfSlides = slider.getSlideCount() -1;
@@ -188,14 +246,7 @@
     }
 
     function buildToolTipText(){
-        var help_block = document.getElementsByClassName('help-block');
 
-        for (var i = 0; i < help_block.length; i++) {
-            console.log(help_block[i].innerText);
-
-
-        }
-        console.log(document.getElementsByClassName('.help-block'));
        $('.help-block').each(function() {
 
            if(this.innerText != ""){
@@ -207,12 +258,11 @@
                     style: {
                         tip: {
                             corner: true,
-                            offset: -100
+                            offset: -1
                         }
                     },
                     position: {
-                        my: 'top left',
-                        at: 'bottom right'
+                        my: 'top right'
                     }
                 });
                this.innerText = "";
@@ -225,6 +275,8 @@
            }
        });
     }
+
+
 
 
 </script>

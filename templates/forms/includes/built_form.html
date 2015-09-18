@@ -97,7 +97,6 @@
 
     function addDynamicPriceFields(){
         var candidad_class = $('.importe-del-recibo div.form-group');
-        console.log(candidad_class);
         for(var i=0;i<candidad_class.length-1;i++){
             if(candidad_class[i].children[2].children[1].id.search('receiptitem')!=-1){
                 candidad_class[i].style.display= 'none';
@@ -155,15 +154,7 @@
                 index=index+1;
 
             });
-{#        $(document).on('change', '.description', function(e) {#}
-{#                var string_id = this.id;#}
-{#                var value =$( this ).val();#}
-{#                //do whatever#}
-{#                var number_of_element = string_id.replace( /^\D+/g, '');#}
-{#                var total_selector_name = '#total_sum-'+number_of_element;#}
-{#                console.log(string_total_name);#}
-{#                $(total_selector_name).html(value);#}
-{#        });#}
+
 
         $(document).on('change', '.cantidad_number', function(e) {
                 var grande_totale = 0;
@@ -173,7 +164,7 @@
                 var number_of_element = this.id.replace( /^\D+/g, '');
                 var total_selector_name = '#total_sum-'+number_of_element;
                 var value_of_all = $('#cantidad-'+number_of_element).val() * $('#precio-'+number_of_element).val();
-                console.log( "total_sum-" +number_of_element);
+
                 $(total_selector_name).html(" = $  "+ value_of_all);
                 var receipt_item_id = "receiptitem-"+number_of_element;
                if(number_of_element==0){
@@ -202,7 +193,7 @@
                 if(number_of_element==0){
                     $("input[name='receiptitem']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
                 }else{
-                    $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());                    console.log(document.getElementById("id_receiptitem").nodeValue);
+                    $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
                 }
                 $('*[id^="total_sum"]').each(function(){
                         grande_totale = grande_totale + parseFloat(this.innerText.replace( /^\D+/g, ''));
@@ -289,7 +280,6 @@
 
         $(".bx-pager-link").click(function(){
             var slideData = $(this).data();
-            console.log(slideData.slideIndex);
             if(slideData.slideIndex == slider.getSlideCount() -1){
                 addSubmitButtonLastSlide();
             }else{

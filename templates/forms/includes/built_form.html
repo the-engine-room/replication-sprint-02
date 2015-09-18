@@ -23,14 +23,13 @@
         position:absolute;
         left:-9999px;
     }
-    #qtip-overlay{
-    position: fixed;
-    left: -10000em;
-    top: -10000em;
-    }
+
     .qtip-default{
         margin-right:120px;
         margin-top:-20px;
+    }
+    .qtip{
+        display:none;
     }
     #cant_read_container{
         width:150px;
@@ -48,13 +47,12 @@
         left:1000px;
     }
     div.qtip{
-        padding: 0;
         margin-left: -40px;
-        height: auto;
-        min-height: auto;
-        width: auto;
-        min-width: auto;
     }
+    .dynamic-fields input{
+        float:left;
+    }
+
 </style>
 
 <script>
@@ -67,11 +65,14 @@
         // Build the bxSlider
         buildSlider();
 
+
         // When we click "Other", the field for Other text should be activated
         disableButtonWhenClickingOther();
 
         // Customize navigating through slides so we have the "Submit button" in the last slide
-        customSlideNavigationFunctions();
+        var slider = customSlideNavigationFunctions();
+
+
 
         // Add form enhancements
         // When hovering in the "?" after a field, show the help-text as a tooltip.
@@ -80,7 +81,135 @@
         // When a user can't read the data in the PDF he can click "Can't read" link and disable that field.
         addCantReadLink();
 
-    });
+
+        // Construct the category section
+        constructCategory();
+
+        addDynamicPriceFields();
+
+
+        });
+
+    function constructCategory(){
+
+
+    }
+
+    function addDynamicPriceFields(){
+        var candidad_class = $('.cantidad div.form-group');
+        console.log(candidad_class);
+        for(var i=0;i<candidad_class.length-1;i++){
+            if(candidad_class[i].children[2].children[1].id.search('receiptitem')!=-1){
+                candidad_class[i].style.display= 'none';
+            }
+
+        }
+        $('.cantidad').append('<div style="height:30px;display:inline;"><p style="width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
+                '<form class="form-inline"><div class="form-group" >' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="description">Description:</label>' +
+                                            '<input style="float:left;" type="text" placeholder="Description" name="description" class="form-control description" id="description-0"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="cantidad">Cantidad:</label>' +
+                                            '<input types="number" name="cantidad" placeholder="Cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="precio">Precio:</label>' +
+                                            '<input type="number" name="precio" placeholder="Precio" class="form-control precio" id="precio-0"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                            '<div id="total_sum-0"> = $  0  </div></div>' +
+                                            '</div>'+
+                                            '');
+         $('.cantidad').append('<div id="grande_total_receipt_add"><span style="float:left;" id="add_receipt_item" class="btn btn-default">Add new item</span>'+
+                                                                '<br/><br/><br/>'+
+                                                                '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
+                                    );
+
+            var index = 1;
+
+            $(document).on('click', '#add_receipt_item', function(e) {
+
+            //do whatever
+                    if(index<candidad_class.length){
+                                    $('#add_receipt_item').remove();
+                                    $('#grande_total_receipt_add').remove();
+                                    $('.cantidad').append('<form class="form-inline"><div class="form-group" >' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="description">Description:</label>' +
+                                            '<input style="float:left;" type="text" placeholder="Description" name="description" class="form-control description" id="description-'+index+'"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="cantidad">Cantidad:</label>' +
+                                            '<input types="number" name="cantidad" placeholder="Cantidad" class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                                    '<label class="sr-only" for="precio">Precio:</label>' +
+                                            '<input type="number" name="precio" placeholder="Precio" class="form-control precio" id="precio-'+index+'"/></div>' +
+                                                    ' <div class="form-group"> ' +
+                                            '<div id="total_sum-'+index+'"> = $  0</div></div>' +
+                                            '</div></form>');
+                                    $('.cantidad').append('<div id="grande_total_receipt_add"><span style="float:left;" id="add_receipt_item" class="btn btn-default">Add new item</span>'+
+                                                                '<br/><br/><br/>'+
+                                                                '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
+                                    );
+                                    $('.bx-viewport').css('height','10%');
+
+                    }
+                index=index+1;
+
+            });
+{#        $(document).on('change', '.description', function(e) {#}
+{#                var string_id = this.id;#}
+{#                var value =$( this ).val();#}
+{#                //do whatever#}
+{#                var number_of_element = string_id.replace( /^\D+/g, '');#}
+{#                var total_selector_name = '#total_sum-'+number_of_element;#}
+{#                console.log(string_total_name);#}
+{#                $(total_selector_name).html(value);#}
+{#        });#}
+
+        $(document).on('change', '.cantidad_number', function(e) {
+                var grande_totale = 0;
+                var cantidad_id = this.id;
+                var value =$( this ).val();
+                //do whatever
+                var number_of_element = this.id.replace( /^\D+/g, '');
+                var total_selector_name = '#total_sum-'+number_of_element;
+                var value_of_all = $('#cantidad-'+number_of_element).val() * $('#precio-'+number_of_element).val();
+                console.log( "total_sum-" +number_of_element);
+                $(total_selector_name).html(" = $  "+ value_of_all);
+                var receipt_item_id = "receiptitem-"+number_of_element;
+               if(number_of_element==0){
+                    $("input[name='receiptitem']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
+                }else{
+                    $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
+                }
+                $('*[id^="total_sum"]').each(function(){
+                        grande_totale = grande_totale + parseFloat(this.innerText.replace( /^\D+/g, ''));
+                });
+                $('#grande_total').html(grande_totale + "$");
+        });
+
+        $(document).on('change', '.precio', function(e) {
+                var grande_totale = 0;
+                var precio_id = this.id;
+                var value =$( this ).val();
+                //do whatever
+                var number_of_element = precio_id.replace( /^\D+/g, '');
+
+                var total_selector_name = '#total_sum-'+number_of_element;
+                var value_of_alla = $('#cantidad-'+number_of_element).val() * $('#precio-'+number_of_element).val();
+                $(total_selector_name).html(" = $  "+ value_of_alla);
+
+                var receipt_item_id = "receiptitem-"+number_of_element;
+                if(number_of_element==0){
+                    $("input[name='receiptitem']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
+                }else{
+                    $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());                    console.log(document.getElementById("id_receiptitem").nodeValue);
+                }
+                $('*[id^="total_sum"]').each(function(){
+                        grande_totale = grande_totale + parseFloat(this.innerText.replace( /^\D+/g, ''));
+                });
+                $('#grande_total').html(grande_totale + "$");
+        });
+    }
 
     function addCantReadLink(){
 
@@ -139,9 +268,11 @@
     }
     function customSlideNavigationFunctions(){
         var slider = $('.bxslideri').bxSlider({
-            adaptiveHeight:true,
             infiniteLoop: false,
             hideControlOnEnd: true,
+            pager:true,
+            responsive:true,
+            adaptiveHeight:true
         });
 
         $('.bx-next').click(function(){
@@ -158,12 +289,15 @@
 
         $(".bx-pager-link").click(function(){
             var slideData = $(this).data();
+            console.log(slideData.slideIndex);
             if(slideData.slideIndex == slider.getSlideCount() -1){
                 addSubmitButtonLastSlide();
             }else{
                 removeSubmitButtonLastSlide();
             }
         });
+
+        return slider;
     }
 
     function disableButtonWhenClickingOther(){

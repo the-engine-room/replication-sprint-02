@@ -52,6 +52,9 @@
     .dynamic-fields input{
         float:left;
     }
+    #social_document{
+        float:right;
+    }
 
 </style>
 
@@ -87,8 +90,15 @@
 
         addDynamicPriceFields();
 
-
+        $(document).on('click', '#submitForm', function(e) {
+          console.log("clicked submit.");
+            $("[id^='qtip']").css('display','none');
+            $('#document-viewer-container').parent().remove();
+            $('#social_document').parent().parent().removeClass();
+            $('#social_document').parent().parent().addClass('col-md-12');
         });
+
+    });
 
     function constructCategory(){
 
@@ -348,7 +358,7 @@
         // First we check if there is a submit button added
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
-            $('.bx-wrapper .bx-controls-direction').append('<button style="float:right; position:relative; z-index: 9999; margin-top:10px;" class="btn btn-success" type="submit">Submit</button>');
+            $('.bx-wrapper .bx-controls-direction').append('<button id="submitForm" style="float:right; position:relative; z-index: 9999; margin-top:10px;" class="btn btn-success" type="submit">Submit</button>');
         }else{
             $('.bx-wrapper .bx-controls-direction button').remove();
         }

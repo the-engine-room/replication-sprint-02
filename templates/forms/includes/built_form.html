@@ -176,11 +176,12 @@
     function constructCategory(){
         var documentViewer = $('#document-viewer-container').children()[0].data.split('/');
         var documentNameArray = documentViewer[documentViewer.length-1].split('_');
-        var group_class = $('.category div.form-group');
-        for(var i=0;i<group_class.length-1;i++){
-            console.log(group_class);
-            group_class[i].style.display= 'none';
-        }
+        $('.category div.form-group').css('display','none');
+        $('.category h3').css('display','none');
+{#        for(var i=0;i<group_class.length-1;i++){#}
+{#            console.log(group_class);#}
+{#            group_class[i].style.display= 'none';#}
+{#        }#}
         $('.category').prepend('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='facturaDetails'><div id='factura-details-title'>Factura details:</div></div>");
         $('#facturaDetails').append("<div style='width:100px;height:200px;float:left;' id='senato'><img style='float:left;' src='/static/img/category-icon.png'><p style='clear:both;'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");

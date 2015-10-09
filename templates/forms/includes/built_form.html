@@ -4,6 +4,25 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+
+    #chooseCategory{
+        width:100%;
+        clear:both;
+    }
+    #facturaDetails{
+        border: 2px solid #000;
+        height:80px;
+        padding: 5px 5px 5px 0px;
+    }
+    #factura-details-title{
+        width:120px;
+        text-align: left;
+        margin-top: -10px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 15px;
+        background-color:white;
+    }
     .checkbox-btn{
         color: black ;
         background-color: #DAAFD8 ;
@@ -59,6 +78,60 @@
 </style>
 
 <script>
+    var abbreviationBody = {"SP":"Servicios Parlamentarios",
+        "SA":"Servicios Administrativos",
+        "SME":"Servicios Medicos y Esteticos",
+        "UT":"Unidad de Transferencia",
+        "CS":"Communicación Social",
+        "CI":"Controloría Interna",
+        "AS":"Auditoría Superior",
+        "IBD":"Instituto Belisario Dominguez",
+        "CC":"Canal de Congreso",
+        "MD":"Mesa Directiva",
+        "JCP":"Junta de Coordinación Politica",
+        "CO":"Comisión Ordinaria",
+        "CE":"Comisión Especial",
+        "CDI":"Comisión de Investigación",
+        "C"	:"Comité",
+        "GP":"Grupo Parlimentario",
+        "X":"Unknown"
+    };
+
+    var abbreviationAreaOfGovernment = {
+        "S":"Senado",
+        "D":"Camera de Diputados"
+    };
+
+    var abbreviationExpenditure = {
+        "SGM":"Seguro de gastos médicos",
+        "PATM":"Pasajes aereos, terrestres, maritimos",
+        "G":"Gasolina",
+        "P":"Peaje",
+        "A":"Alimentos",
+        "H":"Hospedaje",
+        "PP":"Papeleria",
+        "EO":"Eventos Officiales",
+        "CP":"Comunicación y Publicidad",
+        "SB":"Servicios Basicos (luz, agua y telefono)",
+        "CRI":"Compra y Renta de Bienes Inmuebles",
+        "MR":"Mantenimiento y Reperación",
+        "MEO":"Mobiliario y Equipo de Oficina ",
+        "V":"Vehiculos ",
+        "SM":"Servicios Medico y de Laboritorio ",
+        "SPC":"Servicos Profesionales y Cientificos",
+        "TS":"Transferecias al Sindicato",
+        "DA":"Donativos, Ayudas Sociales y Transferencias al Extranjero",
+        "VB":"Vestuario, Blancos, Articulos Deportivos",
+        "BA":"Bienes Artisticos y Culturales",
+        "X":"Unknown"
+    };
+
+    var abbrevationLegislature = {
+        "62":"Legislatura 62",
+        "63":"Legislatura 63",
+        "64":"Legislatura 64"
+    };
+
     $( document ).ready(function() {
 
 
@@ -86,7 +159,7 @@
 
 
         // Construct the category section
-        constructCategory();
+
 
         addDynamicPriceFields();
 
@@ -97,11 +170,25 @@
             $('#social_document').parent().parent().removeClass();
             $('#social_document').parent().parent().addClass('col-md-12');
         });
-
+        constructCategory();
     });
 
     function constructCategory(){
-
+        var documentViewer = $('#document-viewer-container').children()[0].data.split('/');
+        var documentNameArray = documentViewer[documentViewer.length-1].split('_');
+        var group_class = $('.category div.form-group');
+        for(var i=0;i<group_class.length-1;i++){
+            console.log(group_class);
+            group_class[i].style.display= 'none';
+        }
+        $('.category').prepend('<br><div class="category_info"></div>');
+        $('.category_info').append("<div id='facturaDetails'><div id='factura-details-title'>Factura details:</div></div>");
+        $('#facturaDetails').append("<div style='width:100px;height:200px;float:left;' id='senato'><img style='float:left;' src='/static/img/category-icon.png'><p style='clear:both;'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
+        $('#facturaDetails').append("<div style='height:15px;float:left;' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
+        $('#facturaDetails').append( "<div style='height:15px;' ><br><p> " + abbreviationBody[documentNameArray[2]]+"</p></div><br/>");
+        $('.category_info').append("<div id='chooseCategory'><p>The category for this receipt is: <h1> <img style='float:left;' src='/static/img/category-icon.png'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></p></div>");
+        $('#chooseCategory').append("<p>Doesn't look right? <a href='#'>Select another category</a></p><br/><br/><br/>")
+        console.log(documentNameArray);
 
     }
 

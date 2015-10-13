@@ -26,9 +26,32 @@
         margin-bottom: -1px;
     }
     #myModal{
-            margin-right: -630px;
+        margin-right: -630px;
     }
-
+    #myOptionalModal{
+        margin-right: -630px;
+    }
+    #chooseOptionalCategory{
+        border: 1px solid purple;
+        height:80px;
+        padding: 5px 5px 5px 0px;
+    }
+    .optional_category{
+        height:200px;
+    }
+    .add-second-category{
+        color: purple;
+        display:inline;
+    }
+    .add-second-category a{
+        float:right;
+        margin-top: 15px;
+    }
+    .add-second-category p {
+        float: left;
+        margin-left: 120px;
+        margin-top: 20px;
+    }
     #change_cat{
         margin: 0 auto;
     }
@@ -263,15 +286,18 @@
             fatura_details_icon_url = "/static/img/QC_Icon_01_Parliament.svg";
         }
 
-        var category_icon_url = "/static/img/category/QC_Icon_"+ abbreviationExpenditure[documentNameArray[3]] + ".svg";
+        var category_icon_url =
 
         $('.category').prepend('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Factura details:</div><div id='facturaDetails'></div>");
         $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
-        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img style='float:left;' src='"+category_icon_url+"'><h1>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><br/>");
+        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><div class='optional_category'></div>");
+
+        $('.optional_category').append("<p>Optional </p><div id='chooseOptionalCategory'><span></span></div>");
+        $('#chooseOptionalCategory').append("<span class='add-second-category'><p>Add a second category</p> <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myOptionalModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> </span><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
@@ -295,6 +321,10 @@
           });
     }
 
+    function getCategoryIcon(category){
+        return "/static/img/category/QC_Icon_" + category + ".svg";
+
+    }
     function addDynamicPriceFields(){
         var candidad_class = $('.importe-del-recibo div.form-group');
         for(var i=0;i<candidad_class.length-1;i++){
@@ -692,6 +722,44 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="categories-modal-body">
+        <div class="categories-modal">
+
+            <span class="image-category-icon"><img  src="/static/img/category/QC_Icon_Seguro.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Pasajes.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Gasolina.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Alimentos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Compra.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Comunicacion.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Donativos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Transferecias.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vestuario.svg"></span>
+             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Prof.svg"></span>
+             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Peaje.svg"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        Otra categoria: <input type="input"/><br><br>
+        <a href="#"><img id="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myOptionalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="categories-modal-body">

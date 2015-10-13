@@ -273,6 +273,12 @@
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img style='float:left;' src='"+category_icon_url+"'><h1>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
         $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><br/>");
 
+        $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
+        $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
+        $("input[name='abbreviationareaofgovernment']").val(abbreviationAreaOfGovernment[documentNameArray[0]]);
+        $("input[name='abbreviationbody_val']").val(abbreviationBody[documentNameArray[2]]);
+
+
         $( ".image-category-icon" ).hover(
           function() {
               var image_url = $(this).children().attr('src');

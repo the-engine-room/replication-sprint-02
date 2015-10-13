@@ -79,12 +79,18 @@ def ranking_all(request, document_set, ranking_id):
             }
 
 @login_required
-def transcription_new(request, document_set):
+def transcription_new(request, document_set, filename=None):
+
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
     if request.GET.get('document_id') is not None and request.user.is_staff:
+
         document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
-                                     document_set=doc_set)
+                                 document_set=doc_set)
+    elif filename is not None:
+        filename = filename + ".pdf"
+        document = get_object_or_404(models.Document,
+                                     name=filename)
     else:
         candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
 

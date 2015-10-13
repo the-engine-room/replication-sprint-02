@@ -4,24 +4,101 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    .doesnt-look-right{
+        clear: both;
+        display:flex;
+    }
+    .bx-pager{
+        margin-top:200px;
+    }
+    .modal-content{
+        width:360px;
+        height:428px;
+        stroke:2px;
+    }
+    .image-category-icon img{
+        width:90px;
+        border-style: solid;
+        border-width: 1px ;
+        border-color: #9C3793;
+        border-spacing: 1px;
+        margin-right: -5px;
+        margin-bottom: -1px;
+    }
+    #myModal{
+            margin-right: -630px;
+    }
 
+    #change_cat{
+        margin: 0 auto;
+    }
+    .modal-footer {
+        padding: 15px;
+        text-align: center;
+        border-top: 1px solid #e5e5e5;
+    }
+    #abbreviationBody{
+        margin-left: -158px;
+        padding-top: 20px;
+        float: left;
+    }
+    #abbreviationBody p{
+        margin-top: -9px;
+        font-size:1.5em;
+        font-family: Open Sans Regular;
+     }
+    #abbreviationAreaOfGovernment{
+        text-align: center;
+        border-top: 1px solid purple;
+        clear:both;
+        color:purple;
+    }
+    #senato{
+        border-right: 1px solid purple;
+        height:80px;
+        margin-top:-5px;
+        width:100px;
+        float:left;
+        color:purple;
+    }
+    #legislature{
+        height:15px;
+        float:left;
+
+    }
+    #legislature p{
+        padding-left:5px;
+        font-size:1.8em;
+        color:purple;
+    }
     #chooseCategory{
         width:100%;
         clear:both;
     }
+
+    #chooseCategory p{
+        color:purple;
+    }
+     #chooseCategory h1{
+        padding-top:10px;
+         font-size:2.45em;
+         font-family:Glegoo Bold;
+    }
     #facturaDetails{
-        border: 2px solid #000;
+        border: 1px solid purple;
         height:80px;
         padding: 5px 5px 5px 0px;
     }
     #factura-details-title{
-        width:120px;
         text-align: left;
-        margin-top: -10px;
-        height: 20px;
-        line-height: 20px;
-        font-size: 15px;
-        background-color:white;
+        font-size: 1.5em;
+        margin-bottom:5px;
+        color:purple;
+    }
+    #senato img {
+        padding-left: 6px;
+        width: 95px;
+        height: 60px;
     }
     .checkbox-btn{
         color: black ;
@@ -178,19 +255,38 @@
         var documentNameArray = documentViewer[documentViewer.length-1].split('_');
         $('.category div.form-group').css('display','none');
         $('.category h3').css('display','none');
-{#        for(var i=0;i<group_class.length-1;i++){#}
-{#            console.log(group_class);#}
-{#            group_class[i].style.display= 'none';#}
-{#        }#}
-        $('.category').prepend('<br><div class="category_info"></div>');
-        $('.category_info').append("<div id='facturaDetails'><div id='factura-details-title'>Factura details:</div></div>");
-        $('#facturaDetails').append("<div style='width:100px;height:200px;float:left;' id='senato'><img style='float:left;' src='/static/img/category-icon.png'><p style='clear:both;'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
-        $('#facturaDetails').append("<div style='height:15px;float:left;' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
-        $('#facturaDetails').append( "<div style='height:15px;' ><br><p> " + abbreviationBody[documentNameArray[2]]+"</p></div><br/>");
-        $('.category_info').append("<div id='chooseCategory'><p>The category for this receipt is: <h1> <img style='float:left;' src='/static/img/category-icon.png'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></p></div>");
-        $('#chooseCategory').append("<p>Doesn't look right? <a href='#'>Select another category</a></p><br/><br/><br/>")
-        console.log(documentNameArray);
 
+        var fatura_details_icon_url = "";
+        if(abbreviationAreaOfGovernment[documentNameArray[0]] == "Senado"){
+            fatura_details_icon_url = "/static/img/QC_Icon_01_Senato.svg";
+        }else{
+            fatura_details_icon_url = "/static/img/QC_Icon_01_Parliament.svg";
+        }
+
+        var category_icon_url = "/static/img/category/QC_Icon_"+ abbreviationExpenditure[documentNameArray[3]] + ".svg";
+
+        $('.category').prepend('<br><div class="category_info"></div>');
+        $('.category_info').append("<div id='factura-details-title'>Factura details:</div><div id='facturaDetails'></div>");
+        $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
+        $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
+        $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
+        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img style='float:left;' src='"+category_icon_url+"'><h1>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><br/>");
+
+        $( ".image-category-icon" ).hover(
+          function() {
+              var image_url = $(this).children().attr('src');
+              if(image_url != undefined){
+                  var replaced_url = image_url.replace(/(\.[\w\d_-]+)$/i, '_Hover$1');
+                  $(this).children().attr('src',replaced_url);
+              }
+          }, function() {
+                    var image_url = $(this).children().attr('src');
+                  if(image_url != undefined){
+                      var replaced_url = image_url.replace('_Hover', '');
+                      $(this).children().attr('src',replaced_url);
+                  }
+          });
     }
 
     function addDynamicPriceFields(){
@@ -587,3 +683,40 @@
 
 
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="categories-modal-body">
+        <div class="categories-modal">
+
+            <span class="image-category-icon"><img  src="/static/img/category/QC_Icon_Seguro.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Pasajes.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Gasolina.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Alimentos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Compra.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Comunicacion.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Donativos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Transferecias.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vestuario.svg"></span>
+             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Prof.svg"></span>
+             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Peaje.svg"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        Otra categoria: <input type="input"/><br><br>
+        <a href="#"><img id="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
+      </div>
+    </div>
+  </div>
+</div>

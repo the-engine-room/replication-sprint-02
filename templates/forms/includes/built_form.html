@@ -12,6 +12,10 @@
         border-color:purple;
         border: 3px;
     }
+    p.optional {
+        color: purple;
+        padding-top: 50px;
+    }
     legend {
         padding: 17px;
     }
@@ -48,7 +52,8 @@
         font-size: 3.2em;
         color: #9C3793;
         margin-top: -20px;
-            text-align: right;
+        text-align: right;
+        width: 80%;
     }
     #precio-group {
         height: 50px;
@@ -277,9 +282,9 @@
         "SB":"Servicios Basicos (luz, agua y telefono)",
         "CRI":"Compra y Renta de Bienes Inmuebles",
         "MR":"Mantenimiento y Reperación",
-        "MEO":"Mobiliario y Equipo de Oficina ",
+        "MEO":"Mobiliario y Equipo de Oficina",
         "V":"Vehiculos ",
-        "SM":"Servicios Medico y de Laboritorio ",
+        "SM":"Servicios Medico y de Laboritorio",
         "SPC":"Servicos Profesionales y Cientificos",
         "TS":"Transferecias al Sindicato",
         "DA":"Donativos, Ayudas Sociales y Transferencias al Extranjero",
@@ -391,7 +396,7 @@
                   var replaced_url = image_url.replace(/(\.[\w\d_-]+)$/i, '_Hover$1');
                   $(this).children().attr('src',replaced_url);
                   $(this).addClass('selected');
-                  var categoryName = image_url.split('_')[2].replace('%20',' ').replace('.svg','');
+                  var categoryName = image_url.split('_')[2].replace(/%20/g,' ').replace('.svg','');
                   console.log($(this).parent());
                   $(this).click(function(){
                       $("input[name='abbreviationexpenditure']").val(categoryName);
@@ -416,7 +421,7 @@
                   var replaced_url = image_url.replace(/(\.[\w\d_-]+)$/i, '_Hover$1');
                   $(this).children().attr('src',replaced_url);
                   $(this).addClass('selected');
-                  var categoryName = image_url.split('_')[2].replace('%20',' ').replace('.svg','');
+                  var categoryName = image_url.split('_')[2].replace(/%20/g,' ').replace('.svg','');
                   console.log($(this).parent());
                   $(this).click(function(){
                       $("input[name='abbreviationexpenditureoptional']").val(categoryName);
@@ -437,13 +442,14 @@
     }
 
     function getCategoryIcon(category){
-        return "/static/img/category/QC_Icon_" + category + ".svg";
+        return "/static/img/category/QC_Icon_" + category.replace(/ /g, '%20') + ".svg";
 
     }
     function addDynamicPriceFields(){
+        $('.bx-viewport').css('height','550px');
         var candidad_class = $('.importe-del-recibo div.form-group').css('display','none');
-        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total con IVA</div><div id="totalInput"><input name="totalPrecioValue"/><span id="dollar-sign">$</span></div></div>')
-        $('.importe-del-recibo').append('<div id="del-recibo"></div>');
+        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
+        $('.importe-del-recibo').append('<p class="optional">Optional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
@@ -842,14 +848,14 @@
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Pasajes.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Gasolina.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Alimentos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos%20y%20Culturales.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Compra.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Comunicacion.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Donativos.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
+            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario%20y%20Equipo%20de%20Oficina.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>
@@ -887,7 +893,7 @@
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
-            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario%20y%20Equipo%20de%20Oficina.svg"></span>
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>

@@ -8,8 +8,8 @@
         clear: both;
         display:flex;
     }
-    .bx-pager{
-        margin-top:200px;
+    legend {
+        padding: 17px;
     }
     .modal-content{
         width:360px;
@@ -25,9 +25,20 @@
         margin-right: -5px;
         margin-bottom: -1px;
     }
+    .image-optional-category-icon img {
+        width: 90px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #9C3793;
+        border-spacing: 1px;
+        margin-right: -5px;
+        margin-bottom: -1px;
+    }
+
     #myModal{
         margin-right: -630px;
     }
+
     #myOptionalModal{
         margin-right: -630px;
     }
@@ -37,7 +48,7 @@
         padding: 5px 5px 5px 0px;
     }
     .optional_category{
-        height:200px;
+        height:150px;
     }
     .add-second-category{
         color: purple;
@@ -242,7 +253,6 @@
         // Build the bxSlider
         buildSlider();
 
-
         // When we click "Other", the field for Other text should be activated
         disableButtonWhenClickingOther();
 
@@ -287,18 +297,18 @@
             fatura_details_icon_url = "/static/img/QC_Icon_01_Parliament.svg";
         }
 
-        var category_icon_url =
+        var category_icon_url = '';
 
         $('.category').prepend('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Factura details:</div><div id='facturaDetails'></div>");
         $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
-        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
+        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
         $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Optional </p><div id='chooseOptionalCategory'><span></span></div>");
-        $('#chooseOptionalCategory').append("<span class='add-second-category'><p>Add a second category</p> <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myOptionalModal'><img src='/static/img/slide-graphics/QC_BT_5_Add_Up.svg'></a> </span><br/><br/><br/><br/><br/><br/>");
+        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myOptionalModal'><img src='/static/img/slide-graphics/QC_BT_5_Add_Up.svg'></a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
@@ -306,18 +316,69 @@
         $("input[name='abbreviationbody_val']").val(abbreviationBody[documentNameArray[2]]);
 
 
+        $(".change_cat").click(function(){
+            var otraCategoriaValue = $('#otherOptionalCategoryValue').val();
+             $("input[name='abbreviationexpenditure']").val(otraCategoriaValue);
+            $('.modal').modal('hide');
+            $("#category-icon-image").attr('src', "");
+            $('#category-icon-name').text(otraCategoriaValue);
+        });
+
+        $(".change_optional_cat").click(function(){
+
+            var otraOptionalCategoriaValue = $('#otherSecondaryOptionalCategoryValue').val();
+            $("input[name='abbreviationexpenditureoptional']").val(otraOptionalCategoriaValue);
+            $('.modal').modal('hide');
+            $('#optionalCategoryText').text(otraOptionalCategoriaValue);
+        });
+
         $( ".image-category-icon" ).hover(
           function() {
               var image_url = $(this).children().attr('src');
               if(image_url != undefined){
                   var replaced_url = image_url.replace(/(\.[\w\d_-]+)$/i, '_Hover$1');
                   $(this).children().attr('src',replaced_url);
+                  $(this).addClass('selected');
+                  var categoryName = image_url.split('_')[2].replace('%20',' ').replace('.svg','');
+                  console.log($(this).parent());
+                  $(this).click(function(){
+                      $("input[name='abbreviationexpenditure']").val(categoryName);
+                      $('.modal').modal('hide');
+                      $("#category-icon-image").attr('src', image_url);
+                      $('#category-icon-name').text(categoryName);
+                  });
               }
           }, function() {
                     var image_url = $(this).children().attr('src');
                   if(image_url != undefined){
                       var replaced_url = image_url.replace('_Hover', '');
                       $(this).children().attr('src',replaced_url);
+                      $(this).removeClass('selected');
+                  }
+          });
+
+        $( ".image-optional-category-icon" ).hover(
+          function() {
+              var image_url = $(this).children().attr('src');
+              if(image_url != undefined){
+                  var replaced_url = image_url.replace(/(\.[\w\d_-]+)$/i, '_Hover$1');
+                  $(this).children().attr('src',replaced_url);
+                  $(this).addClass('selected');
+                  var categoryName = image_url.split('_')[2].replace('%20',' ').replace('.svg','');
+                  console.log($(this).parent());
+                  $(this).click(function(){
+                      $("input[name='abbreviationexpenditureoptional']").val(categoryName);
+                      $('.modal').modal('hide');
+                      $("#category-icon-image").attr('src', image_url);
+                      $('#optionalCategoryText').text(categoryName);
+                  });
+              }
+          }, function() {
+                    var image_url = $(this).children().attr('src');
+                  if(image_url != undefined){
+                      var replaced_url = image_url.replace('_Hover', '');
+                      $(this).children().attr('src',replaced_url);
+                      $(this).removeClass('selected');
                   }
           });
     }
@@ -751,8 +812,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        Otra categoria: <input type="input"/><br><br>
-        <a href="#"><img id="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
+        Otra categoria: <input id="otherOptionalCategoryValue" type="input"/><br><br>
+        <a href="#"><img class="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
       </div>
     </div>
   </div>
@@ -766,31 +827,31 @@
       <div class="categories-modal-body">
         <div class="categories-modal">
 
-            <span class="image-category-icon"><img  src="/static/img/category/QC_Icon_Seguro.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Pasajes.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Gasolina.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Alimentos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Compra.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Comunicacion.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Donativos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Transferecias.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
-            <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vestuario.svg"></span>
-             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Prof.svg"></span>
-             <span class="image-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Peaje.svg"></span>
+            <span class="image-optional-category-icon"><img  src="/static/img/category/QC_Icon_Seguro.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Pasajes.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Gasolina.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Alimentos.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Bienes%20Artisticos.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Compra.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Comunicacion.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Donativos.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Eventos.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mantenimiento.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Mobiliario.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Papeleria.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Medico.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Transferecias.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
+            <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Vestuario.svg"></span>
+             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Servicios%20Prof.svg"></span>
+             <span class="image-optional-category-icon"><img class="image-category-icon" src="/static/img/category/QC_Icon_Peaje.svg"></span>
         </div>
       </div>
       <div class="modal-footer">
-        Otra categoria: <input type="input"/><br><br>
-        <a href="#"><img id="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
+        Otra categoria: <input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
+        <a href="#"><img class="change_optional_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
       </div>
     </div>
   </div>

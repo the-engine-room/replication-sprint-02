@@ -329,7 +329,7 @@
             var otraOptionalCategoriaValue = $('#otherSecondaryOptionalCategoryValue').val();
             $("input[name='abbreviationexpenditureoptional']").val(otraOptionalCategoriaValue);
             $('.modal').modal('hide');
-            $('#optionalCategoryText').text(otraOptionalCategoriaValue);
+            $('#optionalCategoryText').text("Otra categoria");
         });
 
         $( ".image-category-icon" ).hover(
@@ -381,6 +381,7 @@
                       $(this).removeClass('selected');
                   }
           });
+        $('.bx-viewport').css('height','550px');
     }
 
     function getCategoryIcon(category){

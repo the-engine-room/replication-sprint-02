@@ -8,8 +8,58 @@
         clear: both;
         display:flex;
     }
+    [name|="description"]{
+        border-color:purple;
+        border: 3px;
+    }
     legend {
         padding: 17px;
+    }
+    span#dollar-sign {
+        font-size: 2.9em;
+        color:purple;
+    }
+    div#del-recibo {
+        border-style: solid;
+        border-width: 1px;
+        border-color: purple;
+        margin-top: 20px;
+        padding-left: 44px;
+    }
+    div#del-recibo p{
+        color: purple;
+    }
+    #totalCon {
+        float: left;
+        width: 50%;
+        height: 49px;
+        padding-bottom: 10px;
+        border-right-style: solid;
+        border-width: 1px;
+        border-color: #9C3793;
+        font-size:2.6em;
+        color:black;
+        text-align: right;
+        padding-right:25px;
+    }
+    #totalInput input {
+        border: 3px;
+        background: transparent;
+        font-size: 3.2em;
+        color: #9C3793;
+        margin-top: -20px;
+            text-align: right;
+    }
+    #precio-group {
+        height: 50px;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: #9C3793;
+        border-right-style: solid;
+    }
+    #totalInput {
+        float: right;
+        width: 50%;
     }
     .modal-content{
         width:360px;
@@ -282,6 +332,8 @@
             $('#social_document').parent().parent().addClass('col-md-12');
         });
         constructCategory();
+
+
     });
 
     function constructCategory(){
@@ -389,29 +441,25 @@
 
     }
     function addDynamicPriceFields(){
-        var candidad_class = $('.importe-del-recibo div.form-group');
-        for(var i=0;i<candidad_class.length-1;i++){
-            if(candidad_class[i].children[2].children[1].id.search('receiptitem')!=-1){
-                candidad_class[i].style.display= 'none';
-            }
-
-        }
-        $('.importe-del-recibo').append('<div style="height:30px;display:inline;"><p style="width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
+        var candidad_class = $('.importe-del-recibo div.form-group').css('display','none');
+        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total con IVA</div><div id="totalInput"><input name="totalPrecioValue"/><span id="dollar-sign">$</span></div></div>')
+        $('.importe-del-recibo').append('<div id="del-recibo"></div>');
+        $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Description:</label>' +
-                                            '<input style="float:left;" type="text" placeholder="Description" name="description" class="form-control description" id="description-0"/></div>' +
+                                            '<input style="width: 150px;float:left; border-color: purple;" type="text" name="description" class="form-control description" id="description-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input types="number" name="cantidad" placeholder="Cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
+                                            '<input style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input type="number" name="precio" placeholder="Precio" class="form-control precio" id="precio-0"/></div>' +
+                                            '<input style="    margin-left: 10px; border-color: purple;" type="number" name="precio" class="form-control precio" id="precio-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-0"> = $  0  </div></div>' +
                                             '</div>'+
                                             '');
-         $('.importe-del-recibo').append('<div id="grande_total_receipt_add"><span style="float:left;" id="add_receipt_item" class="btn btn-default">Add new item</span>'+
+         $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
                                                                 '<br/><br/><br/>'+
                                                                 '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
                                     );
@@ -424,20 +472,20 @@
                     if(index<candidad_class.length){
                                     $('#add_receipt_item').remove();
                                     $('#grande_total_receipt_add').remove();
-                                    $('.importe-del-recibo').append('<form class="form-inline"><div class="form-group" >' +
+                                    $('#del-recibo').append('<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Description:</label>' +
-                                            '<input style="float:left;" type="text" placeholder="Description" name="description" class="form-control description" id="description-'+index+'"/></div>' +
+                                            '<input style="width: 150px;float:left; border-color: purple;" style="float:left;" type="text"  name="description" class="form-control description" id="description-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input types="number" name="cantidad" placeholder="Cantidad" class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
+                                            '<input  style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad"  class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input type="number" name="precio" placeholder="Precio" class="form-control precio" id="precio-'+index+'"/></div>' +
+                                            '<input style="    margin-left: 10px; border-color: purple;"   type="number" name="precio" class="form-control precio" id="precio-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');
-                                    $('.importe-del-recibo').append('<div id="grande_total_receipt_add"><span style="float:left;" id="add_receipt_item" class="btn btn-default">Add new item</span>'+
+                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
                                                                 '<br/><br/><br/>'+
                                                                 '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
                                     );

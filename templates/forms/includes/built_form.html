@@ -10,6 +10,25 @@
     .bx-wrapper .bx-controls-direction a {
         top: 16px;
     }
+    .bx-wrapper .bx-pager.bx-default-pager a.active{
+        background:transparent !important;
+        background-color:purple !important;
+    }
+    .bx-prev {
+        left:10px;
+        background: url('/static/img/slide-graphics/QC_Nav_01_Arrow_Left_Down.svg') -3px !important;
+    }
+    .bx-next {
+        background: url('/static/img/slide-graphics/QC_Nav_02_Arrow_Right_Down.svg') -3px !important;
+    }
+    .bx-wrapper .bx-pager.bx-default-pager a:hover,
+    .bx-wrapper .bx-pager.bx-default-pager a{
+        border: 1px solid purple !important;
+        border-radius: 9px;
+        border-width:;
+        background:transparent !important;
+        background-image: url("/static/img/slide-graphics/QC_Nav_03_Dot_Selected.svg");
+    }
     .bx-default-pager {
         top: 29px;
         height: 40px;
@@ -22,6 +41,7 @@
         display:block;
         text-align: center;
         top:3%;
+        padding-bottom: 50px;
     }
     .doesnt-look-right{
         clear: both;
@@ -478,7 +498,7 @@
 
     }
     function addDynamicPriceFields(){
-        $('.bx-viewport').css('height','550px');
+
         var candidad_class = $('.step-2-of-5-receipt-amount div.form-group').css('display','none');
         $('.step-2-of-5-receipt-amount').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="number" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.step-2-of-5-receipt-amount').append('<p class="optional">Optional</p><div id="del-recibo"></div>');

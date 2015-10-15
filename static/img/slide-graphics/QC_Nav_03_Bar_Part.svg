@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="27.565px" height="121.039px" viewBox="0 0 27.565 121.039" enable-background="new 0 0 27.565 121.039"
+	 xml:space="preserve">
+<g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="13.7827" y1="121.0391" x2="13.7827" y2="55.5137">
+			<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+			<stop  offset="0.1044" style="stop-color:#FAFAFA;stop-opacity:0.1044"/>
+			<stop  offset="0.2281" style="stop-color:#ECECEC;stop-opacity:0.2281"/>
+			<stop  offset="0.3615" style="stop-color:#D4D4D4;stop-opacity:0.3615"/>
+			<stop  offset="0.5019" style="stop-color:#B2B2B2;stop-opacity:0.5019"/>
+			<stop  offset="0.6477" style="stop-color:#878787;stop-opacity:0.6477"/>
+			<stop  offset="0.798" style="stop-color:#535353;stop-opacity:0.798"/>
+			<stop  offset="0.9494" style="stop-color:#161616;stop-opacity:0.9494"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M25.565,118.614c0,1.334-1.091,2.425-2.425,2.425H4.425c-1.334,0-2.425-1.091-2.425-2.425V57.938
+			c0-1.334,1.091-2.425,2.425-2.425h18.716c1.334,0,2.425,1.091,2.425,2.425V118.614z"/>
+	</g>
+	<g>
+		<path fill="#9C3793" d="M25.565,68.77c0,1.627-1.318,2.945-2.945,2.945H4.945C3.318,71.715,2,70.396,2,68.77V4.945
+			C2,3.318,3.318,2,4.945,2H22.62c1.627,0,2.945,1.318,2.945,2.945V68.77z"/>
+	</g>
+	<g opacity="0.5">
+		<path fill="#9C3793" d="M25.565,68.77c0,1.627-1.318,2.945-2.945,2.945H4.945C3.318,71.715,2,70.396,2,68.77V4.945
+			C2,3.318,3.318,2,4.945,2H22.62c1.627,0,2.945,1.318,2.945,2.945V68.77z"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M22.62,2c1.627,0,2.945,1.318,2.945,2.945V68.77c0,1.627-1.318,2.945-2.945,2.945H4.945
+			C3.318,71.715,2,70.396,2,68.77V4.945C2,3.318,3.318,2,4.945,2H22.62 M22.62,0H4.945C2.219,0,0,2.219,0,4.945V68.77
+			c0,2.727,2.219,4.945,4.945,4.945H22.62c2.727,0,4.945-2.219,4.945-4.945V4.945C27.565,2.219,25.347,0,22.62,0L22.62,0z"/>
+	</g>
+	<g>
+		
+			<line opacity="0.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5.915" y1="29.523" x2="21.38" y2="29.523"/>
+		
+			<line opacity="0.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5.915" y1="37.303" x2="21.38" y2="37.303"/>
+		
+			<line opacity="0.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5.915" y1="45.08" x2="21.38" y2="45.08"/>
+	</g>
+</g>
+</svg>

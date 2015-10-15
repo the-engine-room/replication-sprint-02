@@ -8,6 +8,12 @@
         clear: both;
         display:flex;
     }
+    #document-transcript textarea {
+        width: 90%;
+        border: 1px solid purple;
+        padding: 0.2em;
+    }
+
     [name|="description"]{
         border-color:purple;
         border: 3px;
@@ -344,8 +350,8 @@
     function constructCategory(){
         var documentViewer = $('#document-viewer-container').children()[0].data.split('/');
         var documentNameArray = documentViewer[documentViewer.length-1].split('_');
-        $('.category div.form-group').css('display','none');
-        $('.category h3').css('display','none');
+        $('.step-1-of-5-categoria div.form-group').css('display','none');
+        $('.step-1-of-5-categoria h3').css('display','none');
 
         var fatura_details_icon_url = "";
         if(abbreviationAreaOfGovernment[documentNameArray[0]] == "Senado"){
@@ -356,7 +362,7 @@
 
         var category_icon_url = '';
 
-        $('.category').prepend('<br><div class="category_info"></div>');
+        $('.step-1-of-5-categoria').prepend('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Factura details:</div><div id='facturaDetails'></div>");
         $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
@@ -447,9 +453,9 @@
     }
     function addDynamicPriceFields(){
         $('.bx-viewport').css('height','550px');
-        var candidad_class = $('.importe-del-recibo div.form-group').css('display','none');
-        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="number" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
-        $('.importe-del-recibo').append('<p class="optional">Optional</p><div id="del-recibo"></div>');
+        var candidad_class = $('.step-2-of-5-receipt-amount div.form-group').css('display','none');
+        $('.step-2-of-5-receipt-amount').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="number" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
+        $('.step-2-of-5-receipt-amount').append('<p class="optional">Optional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +

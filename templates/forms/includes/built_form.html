@@ -4,13 +4,45 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    .container{
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(270deg, #ffffff 50%, #A327A1 50%);
+    }
+    #quiero-otro-documento{
+        left:20%;
+    }
+    #document-transcript {
+        overflow: visible !important;
+    }
+    #the-logo{
+        margin-left:-30px;
+    }
+    #slidedform{
+        width:100%;
+        background:transparent;
+    }
+{#    .bx-viewport{#}
+{#        margin-left:100px !important;#}
+{##}
+{#        width: 600px !important;#}
+{#        overflow: hidden !important;#}
+{#        position: relative !important;#}
+{#        height: 550px !important;#}
+{#        margin-right: -50px !important;#}
+{#        margin-left: 50px !important;#}
+{#    }#}
     #document-transcript input{
         border: 1px solid purple;
     }
-    .bx-wrapper .bx-controls-direction a {
+    .header-logo{
+        display:none;
+    }
+    .bx-controls-direction a {
         top: 16px;
     }
-    .bx-wrapper .bx-pager.bx-default-pager a.active{
+    .bx-pager.bx-default-pager a.active{
         background:transparent !important;
         background-color:purple !important;
     }
@@ -21,8 +53,8 @@
     .bx-next {
         background: url('/static/img/slide-graphics/QC_Nav_02_Arrow_Right_Down.svg') -3px !important;
     }
-    .bx-wrapper .bx-pager.bx-default-pager a:hover,
-    .bx-wrapper .bx-pager.bx-default-pager a{
+    .bx-pager.bx-default-pager a:hover,
+    .bx-pager.bx-default-pager a{
         border: 1px solid purple !important;
         border-radius: 9px;
         border-width:;
@@ -490,7 +522,7 @@
                       $(this).removeClass('selected');
                   }
           });
-        $('.bx-viewport').css('height','550px');
+        $('.bx-viewport').css('height','650px');
     }
 
     function getCategoryIcon(category){
@@ -661,8 +693,7 @@
             infiniteLoop: false,
             hideControlOnEnd: true,
             pager:true,
-            responsive:true,
-            adaptiveHeight:true
+            responsive:true
         });
 
         $('.bx-next').click(function(){
@@ -873,6 +904,7 @@
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
 {#    <legend>{{ form.title }}</legend>#}
+    <img id="the-logo" width="150px" height="80px;" src="http://quiencompro.com/images/QC.png">
     <p class="step-x-y"></p><p class="step-title"></p>
     {% if form.intro %}
 {#    <div class="subtitulo">#}
@@ -886,7 +918,7 @@
         </ul>
     </div>
 
-    {{ _('Skip it')  }}:  <a class="btn btn-danger"  id="another" href="#" role="button">{{ _('I want another document') }}</a>
+    {{ _('Skip it')  }}:  <a id="quiero-otro-documento" class="btn btn-danger"  id="another" href="#" role="button">{{ _('I want another document') }}</a>
 
 
 </form>

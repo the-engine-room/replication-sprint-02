@@ -4,6 +4,25 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    #document-transcript input{
+        border: 1px solid purple;
+    }
+    .bx-wrapper .bx-controls-direction a {
+        top: 16px;
+    }
+    .bx-default-pager {
+        top: 29px;
+        height: 40px;
+    }
+    label, h3{
+        color:purple;
+
+    }
+    .slide-title{
+        display:block;
+        text-align: center;
+        top:3%;
+    }
     .doesnt-look-right{
         clear: both;
         display:flex;
@@ -230,10 +249,14 @@
     .cant_read{
         width:80px;
         padding-right:3px;
+        height: 26px;
     }
-    .undo{
-        float:right;
-        padding-right:3px;
+    .undo {
+        float: right;
+        margin-top: -23px;
+        clear: both;
+        width: 60px;
+        height: 26px;
     }
     .qtip-pos-tr{
         left:1000px;
@@ -344,14 +367,17 @@
         });
         constructCategory();
 
-
+        $('.bx-viewport').change(function(){
+            console.log(this);
+{#            $('step-title').text($('slide-title').text);#}
+        });
     });
 
     function constructCategory(){
         var documentViewer = $('#document-viewer-container').children()[0].data.split('/');
         var documentNameArray = documentViewer[documentViewer.length-1].split('_');
         $('.step-1-of-5-categoria div.form-group').css('display','none');
-        $('.step-1-of-5-categoria h3').css('display','none');
+{#        $('.step-1-of-5-categoria h3').css('display','none');#}
 
         var fatura_details_icon_url = "";
         if(abbreviationAreaOfGovernment[documentNameArray[0]] == "Senado"){
@@ -362,7 +388,7 @@
 
         var category_icon_url = '';
 
-        $('.step-1-of-5-categoria').prepend('<br><div class="category_info"></div>');
+        $('.step-1-of-5-categoria').append('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Factura details:</div><div id='facturaDetails'></div>");
         $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
@@ -561,12 +587,12 @@
         $('.form-group').each(function() {
             var cant_read_container = document.createElement('div');
             cant_read_container.id = "cant_read_container";
-            var cant_read = document.createElement('p');
-            cant_read.innerText = "Can't read!";
-            cant_read.setAttribute("class", "btn btn-link cant_read");
-            var undo = document.createElement('p');
-            undo.innerText = "Undo!";
-            undo.setAttribute("class", "btn btn-link undo");
+            var cant_read = document.createElement('img');
+            cant_read.setAttribute("src", "/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg");
+            cant_read.setAttribute("class", "cant_read");
+            var  undo= document.createElement('img');
+            undo.setAttribute("src", "/static/img/slide-graphics/QC_BT_6_Undo%20Up.svg");
+            undo.setAttribute("class", "undo");
             cant_read_container.appendChild(cant_read);
             cant_read_container.appendChild(undo);
             this.appendChild(cant_read_container);
@@ -740,7 +766,8 @@
                     }
                     else{
                         // If we are showing the first element of the form group(section) we are showing the tittle too.
-                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3>'+groupOfElements[i].id+'</h3>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
+                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3 class="slide-title">'+groupOfElements[i].id+'</h3>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
+
                     }
                 }
             }
@@ -825,16 +852,17 @@
 
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
-    <legend>{{ form.title }}</legend>
+{#    <legend>{{ form.title }}</legend>#}
+    <p class="step-x-y"></p><p class="step-title"></p>
     {% if form.intro %}
-    <div class="subtitulo">
-      {{ form.intro|safe }}
-    </div>
+{#    <div class="subtitulo">#}
+{#      {{ form.intro|safe }}#}
+{#    </div>#}
     {% endif %}
 
     {% csrf_token %}
     <div id="slidedform" class="form">
-        <ul style="list-style-type: none; padding: 0px; margin: 0px;" class="bxslideri">
+        <ul style="" class="bxslideri">
         </ul>
     </div>
 

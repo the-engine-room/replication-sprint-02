@@ -448,19 +448,19 @@
     function addDynamicPriceFields(){
         $('.bx-viewport').css('height','550px');
         var candidad_class = $('.importe-del-recibo div.form-group').css('display','none');
-        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
+        $('.importe-del-recibo').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="number" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.importe-del-recibo').append('<p class="optional">Optional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Description:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Description:</label>' +
-                                            '<input style="width: 150px;float:left; border-color: purple;" type="text" name="description" class="form-control description" id="description-0"/></div>' +
+                                            '<input type="text" style="width: 150px;float:left; border-color: purple;" type="text" name="description" class="form-control description" id="description-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
+                                            '<input type="number" style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input style="    margin-left: 10px; border-color: purple;" type="number" name="precio" class="form-control precio" id="precio-0"/></div>' +
+                                            '<input type="number" style="    margin-left: 10px; border-color: purple;" type="number" name="precio" class="form-control precio" id="precio-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-0"> = $  0  </div></div>' +
                                             '</div>'+
@@ -484,10 +484,10 @@
                                             '<input style="width: 150px;float:left; border-color: purple;" style="float:left;" type="text"  name="description" class="form-control description" id="description-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input  style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad"  class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
+                                            '<input   type="number" style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad"  class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input style="    margin-left: 10px; border-color: purple;"   type="number" name="precio" class="form-control precio" id="precio-'+index+'"/></div>' +
+                                            '<input  type="number" style="    margin-left: 10px; border-color: purple;"   type="number" name="precio" class="form-control precio" id="precio-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');

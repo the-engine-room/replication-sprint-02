@@ -16,6 +16,12 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    .title-of-slide {
+        height: 40px;
+        margin-bottom: 70px;
+        font-size:2.4em;
+        text-align: center;
+    }
     .close-button {
         /* color: white; */
         background: transparent;
@@ -44,8 +50,10 @@
         margin-left:-30px;
     }
     #slidedform{
-        width:100%;
-        background:transparent;
+        padding-left: 150px;
+        width: 700px;
+        background: transparent;
+        border-style: none;
     }
 {#    .bx-viewport{#}
 {#        margin-left:100px !important;#}
@@ -77,6 +85,12 @@
     .bx-next {
         background: url('/static/img/slide-graphics/QC_Nav_02_Arrow_Right_Down.svg') -3px !important;
     }
+    .bx-wrapper .bx-pager{
+        padding-top: 50px !important;
+    }
+    .bx-wrapper .bx-viewport{
+        -webkit-box-shadow: 0 0 0px #ccc !important;
+    }
     .bx-pager.bx-default-pager a:hover,
     .bx-pager.bx-default-pager a{
         border: 1px solid purple !important;
@@ -95,10 +109,13 @@
 
     }
     .slide-title{
-        display:block;
-        text-align: center;
         top:3%;
-        padding-bottom: 50px;
+        font-family: Glegoo Regular;
+        color:purple;
+    }
+    .slide-first-title{
+        color:grey;
+        top:3%;
         font-family: Glegoo Regular;
     }
     .doesnt-look-right{
@@ -860,7 +877,8 @@
                     }
                     else{
                         // If we are showing the first element of the form group(section) we are showing the tittle too.
-                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<h3 class="slide-title">'+groupOfElements[i].id+'</h3>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
+                        var slide_title = groupOfElements[i].id.split(":");
+                        $(".bxslideri").append('<li class="'+uniqueSections[j]+'">'+'<div class="title-of-slide"><span class="slide-first-title">'+slide_title[0]+':</span>'+'<span class="slide-title">'+slide_title[1]+'</span></div>'+'<div class="form-group">' + getFormElement(groupOfElements[i]) + '</div></li>');
 
                     }
                 }

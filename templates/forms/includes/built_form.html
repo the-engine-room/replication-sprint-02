@@ -4,6 +4,9 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    #quiero-otro-documento{
+        margin-left:-70%;
+    }
     .container{
         top: 0;
         left: 0;
@@ -918,7 +921,8 @@
         </ul>
     </div>
 
-    {{ _('Skip it')  }}:  <a id="quiero-otro-documento" class="btn btn-danger"  id="another" href="#" role="button">{{ _('I want another document') }}</a>
+{#    {{ _('Skip it')  }}:  #}
+    <a id="quiero-otro-documento" class="btn btn-danger"  id="another" href="#" role="button">{{ _('I want another document') }}</a>
 
 
 </form>

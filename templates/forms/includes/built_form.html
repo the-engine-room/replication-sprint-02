@@ -1,6 +1,18 @@
 {% load static from staticfiles %}
 {% load multifor %}
 <style>
+    @font-face {
+      font-family: "Glegoo Regular";
+      src: url("/static/fonts/Glegoo-Regular.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "Glegoo Bold";
+      src: url("/static/fonts/Glegoo-Bold.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "Open Sans Regular";
+      src: url("/static/fonts/OpenSans-Regular.ttf") format("truetype");
+    }
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
@@ -79,6 +91,7 @@
     }
     label, h3{
         color:purple;
+        font-family: Glegoo Regular;
 
     }
     .slide-title{
@@ -86,10 +99,16 @@
         text-align: center;
         top:3%;
         padding-bottom: 50px;
+        font-family: Glegoo Regular;
     }
     .doesnt-look-right{
         clear: both;
-        display:flex;
+        display: flex;
+        font-family: Open Sans-serif;
+        font-style: italic;
+        font-size: 1.2em;
+        font-weight: lighter;
+        color: #777;
     }
     #document-transcript textarea {
         width: 90%;
@@ -104,6 +123,9 @@
     p.optional {
         color: purple;
         padding-top: 50px;
+
+        font-family:"Glegoo Regular";
+        font-size:1.5em;
     }
     legend {
         padding: 17px;
@@ -121,6 +143,7 @@
     }
     div#del-recibo p{
         color: purple;
+        font-family: "Glegoo Regular"
     }
     #totalCon {
         float: left;
@@ -202,11 +225,18 @@
         float:right;
         margin-top: 15px;
         margin-right: 100px;
+
     }
     .add-second-category p {
         float: left;
         margin-left: 120px;
         margin-top: 20px;
+        font-family: "Glegoo Regular";
+        stroke-width: 1px;
+    }
+    .optional_category p{
+        font-family: "Glegoo Regular";
+        font-size: 1.5em;
     }
     #change_cat{
         margin: 0 auto;
@@ -224,8 +254,11 @@
     #abbreviationBody p{
         margin-top: -9px;
         font-size:1.5em;
-        font-family: Open Sans Regular;
+        font-family: "Open Sans Regular";
      }
+    #legislature p{
+        font-family: "Open Sans Regular";
+    }
     #abbreviationAreaOfGovernment{
         text-align: center;
         border-top: 1px solid purple;
@@ -257,11 +290,13 @@
 
     #chooseCategory p{
         color:purple;
+        font-size: 1.5em;
+        font-family: "Glegoo Regular";
     }
      #chooseCategory h1{
         padding-top:10px;
          font-size:2.45em;
-         font-family:Glegoo Bold;
+        font-family: "Glegoo Bold";
     }
     #facturaDetails{
         border: 1px solid purple;
@@ -273,6 +308,7 @@
         font-size: 1.5em;
         margin-bottom:5px;
         color:purple;
+        font-family: Open Sans Regular;
     }
     #senato img {
         padding-left: 6px;
@@ -562,10 +598,7 @@
                                             '</div>'+
                                             '');
          $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
-                                                                '<br/><br/><br/>'+
-                                                                '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
-                                    );
-
+                                                                '<br/><br/><br/>');
             var index = 1;
 
             $(document).on('click', '#add_receipt_item', function(e) {
@@ -588,9 +621,7 @@
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');
                                     $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
-                                                                '<br/><br/><br/>'+
-                                                                '<div style="margin-bottom:50px;height:30px;" id="Total"><h4 style="width:30%;float:left;">Total:</h4><br/><span style="width:30%;float:right;" id="grande_total">$</span></div>'
-                                    );
+                                                                '<br/><br/><br/>');
                                     $('.bx-viewport').css('height','10%');
 
                     }

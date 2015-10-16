@@ -3,16 +3,72 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% block maincolumn %}
+    <style>
+    @font-face {
+      font-family: "Glegoo Bold";
+      src: url("/static/fonts/Glegoo-Bold.ttf") format("truetype");
+    }
+    .feedbackform h4 {
+        font-size: 2.4em;
+        padding-bottom: initial;
+        color: purple;
+        font-family: "Glegoo Bold";
+        font-weight: lighter;
+    }
+   .feedbackform{
+       width:600px;
+       margin-right:auto;
+       margin-left:auto;
+    }
+    #feedbackform-box {
+        border: 1.5px solid purple;
+        padding: 30px;
+    }
+    #feedbackform-box img{
+            margin-left: 30%;
+    }
+    .continue-liberating {
+        height: 50px;
+        margin-left: 150px;
+        margin-bottom: 34px;
+    }
+    .feedbackform textarea[name=feedback_text] {
+
+    }
+    .elWordCount{
+            float: right;
+    }
+    </style>
+    <script type="application/javascript">
+    $(document).ready(function() {
+        $("#word_count").on('keyup', function() {
+            var words = this.value.match(/\S+/g).length;
+            if (words > 500) {
+                // Split the string on first 200 words and rejoin on spaces
+                var trimmed = $(this).val().split(/\s+/, 500).join(" ");
+                // Add a space at the end to keep new typing making new words
+                $(this).val(trimmed + " ");
+            }
+            else {
+                $('#display_count').text(words);
+                $('#word_left').text(500-words);
+            }
+        });
+     });
+    </script>
 <div class="feedbackform">
-                <img style="display: block;margin-left: auto;margin-right: auto" src="http://quiencompro.com/images/QC.png"/>
-                <br/><br/>
                 <h4 align="center">¡GRACIAS!</h4>
                 <p>{{ _('Thank you for helping us out!  We would love it if you could give us some feedback in the box below. Let us know what you found useful or unhelpful. Was there anything that did not work as it should have?') }}</p>
-                <form action="{% url 'feedback' %}" method="POST" name="feedback">
-                {% csrf_token %}
-                    </br><textarea name="feedback_text" rows="5" cols="60">Escriba su retroalimentacion aqui...</textarea></br>
-                    <button id="another" class="btn btn-primary btn-lg btn-block" type="submit">{{ _('I want to review other document') }}</button>
+                <a id="quiero-otro-documento"   id="another" href="" role="button"><img class="continue-liberating"src="/static/img/slide-graphics/QC_BT_Continue_liberating.svg"/></a>
+                <div id="feedbackform-box">
+                    <form action="{% url 'feedback' %}" method="POST" name="feedback">
+                    {% csrf_token %}
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </br><textarea style=" width: 100%;border: 1.5px solid purple;color: purple;" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
+                        <div class="elWordCount"><span id="display_count">0</span> of <span id="word_left">500</span> remaining.</div>
+                    <a id="another" type="submit"><img src="/static/img/slide-graphics/QC_BT_Submit.svg"/></a>
                 </form>
+                </div>
 {#                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" role="button">{{ _('I want to review other document') }}#}
 {#    	    	</a>#}
         </div>

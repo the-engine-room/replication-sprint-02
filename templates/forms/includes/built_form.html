@@ -16,6 +16,9 @@
     #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
         background: #dddddd;
     }
+    .feedbackform{
+        width:500px;
+    }
     .title-of-slide {
         height: 40px;
         margin-bottom: 70px;
@@ -475,13 +478,16 @@
 
 
         addDynamicPriceFields();
-
+        $("#purple-header").css('display','none');
+        $(".header-white-space").css('display','none');
         $(document).on('click', '#submitForm', function(e) {
-          console.log("clicked submit.");
             $("[id^='qtip']").css('display','none');
             $('#document-viewer-container').parent().remove();
             $('#social_document').parent().parent().removeClass();
             $('#social_document').parent().parent().addClass('col-md-12');
+            $("#purple-header").css('display','');
+            $(".header-white-space").css('display','');
+            $("#header-text").css('display','none');
         });
         constructCategory();
 

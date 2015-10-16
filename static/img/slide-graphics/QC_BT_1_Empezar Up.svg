@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="224.249px" height="71.482px" viewBox="0 0 224.249 71.482" enable-background="new 0 0 224.249 71.482"
+	 xml:space="preserve">
+<g>
+	<g>
+		<path fill="#A7A8AC" d="M224.248,62.244c0,5.081-4.156,9.238-9.237,9.238H23.485c-5.081,0-9.237-4.157-9.237-9.238V23.719
+			c0-5.081,4.157-9.237,9.237-9.237h191.525c5.081,0,9.237,4.157,9.237,9.237V62.244z"/>
+	</g>
+	<g>
+		<g>
+			<path fill="#9C3793" d="M12.237,61.5C6.317,61.5,1.5,56.683,1.5,50.763V12.237C1.5,6.317,6.317,1.5,12.237,1.5h191.525
+				c5.921,0,10.737,4.817,10.737,10.737v38.526c0,5.92-4.816,10.737-10.737,10.737H12.237z"/>
+			<path fill="#FFFFFF" d="M203.763,3C208.844,3,213,7.157,213,12.237v38.526c0,5.08-4.156,9.237-9.237,9.237H12.237
+				C7.157,60,3,55.843,3,50.763V12.237C3,7.157,7.157,3,12.237,3H203.763 M203.763,0H12.237C5.49,0,0,5.49,0,12.237v38.526
+				C0,57.51,5.49,63,12.237,63h191.525C210.511,63,216,57.51,216,50.763V12.237C216,5.49,210.511,0,203.763,0L203.763,0z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 48.8657 41.5747)" fill="#FFFFFF" font-family="'Glegoo-Bold'" font-size="28">Empezar</text>
+		</g>
+	</g>
+</g>
+</svg>

@@ -474,9 +474,14 @@
         height:20px;
     }
     .cant_read{
-        width:80px;
-        padding-right:3px;
-        height: 26px;
+        position:absolute;
+        width: 100px;
+        padding-right: 3px;
+        height: 32px;
+        background:transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
+    }
+    .cant_read:hover{
+        background-image: url("/static/img/slide-graphics/QC_BT_7_I_cant_read_Down.svg");
     }
     .undo {
         float: right;
@@ -515,9 +520,11 @@
     .bx-viewport ul li {
         /* background-color: blue; */
            padding-left: 42px;
+            height:850px;
     }
     .step-1-of-5 ,.step-2-of-5 ,.step-3-of-5 , .step-4-of-5 , .step-5-of-5{
         border-top:1px solid purple;
+        padding-bottom:10px;
     }
     .step-1-of-5 p,.step-2-of-5 p,.step-3-of-5 p, .step-4-of-5 p, .step-5-of-5 p{
         font-family:"Open Sans Light";
@@ -634,11 +641,11 @@
 
         buildAddressSlideFunctionality();
 
-        $('.step-1-of-5').append('<p>Helper text here</p>');
-        $('.step-2-of-5').append('<p>Helper text here</p>');
-        $('.step-3-of-5').append('<p>Helper text here</p>');
-        $('.step-4-of-5').append('<p>Helper text here</p>');
-        $('.step-5-of-5').append('<p>Helper text here</p>');
+        $('.step-1-of-5').append('<p>En este paso verificamos que la categoría de gasto preasignada a la factura sea correcta. Si es necesario, añadimos una categoría secundaria porque el documento contiene más de un tipo gasto.</p>');
+        $('.step-2-of-5').append('<p>Aquí registramos la cantidad total facturada; es decir, la suma que incluye el IVA. </p>');
+        $('.step-3-of-5').append('<p>Estos datos parecen aburridos, pero son importates para saber si los legisladores transfieren dinero a sus empresas. [NEW LINE] Aquí capturamos la fecha en que se emitió la factura y los datos de quien la emitió.</p>');
+        $('.step-4-of-5').append('<p>En este paso ubicamos físicamente a la empresa y/o la sucursal que emitió la factura. Ayúdanos a capturar todos los datos que componen la dirección. </p>');
+        $('.step-5-of-5').append('<p>¿Notaste algo extraño en la factura? ¿El precio pagado por un producto o servicio es elevado? ¿El gasto te parece inúti u ofensivo (vino, motocicletas deportivas, spa, fragancias, bares y cantinas, etcétera)? ¿El emisor de la factura es un político famoso o que tú recuerdas? ¡Anótalo! Investigaremos todo lo que te resulte sospechoso.</p>');
     });
 
     function buildAddressSlideFunctionality(){
@@ -686,7 +693,7 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a><img src='/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg'/></a></span><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a class='cant_read' href=''></a></span><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Optional </p><div id='chooseOptionalCategory'><span></span></div>");
         $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myOptionalModal'><img src='/static/img/slide-graphics/QC_BT_5_Add_Up.svg'></a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
@@ -762,7 +769,7 @@
                       $(this).removeClass('selected');
                   }
           });
-        $('.bx-viewport').css('height','747px');
+        $('.bx-viewport').css('height','880px');
     }
 
     function getCategoryIcon(category){
@@ -874,9 +881,9 @@
         $('.form-group').each(function() {
             var cant_read_container = document.createElement('div');
             cant_read_container.id = "cant_read_container";
-            var cant_read = document.createElement('img');
-            cant_read.setAttribute("src", "/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg");
+            var cant_read = document.createElement('a');
             cant_read.setAttribute("class", "cant_read");
+            cant_read.setAttribute("href", "");
             var  undo= document.createElement('img');
             undo.setAttribute("src", "/static/img/slide-graphics/QC_BT_6_Undo%20Up.svg");
             undo.setAttribute("class", "undo");

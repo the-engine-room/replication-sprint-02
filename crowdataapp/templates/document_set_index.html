@@ -10,13 +10,32 @@
     h4{
         color:purple;
     }
-    #get-started{
+    #get-started img{
         background: transparent;
-        /* padding-left: 50% !important; */
-        width: 367px;
-        float: right;
+        padding-left: 60% !important;
     }
-
+    .progress {
+        float: right;
+        border: 7px solid purple;
+        width: 720px !important;
+        /* margin-left: 480px; */
+        height: 47px;
+        border-radius: 5px;
+        border-radius: 10px 10px 10px 10px;
+    }
+    .progress-bar {
+        background-image: -webkit-linear-gradient(top, #59EC1D 0%, #59EC1D 100%) !important;
+    }
+    p#percentage {
+        margin-top: 8px;
+        margin-left: 150px;
+        /* margin-left: 750px; */
+        z-index: 99999;
+        position: absolute;
+        font-size: 4.9em;
+        color: purple;
+        font-family: "Open Sans Bold";
+    }
     </style>
   <div class="project-index">
     <h2 style="display:none;">{{ _('Choose a project') }}</h2>
@@ -28,10 +47,20 @@
       <button type="button" class="btn btn-default btn-sm sort-count">Sort count</button>
       <button type="button" class="btn btn-default btn-sm sort-percentage">Sort percentage</button>
     </div>
-
+            <script type="application/javascript">
+            $(document).ready(function(){
+                var document_count = {% widthratio document_sets.0.get_verified_documents.count document_sets.0.documents.count 100 %};
+                var all_documents = {{ document_sets.0.documents.count }};
+                var percentage = (document_count * all_documents)/100;
+                $('#percentage').text(""+percentage + "%");
+                $('.progress-bar').css('width',''+percentage + "%");
+            });
+             </script>
     <div  class = "media-wrapper">
       {% for ds in document_sets %}
-    		<div class="media" data-name = "{{ds.name}}" data-count = "{{ ds.documents.count }}" data-complete = "{% widthratio ds.get_verified_documents.count ds.documents.count 100 %}">
+
+    		<div class="mediaa" data-name = "{{ds.name}}" data-count = "{{ ds.documents.count }}" data-complete = "{% widthratio ds.get_verified_documents.count ds.documents.count 100 %}">
+
 {#          {% if ds.header_image %}#}
 {#            <a class="pull-left" href="{{ds.get_absolute_url}}">#}
 {#              <img src="{{ ds.header_image }}" width="316" height="216" class="media-object" />#}
@@ -39,12 +68,19 @@
 {#          {% endif %}#}
 
           <div  align="center" class="media-body">
+               <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="" style="">
+             <p id="percentage">%</p>
+            </div>
+          </div>
               <img style="" src="http://quiencompro.com/images/QC.png">
-              <p>{{  _('¿Quién Compró? is a project that looks at the way the Mexican congress spends public funds. The platform holds digitized receipts showing politicians expenses. With your help we can highlight   discrepancies in public spending and encourage transparency within the Mexican government.') }}</p>
-                <p>{{  _('Please help us out by tagging politicians receipts and giving us your feedback! ') }}</p>
-                <p>{{  _('When you start using the platform you will be given a scanned receipt. Follow the instructions to tag the information you see on document. ') }}</p>
-                <p>{{  _('This project is currently in beta form so please be patient as we try things out. We hope everything runs smoothly, but if not, please let us know in the feedback form at the end of the session.') }}</p>
-{#    		    {{ds.description}}#}
+              <p align="center">¡Muchas gracias por llegar hasta aquí! </p>
+              <p>Igual que tú, ¿Quién Compró? no tolera la corrupción. Por eso nos dedicamos a seguir la pista de los recursos públicos en el Congreso mexicano, uno de los más costosos y menos transparentes del mundo. </p>
+              <p>Mientras la mayoría quiere saber en qué usan los políticos el dinero de todos, ellos se empeñan en ocultarlo. Si ellos no quieren transparentar sus gastos, nosotros lo haremos. Pero necesitamos colaborar en equipo. </p>
+              <p>Conviértete en un liberador de datos: ¡cuéntale al mundo cómo usan nuestro dinero los diputados y senadores!</p>
+              <p>Al comenzar a utilizar nuestra plataforma, ésta te proporcionará la copia de una factura en formato PDF. </p>
+              <p>A partir de ahí, sigue las instrucciones para registrar la información que aparece en el documento.
+              {#    		    {{ds.description}}#}
             <div class="cta">
               {% call_to_action ds %}
 {#              {% documents_verified ds %}#}

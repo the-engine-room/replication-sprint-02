@@ -12,7 +12,7 @@
 {% block headerblock %}
 
   <div class="row project-header">
-    <div class="col-md-8">
+    <div >
       <div class="media">
       {% if document_set.header_image %}
           <a class="pull-left" href="{{ds.get_absolute_url}}">
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div >
       {% call_to_action document_set %}
       {% documents_verified document_set %}
     </div>

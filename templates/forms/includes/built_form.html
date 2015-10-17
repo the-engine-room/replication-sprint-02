@@ -531,6 +531,14 @@
         font-style: italic;
         font-size: 1.4em;
     }
+    #add_receipt_item{
+        background:url("/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg");
+        height:30px;
+        width:100px;
+    }
+    #add_receipt_item:hover{
+        background:url("/static/img/slide-graphics/QC_BT_9_Add_new_row_Down.svg");
+    }
 
 </style>
 
@@ -796,7 +804,7 @@
                                             '<div id="total_sum-0"> = $  0  </div></div>' +
                                             '</div>'+
                                             '');
-         $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
+         $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item"></a>'+
                                                                 '<br/><br/><br/>');
             var index = 1;
 
@@ -819,7 +827,7 @@
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');
-                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><img style="float:left;" id="add_receipt_item" src="/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg">'+
+                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item"></a>'+
                                                                 '<br/><br/><br/>');
                                     $('.bx-viewport').css('height','10%');
 

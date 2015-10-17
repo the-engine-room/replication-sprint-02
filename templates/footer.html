@@ -1,7 +1,45 @@
 <!-- footer -->
+<style>
+    #footer-section-1{
+        float:left;
+        width:33.33%;
+    }
+    #footer-section-1 p{
+        margin-top: 20px;
+        padding:30px;
+    }
+    #footer-section-2{
+        width:33.33%;
+        float:left;
+        height: 150px;
+    }
+    #footer-section-2 p{
+        margin-top: 60px;
+    }
+    #footer-section-3{
+        float:right;
+        width:33.33%;
+    }
+    #footer-section-3 img {
+        width: 230px;
+        padding-right: 30px;
+        margin-top: 40px;
+    }
+    .panel-footer{
+        background-color: #E7E8E9 !important;
+    }
+</style>
 <div class="panel panel-footer">
-  <section>
+  <section id="footer-section-1">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+
+  </section>
+    <section id="footer-section-2">
       <p>Developed by <a href="http://opendatakosovo.org">Open Data Kosovo</a> on the <a href="http://github.com/crowdata/crowdata">Crowdata platform</a></p>
+
+  </section >
+    <section id="footer-section-3">
+      <img src="/static/img/engine-room-logo.png"/><img src="/static/img/odk-logo.png">
 
   </section>
 </div>

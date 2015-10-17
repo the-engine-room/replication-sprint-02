@@ -346,15 +346,13 @@
         color: purple;
         display:inline;
     }
-    .add-second-category a{
-        float:right;
-        margin-top: 15px;
-        margin-right: 100px;
-
-    }
+{#    .add-second-category a{#}
+{##}
+{##}
+{#    }#}
     .add-second-category p {
         float: left;
-        margin-left: 120px;
+        margin-left: 80px;
         margin-top: 20px;
         font-family: "Glegoo Regular";
         stroke-width: 1px;
@@ -539,6 +537,25 @@
     #add_receipt_item:hover{
         background:url("/static/img/slide-graphics/QC_BT_9_Add_new_row_Down.svg");
     }
+    #select-other-category{
+        background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+        width: 167px;
+        height: 30px;
+    }
+    #select-other-category:hover{
+        background: url("/static/img/slide-graphics/QC_BT_4_Select%20another%20cat%20Down.svg");
+    }
+    #select-other-optional-category {
+        background: url("/static/img/slide-graphics/QC_BT_5_Add_Up.svg");
+        height: 30px;
+        width: 61px;
+        float: right;
+        margin-top: 15px;
+        /* margin-right: 100px; */
+    }
+     #select-other-optional-category:hover{
+         background: url("/static/img/slide-graphics/QC_BT_5_Add_Down.svg");
+     }
 
 </style>
 
@@ -701,10 +718,10 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'><img src='/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg'></a> <a class='cant_read' href=''></a></span><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'></a> <a class='cant_read' href=''></a></span><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Optional </p><div id='chooseOptionalCategory'><span></span></div>");
-        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myOptionalModal'><img src='/static/img/slide-graphics/QC_BT_5_Add_Up.svg'></a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
+        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'></a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);

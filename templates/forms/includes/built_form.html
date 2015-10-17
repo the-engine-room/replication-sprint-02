@@ -556,6 +556,30 @@
      #select-other-optional-category:hover{
          background: url("/static/img/slide-graphics/QC_BT_5_Add_Down.svg");
      }
+    .change_cat {
+        position: absolute;
+        background: url("/static/img/icons/QC_BT_8_Change_cat.svg");
+        width: 132px;
+        margin-left: -89px;
+        height: 30px;
+    }
+    .change_cat:hover{
+        background: url("/static/img/icons/QC_BT_8_Change_cat_Down.svg");
+    }
+    a.close-button {
+        margin-left: 45px;
+        width: 100px;
+    }
+    .change_optional_cat{
+        position: absolute;
+        background: url("/static/img/icons/QC_BT_8_Change_cat.svg");
+        width: 132px;
+        margin-left: -89px;
+        height: 30px;
+    }
+    .change_optional_cat:hover{
+        background: url("/static/img/icons/QC_BT_8_Change_cat_Down.svg");
+    }
 
 </style>
 
@@ -1223,8 +1247,8 @@
       </div>
       <div class="modal-footer">
         Otra categoria: <input id="otherOptionalCategoryValue" type="input"/><br><br>
-        <a href="#"><img class="change_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
-         <a class=".close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
+        <a class="change_cat" href="#"></a>
+         <a class="close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
       </div>
     </div>
   </div>
@@ -1263,7 +1287,7 @@
       <div class="modal-footer">
         Otra categoria: <input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
         <a href="#"><img class="change_optional_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
-          <a class=".close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
+          <a class="close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
       </div>
     </div>
   </div>

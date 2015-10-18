@@ -221,7 +221,7 @@ p#domicilio-fiscio-2 {
     height: 77px;
 }
 #slidedform{
-    /*padding-left: 150px;*/
+    padding-left: 23px;
     width: 590px;
     background: transparent;
     border-style: none;
@@ -640,6 +640,7 @@ a.close-button {
         width:50%;
     }
 }
+@max ( )
 @media (max-width: 992px){
     .progress{
         float:left;

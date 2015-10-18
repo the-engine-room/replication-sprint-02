@@ -59,7 +59,7 @@
 <div class="feedbackform">
                 <h4 align="center">¡GRACIAS!</h4>
                 <p>{{ _('Thank you for helping us out!  We would love it if you could give us some feedback in the box below. Let us know what you found useful or unhelpful. Was there anything that did not work as it should have?') }}</p>
-                <a id="quiero-otro-documento"   id="another" href="" role="button"><img class="continue-liberating"src="/static/img/slide-graphics/QC_BT_Continue_liberating.svg"/></a>
+                <a   id="another" href="" role="button"><img class="continue-liberating"src="/static/img/slide-graphics/QC_BT_Continue_liberating.svg"/></a>
                 <div id="feedbackform-box">
                     <form action="{% url 'feedback' %}" method="POST" name="feedback">
                     {% csrf_token %}

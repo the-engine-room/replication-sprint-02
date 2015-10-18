@@ -22,7 +22,7 @@ div#purple-header {
     padding-top: 5px;
     text-align: center;
     color: white;
-    font-size: 4.9em;
+    font-size: 3.8em;
     font-family: "Glegoo Regular";
 }
 #quien-compro-home-logo{
@@ -653,6 +653,6 @@ a.close-button {
 }
 @media (max-width: 1200px){
     #header-text{
-        font-size:3em;
+        font-size:2.4em;
     }
 }

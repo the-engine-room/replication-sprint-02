@@ -165,10 +165,10 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>The category for this receipt is: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'></a> <a class='cant_read' href=''></a></span><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>Doesn't look right? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'>Select another category</a> <a class='cant_read' href=''>I can’t read it</a></span><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Optional </p><div id='chooseOptionalCategory'><span></span></div>");
-        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'></a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
+        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Add a second category</p> <a id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'>Add</a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
@@ -355,7 +355,7 @@
             cant_read_container.id = "cant_read_container";
             var cant_read = document.createElement('a');
             cant_read.setAttribute("class", "cant_read");
-            cant_read.setAttribute("href", "");
+            cant_read.innerHTML = "I can't read it";
             var  undo= document.createElement('img');
             undo.setAttribute("src", "/static/img/slide-graphics/QC_BT_6_Undo%20Up.svg");
             undo.setAttribute("class", "undo");

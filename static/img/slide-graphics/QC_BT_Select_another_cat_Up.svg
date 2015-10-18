@@ -17,7 +17,8 @@
 			C0,26.304,2.696,29,6.011,29h154.979c3.314,0,6.011-2.696,6.011-6.011V6.011C167,2.696,164.304,0,160.989,0L160.989,0z"/>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 12.9463 18.8467)" fill="#FFFFFF" font-family="'Glegoo-Bold'" font-size="12">Select another category</text>
+		<text transform="matrix(1 0 0 1 12.9463 18.8467)" fill="#FFFFFF" font-family="'Glegoo-Bold'" font-size="12"></text>
 	</g>
 </g>
+
 </svg>

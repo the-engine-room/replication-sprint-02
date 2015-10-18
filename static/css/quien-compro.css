@@ -43,8 +43,6 @@ div#purple-header {
     width:100% !important;
 }
 object {
-    margin-top:134px;
-    margin-left:60px;
     margin-right:56px;
 }
 #get-started{
@@ -215,10 +213,10 @@ p#domicilio-fiscio-2 {
 
 #document-transcript {
     overflow: visible !important;
-        margin-left: 100px;
 }
-#the-logo{
-    margin-left:-130px;
+#the-logo {
+    margin-left: 649px;
+    float: left;
     width: 145px;
     height: 77px;
 }
@@ -639,8 +637,7 @@ a.close-button {
 
 @media (min-width: 992px){
     .col-md-6 {
-        margin-right: 30px;
-        width:inherit;
+        width:50%;
     }
 }
 @media (max-width: 992px){

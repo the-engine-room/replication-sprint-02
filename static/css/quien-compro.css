@@ -155,24 +155,27 @@ input#id_address2_calle {
     float: left;
 }
 input#id_address2_municipio_o_delegacion{
-    margin-top: -92px;
+        margin-top: 6px;
         width: 488px;
 }
 input#id_address2_codigo_postal {
-    margin-top: -88px;
+    margin-top: 7px;
     width: 265px;
 }
 input#id_address2_estado {
-    margin-top: -118px;
+    margin-top: -27px;
     width: 218px;
     margin-left: 270px;
+    float: left;
 }
 p#domicilio-fiscio-2 {
     z-index: 99999999;
     position: absolute;
     color: purple;
-        margin-top: -65px;
+    margin-top: -40px;
     padding-bottom: 10px;
+    color: purple;
+    font-family: Glegoo Regular;
 }
 #same-as-above-address{
     float: left;
@@ -182,9 +185,10 @@ p#domicilio-fiscio-2 {
 }
 #same-as-above-address-text {
     position: absolute;
-    margin-left: 340px;
-    margin-top: -63px;
-    color:purple;
+    margin-left: 392px;
+    margin-top: -39px;
+    color: purple;
+    font-family: Glegoo Regular;
 }
 .paso-4-de-5-direccin div#cant_read_container{
     display:none;

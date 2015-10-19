@@ -178,10 +178,10 @@ p#domicilio-fiscio-2 {
     margin-top: -30px;
     color:purple;
 }
-.step-4-of-5-address div#cant_read_container{
+.paso-4-de-5-direccin div#cant_read_container{
     display:none;
 }
-.step-4-of-5-address div.form-group {
+.paso-4-de-5-direccin div.form-group {
     margin-bottom: -20px !important;
 }
 [label="id_address2_domiscilio_fiscal_del_emisor"]{
@@ -586,13 +586,14 @@ div.qtip{
 .bx-viewport ul li {
     /* background-color: blue; */
        padding-left: 42px;
+        padding-right: 21px;
         height:850px;
 }
-.step-1-of-5 ,.step-2-of-5 ,.step-3-of-5 , .step-4-of-5 , .step-5-of-5{
+.paso-1-de-5 ,.paso-2-de-5 ,.paso-3-de-5 , .paso-4-de-5 , .paso-5-de-5{
     border-top:1px solid purple;
     padding-bottom:10px;
 }
-.step-1-of-5 p,.step-2-of-5 p,.step-3-of-5 p, .step-4-of-5 p, .step-5-of-5 p{
+.paso-1-de-5 p,.paso-2-de-5 p,.paso-3-de-5 p, .paso-4-de-5 p, .paso-5-de-5 p{
     font-family:"Open Sans Light";
     font-style: italic;
     font-size: 1.4em;

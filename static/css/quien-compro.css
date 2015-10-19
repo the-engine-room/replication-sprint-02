@@ -96,7 +96,7 @@ input#id_address1_calle{
         width: 488px;
 }
 input#id_address1_nnext{
-    width:25%;
+        width: 125px;
 }
 input#id_address1_nint {
     width: 137px;
@@ -132,7 +132,7 @@ input#id_address2_domiscilio_fiscal_del_emisor {
 }
 input#id_address2_nnext{
         margin-top: -36px;
-    width:25%;
+        width: 125px;
 }
 input#id_address2_nint {
     width: 137px;
@@ -167,19 +167,19 @@ p#domicilio-fiscio-2 {
     z-index: 99999999;
     position: absolute;
     color: purple;
-    margin-top: -30px;
+        margin-top: -65px;
     padding-bottom: 10px;
 }
 #same-as-above-address{
     float: left;
     position: absolute;
-    margin-top: -25px;
+    margin-top: -59px;
     margin-left: 319px
 }
 #same-as-above-address-text {
     position: absolute;
     margin-left: 340px;
-    margin-top: -30px;
+    margin-top: -63px;
     color:purple;
 }
 .paso-4-de-5-direccin div#cant_read_container{

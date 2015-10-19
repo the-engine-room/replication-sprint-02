@@ -99,14 +99,16 @@ input#id_address1_nnext{
     width:25%;
 }
 input#id_address1_nint {
-    width: 25%;
-    margin-top: -37px;
-    margin-left: 150px;
+    width: 137px;
+    float: left;
+    margin-top: -52px;
+    margin-left: 128px;
 }
-input#id_address1_colonia{
-    width: 35%;
-    margin-top: -67px;
-    margin-left: 299px;
+input#id_address1_colonia {
+    width: 219px;
+    float: left;
+    margin-top: -82px;
+    margin-left: 269px;
 }
 input#id_address1_municipio_o_delegacion{
     margin-top: -62px;
@@ -114,12 +116,12 @@ input#id_address1_municipio_o_delegacion{
 }
 input#id_address1_codigo_postal {
     margin-top: -54px;
-    width: 40%;
+    width: 265px;
 }
 input#id_address1_estado {
     margin-top: -84px;
-    width: 50%;
-    margin-left: 220px;
+    width: 218px;
+    margin-left: 270px;
 }
 input#id_domicilio_fisico_del_emisor_physical_address {
     display: none;
@@ -133,14 +135,16 @@ input#id_address2_nnext{
     width:25%;
 }
 input#id_address2_nint {
-    width: 25%;
-    margin-top: -66px;
-    margin-left: 150px;
+    width: 137px;
+    float: left;
+    margin-top: -81px;
+    margin-left: 128px;
 }
 input#id_address2_colonia{
-    width: 35%;
-    margin-top: -97px;
-    margin-left: 299px;
+    width: 219px;
+    float: left;
+    margin-top: -111px;
+    margin-left: 269px;
 }
 input#id_address2_calle {
     margin-top: -40px;
@@ -151,13 +155,14 @@ input#id_address2_municipio_o_delegacion{
         width: 488px;
 }
 input#id_address2_codigo_postal {
-    margin-top: -84px;
-    width: 40%;
+    margin-top: -88px;
+    width: 265px;
 }
 input#id_address2_estado {
-    margin-top: -114px;
-    width: 50%;
-    margin-left: 220px;
+    margin-top: -118px;
+    width: 218px;
+    margin-left: 270px;
+}
 }
 p#domicilio-fiscio-2 {
     z-index: 99999999;

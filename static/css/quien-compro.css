@@ -163,7 +163,7 @@ input#id_address2_codigo_postal {
     width: 265px;
 }
 input#id_address2_estado {
-    margin-top: -27px;
+    margin-top: -37px;
     width: 218px;
     margin-left: 270px;
     float: left;
@@ -172,21 +172,21 @@ p#domicilio-fiscio-2 {
     z-index: 99999999;
     position: absolute;
     color: purple;
-    margin-top: -40px;
+    margin-top: -160px;
     padding-bottom: 10px;
     color: purple;
     font-family: Glegoo Regular;
 }
-#same-as-above-address{
+#same-as-above-address {
     float: left;
     position: absolute;
-    margin-top: -59px;
-    margin-left: 319px
+    margin-top: -156px;
+    margin-left: 363px;
 }
 #same-as-above-address-text {
     position: absolute;
-    margin-left: 392px;
-    margin-top: -39px;
+    margin-left: 383px;
+    margin-top: -160px;
     color: purple;
     font-family: Glegoo Regular;
 }

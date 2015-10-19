@@ -19,10 +19,10 @@ div#purple-header {
 }
 #header-text {
     margin-top: 0px;
-    padding-top: 5px;
+    padding-top: 2%;
     text-align: center;
     color: white;
-    font-size: 3.8em;
+    font-size: 2.8em;
     font-family: "Glegoo Regular";
 }
 #quien-compro-home-logo{
@@ -81,6 +81,14 @@ div#home-paragraphs {
 @font-face {
   font-family: "Glegoo Bold";
   src: url("/static/fonts/Glegoo-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open Sans Bold";
+  src: url("/static/fonts/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open Sans Light";
+  src: url("/static/fonts/OpenSans-LightItalic.ttf") format("truetype");
 }
 @font-face {
   font-family: "Open Sans Regular";
@@ -175,7 +183,7 @@ p#domicilio-fiscio-2 {
     margin-top: -160px;
     padding-bottom: 10px;
     color: purple;
-    font-family: Glegoo Regular;
+    font-family: "Glegoo Regular";
 }
 #same-as-above-address {
     float: left;
@@ -206,6 +214,7 @@ p#domicilio-fiscio-2 {
     height: 40px;
     margin-bottom: 70px;
     font-size:2.4em;
+    padding-top: 12px;
     text-align: center;
 }
 .close-button {
@@ -217,9 +226,18 @@ p#domicilio-fiscio-2 {
     width: 100px;
     height: 36px;
 }
-#quiero-otro-documento{
-    float:left;
-    margin-left: -100%;
+#quiero-otro-documento {
+    float: left;
+    margin-left: -444px;
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    background-size: 171px 33px;
+    width: 171px;
+    height: 33px;
+    color: white;
+    font-family: "Glegoo Bold";
+    font-size: 12px;
+    padding-left: 16px;
+    padding-top: 6px;
     margin-top: -64px;
 }
 
@@ -403,20 +421,24 @@ div#del-recibo p{
 }
 #chooseOptionalCategory{
     border: 1px solid purple;
-    height:80px;
+    height:100px;
     padding: 5px 5px 5px 0px;
 }
 .optional_category{
     height:150px;
+    width: 500px;
 }
-.add-second-category{
+.add-second-category {
     color: purple;
-    display:inline;
+    display: inline;
+    padding-left: 30px;
+    /* width: 80%; */
+    float: left;
+    margin-top: -93px;
 }
-/*{#    .add-second-category a{#}*/
-/*{##}*/
-/*{##}*/
-/*{#    }#}*/
+p#optionalCategoryText {
+    float: right;
+}
 .add-second-category p {
     float: left;
     margin-left: 80px;
@@ -436,18 +458,22 @@ div#del-recibo p{
     text-align: center;
     border-top: 1px solid #e5e5e5;
 }
-#abbreviationBody{
-    margin-left: -158px;
+#abbreviationBody {
+    height: 24px;
+    /* margin-left: -158px; */
     padding-top: 20px;
-    float: left;
+    margin-left: 5px;
+    padding-left: 100px;
 }
 #abbreviationBody p{
     margin-top: -9px;
-    font-size:1.5em;
+    font-size:1.4em;
     font-family: "Open Sans Regular";
  }
-#legislature p{
-    font-family: "Open Sans Regular";
+#legislature p {
+    padding-left: 5px;
+    font-size: 1.8em;
+    color: purple;
 }
 #abbreviationAreaOfGovernment{
     text-align: center;
@@ -480,7 +506,7 @@ div#del-recibo p{
 
 #chooseCategory p{
     color:purple;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-family: "Glegoo Regular";
 }
  #chooseCategory h1{
@@ -498,7 +524,7 @@ div#del-recibo p{
     font-size: 1.5em;
     margin-bottom:5px;
     color:purple;
-    font-family: Open Sans Regular;
+    font-family: "Glegoo Bold";
 }
 #senato img {
     padding-left: 6px;
@@ -538,36 +564,47 @@ div#del-recibo p{
     width:150px;
     height:20px;
 }
-.cant_read{
-    position:absolute;
-    width: 100px;
+.cant_read {
+    position: absolute;
+    width: 131px;
     padding-right: 3px;
-    height: 32px;
-    background:transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
+    height: 45px;
+    background: transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
+    background-size: 141px 41px;
     color: white;
-    font-family: "Glegoo-Bold";
+    font-family: "Glegoo Bold";
     font-size: 12px;
     padding-left: 12px;
-    padding-top: 6px;
-    cursor: hand;
+    padding-top: 10px;
+    cursor: pointer;
 }
 .cant_read:hover{
-    text-decoration:none;
-    width:94px;
-    font-size:11px;
+    text-decoration:underline;
     color:white;
-    height: 26px;
-    padding-left: 13px;
-    padding-top: 7px;
-    margin-top:3px;
-    margin-left:4px;
     cursor: hand;
 }
 .undo {
-    cursor: hand;
+    background: transparent url("/static/img/slide-graphics/QC_BT_6_Undo%20Up.svg") center top no-repeat;
+    cursor: pointer;
     float: right;
+    background-size: 76px 42px;
     clear: both;
+    width: 130px;
+    padding-right: 7px;
+    height: 58px;
+    color: white;
+    font-family: "Glegoo Bold";
+    font-size: 12px;
+    padding-left: 35px;
+    padding-top: 10px;
+    margin-right: -81px;
 }
+.undo:hover {
+        text-decoration:underline;
+    color:white;
+    cursor: hand;
+}
+
 /*{#    .qtip-pos-lt{#}*/
 /*{#        left:-20px;#}*/
 /*{#    }#}*/
@@ -605,90 +642,113 @@ div.qtip{
     border-top:1px solid purple;
     padding-bottom:10px;
 }
-.paso-1-de-5 p,.paso-2-de-5 p,.paso-3-de-5 p, .paso-4-de-5 p, .paso-5-de-5 p{
-    font-family:"Open Sans Light";
-    font-style: italic;
+.paso-1-de-5 p, .paso-2-de-5 p, .paso-3-de-5 p, .paso-4-de-5 p, .paso-5-de-5 p {
+    font-family: "Open Sans Light";
     font-size: 1.4em;
 }
-#add_receipt_item{
-    background:url("/static/img/slide-graphics/QC_BT_9_Add_new_row_Up.svg");
-    height:30px;
-    width:100px;
+#add_receipt_item {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    height: 30px;
+    font-size: 12px;
+    /* width: 100px; */
+    padding-right: 27px;
+    padding-left: 12px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    color: white;
+    cursor:pointer;
+    font-family:"Glegoo Bold"
 }
 #add_receipt_item:hover{
-    background:url("/static/img/slide-graphics/QC_BT_9_Add_new_row_Down.svg");
+    text-decoration:underline;
+    cursor: hand;
 }
-#select-other-category{
+#select-other-category {
+    text-decoration: none;
     background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
-    width: 167px;
-    height: 30px;
-    color:white;
-    font-family:"Glegoo-Bold";
-    font-size:12px;
-    padding-left: 12px;
-    padding-top: 6px;
+    background-size: 226px 41px;
+    width: 223px;
+    height: 43px;
+    color: white;
+    font-family: "Glegoo Bold";
+    font-size: 12px;
+    padding-left: 11px;
+    padding-top: 11px;
 }
 
 #select-other-category:hover{
-    text-decoration:none;
-    /*background: url("/static/img/slide-graphics/QC_BT_4_Select%20another%20cat%20Down.svg");*/
-    width: 163px;
-    height: 26px;
-    margin-top:2px;
-    margin-left:2px;
-    padding-left: 13px;
-    padding-top: 7px;
-    padding-right:13px;
+    text-decoration:underline;
     cursor: hand;
 }
 #select-other-optional-category {
-    background: url("/static/img/slide-graphics/QC_BT_5_Add_Up.svg");
+    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
+    width: 148px;
     height: 30px;
-    width: 61px;
-    float: right;
-    margin-bottom:30px;
-    /* margin-right: 100px; */
-    color:white;
-    font-family:"Glegoo-Bold";
-    font-style:normal;
-    padding-top:5px;
-    padding-left:15px;
+    color: white;
+    font-family: "Glegoo Bold";
+    font-size: 12px;
+    padding-left: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 40px;
+    margin-left: 40%;
 }
- #select-other-optional-category:hover{
-    text-decoration:none;
-    width:57px;
-    font-size:11px;
-    color:white;
-    height: 26px;
-    padding-left: 13px;
-    padding-top: 7px;
-    margin-top:3px;
-    margin-left:4px;
-     cursor: hand;
- }
+#select-other-optional-category:hover{
+    text-decoration:underline;
+    cursor: hand;
+}
 .change_cat {
-    position: absolute;
-    background: url("/static/img/icons/QC_BT_8_Change_cat.svg");
-    width: 132px;
-    margin-left: -89px;
+    font-size: 12px;
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width: 151px;
+    margin-left: 8px;
+    padding-left: 19px;
+    font-family: "Glegoo Bold";
+    padding-top: 7px;
+    padding-bottom: 10px;
+    padding-right: 35px;
     height: 30px;
+    color: white;
 }
 .change_cat:hover{
-    background: url("/static/img/icons/QC_BT_8_Change_cat_Down.svg");
+    text-decoration:underline;
+    cursor: hand;
+    color:white;
 }
+
 a.close-button {
+    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
     margin-left: 45px;
     width: 100px;
+    font-family:"Glegoo Bold";
+    color:white;
+    font-size:12px;
+    padding-left: 27px;
+    padding-right: 33px;
+    padding-top: 7px;
+    padding-bottom: 11px;
 }
-.change_optional_cat{
-    position: absolute;
-    background: url("/static/img/icons/QC_BT_8_Change_cat.svg");
-    width: 132px;
-    margin-left: -89px;
+a.close-button:hover {
+    text-decoration:underline;
+    cursor: hand;
+}
+.change_optional_cat {
+    font-size: 12px;
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width: 151px;
+    margin-left: 8px;
+    padding-left: 19px;
+    padding-top: 7px;
+    padding-bottom: 10px;
+    padding-right: 35px;
+    font-family: "Glegoo Bold";
     height: 30px;
+    color: white;
 }
 .change_optional_cat:hover{
-    background: url("/static/img/icons/QC_BT_8_Change_cat_Down.svg");
+    text-decoration:underline;
+    cursor: hand;
+    color:white;
 }
 
 @media (min-width: 992px){
@@ -696,7 +756,7 @@ a.close-button {
         width:50%;
     }
 }
-@max ( )
+
 @media (max-width: 992px){
     .progress{
         float:left;

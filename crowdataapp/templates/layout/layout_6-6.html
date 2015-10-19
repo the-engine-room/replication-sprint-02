@@ -2,11 +2,12 @@
 
 {% block content %}
   <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-6">
         {% block leftcolumn %}{% endblock %}
       </div>
-      <div class="col-md-6">
-        {% block rightcolumn %}{% endblock %}
+{#        <div class="col-lg-1">#}
+{#      </div>#}
+      <div class="col-lg-6">{% block rightcolumn %}{% endblock %}
       </div>
   </div>
 {% endblock %}

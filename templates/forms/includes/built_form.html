@@ -182,10 +182,10 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>¿Es incorrecta? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'>Select another category</a> <a class='cant_read' href=''>I can’t read it</a></span><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<span class='doesnt-look-right'>¿Es incorrecta? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'>Asigna una categoría secundaria</a> <a class='cant_read'>Ilegible</a></span><br/><br/><div class='optional_category'></div>");
 
-        $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span></span></div>");
-        $('#chooseOptionalCategory').append("<span class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p> <a id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'>Agregar</a> </span><br/><br/><br/><br/><br/><br/><br/><br/>");
+        $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'></span></div>");
+        $('#chooseOptionalCategory').append("<div class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p><br><br><div class=''><a href id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'>Agregar</a></div> </div><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
@@ -285,7 +285,7 @@
                                             '<div id="total_sum-0"> = $  0  </div></div>' +
                                             '</div>'+
                                             '');
-         $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item"></a>'+
+         $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item">Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
             var index = 1;
 
@@ -308,7 +308,7 @@
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');
-                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item"></a>'+
+                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item">Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
                                     $('.bx-viewport').css('height','10%');
 
@@ -372,9 +372,10 @@
             cant_read_container.id = "cant_read_container";
             var cant_read = document.createElement('a');
             cant_read.setAttribute("class", "cant_read");
-            cant_read.innerHTML = "I can't read it";
-            var  undo= document.createElement('img');
-            undo.setAttribute("src", "/static/img/slide-graphics/QC_BT_6_Undo%20Up.svg");
+{#            cant_read.setAttribute("href",'');#}
+            cant_read.innerHTML = "Ilegible";
+            var  undo= document.createElement('a');
+            undo.innerHTML = "Deshacer";
             undo.setAttribute("class", "undo");
             cant_read_container.appendChild(cant_read);
             cant_read_container.appendChild(undo);
@@ -647,7 +648,7 @@
     </div>
 
 {#    {{ _('Skip it')  }}:  #}
-    <a id="quiero-otro-documento" class="btn btn-danger"  id="another" href="" role="button">{{ _('I want another document') }}</a>
+    <a id="quiero-otro-documento" id="another" href="" role="button">{{ _('I want another document') }}</a>
 
 
 </form>
@@ -683,8 +684,8 @@
       </div>
       <div class="modal-footer">
         Otra categoria: <input id="otherOptionalCategoryValue" type="input"/><br><br>
-        <a class="change_cat" href="#"></a>
-         <a class="close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
+        <a class="change_cat" href>Cambio de categoría</a>
+         <a href class="close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
   </div>
@@ -722,8 +723,8 @@
       </div>
       <div class="modal-footer">
         Otra categoria: <input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
-        <a href="#"><img class="change_optional_cat" src="/static/img/icons/QC_BT_8_Change_cat.svg"></a>
-          <a class="close-button" data-dismiss="modal"><img src="/static/img/slide-graphics/QC_BT_9_Close.svg"></a>
+        <a href class="change_optional_cat">Cambio de categoría</a>
+          <a href class="close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
   </div>

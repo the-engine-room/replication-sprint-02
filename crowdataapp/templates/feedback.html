@@ -27,10 +27,38 @@
     #feedbackform-box img{
             margin-left: 30%;
     }
-    .continue-liberating {
-        height: 50px;
-        margin-left: 150px;
+   .continue-liberating {
+        background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") 0px 0px;
+        /* height: 82px; */
+        width: 171px;
+        /* background-repeat: repeat; */
+        margin-left: 221px;
         margin-bottom: 34px;
+        /* background-size: 147px; */
+        paddin-top: 42px;
+        color: white;
+        padding-left: 24px;
+        padding-bottom: 10px;
+        padding-top: 3px;
+        position: absolute;
+    }
+    .submit {
+        background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") 0px 0px;
+        /* height: 82px; */
+        width: 171px;
+        /* background-repeat: repeat; */
+        margin-left: 103px;
+        margin-top: -3px;
+        /* background-size: 147px; */
+        paddin-top: 42px;
+        color: white;
+        padding-left: 24px;
+        padding-bottom: 10px;
+        padding-top: 3px;
+        cursor-type: hand;
+        position: absolute;
+    }
+    .continue-liberating:hover {
     }
     .feedbackform textarea[name=feedback_text] {
 
@@ -38,6 +66,20 @@
     .elWordCount{
             float: right;
     }
+    a#no-gracias-link {
+        border-bottom: 1px solid purple;
+        align-items: center;
+        margin-left: 20%;
+        margin-bottom: 34px;
+    }
+    .feedbackform p{
+        font-family:Glegoo-Bold;
+        font-size:1.4em;
+        color:purple;
+    }
+
+
+
     </style>
     <script type="application/javascript">
     $(document).ready(function() {
@@ -58,15 +100,17 @@
     </script>
 <div class="feedbackform">
                 <h4 align="center">¡GRACIAS!</h4>
-                <p>{{ _('Thank you for helping us out!  We would love it if you could give us some feedback in the box below. Let us know what you found useful or unhelpful. Was there anything that did not work as it should have?') }}</p>
-                <a   id="another" href="" role="button"><img class="continue-liberating"src="/static/img/slide-graphics/QC_BT_Continue_liberating.svg"/></a>
+                <p>¡Gracias por tu apoyo! Tu retroalimentación sobre la experiencia en la plataforma nos ayudará a mejorar el sitio.</p>
+                <a id="another" href="" role="button"><span class="continue-liberating">Libera otra factura</span></a><br><br><br><br>
+                <a id="no-gracias-link" href="#"> No, gracias, llévame a la página principal de ¿Quién Compró? </a><br>
+                <p>Opcional</p>
                 <div id="feedbackform-box">
                     <form action="{% url 'feedback' %}" method="POST" name="feedback">
                     {% csrf_token %}
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>Deja tus comentarios y sugerencias abajo. Por ejemplo, dinos si algún paso o campo de captura te resultó inútil o confuso o si algo no funciona.</p>
                     </br><textarea style=" width: 100%;border: 1.5px solid purple;color: purple;" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
-                        <div class="elWordCount"><span id="display_count">0</span> of <span id="word_left">500</span> remaining.</div>
-                    <a id="another" type="submit"><img src="/static/img/slide-graphics/QC_BT_Submit.svg"/></a>
+                        <div class="elWordCount">Te quedan <span id="display_count">0</span> de máximo <span id="word_left">500</span> caracteres.</div>
+                    <a id="another" type="submit"><span class="submit">Submit</span></a>
                 </form>
                 </div>
 {#                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" role="button">{{ _('I want to review other document') }}#}

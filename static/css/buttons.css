@@ -1,0 +1,83 @@
+.qc-btn{
+    font-family:"Glegoo Bold";
+    color: white;
+    display:block;
+    background-repeat:no-repeat;
+    text-align:center;
+    font-size: 12px;
+    padding-top: 5px;
+    cursor:pointer;
+    height: 31px;
+}
+.qc-btn-lg{
+    font-family:"Glegoo Bold";
+    color: white;
+    display:block;
+    background-repeat:no-repeat;
+    text-align:center;
+    font-size:32px;
+    height: 72px;
+    padding-top: 9px;
+}
+.qc-btn:hover, .qc-btn-lg:hover{
+    color:white;
+    text-decoration:underline;
+    cursor: hand;
+}
+.qc-btn:visited, .qc-btn-lg:visited{
+    color:white;
+}
+.qc-btn-get-started {
+    background: url("/static/img/slide-graphics/QC_BT_1_Empezar Up.svg");
+    width: 223px;
+}
+.qc-btn-other-document {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width: 171px;
+    margin-top:68px;
+}
+.qc-btn-add-receipt-item {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width:167px;
+}
+.qc-btn-select-other-category {
+    text-decoration: none;
+    background: url("/static/img/slide-graphics/btn-223x31.svg");
+    width: 240px;
+    float: left;
+}
+.qc-btn-select-other-optional-category {
+    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
+    width: 104px;
+    float: right;
+}
+.qc-btn-cant-read {
+    width: 131px;
+    float: left;
+    background: transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
+}
+
+.qc-btn-undo {
+    background: transparent url("/static/img/slide-graphics/btn-background-102.845x31.945.svg") center top no-repeat;
+    width: 102px;
+    float: left;
+}
+
+.qc-btn-change-cat {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width: 169px;
+    margin-left: 116px;
+    float: left;
+}
+.qc-btn-close-button {
+    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
+    margin-right: 100px;
+    width: 102px;
+    float: left;
+}
+.qc-btn-change-optional-cat {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    width: 169px;
+    margin-left: 116px;
+    float: left;
+}

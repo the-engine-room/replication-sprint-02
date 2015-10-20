@@ -182,10 +182,10 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<span class='doesnt-look-right'>¿Es incorrecta? <a  href='' id='select-other-category'  data-toggle='modal' data-target='#myModal'>Asigna una categoría secundaria</a> <a class='cant_read'>Ilegible</a></span><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Asigna una categoría secundaria</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'></span></div>");
-        $('#chooseOptionalCategory').append("<div class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p><br><br><div class=''><a href id='select-other-optional-category'  data-toggle='modal' data-target='#myOptionalModal'>Agregar</a></div> </div><br/><br/><br/><br/><br/><br/><br/><br/>");
+        $('#chooseOptionalCategory').append("<div class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p><br><br><div class=''><a href class='qc-btn qc-btn-select-other-optional-category' data-toggle='modal' data-target='#myOptionalModal'>Agregar</a></div> </div><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
         $("input[name='abbreviationexpenditure']").val(abbreviationExpenditure[documentNameArray[3]]);
@@ -193,7 +193,7 @@
         $("input[name='abbreviationbody_val']").val(abbreviationBody[documentNameArray[2]]);
 
 
-        $(".change_cat").click(function(){
+        $(".qc-btn-change-cat").click(function(){
             var otraCategoriaValue = $('#otherOptionalCategoryValue').val();
              $("input[name='abbreviationexpenditure']").val(otraCategoriaValue);
             $('.modal').modal('hide');
@@ -201,7 +201,7 @@
             $('#category-icon-name').text(otraCategoriaValue);
         });
 
-        $(".change_optional_cat").click(function(){
+        $(".qc-btn-change-optional-cat").click(function(){
 
             var otraOptionalCategoriaValue = $('#otherSecondaryOptionalCategoryValue').val();
             $("input[name='abbreviationexpenditureoptional']").val(otraOptionalCategoriaValue);
@@ -258,7 +258,6 @@
                       $(this).removeClass('selected');
                   }
           });
-        $('.bx-viewport').css('height','880px');
     }
 
     function getCategoryIcon(category){
@@ -286,15 +285,15 @@
                                             '</div>'+
                                             '');
 
-         $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item">Agregar otro concepto</a>'+
+         $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" class="qc-btn qc-btn-add-receipt-item" >Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
             var index = 1;
 
-            $(document).on('click', '#add_receipt_item', function(e) {
+            $(document).on('click', '.qc-btn-add-receipt-item', function(e) {
 
             //do whatever
                     if(index<candidad_class.length){
-                                    $('#add_receipt_item').remove();
+                                    $('.qc-btn-add-receipt-item').remove();
                                     $('#grande_total_receipt_add').remove();
                                     $('#del-recibo').append('<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
@@ -309,9 +308,8 @@
                                                     ' <div class="form-group"> ' +
                                             '<div id="total_sum-'+index+'"> = $  0</div></div>' +
                                             '</div></form>');
-                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item">Agregar otro concepto</a>'+
+                                    $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" class="qc-btn qc-btn-add-receipt-item">Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
-                                    $('.bx-viewport').css('height','10%');
 
                     }
                 index=index+1;
@@ -374,51 +372,51 @@
             var cant_read_container = document.createElement('div');
             cant_read_container.id = "cant_read_container";
             var cant_read = document.createElement('a');
-            cant_read.setAttribute("class", "cant_read");
+            cant_read.setAttribute("class", "qc-btn qc-btn-cant-read");
 {#            cant_read.setAttribute("href",'');#}
             cant_read.innerHTML = "Ilegible";
             var  undo= document.createElement('a');
             undo.innerHTML = "Deshacer";
-            undo.setAttribute("class", "undo");
+            undo.setAttribute("class", "qc-btn qc-btn-undo");
             cant_read_container.appendChild(cant_read);
             cant_read_container.appendChild(undo);
             this.appendChild(cant_read_container);
         });
 
 
-        $('.undo').css('display','none');
-        $('.cant_read').click(function(){
+        $('.qc-btn-undo').css('display','none');
+        $('.qc-btn-cant-read').click(function(){
             if($(this).parent().parent().children('input').length > 0){
                 $(this).parent().parent().children('input').prop('disabled', true);
-                $(this).parent().find('.undo').css('display','inline');
+                $(this).parent().find('.qc-btn-undo').css('display','block');
             }
             else if ($(this).parent().parent().children('textarea').length > 0){
                 $(this).parent().parent().children('textarea').prop('disabled', true);
-                $(this).parent().find('.undo').css('display','inline');
+                $(this).parent().find('.qc-btn-undo').css('display','block');
             }else if ($(this).parent().parent().children('text').length > 0){
                 $(this).parent().parent().children('text').prop('disabled', true);
-                $(this).parent().find('.undo').css('display','inline');
+                $(this).parent().find('.qc-btn-undo').css('display','block');
             }else if($(this).parent().parent().children().children('input').length>0){
                 $(this).parent().parent().children().children('input').prop('disabled',true);
                 $(this).parent().parent().children().children('input').css('background',"#dddddd")
-                $(this).parent().find('.undo').css('display','inline');
+                $(this).parent().find('.qc-btn-undo').css('display','block');
             }
         });
-        $('.undo').click(function(){
+        $('.qc-btn-undo').click(function(){
             if($(this).parent().parent().children('input').length > 0){
                 $(this).parent().parent().children('input').prop('disabled', false);
-                $(this).parent().find('.undo').css('display','none');
+                $(this).parent().find('.qc-btn-undo').css('display','none');
             }
             else if ($(this).parent().parent().children('textarea').length > 0){
                 $(this).parent().parent().children('textarea').prop('disabled', false);
-                 $(this).parent().find('.undo').css('display','none');
+                 $(this).parent().find('.qc-btn-undo').css('display','none');
             }else if ($(this).parent().parent().children('text').length > 0){
                 $(this).parent().parent().children('text').prop('disabled', false);
-                 $(this).parent().find('.undo').css('display','none');
+                 $(this).parent().find('.qc-btn-undo').css('display','none');
             }else if($(this).parent().parent().children().children('input').length>0){
                 $(this).parent().parent().children().children('input').prop('disabled',false);
                  $(this).parent().parent().children().children('input').css('background',"#fff")
-                 $(this).parent().find('.undo').css('display','none');
+                 $(this).parent().find('.qc-btn-undo').css('display','none');
             }
 
         });
@@ -651,8 +649,6 @@
     </div>
 
 {#    {{ _('Skip it')  }}:  #}
-    <a id="quiero-otro-documento" id="another" href="" role="button">{{ _('I want another document') }}</a>
-
 
 </form>
 
@@ -687,8 +683,8 @@
       </div>
       <div class="modal-footer">
         Otra categoria: <input id="otherOptionalCategoryValue" type="input"/><br><br>
-        <a class="change_cat" href>Cambio de categoría</a>
-         <a href class="close-button" data-dismiss="modal">Cancelar</a>
+        <a class="qc-btn qc-btn-change-cat" href>Cambio de categoría</a>
+         <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
   </div>
@@ -726,8 +722,8 @@
       </div>
       <div class="modal-footer">
         Otra categoria: <input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
-        <a href class="change_optional_cat">Cambio de categoría</a>
-          <a href class="close-button" data-dismiss="modal">Cancelar</a>
+        <a href class="qc-btn qc-btn-change-optional-cat">Cambio de categoría</a>
+          <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
   </div>

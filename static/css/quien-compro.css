@@ -27,18 +27,14 @@ div#purple-header {
 }
 #quien-compro-home-logo{
     float: left;
-    margin-top: -126px;
 }
 .media-body p{
     text-align: justify !important;
     font-family:"Open Sans Regular" !important;
-    font-size: 1.8em;
+    font-size: 1.4em;
     color:purple;
 }
-.project-index {
-    margin: 0 0 0 0 !important;
-    width: 100%;
-}
+
 .project-index .media .new-transcription{
     width:100% !important;
 }
@@ -55,24 +51,19 @@ object {
     height: 47px;
     border-radius: 5px;
     border-radius: 10px 10px 10px 10px;
-    margin-top: 57px;
-    clear: both;
+    margin-top: 41px;
 }
 .progress-bar {
     background-image: -webkit-linear-gradient(top, #59EC1D 0%, #59EC1D 100%) !important;
 }
 p#percentage {
-    margin-top: 8px;
-    padding-left: 50%;
-    z-index: 99999;
-    position: absolute;
-    font-size: 4.9em;
+    margin-top: 30px;
+    font-size: 3.2em;
     color: purple;
-    font-family: "Open Sans Regular";
+    font-family: "Glegoo Bold" !important;
 }
-div#home-paragraphs {
-    margin-top: 129px;
-    width: 50%;
+div#home-paragraphs {margin-left:auto;
+    margin-right:auto;
 }
 @font-face {
   font-family: "Glegoo Regular";
@@ -752,15 +743,9 @@ a.close-button:hover {
 }
 
 @media (min-width: 992px){
-    .col-md-6 {
-        width:50%;
-    }
 }
 
 @media (max-width: 992px){
-    .progress{
-        float:left;
-    }
     #header-text{
         font-size:2em;
     }
@@ -772,16 +757,9 @@ a.close-button:hover {
 }
 
 @media (max-width: 500px){
-    .progress {
-        margin-top: 150px;
-        display: none;
-    }
-    #qchl{
-        margin-top: 120px;
-    }
-    div#home-paragraphs{
-        width:100% !important;
-    }
+    /*#qchl{*/
+        /*margin-top: 120px;*/
+    /*}*/
     #header-text{
         font-size:0.9em;
     }

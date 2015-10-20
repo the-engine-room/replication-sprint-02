@@ -285,6 +285,7 @@
                                             '<div id="total_sum-0"> = $  0  </div></div>' +
                                             '</div>'+
                                             '');
+
          $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" id="add_receipt_item">Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
             var index = 1;
@@ -317,7 +318,9 @@
 
             });
 
-
+        $("input[name='totalPrecioValue']").change(function(){
+            $("input[name='total_con_iva']").val($(this).val());
+        });
         $(document).on('change', '.cantidad_number', function(e) {
                 var grande_totale = 0;
                 var cantidad_id = this.id;

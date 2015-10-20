@@ -38,11 +38,23 @@ div#purple-header {
 .project-index .media .new-transcription{
     width:100% !important;
 }
+.new-transcription {
+    height: 98px;
+}
 object {
     margin-right:56px;
 }
-#get-started{
-    background: transparent;
+#get-started {
+    background: url("/static/img/slide-graphics/QC_BT_1_Empezar Up.svg") -2px 0px;
+    height: 22px;
+    padding-left: 25px;
+    width: 100px;
+    padding-right: 56px;
+    font-size: 2em;
+    color: white;
+    padding-top: 9px;
+    font-family: "Glegoo Bold";
+    padding-bottom: 15px;
 }
 .progress {
     border: 7px solid purple;
@@ -55,6 +67,7 @@ object {
 }
 .progress-bar {
     background-image: -webkit-linear-gradient(top, #59EC1D 0%, #59EC1D 100%) !important;
+        margin-left: -15px;
 }
 p#percentage {
     margin-top: 30px;
@@ -628,7 +641,6 @@ div.qtip{
     /* background-color: blue; */
        padding-left: 42px;
         padding-right: 21px;
-        height:850px;
 }
 .paso-1-de-5 ,.paso-2-de-5 ,.paso-3-de-5 , .paso-4-de-5 , .paso-5-de-5{
     border-top:1px solid purple;

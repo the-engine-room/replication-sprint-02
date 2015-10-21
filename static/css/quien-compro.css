@@ -333,11 +333,11 @@ label, h3{
     top:3%;
     font-family: Glegoo Regular;
 }
-.doesnt-look-right{
+.doesnt-look-right {
     clear: both;
     display: flex;
-    font-family: Open Sans-serif;
-    font-size: 1.2em;
+    font-family: "Open Sans Light";
+    font-size:1.4em;
     font-weight: lighter;
     color: #777;
     height: 40px;

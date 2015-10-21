@@ -1,3 +1,24 @@
+.tooltip > .tooltip-inner {
+    background-color: white;
+    color: purple;
+    border: 1px solid purple;
+    position:absolute;
+    margin-left:-500px;
+    margin-top:-20px;
+}
+.tooltip-arrow{
+    display:none;
+}
+#category-tooltip {
+    position: absolute;
+    width: 31px;
+    height: 20px;
+    margin-left: 1px;
+    margin-top: 71px;
+}
+#category-tooltip .tooltip {
+    margin-left:0px !important;
+}
 h2{
     color:purple;
 }
@@ -125,6 +146,7 @@ div#home-paragraphs {
     font-size:16px
     float:left;
 }
+
 @font-face {
   font-family: "Glegoo Regular";
   src: url("/static/fonts/Glegoo-Regular.ttf") format("truetype");
@@ -492,45 +514,31 @@ p#optionalCategoryText {
     border-top: 1px solid #e5e5e5;
 }
 #abbreviationBody {
-    height: 24px;
-    /* margin-left: -158px; */
-    padding-top: 20px;
-    margin-left: 5px;
-    padding-left: 100px;
 }
 #abbreviationBody p{
     margin-top: -9px;
-    font-size:1.4em;
+    font-size:1em;
     font-family: "Open Sans Regular";
+    padding-left: 21px;
  }
 #legislature p {
-    padding-left: 5px;
     font-size: 1.8em;
+    margin-top: 20px;
     color: purple;
+    margin-bottom: -28px;
+    padding-left: 20px;
 }
 #abbreviationAreaOfGovernment{
     text-align: center;
-    border-top: 1px solid purple;
     clear:both;
     color:purple;
 }
 #senato{
-    border-right: 1px solid purple;
-    height:80px;
-    margin-top:-5px;
-    width:100px;
-    float:left;
     color:purple;
+    padding-right: 5px;
 }
 #legislature{
-    height:15px;
-    float:left;
 
-}
-#legislature p{
-    padding-left:5px;
-    font-size:1.8em;
-    color:purple;
 }
 #chooseCategory{
     width:100%;
@@ -548,16 +556,14 @@ p#optionalCategoryText {
     font-family: "Glegoo Bold";
 }
 #facturaDetails{
-    border: 1px solid purple;
-    height:80px;
     padding: 5px 5px 5px 0px;
 }
 #factura-details-title{
     text-align: left;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-bottom:5px;
     color:purple;
-    font-family: "Glegoo Bold";
+    font-family: "Glegoo Regular";
 }
 #senato img {
     padding-left: 6px;

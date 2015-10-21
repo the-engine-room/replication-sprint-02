@@ -135,6 +135,11 @@
 {##}
 {##}
 {#        $('#datetimepicker1').datetimepicker();#}
+
+
+        $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');
+{#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
+                $('.help-block').tooltip({"container":"body"});
     });
 
     function buildAddressSlideFunctionality(){
@@ -178,9 +183,19 @@
 
         $('.paso-1-de-5-tipo-de-gasto').append('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Detalles de la factura:</div><div id='facturaDetails'></div>");
-        $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");
-        $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
-        $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
+{#        $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");#}
+{#        $('#facturaDetails').append("<div id='factura-details-overlay'><div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");#}
+{#        $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div></div>");#}
+        $('#facturaDetails').append('' +
+                '<table style="width:100%; border:1px solid purple;" >' +
+                    ' <tr>' +
+                        ' <td style="width: 90px; border:1px solid purple;"><div id="senato"><img style="float:left;" src="'+fatura_details_icon_url+'"></td>"' +
+                        ' <td style="background:rgba(128,0,128,0.1); " rowspan="2"><div id="legislature"><p>'+abbrevationLegislature[documentNameArray[1]]+'</p></div><br><div id="abbreviationBody"><br><p > ' + abbreviationBody[documentNameArray[2]]+'</p></div></td>' +
+                    ' </tr>' +
+                    ' <tr >' +
+                        ' <td><p id="abbreviationAreaOfGovernment">' + abbreviationAreaOfGovernment[documentNameArray[0]]+'</p></td>'+
+                    ' </tr>' +
+                ' </table>');
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
         $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Selecciona otra categoría</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
 
@@ -581,30 +596,17 @@
        $('.help-block').each(function() {
 
            if(this.innerText != ""){
-                $(this).qtip({ // Grab some elements to apply the tooltip to
-                    prerender: true,
-                    content: {
-                        text: this.innerText
-                    },
-                    style: {
-                        tip: {
-                            corner: true,
-                            offset: -1
-                        },
-                    },
-                    position: {
-                        my: 'left top'
-                    }
-                });
-               this.innerText = "";
+               $(this).attr('data-toggle','tooltip');
+               $(this).attr('data-original-title',this.innerText);
+               $(this).attr('data-placement',"right");
                var x = document.createElement("IMG");
                x.src = "{% static '/static/img/about.svg' %}";
+               this.innerText = "";
                this.appendChild(x);
-{#               this.style.float = "right";#}
-{#               this.style.margin = "-35px 0 0 170px";#}
-{#               this.style.padding ="20px";#}
            }
        });
+
+
     }
 
 
@@ -648,8 +650,6 @@
         <ul style="" class="bxslideri">
         </ul>
     </div>
-
-{#    {{ _('Skip it')  }}:  #}
 
 </form>
 

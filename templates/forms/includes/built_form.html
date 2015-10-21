@@ -125,6 +125,17 @@
         $('.paso-4-de-5-direccin').append('<a id="cant-read-first-address" class="qc-btn qc-btn-cant-read">Ilegible</a>');
         $('.paso-4-de-5-direccin').append('<a id="cant-undo-first-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
 
+        $('.paso-5-de-5-hay-algo-raro').append('<div class="laWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>')
+        $("textarea[name='asdasd']").attr('maxlength','500');
+        $("textarea[name='asdasd']").on('keyup', function(){
+
+                var length = $(this).val().length;
+                if(length <= 500){
+                    $('#display_count').text(500 - $(this).val().length);
+                }
+
+        });
+
         $('#del-recibo').prepend('<div class="candidad-helper-text">También capturamos concepto por concepto. Si te resulta más fácil, puedes resumir. Ejemplo: En lugar de escribir el título completo de un libro, puedes colocar la palabra "Libro". <br>Esta sección es opcional, pero considera que contar con información más precisa sobre los gastos de los políticos nos da a los ciudadanos mayor control sobre ellos.</div>');
 {#        $('#del-recibo').prepend('');#}
 {#        $('input[name="amount"]').parent().append("<div class='input-group date' id='datetimepicker1'><input type='text' class='form-control' /> <span class='input-group-addon'> <span class='glyphicon glyphicon-calendar'></span> </span> </div>");#}
@@ -151,29 +162,28 @@
                 $(this).attr('disabled','true');
                 $('#cant-undo-first-address').css('display',"");
             });
-
         });
         $('#cant-read-second-address').click(function(){
             $('input[name^=address2]').each(function(){
                 $(this).attr('disabled','true');
                 $('#cant-undo-second-address').css('display',"");
             });
-
         });
         $('#cant-undo-second-address').click(function(){
             $('input[name^=address2]').each(function(){
                 $(this).removeAttr('disabled');
                 $('#cant-undo-second-address').css('display',"none");
             });
-
         });
         $('#cant-undo-first-address').click(function(){
             $('input[name^=address1]').each(function(){
                 $(this).removeAttr('disabled');
                 $('#cant-undo-first-address').css('display',"none");
             });
-
         });
+
+
+
 
     });
 

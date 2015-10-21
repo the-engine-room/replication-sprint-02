@@ -803,3 +803,8 @@ a#cant-undo-first-address {
     margin-left: 131px;
     position: absolute;
 }
+.laWordCount {
+    font-family: "Open Sans Light";
+    margin-left: 193px;
+    margin-top: -15px;
+}

@@ -182,9 +182,9 @@
         $('#facturaDetails').append("<div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");
         $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div>");
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Asigna una categoría secundaria</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Selecciona otra categoría</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
 
-        $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'></span></div>");
+        $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='/static/img/icons/blank-category.svg'></span></div>");
         $('#chooseOptionalCategory').append("<div class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p><br><br><div class=''><a href class='qc-btn qc-btn-select-other-optional-category' data-toggle='modal' data-target='#myOptionalModal'>Agregar</a></div> </div><br/><br/><br/><br/><br/><br/><br/><br/>");
 
         $("input[name='abbrevationlegislature']").val(abbrevationLegislature[documentNameArray[1]]);
@@ -246,7 +246,7 @@
                   $(this).click(function(){
                       $("input[name='abbreviationexpenditureoptional']").val(categoryName);
                       $('.modal').modal('hide');
-{#                      $("#category-icon-image").attr('src', image_url);#}
+                      $("#category-optional-icon-image").attr('src', image_url);
                       $('#optionalCategoryText').text(categoryName);
                   });
               }
@@ -682,7 +682,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        Otra categoria: <input id="otherOptionalCategoryValue" type="input"/><br><br>
+        <span class="otra-categoria-text">Otra categoria: </span><input id="otherOptionalCategoryValue" type="input"/><br><br>
         <a class="qc-btn qc-btn-change-cat" href>Cambio de categoría</a>
          <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>
@@ -721,7 +721,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        Otra categoria: <input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
+        <span class="otra-categoria-text">Otra categoria: </span><input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
         <a href class="qc-btn qc-btn-change-optional-cat">Cambio de categoría</a>
           <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>

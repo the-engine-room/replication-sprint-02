@@ -120,6 +120,11 @@ div#home-paragraphs {
     height: 77px;
     background-color:purple;
 }
+.otra-categoria-text{
+    font-family:"Open Sans Light";
+    font-size:16px
+    float:left;
+}
 @font-face {
   font-family: "Glegoo Regular";
   src: url("/static/fonts/Glegoo-Regular.ttf") format("truetype");
@@ -139,6 +144,12 @@ div#home-paragraphs {
 @font-face {
   font-family: "Open Sans Regular";
   src: url("/static/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+input#otherOptionalCategoryValue {
+    width: 317px;
+}
+input#otherSecondaryOptionalCategoryValue{
+    width: 317px;
 }
 #document-transcript input:disabled, #document-transcript textarea:disabled, #document-transcript text:disabled {
     background: #dddddd;

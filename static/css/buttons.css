@@ -76,13 +76,13 @@
     float: left;
 }
 .qc-btn-close-button {
-    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
+    background: transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
     margin-right: 100px;
     width: 102px;
     float: left;
 }
 .qc-btn-change-optional-cat {
-    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    background: transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
     width: 169px;
     margin-left: 116px;
     float: left;

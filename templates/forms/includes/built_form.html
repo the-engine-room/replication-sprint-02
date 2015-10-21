@@ -126,8 +126,8 @@
         $('.paso-4-de-5-direccin').append('<a id="cant-undo-first-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
 
         $('.paso-5-de-5-hay-algo-raro').append('<div class="laWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>')
-        $("textarea[name='asdasd']").attr('maxlength','500');
-        $("textarea[name='asdasd']").on('keyup', function(){
+        $("textarea[name='did_anything_seem_strange_on_this_factura']").attr('maxlength','500');
+        $("textarea[name='did_anything_seem_strange_on_this_factura']").on('keyup', function(){
 
                 var length = $(this).val().length;
                 if(length <= 500){

@@ -195,18 +195,19 @@
 
         $(".qc-btn-change-cat").click(function(){
             var otraCategoriaValue = $('#otherOptionalCategoryValue').val();
-             $("input[name='abbreviationexpenditure']").val(otraCategoriaValue);
+            $("input[name='abbreviationexpenditure']").val(otraCategoriaValue);
+            $("#category-icon-image").attr('src', "/static/img/icons/blank-category.svg");
+            $('#category-icon-name').text("Otra categoria");
             $('.modal').modal('hide');
-            $("#category-icon-image").attr('src', "");
-            $('#category-icon-name').text(otraCategoriaValue);
         });
 
         $(".qc-btn-change-optional-cat").click(function(){
 
             var otraOptionalCategoriaValue = $('#otherSecondaryOptionalCategoryValue').val();
             $("input[name='abbreviationexpenditureoptional']").val(otraOptionalCategoriaValue);
-            $('.modal').modal('hide');
             $('#optionalCategoryText').text("Otra categoria");
+            $("#category-optional-icon-image").attr('src', "/static/img/icons/blank-category.svg");
+            $('.modal').modal('hide');
         });
 
         $( ".image-category-icon" ).hover(
@@ -682,8 +683,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <span class="otra-categoria-text">Otra categoria: </span><input id="otherOptionalCategoryValue" type="input"/><br><br>
-        <a class="qc-btn qc-btn-change-cat" href>Cambio de categoría</a>
+        <span class="otra-categoria-text">Otra categoria: </span><input id="otherOptionalCategoryValue" /><br><br>
+        <a class="qc-btn qc-btn-change-cat" >Cambio de categoría</a>
          <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
@@ -722,8 +723,8 @@
       </div>
       <div class="modal-footer">
         <span class="otra-categoria-text">Otra categoria: </span><input id="otherSecondaryOptionalCategoryValue" type="input"/><br><br>
-        <a href class="qc-btn qc-btn-change-optional-cat">Cambio de categoría</a>
-          <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
+        <a class="qc-btn qc-btn-change-optional-cat">Cambio de categoría</a>
+          <a class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
   </div>

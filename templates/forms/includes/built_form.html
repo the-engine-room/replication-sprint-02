@@ -131,7 +131,7 @@
 {#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
         $('.help-block').tooltip({"container":"body"});
 
-        $('input[name="totalPrecioValue"]').autoNumeric('init');
+
 
     });
 
@@ -270,7 +270,7 @@
 
     }
     function addDynamicPriceFields(){
-
+        $('input[name="totalPrecioValue"]').autoNumeric('init');
         $("span[id^='total_sum_number']").autoNumeric('init');
         var candidad_class = $('.paso-2-de-5-cantidad-total div.form-group').css('display','none');
         $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')

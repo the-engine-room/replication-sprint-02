@@ -782,3 +782,8 @@ a#no-gracias-link:hover{
 .img-responsive{
     margin-left:-15px !important;
 }
+div[id^=total_sum]{
+        font-family: "Open Sans Light" !important;
+    font-size: 1em;
+    color: gray !important;
+}

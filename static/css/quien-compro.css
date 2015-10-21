@@ -182,7 +182,8 @@ input#otherSecondaryOptionalCategoryValue{
 }
 label[for*=id_address]{
     display:none;
-}input#id_address1_calle{
+}
+input#id_address1_calle{
         width: 488px;
 }
 input#id_address1_nnext{
@@ -191,17 +192,17 @@ input#id_address1_nnext{
 input#id_address1_nint {
     width: 137px;
     float: left;
-    margin-top: -52px;
+    margin-top: -37px;
     margin-left: 128px;
 }
 input#id_address1_colonia {
     width: 219px;
     float: left;
-    margin-top: -82px;
+    margin-top: -47px;
     margin-left: 269px;
 }
 input#id_address1_municipio_o_delegacion {
-    margin-top: -77px;
+    margin-top: -25px;
     width: 488px;
     float: left;
 }
@@ -210,7 +211,7 @@ input#id_address1_codigo_postal {
     width: 265px;
 }
 input#id_address1_estado {
-    margin-top: -98px;
+    margin-top: -37px;
     float: left;
     width: 218px;
     margin-left: 270px;
@@ -224,36 +225,36 @@ input#id_address2_domiscilio_fiscal_del_emisor {
 }
 input#id_address2_nnext {
     float: left;
-    margin-top: -78px;
+    margin-top: 7px;
     width: 125px;
 }
 input#id_address2_nint {
     width: 137px;
     float: left;
-    margin-top: -108px;
-    margin-left: 130px;
+    margin-top: 7px;
+    margin-left: 3px;
 }
 input#id_address2_colonia{
     width: 219px;
     float: left;
-    margin-top: -138px;
+    margin-top:  -27px;
     margin-left: 269px;
 }
 input#id_address2_calle {
-    margin-top: -53px;
+    margin-top: 29px;
     width: 488px;
     float: left;
 }
 input#id_address2_municipio_o_delegacion{
-        margin-top: -121px;
+        margin-top: 6px;
         width: 488px;
 }
 input#id_address2_codigo_postal {
-    margin-top: -119px;
+    margin-top: 7px;
     width: 265px;
 }
 input#id_address2_estado {
-    margin-top: -164px;
+    margin-top: -37px;
     width: 218px;
     margin-left: 270px;
     float: left;
@@ -261,23 +262,23 @@ input#id_address2_estado {
 p#domicilio-fiscio-2 {
     z-index: 99999999;
     position: absolute;
-    color: purple;
-    margin-top: -120px;
+    color: #8E4A93;
+    margin-top: -160px;
     padding-bottom: 10px;
-    color: purple;
+    color: #8E4A93;
     font-family: "Glegoo Regular";
 }
 #same-as-above-address {
     float: left;
     position: absolute;
-    margin-top: -116px;
-    margin-left: 323px;
+    margin-top: -156px;
+    margin-left: 336px;
 }
 #same-as-above-address-text {
     position: absolute;
-    margin-left: 344px;
-    margin-top: -121px;
-    color: purple;
+    margin-left: 354px;
+    margin-top: -160px;
+    color: #8E4A93;
     font-family: Glegoo Regular;
 }
 .paso-4-de-5-direccin div#cant_read_container{

@@ -87,3 +87,15 @@
     margin-left: 116px;
     float: left;
 }
+.qc-btn-submit {
+    background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
+    width: 102px;
+    margin-top: 10px;
+    margin-left: 154px;
+}
+.qc-btn-continue-liberating{
+    background: url("/static/img/slide-graphics/continue-liberating.svg");
+    width: 355px;
+    margin-right: auto;
+    margin-left: auto;
+}

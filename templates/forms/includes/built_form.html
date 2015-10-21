@@ -105,20 +105,8 @@
             $("#the-logo").css('position','absolute');
             $("#the-logo").css('margin-left','0px');
         });
-{#        #the-logo {#}
-{#        /* margin-left: 649px; */#}
-{#        margin-top: 110px;#}
-{#        /* float: left; */#}
-{#        position: absolute;#}
-{#        width: 145px;#}
-{#        height: 77px;#}
-{#    }#}
         constructCategory();
 
-{#        $('.bx-viewport').change(function(){#}
-{#            console.log(this);#}
-{#            $('step-title').text($('slide-title').text);#}
-{#        });#}
 
         // Design address slide.
         $('input#id_address2_domiscilio_fiscal_del_emisor').parent().parent().append("<p id='domicilio-fiscio-2'>Domicilio fisico del emisor</p><input id='same-as-above-address' type='checkbox' name='same-as-above-address' value='Bike'><p id='same-as-above-address-text'>Igual que el anterior</p>");
@@ -141,10 +129,10 @@
 
         $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');
 {#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
-                $('.help-block').tooltip({"container":"body"});
+        $('.help-block').tooltip({"container":"body"});
+
         $('input[name="totalPrecioValue"]').autoNumeric('init');
-        $('input[id^="precio"]').autoNumeric('init');
-        $('input[id="total_sum_number"]').autoNumeric('init');
+
     });
 
     function buildAddressSlideFunctionality(){
@@ -282,6 +270,7 @@
 
     }
     function addDynamicPriceFields(){
+
         $("span[id^='total_sum_number']").autoNumeric('init');
         var candidad_class = $('.paso-2-de-5-cantidad-total div.form-group').css('display','none');
         $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
@@ -383,8 +372,13 @@
                 });
 {#                $('#grande_total').html(grande_totale + "$");#}
                 $('*[id^="total_sum_number"]').autoNumeric('init');
-             $(total_selector_name).autoNumeric('set', value_of_alla);
+                $(total_selector_name).autoNumeric('set', value_of_alla);
         });
+
+
+        $('*input[name="totalPrecioValue"]').autoNumeric('init');
+        $('input[name^="precio"]').autoNumeric('init');
+        $('*input[name^="total_sum_number"]').autoNumeric('init');
 
     }
 
@@ -534,7 +528,9 @@
         // First we check if there is a submit button added
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
-            $('.bx-wrapper .bx-controls-direction').append('<button id="submitForm" style="float:right; position:relative; z-index: 9999; margin-top:10px;" class="btn btn-success" type="submit">Enviar</button>');
+            $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
+            $('.paso-5-de-5-hay-algo-raro').append('<a href="/cd/feedback" class="qc-btn qc-btn-submit" type="submit">Enviar</a>');
+
         }else{
             $('.bx-wrapper .bx-controls-direction button').remove();
         }
@@ -628,7 +624,7 @@
 
 <link href="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
 <!-- bxSlider CSS file -->
-<link href="{% static "/static/css/jquery.bxslider.css" %}" rel="stylesheet"></link>
+<link href="{% static "/static/css/jquery.bxslider.css" %}" rel="stylesheet">
  <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
          <!-- This section is using Multifor module to be able to identify the section of the field-->

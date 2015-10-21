@@ -284,9 +284,7 @@ p#domicilio-fiscio-2 {
     margin-bottom: -20px !important;
 }
 
-.feedbackform{
-    width:500px;
-}
+
 .title-of-slide {
     height: 40px;
     margin-bottom: 70px;
@@ -685,4 +683,99 @@ form.form-inline {
     #header-text{
         font-size:0.9em;
     }
+}
+.feedbackform h4 {
+    font-size: 2.4em;
+    padding-bottom: initial;
+    color: purple;
+    font-family: "Glegoo Bold";
+    font-weight: lighter;
+}
+.feedbackform{
+    background:url("/static/img/slide-graphics/QC_Gf_Bkg Pattern 1.svg") repeat-x;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+#feedbackform-box {
+    border: 1.5px solid purple;
+    padding: 30px;
+    margin-bottom:34px;
+}
+#feedbackform-box img{
+        margin-left: 30%;
+}
+.continue-liberating {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") 0px 0px;
+    /* height: 82px; */
+    width: 171px;
+    /* background-repeat: repeat; */
+    margin-left: 221px;
+    margin-bottom: 34px;
+    /* background-size: 147px; */
+    paddin-top: 42px;
+    color: white;
+    padding-left: 24px;
+    padding-bottom: 10px;
+    padding-top: 3px;
+    position: absolute;
+}
+.submit {
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") 0px 0px;
+    /* height: 82px; */
+    width: 171px;
+    /* background-repeat: repeat; */
+    margin-left: 103px;
+    margin-top: -3px;
+    /* background-size: 147px; */
+    paddin-top: 42px;
+    color: white;
+    padding-left: 24px;
+    padding-bottom: 10px;
+    padding-top: 3px;
+    cursor-type: hand;
+    position: absolute;
+}
+.continue-liberating:hover {
+}
+.feedbackform textarea[name=feedback_text] {
+
+}
+.elWordCount{
+        float: right;
+}
+a#no-gracias-link {
+    border-bottom: 1px solid #75bdbf;
+    align-items: center;
+    margin-left: 20%;
+    margin-bottom: 34px;
+    color: #75bdbf;
+}
+a#no-gracias-link:hover{
+    text-decoration:none;
+}
+.feedbackform p {
+    font-family: "Glegoo Regular";
+    text-align: center;
+    color: purple;
+}
+.opcional-text{
+    font-family: "Glegoo Regular";
+    text-align: left !important;
+    color: purple;
+    padding-top: 20px;
+}
+.form-helper-text {
+    font-family: "Open Sans Light" !important;
+    text-align: left !important;
+    color: gray !important;
+    padding-top: 10px;
+}
+.elWordCount{
+    font-family: "Open Sans Light" !important;
+    color: gray !important;
+}
+.feedback-submit-btn {
+    margin-top: 43px !important;
+    margin-left: auto !important;
+    margin-right: auto;
 }

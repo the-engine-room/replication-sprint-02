@@ -11,64 +11,56 @@
 {% endblock %}
 
 {% block headercontent %}
-{#    <img class="header-logo" width="150px" height="80px;" src="http://quiencompro.com/images/QC.png"/>#}
-{#	{{ document.document_set }}#}
 {% endblock %}
 
-{% block leftcolumn %}
+{% block dataentry %}
   <!-- Document Viewer -->
-	<div id="document-viewer-container"></div>
-	<script>
-	  {{ document.document_set.template_function|safe }}
-	  var host = location.origin ? location.origin : location.host;
-	  window.doc_url = host + "{% url 'show_document' document.document_set.slug document.id %}"; /* url document */
-	  insertDocument('{{document.url|safe}}');
-	</script>
+    <div class="row">
+        <div class="col-md-6 purple-header-background">
+
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive" id="the-logo" src="http://quiencompro.com/images/QC.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 purple-background">
+            <div id="document-viewer-container"></div>
+            <script>
+              {{ document.document_set.template_function|safe }}
+              var host = location.origin ? location.origin : location.host;
+              window.doc_url = host + "{% url 'show_document' document.document_set.slug document.id %}"; /* url document */
+              insertDocument('{{document.url|safe}}');
+            </script>
+              <a class="qc-btn qc-btn-other-document" id="another" href="" role="button">{{ _('I want another document') }}</a>
+
+        </div>
+        <div id="document-transcript">
+        <div class="col-sm-6" id="form-container">
+            {% render_form document.document_set.form.all.0 %}
+        </div>
+        </div>
+    </div>
 {% endblock %}
 
-{% block rightcolumn %}
-  <div id="document-transcript">
-    <!-- Form -->
-    <div id="form-container">
-    	{% render_form document.document_set.form.all.0 %}
-    </div>
-
-    <!-- Social  -->
-    <div id="social_document" style="display:none" class="cajas">
-
-    	<div class="herramientasSociales">
-
-            {% include "feedback.html" %}
-{#            <b>¡{{ _('Thanks for reviewing a document') }}!</b>#}
-{#    		<div class="subtitulo"> {{ _('Once your data is verified, the results will come up in the database.') }}</div>#}
-    	</div>
-
-{#    	<div class="liberar">#}
-{#    	  <div class="central_data">#}
-{#    	    <a href="#" class="btn btn-primary btn-lg btn-block" id="another" onClick="ga('send', 'event', 'New_trancription','Quiero revisar otro documento')" role="button">{{ _('I want to review other document') }}#}
-{#    	    	</a>#}
-{#    	  </div>#}
-{#    	</div>#}
-
-    </div>
-
-    <div class="herramientasSociales" style="height:auto;">
-{#    	<div class="evaluaste" style="margin-bottom: 5px; width: auto;">{{ _('You reviewed ')}}<strong>{{ reviewed_documents_count }} {{ _('documents') }}.</strong></div>#}
-      <div class="regla"><div class="medidor" style="width:{% widthratio document.document_set.get_verified_documents.count document.document_set.documents.count 100 %}%"> </div></div>
-{#      <div class="evaluaste"> {{ _('We already reviewed')}} <strong>{{ document.document_set.get_verified_documents.count }}/{{ document.document_set.documents.count }} {{ _('documents') }}</strong>.</div>#}
-    </div>
-
-{#    <script type="text/template" id="templateslide">#}
-{#      <div id="cont_slide">#}
-{#        <a class="btn prev">Anterior</a>#}
-{#        <div id="slide">#}
-{#          <ul id="list">#}
-{#            <li><img src="{% static 'img/ejemplo-vozdata-02.jpg' %}"></li>#}
-{#            <li><img src="{% static 'img/ejemplo-vozdata-03.jpg' %}"></li>#}
-{#          </ul>#}
+{#{% block rightcolumn %}#}
+{#  <div id="document-transcript">#}
+{#    <!-- Form -->#}
+{##}
+{##}
+{#    <!-- Social  -->#}
+{#    <div id="social_document" style="display:none" class="cajas">#}
+{#    	<div class="herramientasSociales">#}
+{#            {% include "feedback.html" %}#}
 {#        </div>#}
-{#        <a class="btn next">Siguiente</a>#}
+{#    </div>#}
+{##}
+{#    <div class="herramientasSociales" style="height:auto;">#}
+{#      <div class="regla">#}
+{#          <div class="medidor" style="width:{% widthratio document.document_set.get_verified_documents.count document.document_set.documents.count 100 %}%">#}
+{#          </div>#}
 {#      </div>#}
-{#    </script>#}
-  </div>
-{% endblock %}
+{#    </div>#}
+{##}
+{#  </div>#}
+{#{% endblock %}#}

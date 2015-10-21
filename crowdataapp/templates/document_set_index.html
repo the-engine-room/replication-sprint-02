@@ -2,92 +2,115 @@
 {% load crowdataapp_tags %}
 {% load static from staticfiles %}
 
-{% block maincolumn %}
-    <style>
-
-    </style>
-  <div class="project-index">
-    <h2 style="display:none;">{{ _('Choose a project') }}</h2>
-{#    <h2 align="center">¿QuienCompro?</h2>#}
-    <script src="/static/crowdataapp/js/jquery.tinysort.min.js"></script>
-
-    <div style="display: none;" class="btn-group">
-      <button type="button" class="btn btn-default btn-sm sort-name asc">Sort name</button>
-      <button type="button" class="btn btn-default btn-sm sort-count">Sort count</button>
-      <button type="button" class="btn btn-default btn-sm sort-percentage">Sort percentage</button>
-    </div>
-            <script type="application/javascript">
-            $(document).ready(function(){
-                var document_count = {% widthratio document_sets.0.get_verified_documents.count document_sets.0.documents.count 100 %};
-                var all_documents = {{ document_sets.0.documents.count }};
-                var percentage = (document_count * all_documents)/100;
-                $('#percentage').text(""+percentage + "%");
-                $('.progress-bar').css('width',''+percentage + "%");
-            });
-             </script>
-    <div  class = "media-wrapper">
-      {% for ds in document_sets %}
-
-    		<div class="mediaa" data-name = "{{ds.name}}" data-count = "{{ ds.documents.count }}" data-complete = "{% widthratio ds.get_verified_documents.count ds.documents.count 100 %}">
-
-{#          {% if ds.header_image %}#}
-{#            <a class="pull-left" href="{{ds.get_absolute_url}}">#}
-{#              <img src="{{ ds.header_image }}" width="316" height="216" class="media-object" />#}
-{#            </a>#}
-{#          {% endif %}#}
-
-          <div  align="center" class="row media-body">
-              <div class="row">
-                    <div class="col-xs-3" id="qchl"><img id="quien-compro-home-logo" style="" src="http://quiencompro.com/images/QC.png">
-                    </div>
-                    <div class="col-xs-4 progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="" style="">
-
-                        </div>
-
-                    </div>
-                    <div class="col-xs-3"><p id="percentage">%</p>
-                    </div>
-              </div>
-              <div class="row">
-                  <div class="col-xs-3"></div>
-                  <div class="col-xs-6" id="home-paragraphs">
-                      <p>¡Muchas gracias por llegar hasta aquí! </p>
-                      <p>Igual que tú, ¿Quién Compró? no tolera la corrupción. Por eso nos dedicamos a seguir la pista de los recursos públicos en el Congreso mexicano, uno de los más costosos y menos transparentes del mundo. </p>
-                      <p>Mientras la mayoría quiere saber en qué usan los políticos el dinero de todos, ellos se empeñan en ocultarlo. Si ellos no quieren transparentar sus gastos, nosotros lo haremos. Pero necesitamos colaborar en equipo. </p>
-                      <p>Conviértete en un liberador de datos: ¡cuéntale al mundo cómo usan nuestro dinero los diputados y senadores!</p>
-                      <p>Al comenzar a utilizar nuestra plataforma, ésta te proporcionará la copia de una factura en formato PDF. </p>
-                      <p>A partir de ahí, sigue las instrucciones para registrar la información que aparece en el documento.
-                  </div>
-                  <div class="col-xs-3"></div>
-              </div>
-              {#    		    {{ds.description}}#}
-            <div class="cta">
-              {% call_to_action ds %}
-{#              {% documents_verified ds %}#}
+{% block landingpage %}
+<script type="application/javascript">
+    $(document).ready(function(){
+        var document_count = {% widthratio document_sets.0.get_verified_documents.count document_sets.0.documents.count 100 %};
+        var all_documents = {{ document_sets.0.documents.count }};
+        var percentage = (document_count * all_documents)/100;
+        $('#percentage').text(""+percentage + "%");
+        $('.progress-bar').css('width',''+percentage + "%");
+    });
+ </script>
+    <div class="row intro">
+        <div class="col-md-4">
+            <img class="img-responsive" src="http://quiencompro.com/images/QC.png">
+        </div>
+        <div class="col-md-4 progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="" style="">
             </div>
-    		  </div>
-    		</div>
-      {% endfor %}
 
-      <script>
-        $('div.sort-name').click(function() {
-          orden = 'asc';
-
-          if ($(this).hasClass('desc')) {
-            $(this).removeClass('desc');
-            $(this).addClass('asc');
-            orden = 'desc';
-          }
-          $('div.media-wrapper').tsort('div.media',{data:'name'},{order:orden});
-        });
-      </script>
+        </div>
+        <div class="col-md-4">
+            <p id="percentage">%</p>
+        </div>
     </div>
-  </div>
-{% endblock %}
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" id="home-paragraphs">
+          <p>¡Muchas gracias por llegar hasta aquí! </p>
+          <p>Igual que tú, ¿Quién Compró? no tolera la corrupción. Por eso nos dedicamos a seguir la pista de los recursos públicos en el Congreso mexicano, uno de los más costosos y menos transparentes del mundo. </p>
+          <p>Mientras la mayoría quiere saber en qué usan los políticos el dinero de todos, ellos se empeñan en ocultarlo. Si ellos no quieren transparentar sus gastos, nosotros lo haremos. Pero necesitamos colaborar en equipo. </p>
+          <p>Conviértete en un liberador de datos: ¡cuéntale al mundo cómo usan nuestro dinero los diputados y senadores!</p>
+          <p>Al comenzar a utilizar nuestra plataforma, ésta te proporcionará la copia de una factura en formato PDF. </p>
+          <p>A partir de ahí, sigue las instrucciones para registrar la información que aparece en el documento.
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" >
+            <a class="qc-btn-lg qc-btn-get-started" style="float:none;margin:0 auto;" href="{% url 'new_transcription' document_sets.0.slug %}" >Comenzar</a><br>
+        </div>
+    </div>
 
-{#{% block rightcolumn %}#}
-{#  <h2>About ¿Quién Compró?</h2>#}
-{#    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
-{#  <p> {{ _('¿Quién Compró? is a project that looks at the way the Mexican congress spends public funds. The platform holds digitized receipts showing politicians expenses. With your help we can highlight   discrepancies in public spending and encourage transparency within the Mexican government. <br/>Please help us out by tagging politicians receipts and giving us your feedback! When you start using the platform you will be given a scanned receipt. Follow the instructions to tag the information you see on document. This project is currently in beta form so please be patient as we try things out.</br> We hope everything runs smoothly, but if not, please let us know in the feedback form at the end of the session.')  }}</p>#}
-{#{% endblock %}#}
+    <div class="row analytics-section">
+        <div class="col-md-4 analytics-section-first">
+            <div class="row ">
+                <div class="col-md-12 analytics-section-title">
+                    Entre todos hemos liberado
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 analytics-section-stats-special">
+                    30,000 $
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 analytics-section-details">
+                    correspondiente a <span style="color:purple;">250</span> facturas de un total de <span style="color:purple;">15,000</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 analytics-section-second">
+            <div class="row">
+                <div class="col-md-12 analytics-section-title">
+                    ¿En qué gastan más?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 analytics-section-stats">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img height="60px" src="/static/img/category/QC_Icon_Comunicación%20y%20Publicidad.svg" >
+                        </div>
+                        <div class="col-md-6 middle-stats-price">
+                            <span>12,000 $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 analytics-section-details">
+                    Comucación y Publicidad
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 analytics-section-third">
+            <div class="row">
+                <div class="col-md-12 analytics-section-title">
+                    Top de gastos liberados
+                </div>
+            </div>
+            <div class="row top-spending-categories-total">
+                <div class="col-md-3">
+                    <img class="img-responsive" src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg" >
+                    18,300&nbsp;$
+                </div>
+                <div class="col-md-3">
+                    <img class="img-responsive" src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg" >
+                    3,500&nbsp;$
+                </div>
+                <div class="col-md-3">
+                    <img class="img-responsive" src="/static/img/category/QC_Icon_Alimentos.svg" >
+                    11,240&nbsp;$
+                </div>
+                <div class="col-md-3">
+                    <img class="img-responsive" src="/static/img/category/QC_Icon_Peaje.svg" >
+                    1,870&nbsp;$
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

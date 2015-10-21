@@ -4,46 +4,87 @@ h2{
 h4{
     color:purple;
 }
-
+.row{
+    margin-left:0px !important;
+    margin-right:0px !important;
+}
 div#purple-header {
-    height: 100px;
     background-color: purple;
+    padding-bottom:20px;
 }
-.header-white-space{
-    height:1px;
-    background-color:white;
-}
-.container{
+.intro{
     background:url("/static/img/slide-graphics/QC_Gf_Bkg Pattern 1.svg") repeat-x;
-    width: 100%;
 }
 #header-text {
     margin-top: 0px;
-    padding-top: 2%;
+    padding-top: 20px;
     text-align: center;
     color: white;
     font-size: 2.8em;
     font-family: "Glegoo Regular";
 }
+.analytics-section{
+    background:url("/static/img/slide-graphics/QC_Gf_Bkg%20Pattern%202.svg");
+    background-repeat: repeat-x;
+    border-bottom:3px solid purple;
+    margin-left:0px !important;
+    margin-right:0px !important;
+    text-align: center;
+
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.analytics-section-title{
+    font-size: 15px;
+    color:grey;
+}
+.analytics-section-stats {
+    font-size: 28px;
+    color: purple;
+}
+.analytics-section-stats-special{
+    font-size: 28px;
+    color: purple;
+    padding-bottom: 11px;
+    padding-top: 11px;
+}
+.analytics-section-details{
+    font-size: 12px;
+    color:grey;
+}
+.analytics-section-second .analytics-section-stats{
+    border-left:1px solid purple;
+    border-right:1px solid purple;
+
+}
+.middle-stats-price{
+    padding-top:10px;
+
+}
+.top-spending-categories-total{
+    font-size:16px;
+    color:purple;
+}
+.footer{
+    background-color:#E7E8E9;
+    font-family:"Open Sans Regular";
+    text-align:justify;
+    font-size:10px;
+    padding-top:40px;
+    padding-bottom:30px;
+}
+.footer-middle-section{
+    font-size:13px;
+    text-align:center;
+    padding-top:7px;
+}
 #quien-compro-home-logo{
     float: left;
     width: 100%;
 }
-.media-body p{
-    text-align: justify !important;
-    font-family:"Open Sans Regular" !important;
-    font-size: 1em;
-    color:purple;
-}
 
-.project-index .media .new-transcription{
-    width:100% !important;
-}
 .new-transcription {
     height: 98px;
-}
-object {
-    margin-right:56px;
 }
 
 .progress {
@@ -65,8 +106,19 @@ p#percentage {
     color: purple;
     font-family: "Glegoo Bold" !important;
 }
-div#home-paragraphs {margin-left:auto;
-    margin-right:auto;
+div#home-paragraphs {
+    margin-left:auto;
+    text-align: justify;
+    font-family:"Open Sans Regular";
+    font-size: 15px;
+    color:purple;
+}
+.purple-background{
+    background-color:purple;
+}
+.purple-header-background{
+    height: 77px;
+    background-color:purple;
 }
 @font-face {
   font-family: "Glegoo Regular";
@@ -213,10 +265,8 @@ p#domicilio-fiscio-2 {
     overflow: visible !important;
 }
 #the-logo {
-    margin-left: 649px;
-    float: left;
-    width: 145px;
-    height: 77px;
+    width: 180px;
+    margin-left: -16px;
 }
 #slidedform{
     padding-left: 23px;
@@ -586,8 +636,8 @@ form.form-inline {
 }
 
 @media (max-width: 992px){
-    #header-text{
-        font-size:2em;
+    .purple-header-background {
+        height:0px;
     }
 }
 @media (max-width: 1200px){

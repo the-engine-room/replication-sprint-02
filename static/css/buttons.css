@@ -32,9 +32,12 @@
     width: 223px;
 }
 .qc-btn-other-document {
-    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") no-repeat;
     width: 171px;
-    margin-top:68px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 34px;
+    padding-bottom: 57px;
 }
 .qc-btn-add-receipt-item {
     background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg");

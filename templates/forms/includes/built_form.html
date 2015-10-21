@@ -109,7 +109,7 @@
 
 
         // Design address slide.
-        $('input#id_address2_domiscilio_fiscal_del_emisor').parent().parent().append("<p id='domicilio-fiscio-2'>Domicilio fisico del emisor <span class='helper-block glyphicon glyphicon-question-sign' data-toggle='tooltip' data-placement='right' title='Es la dirección donde está ubicado la empresa o sucursal de ésta que expidió la factura, generalmente se ubica cerca de la razón social y el RFC' aria-hidden='true'  data-original-title='ga'></span></p><input id='same-as-above-address' type='checkbox' name='same-as-above-address' value='Bike'><p id='same-as-above-address-text'>Igual que el anterior</p>");
+        $('input#id_address2_domiscilio_fiscal_del_emisor').parent().parent().append("<p id='domicilio-fiscio-2'>Domicilio físico del emisor <span class='helper-block glyphicon glyphicon-question-sign' data-toggle='tooltip' data-placement='right' title='Es la dirección donde está ubicado la empresa o sucursal de ésta que expidió la factura, generalmente se ubica cerca de la razón social y el RFC' aria-hidden='true'  data-original-title='ga'></span></p><input id='same-as-above-address' type='checkbox' name='same-as-above-address' value='Bike'><p id='same-as-above-address-text'>Igual que el anterior</p>");
 
         buildAddressSlideFunctionality();
 
@@ -227,7 +227,7 @@
         var category_icon_url = '';
 
         $('.paso-1-de-5-tipo-de-gasto').append('<br><div class="category_info"></div>');
-        $('.category_info').append("<div id='factura-details-title'>Detalles de la factura:</div><div id='facturaDetails'></div>");
+        $('.category_info').append("<div id='factura-details-title'>Detalles de la factura</div><div id='facturaDetails'></div>");
         $('#facturaDetails').append('<table style="width:100%; border:1px solid purple;" >' +
                     '<tr>' +
                         '<td style="width: 90px; border:1px solid purple;"><div id="senato"><img style="float:left;" src="'+fatura_details_icon_url+'"></td>' +
@@ -237,7 +237,7 @@
                         '<td><p id="abbreviationAreaOfGovernment">' + abbreviationAreaOfGovernment[documentNameArray[0]]+'</p></td>'+
                     '</tr>' +
                 '</table>');
-        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es: </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
+        $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
         $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Selecciona otra categoría</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='/static/img/icons/blank-category.svg'></span></div>");
@@ -328,9 +328,9 @@
         $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.paso-2-de-5-cantidad-total').append('<p class="optional">Opcional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;">' +
-                '<p style="border-color: purple;width:30%;float:left;">Descripción:' +
+                '<p style="border-color: purple;width:30%;float:left;">Descripción' +
                 '<span style="float:right; padding-right: 25px;" class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="" aria-hidden="true" data-original-title="Descripcion"></span> </p>' +
-                '<p style="width:20%;float:left;">Cantidad:</p><p style="width:20%;float:left;">Precio:</p><p style="width:20%;float:left;">Total:</p></div>'+
+                '<p style="width:20%;float:left;">Cantidad</p><p style="width:20%;float:left;">Precio</p><p style="width:20%;float:left;">Total</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Descripción:</label>' +

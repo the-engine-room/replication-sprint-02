@@ -144,27 +144,33 @@
             $('#elForm').submit();
         });
 
+        $('#cant-undo-first-address').css('display',"none");
+        $('#cant-undo-second-address').css('display',"none");
         $('#cant-read-first-address').click(function(){
             $('input[name^=address1]').each(function(){
                 $(this).attr('disabled','true');
+                $('#cant-undo-first-address').css('display',"");
             });
 
         });
         $('#cant-read-second-address').click(function(){
             $('input[name^=address2]').each(function(){
                 $(this).attr('disabled','true');
+                $('#cant-undo-second-address').css('display',"");
             });
 
         });
         $('#cant-undo-second-address').click(function(){
             $('input[name^=address2]').each(function(){
                 $(this).removeAttr('disabled');
+                $('#cant-undo-second-address').css('display',"none");
             });
 
         });
         $('#cant-undo-first-address').click(function(){
             $('input[name^=address1]').each(function(){
                 $(this).removeAttr('disabled');
+                $('#cant-undo-first-address').css('display',"none");
             });
 
         });

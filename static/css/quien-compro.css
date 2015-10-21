@@ -1,9 +1,13 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
 .tooltip > .tooltip-inner {
     background-color: white;
-    color: purple;
-    border: 1px solid purple;
+    color: #8E4A93;
+    border: 1px solid #8E4A93;
     position:absolute;
-    margin-left:-500px;
     margin-top:-20px;
 }
 .tooltip-arrow{
@@ -20,17 +24,17 @@
     margin-left:0px !important;
 }
 h2{
-    color:purple;
+    color:#8E4A93;
 }
 h4{
-    color:purple;
+    color:#8E4A93;
 }
 .row{
     margin-left:0px !important;
     margin-right:0px !important;
 }
 div#purple-header {
-    background-color: purple;
+    background-color: #8E4A93;
     padding-bottom:20px;
 }
 .intro{
@@ -47,7 +51,7 @@ div#purple-header {
 .analytics-section{
     background:url("/static/img/slide-graphics/QC_Gf_Bkg%20Pattern%202.svg");
     background-repeat: repeat-x;
-    border-bottom:3px solid purple;
+    border-bottom:3px solid #8E4A93;
     margin-left:0px !important;
     margin-right:0px !important;
     text-align: center;
@@ -61,11 +65,11 @@ div#purple-header {
 }
 .analytics-section-stats {
     font-size: 28px;
-    color: purple;
+    color: #8E4A93;
 }
 .analytics-section-stats-special{
     font-size: 28px;
-    color: purple;
+    color: #8E4A93;
     padding-bottom: 11px;
     padding-top: 11px;
 }
@@ -74,8 +78,8 @@ div#purple-header {
     color:grey;
 }
 .analytics-section-second .analytics-section-stats{
-    border-left:1px solid purple;
-    border-right:1px solid purple;
+    border-left:1px solid #8E4A93;
+    border-right:1px solid #8E4A93;
 
 }
 .middle-stats-price{
@@ -84,7 +88,7 @@ div#purple-header {
 }
 .top-spending-categories-total{
     font-size:16px;
-    color:purple;
+    color:#8E4A93;
 }
 .footer{
     background-color:#E7E8E9;
@@ -109,7 +113,7 @@ div#purple-header {
 }
 
 .progress {
-    border: 7px solid purple;
+    border: 7px solid #8E4A93;
     /* width: 50% !important; */
     /* margin-left: -27px; */
     height: 34px;
@@ -124,7 +128,7 @@ div#purple-header {
 p#percentage {
     margin-top: 30px;
     font-size: 3.2em;
-    color: purple;
+    color: #8E4A93;
     font-family: "Glegoo Bold" !important;
 }
 div#home-paragraphs {
@@ -132,14 +136,14 @@ div#home-paragraphs {
     text-align: justify;
     font-family:"Open Sans Regular";
     font-size: 15px;
-    color:purple;
+    color:#8E4A93;
 }
 .purple-background{
-    background-color:purple;
+    background-color:#8E4A93;
 }
 .purple-header-background{
     height: 77px;
-    background-color:purple;
+    background-color:#8E4A93;
 }
 .otra-categoria-text{
     font-family:"Open Sans Light";
@@ -258,10 +262,10 @@ input#id_address2_estado {
 p#domicilio-fiscio-2 {
     z-index: 99999999;
     position: absolute;
-    color: purple;
+    color: #8E4A93;
     margin-top: -160px;
     padding-bottom: 10px;
-    color: purple;
+    color: #8E4A93;
     font-family: "Glegoo Regular";
 }
 #same-as-above-address {
@@ -274,7 +278,7 @@ p#domicilio-fiscio-2 {
     position: absolute;
     margin-left: 354px;
     margin-top: -160px;
-    color: purple;
+    color: #8E4A93;
     font-family: Glegoo Regular;
 }
 .paso-4-de-5-direccin div#cant_read_container{
@@ -307,7 +311,7 @@ p#domicilio-fiscio-2 {
 }
 
 #document-transcript input{
-    border: 1px solid purple;
+    border: 1px solid #8E4A93;
 }
 .header-logo{
     display:none;
@@ -318,7 +322,7 @@ p#domicilio-fiscio-2 {
 }
 .bx-pager.bx-default-pager a.active{
     background:transparent !important;
-    background-color:purple !important;
+    background-color:#8E4A93 !important;
 }
 .bx-prev {
     left:10px;
@@ -340,7 +344,7 @@ p#domicilio-fiscio-2 {
 }
 .bx-pager.bx-default-pager a:hover,
 .bx-pager.bx-default-pager a{
-    border: 1px solid purple !important;
+    border: 1px solid #8E4A93 !important;
     border-radius: 9px;
     background:transparent !important;
     background-image: url("/static/img/slide-graphics/QC_Nav_03_Dot_Selected.svg");
@@ -350,14 +354,14 @@ p#domicilio-fiscio-2 {
     height: 40px;
 }
 label, h3{
-    color:purple;
+    color:#8E4A93;
     font-family: Glegoo Regular;
 
 }
 .slide-title{
     top:3%;
     font-family: Glegoo Regular;
-    color:purple;
+    color:#8E4A93;
 }
 .slide-first-title{
     color:grey;
@@ -376,16 +380,16 @@ label, h3{
 }
 #document-transcript textarea {
     width: 90%;
-    border: 1px solid purple;
+    border: 1px solid #8E4A93;
     padding: 0.2em;
 }
 
 [name|="description"]{
-    border-color:purple;
+    border-color:#8E4A93;
     border: 3px;
 }
 p.optional {
-    color: purple;
+    color: #8E4A93;
     padding-top: 50px;
 
     font-family:"Glegoo Regular";
@@ -404,17 +408,17 @@ legend {
 }
 span#dollar-sign {
     font-size: 24px;
-    color:purple;
+    color:#8E4A93;
 }
 div#del-recibo {
     border-style: solid;
     border-width: 1px;
-    border-color: purple;
+    border-color: #8E4A93;
     margin-top: 20px;
     padding-left: 44px;
 }
 div#del-recibo p{
-    color: purple;
+    color: #8E4A93;
     font-family: "Glegoo Regular"
 }
 #totalCon {
@@ -487,7 +491,7 @@ input[name="precio"] {
     margin-right: -630px;
 }
 #chooseOptionalCategory{
-    border: 1px solid purple;
+    border: 1px solid #8E4A93;
     height:100px;
     padding: 5px 5px 5px 0px;
 }
@@ -496,7 +500,7 @@ input[name="precio"] {
     width: 500px;
 }
 .add-second-category {
-    color: purple;
+    color: #8E4A93;
     display: inline;
     padding-left: 30px;
     /* width: 80%; */
@@ -533,17 +537,17 @@ p#optionalCategoryText {
 #legislature p {
     font-size: 1.8em;
     margin-top: 20px;
-    color: purple;
+    color: #8E4A93;
     margin-bottom: -28px;
     padding-left: 20px;
 }
 #abbreviationAreaOfGovernment{
     text-align: center;
     clear:both;
-    color:purple;
+    color:#8E4A93;
 }
 #senato{
-    color:purple;
+    color:#8E4A93;
     padding-right: 5px;
 }
 #legislature{
@@ -555,7 +559,7 @@ p#optionalCategoryText {
 }
 
 #chooseCategory p{
-    color:purple;
+    color:#8E4A93;
     font-size: 1.3em;
     font-family: "Glegoo Regular";
 }
@@ -571,7 +575,7 @@ p#optionalCategoryText {
     text-align: left;
     font-size: 1.3em;
     margin-bottom:5px;
-    color:purple;
+    color:#8E4A93;
     font-family: "Glegoo Regular";
 }
 #senato img {
@@ -625,7 +629,7 @@ div.qtip{
     margin-left: -500px;
 }
 .qtip-content{
-    color:purple !important;
+    color:#8E4A93 !important;
     background-color:white !important;
 }
 
@@ -635,8 +639,8 @@ div.qtip{
 #social_document{
     /*float:right;*/
 }
-.help-block img {
-    top: 5px;
+.help-block{
+    float:right;
     margin-top: -40px;
     margin-left: -40px;
 }
@@ -646,7 +650,7 @@ div.qtip{
         padding-right: 21px;
 }
 .paso-1-de-5 ,.paso-2-de-5 ,.paso-3-de-5 , .paso-4-de-5 , .paso-5-de-5{
-    border-top:1px solid purple;
+    border-top:1px solid #8E4A93;
     padding-bottom:10px;
 }
 .paso-1-de-5 p, .paso-2-de-5 p, .paso-3-de-5 p, .paso-4-de-5 p, .paso-5-de-5 p {
@@ -687,7 +691,7 @@ form.form-inline {
 .feedbackform h4 {
     font-size: 2.4em;
     padding-bottom: initial;
-    color: purple;
+    color: #8E4A93;
     font-family: "Glegoo Bold";
     font-weight: lighter;
 }
@@ -697,7 +701,7 @@ form.form-inline {
     margin-left: auto !important;
 }
 #feedbackform-box {
-    border: 1.5px solid purple;
+    border: 1.5px solid #8E4A93;
     padding: 30px;
     margin-bottom:34px;
 }
@@ -756,12 +760,12 @@ a#no-gracias-link:hover{
 .feedbackform p {
     font-family: "Glegoo Regular";
     text-align: center;
-    color: purple;
+    color: #8E4A93;
 }
 .opcional-text{
     font-family: "Glegoo Regular";
     text-align: left !important;
-    color: purple;
+    color: #8E4A93;
     padding-top: 20px;
 }
 .form-helper-text {
@@ -786,4 +790,8 @@ div[id^=total_sum]{
         font-family: "Open Sans Light" !important;
     font-size: 1em;
     color: gray !important;
+}
+.glyphicon{
+    color:#8E4A93;
+    display:none;
 }

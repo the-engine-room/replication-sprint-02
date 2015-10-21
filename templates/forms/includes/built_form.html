@@ -131,7 +131,11 @@
 {#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
         $('.help-block').tooltip({"container":"body"});
 
+        $('.paso-5-de-5-hay-algo-raro').append('<a id="submit-el-forma" class="qc-btn qc-btn-submit">Enviar</a>');
 
+        $( "#submit-el-forma" ).bind( "click", function() {
+            $('#elForm').submit();
+        });
 
     });
 
@@ -324,7 +328,7 @@
             });
 
         $("input[name='totalPrecioValue']").change(function(){
-            $("input[name='total_con_iva']").val($(this).val());
+            $("input[name='total_con_iva']").val($(this).val().replace(/,/g,''));
         });
         $(document).on('change', '.cantidad_number', function(e) {
                 var grande_totale = 0;
@@ -529,8 +533,6 @@
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
             $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
-            $('.paso-5-de-5-hay-algo-raro').append('<a href="/cd/feedback" class="qc-btn qc-btn-submit" type="submit">Enviar</a>');
-
         }else{
             $('.bx-wrapper .bx-controls-direction button').remove();
         }
@@ -602,10 +604,13 @@
                $(this).attr('data-toggle','tooltip');
                $(this).attr('data-original-title',this.innerText);
                $(this).attr('data-placement',"right");
-               var x = document.createElement("IMG");
-               x.src = "{% static '/static/img/about.svg' %}";
+               $(this).attr('class','help-block glyphicon glyphicon-question-sign');
+
+{#               <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>#}
+{#               var x = document.createElement("IMG");#}
+{#               x.src = "{% static '/static/img/about.svg' %}";#}
                this.innerText = "";
-               this.appendChild(x);
+{#               this.appendChild(x);#}
            }
        });
 

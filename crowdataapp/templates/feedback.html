@@ -71,7 +71,7 @@
                         <form action="" method="POST" id="feedbackform" name="feedback">
                         {% csrf_token %}
                             <p class="form-helper-text">Deja tus comentarios y sugerencias abajo. Por ejemplo, dinos si algún paso o campo de captura te resultó inútil o confuso o si algo no funciona.</p>
-                        </br><textarea style=" width: 100%;border: 1.5px solid purple;color: purple;" maxlength="500" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
+                        </br><textarea style=" width: 100%;border: 1.5px solid purple;" maxlength="500" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
                             <div class="elWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>
                         <a class="qc-btn qc-btn-submit feedback-submit-btn" type="submit">Enviar</a>
                     </form>

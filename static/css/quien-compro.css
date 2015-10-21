@@ -7,22 +7,21 @@
     background-color: white;
     color: #8E4A93;
     border: 1px solid #8E4A93;
-    position:absolute;
-    margin-top:-20px;
 }
 .tooltip-arrow{
     display:none;
 }
 #category-tooltip {
-    position: absolute;
     width: 31px;
     height: 20px;
-    margin-left: 1px;
-    margin-top: 71px;
+    /* position: absolute; */
+    float: right;
+    margin-top: 43px;
+    margin-right: 96px;
 }
-#category-tooltip .tooltip {
-    margin-left:0px !important;
-}
+/*#category-tooltip .tooltip {*/
+    /*margin-left:0px !important;*/
+/*}*/
 h2{
     color:#8E4A93;
 }
@@ -807,4 +806,9 @@ a#cant-undo-first-address {
     font-family: "Open Sans Light";
     margin-left: 193px;
     margin-top: -15px;
+}
+.glyphicon{
+    padding-left: 4px;
+    color:purple;
+    top: 2px;
 }

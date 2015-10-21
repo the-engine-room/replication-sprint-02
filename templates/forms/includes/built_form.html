@@ -144,9 +144,9 @@
 {#        $('#datetimepicker1').datetimepicker();#}
 
 
-{#        $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');#}
-{#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
-{#        $('.help-block').tooltip({"container":"body"});#}
+        $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');
+
+        $('.helper-block').tooltip({delay:0});
 
         $('.paso-5-de-5-hay-algo-raro').append('<a id="submit-el-forma" class="qc-btn qc-btn-submit">Enviar</a>');
 
@@ -649,26 +649,17 @@
        $('.help-block').each(function() {
 
                  if(this.innerText != ""){
-                $(this).qtip({ // Grab some elements to apply the tooltip to
-                    prerender: true,
-                    content: {
-                        text: this.innerText
-                    },
-                    style: {
-                        tip: {
-                            corner: true,
-                            offset: -1
-                        },
-                    },
-                    position: {
-                        my: 'left top'
-                    }
-                });
-{#                     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>#}
-               this.innerText = "";
-               var x = document.createElement("IMG");
-               x.src = "{% static '/static/img/about.svg' %}";
-               this.appendChild(x);
+{#       data-toggle="tooltip" data-placement="left" title="Tooltip on left"              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>#}
+
+                     $(this).attr('data-toggle','tooltip');
+                     $(this).attr('data-placement','right');
+                     $(this).attr('title',""+this.innerText+"a");
+                     $(this).attr('class', 'helper-block glyphicon glyphicon-question-sign');
+                     $(this).attr('aria-hidden','true');
+                      this.innerText = "";
+{#               var x = document.createElement("IMG");#}
+{#               x.src = "{% static '/static/img/about.svg' %}";#}
+{#               this.appendChild(x);#}
                  }
        });
 

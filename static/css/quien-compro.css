@@ -291,10 +291,14 @@ p#domicilio-fiscio-2 {
 }
 .bx-prev {
     left:10px;
-    background: url('/static/img/slide-graphics/QC_Nav_01_Arrow_Left_Down.svg') -3px !important;
+    background: url('/static/img/slide-graphics/QC_Nav_01_Arrow%20Left%20Up.svg') !important;
+    width: 37px !important;
+    height: 37px !important;
 }
 .bx-next {
-    background: url('/static/img/slide-graphics/QC_Nav_02_Arrow_Right_Down.svg') -3px !important;
+    background: url('/static/img/slide-graphics/QC_Nav_02_Arrow%20Right%20Up.svg') !important;
+    width: 37px !important;
+    height: 37px !important;
 }
 .bx-wrapper .bx-pager{
     padding-top: 50px !important;

@@ -440,6 +440,9 @@ div#del-recibo p{
     border-color: #9C3793;
     border-right-style: solid;
 }
+input[name="precio"] {
+    width: 79px !important;
+}
 #totalInput {
     float: right;
     width: 50%;

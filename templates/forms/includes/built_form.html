@@ -140,6 +140,9 @@
         $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');
 {#        console.log($('.form-group input[name=detallesdelafactura]').parent()[0].children);#}
                 $('.help-block').tooltip({"container":"body"});
+        $('input[name="totalPrecioValue"]').autoNumeric('init');
+        $('input[id^="precio"]').autoNumeric('init');
+        $('input[id="total_sum_number"]').autoNumeric('init');
     });
 
     function buildAddressSlideFunctionality(){
@@ -281,23 +284,23 @@
 
     }
     function addDynamicPriceFields(){
-
+        $("span[id^='total_sum_number']").autoNumeric('init');
         var candidad_class = $('.paso-2-de-5-cantidad-total div.form-group').css('display','none');
-        $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="number" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
+        $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.paso-2-de-5-cantidad-total').append('<p class="optional">Opcional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Descripción:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Descripción:</label>' +
-                                            '<input type="text" style="width: 150px;float:left; border-color: purple;" type="text" name="description" class="form-control description" id="description-0"/></div>' +
+                                            '<input type="text" style="width: 150px;float:left; border-color: purple;" name="description" class="form-control description" id="description-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input type="number" style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
+                                            '<input type="text" style="    margin-left: 10px;width: 50px;border-color: purple;" name="cantidad" class="form-control cantidad_number" id="cantidad-0"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input type="number" style="    margin-left: 10px; border-color: purple;" type="number" name="precio" class="form-control precio" id="precio-0"/></div>' +
+                                            '<input type="text" style="    margin-left: 10px; border-color: purple;" name="precio" class="form-control precio" id="precio-0"/></div>' +
                                                     ' <div class="form-group"> ' +
-                                            '<div id="total_sum-0"> = $  0  </div></div>' +
+                                            '<div id="total_sum-0"> = $ <span id="total_sum_number-0">0</span>  </div></div>' +
                                             '</div>'+
                                             '');
 
@@ -317,16 +320,17 @@
                                             '<input style="width: 150px;float:left; border-color: purple;" style="float:left;" type="text"  name="description" class="form-control description" id="description-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="cantidad">Cantidad:</label>' +
-                                            '<input   type="number" style="    margin-left: 10px;width: 50px;border-color: purple;" types="number" name="cantidad"  class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
+                                            '<input   type="text" style="    margin-left: 10px;width: 50px;border-color: purple;"  name="cantidad"  class="form-control cantidad_number" id="cantidad-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="precio">Precio:</label>' +
-                                            '<input  type="number" style="    margin-left: 10px; border-color: purple;"   type="number" name="precio" class="form-control precio" id="precio-'+index+'"/></div>' +
+                                            '<input  type="text" style="    margin-left: 10px; border-color: purple;" name="precio" class="form-control precio" id="precio-'+index+'"/></div>' +
                                                     ' <div class="form-group"> ' +
-                                            '<div id="total_sum-'+index+'"> = $  0</div></div>' +
+                                            '<div id="total_sum-'+index+'"> = $  <span id="total_sum_number-'+index+'">0</span></div></div>' +
                                             '</div></form>');
                                     $('#del-recibo').append('<div id="grande_total_receipt_add"><a style="float:left;" class="qc-btn qc-btn-add-receipt-item">Agregar otro concepto</a>'+
                                                                 '<br/><br/><br/>');
-
+                    $('input[name="precio"]').autoNumeric('init');
+                    $('*[id^="total_sum_number"]').autoNumeric('init',{});
                     }
                 index=index+1;
 
@@ -341,20 +345,22 @@
                 var value =$( this ).val();
                 //do whatever
                 var number_of_element = this.id.replace( /^\D+/g, '');
-                var total_selector_name = '#total_sum-'+number_of_element;
-                var value_of_all = $('#cantidad-'+number_of_element).val() * $('#precio-'+number_of_element).val();
+                var total_selector_name = '#total_sum_number-'+number_of_element;
+                var value_of_all = $('#cantidad-'+number_of_element).val() * parseFloat($('#precio-'+number_of_element).val().replace(',',''));
 
-                $(total_selector_name).html(" = $  "+ value_of_all);
+
                 var receipt_item_id = "receiptitem-"+number_of_element;
                if(number_of_element==0){
                     $("input[name='receiptitem']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
                 }else{
                     $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
                 }
-                $('*[id^="total_sum"]').each(function(){
+                $('*[id^="total_sum_number"]').each(function(){
                         grande_totale = grande_totale + parseFloat(this.innerText.replace( /^\D+/g, ''));
                 });
-                $('#grande_total').html(grande_totale + "$");
+{#                $('#grande_total').html(grande_totale + "$");#}
+                $('*[id^="total_sum_number"]').autoNumeric('init');
+                $(total_selector_name).autoNumeric('set', value_of_all);
         });
 
         $(document).on('change', '.precio', function(e) {
@@ -364,9 +370,9 @@
                 //do whatever
                 var number_of_element = precio_id.replace( /^\D+/g, '');
 
-                var total_selector_name = '#total_sum-'+number_of_element;
-                var value_of_alla = $('#cantidad-'+number_of_element).val() * $('#precio-'+number_of_element).val();
-                $(total_selector_name).html(" = $  "+ value_of_alla);
+                var total_selector_name = '#total_sum_number-'+number_of_element;
+                var value_of_alla = $('#cantidad-'+number_of_element).val() * parseFloat($('#precio-'+number_of_element).val().replace(',',''));
+
 
                 var receipt_item_id = "receiptitem-"+number_of_element;
                 if(number_of_element==0){
@@ -374,11 +380,14 @@
                 }else{
                     $("input[name='"+receipt_item_id+"']").val($('#description-'+number_of_element).val()+"|"+$('#cantidad-'+number_of_element).val()+"|"+$('#precio-'+number_of_element).val());
                 }
-                $('*[id^="total_sum"]').each(function(){
+                $('[id^="total_sum_number"]').each(function(){
                         grande_totale = grande_totale + parseFloat(this.innerText.replace( /^\D+/g, ''));
                 });
-                $('#grande_total').html(grande_totale + "$");
+{#                $('#grande_total').html(grande_totale + "$");#}
+                $('*[id^="total_sum_number"]').autoNumeric('init');
+             $(total_selector_name).autoNumeric('set', value_of_alla);
         });
+
     }
 
     function addCantReadLink(){

@@ -133,6 +133,7 @@
 
         $('.paso-5-de-5-hay-algo-raro').append('<a id="submit-el-forma" class="qc-btn qc-btn-submit">Enviar</a>');
 
+         $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
         $( "#submit-el-forma" ).bind( "click", function() {
             $('#elForm').submit();
         });
@@ -532,7 +533,7 @@
         // First we check if there is a submit button added
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if($('.bx-wrapper .bx-controls-direction').has('button').length == 0){
-            $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
+
         }else{
             $('.bx-wrapper .bx-controls-direction button').remove();
         }

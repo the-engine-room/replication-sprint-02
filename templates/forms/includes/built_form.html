@@ -131,6 +131,8 @@
         $('.paso-4-de-5').append('<p>En este paso ubicamos físicamente a la empresa y/o la sucursal que emitió la factura. Ayúdanos a capturar todos los datos que componen la dirección. </p>');
         $('.paso-5-de-5').append('<p>¿Notaste algo extraño en la factura? ¿El precio pagado por un producto o servicio es elevado? ¿El gasto te parece inúti u ofensivo (vino, motocicletas deportivas, spa, fragancias, bares y cantinas, etcétera)? ¿El emisor de la factura es un político famoso o que tú recuerdas? ¡Anótalo! Investigaremos todo lo que te resulte sospechoso.</p>');
 
+        $('#del-recibo').prepend('<div class="candidad-helper-text">También capturamos concepto por concepto. Si te resulta más fácil, puedes resumir. Ejemplo: En lugar de escribir el título completo de un libro, puedes colocar la palabra "Libro". <br>Esta sección es opcional, pero considera que contar con información más precisa sobre los gastos de los políticos nos da a los ciudadanos mayor control sobre ellos.</div>');
+{#        $('#del-recibo').prepend('');#}
 {#        $('input[name="amount"]').parent().append("<div class='input-group date' id='datetimepicker1'><input type='text' class='form-control' /> <span class='input-group-addon'> <span class='glyphicon glyphicon-calendar'></span> </span> </div>");#}
 {##}
 {##}
@@ -186,11 +188,7 @@
 
         $('.paso-1-de-5-tipo-de-gasto').append('<br><div class="category_info"></div>');
         $('.category_info').append("<div id='factura-details-title'>Detalles de la factura:</div><div id='facturaDetails'></div>");
-{#        $('#facturaDetails').append("<div id='senato'><img style='float:left;' src='"+fatura_details_icon_url+"'><p id='abbreviationAreaOfGovernment'>" + abbreviationAreaOfGovernment[documentNameArray[0]]+"</p></div>");#}
-{#        $('#facturaDetails').append("<div id='factura-details-overlay'><div id='legislature' ><p>"+abbrevationLegislature[documentNameArray[1]]+"</p></div>");#}
-{#        $('#facturaDetails').append( "<div id='abbreviationBody'><br><p > " + abbreviationBody[documentNameArray[2]]+"</p></div></div>");#}
-        $('#facturaDetails').append('' +
-                '<table style="width:100%; border:1px solid purple;" >' +
+        $('#facturaDetails').append('<table style="width:100%; border:1px solid purple;" >' +
                     ' <tr>' +
                         ' <td style="width: 90px; border:1px solid purple;"><div id="senato"><img style="float:left;" src="'+fatura_details_icon_url+'"></td>"' +
                         ' <td style="background:rgba(128,0,128,0.1); " rowspan="2"><div id="legislature"><p>'+abbrevationLegislature[documentNameArray[1]]+'</p></div><br><div id="abbreviationBody"><br><p > ' + abbreviationBody[documentNameArray[2]]+'</p></div></td>' +
@@ -288,7 +286,7 @@
         var candidad_class = $('.paso-2-de-5-cantidad-total div.form-group').css('display','none');
         $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.paso-2-de-5-cantidad-total').append('<p class="optional">Opcional</p><div id="del-recibo"></div>');
-        $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Descripción:</p><p style="width:30%;float:left;">Cantidad:</p><p style="width:30%;float:left;">Precio:</p></div>'+
+        $('#del-recibo').append('<div style="height:30px;display:inline;"><p style="border-color: purple;width:30%;float:left;">Descripción:</p><p style="width:20%;float:left;">Cantidad:</p><p style="width:23%;float:left;">Precio:</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +
                                                     '<label class="sr-only" for="description">Descripción:</label>' +

@@ -391,13 +391,21 @@ p.optional {
     padding-top: 50px;
 
     font-family:"Glegoo Regular";
-    font-size:1.5em;
+    font-size:1.3em;
+}
+.candidad-helper-text {
+    font-family: "Open Sans Light" !important;
+    font-size: 1em;
+    color: gray !important;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 legend {
     padding: 17px;
 }
 span#dollar-sign {
-    font-size: 2.9em;
+    font-size: 24px;
     color:purple;
 }
 div#del-recibo {
@@ -413,21 +421,21 @@ div#del-recibo p{
 }
 #totalCon {
     float: left;
-    width: 50%;
+    width: 33%;
     height: 49px;
     padding-bottom: 10px;
     border-right-style: solid;
     border-width: 1px;
     border-color: #9C3793;
-    font-size:2.6em;
-    color:black;
-    text-align: right;
-    padding-right:25px;
+    font-size: 24px;
+    padding-top: 5px;
+    font-family: "Glegoo Bold";
 }
 #totalInput input {
     border: 3px;
     background: transparent;
-    font-size: 3.2em;
+    font-size: 24px;
+    font-family:"Glegoo Bold";
     color: #9C3793;
     margin-top: -20px;
     text-align: right;
@@ -445,7 +453,7 @@ input[name="precio"] {
 }
 #totalInput {
     float: right;
-    width: 50%;
+    width: 66%;
 }
 .modal-content {
     width: 560px;

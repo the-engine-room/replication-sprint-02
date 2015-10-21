@@ -779,3 +779,6 @@ a#no-gracias-link:hover{
     margin-left: auto !important;
     margin-right: auto;
 }
+.img-responsive{
+    margin-left:-15px !important;
+}

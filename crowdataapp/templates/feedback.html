@@ -13,18 +13,15 @@
     $(document).ready(function() {
         $('#header-text').css('display','none');
         $('#purple-header').css('height','140px');
-        $("#word_count").on('keyup', function() {
-            var words = this.value.match(/\S+/g).length;
-            if (words > 500) {
-                // Split the string on first 200 words and rejoin on spaces
-                var trimmed = $(this).val().split(/\s+/, 500).join(" ");
-                // Add a space at the end to keep new typing making new words
-                $(this).val(trimmed + " ");
-            }
-            else {
-                $('#display_count').text(words);
-                $('#word_left').text(500-words);
-            }
+        var maxLength = 500;
+        $("#word_count").on('keyup', function(){
+
+                var length = $(this).val().length;
+                if(length <= 500){
+                    $('#display_count').text(500 - $(this).val().length);
+{#                    $('#word_left').text(500-length);#}
+                }
+
         });
      });
     </script>
@@ -56,8 +53,8 @@
                         <form action="{% url 'feedback' %}" method="POST" name="feedback">
                         {% csrf_token %}
                             <p class="form-helper-text">Deja tus comentarios y sugerencias abajo. Por ejemplo, dinos si algún paso o campo de captura te resultó inútil o confuso o si algo no funciona.</p>
-                        </br><textarea style=" width: 100%;border: 1.5px solid purple;color: purple;" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
-                            <div class="elWordCount">Te quedan <span id="display_count">0</span> de máximo <span id="word_left">500</span> caracteres.</div>
+                        </br><textarea style=" width: 100%;border: 1.5px solid purple;color: purple;" maxlength="500" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
+                            <div class="elWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>
                         <a class="qc-btn qc-btn-submit feedback-submit-btn" id="another" type="submit">Enviar</a>
                     </form>
                     </div>

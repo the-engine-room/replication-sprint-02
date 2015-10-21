@@ -82,7 +82,7 @@
     float: left;
 }
 .qc-btn-change-optional-cat {
-    background: transparent url("/static/img/slide-graphics/QC_BT_I_cant_read_Up.svg") center top no-repeat;
+    background: url("/static/img/slide-graphics/QC_BT_Select_another_cat_Up.svg") center top no-repeat;
     width: 169px;
     margin-left: 116px;
     float: left;

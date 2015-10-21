@@ -119,6 +119,12 @@
         $('.paso-4-de-5').append('<p>En este paso ubicamos físicamente a la empresa y/o la sucursal que emitió la factura. Ayúdanos a capturar todos los datos que componen la dirección. </p>');
         $('.paso-5-de-5').append('<p>¿Notaste algo extraño en la factura? ¿El precio pagado por un producto o servicio es elevado? ¿El gasto te parece inúti u ofensivo (vino, motocicletas deportivas, spa, fragancias, bares y cantinas, etcétera)? ¿El emisor de la factura es un político famoso o que tú recuerdas? ¡Anótalo! Investigaremos todo lo que te resulte sospechoso.</p>');
 
+
+        $('.paso-4-de-5-direccin').append('<a id="cant-read-second-address" class="qc-btn qc-btn-cant-read">Ilegible</a>');
+        $('.paso-4-de-5-direccin').append('<a id="cant-undo-second-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
+        $('.paso-4-de-5-direccin').append('<a id="cant-read-first-address" class="qc-btn qc-btn-cant-read">Ilegible</a>');
+        $('.paso-4-de-5-direccin').append('<a id="cant-undo-first-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
+
         $('#del-recibo').prepend('<div class="candidad-helper-text">También capturamos concepto por concepto. Si te resulta más fácil, puedes resumir. Ejemplo: En lugar de escribir el título completo de un libro, puedes colocar la palabra "Libro". <br>Esta sección es opcional, pero considera que contar con información más precisa sobre los gastos de los políticos nos da a los ciudadanos mayor control sobre ellos.</div>');
 {#        $('#del-recibo').prepend('');#}
 {#        $('input[name="amount"]').parent().append("<div class='input-group date' id='datetimepicker1'><input type='text' class='form-control' /> <span class='input-group-addon'> <span class='glyphicon glyphicon-calendar'></span> </span> </div>");#}
@@ -136,6 +142,31 @@
         $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
         $( "#submit-el-forma" ).bind( "click", function() {
             $('#elForm').submit();
+        });
+
+        $('#cant-read-first-address').click(function(){
+            $('input[name^=address1]').each(function(){
+                $(this).attr('disabled','true');
+            });
+
+        });
+        $('#cant-read-second-address').click(function(){
+            $('input[name^=address2]').each(function(){
+                $(this).attr('disabled','true');
+            });
+
+        });
+        $('#cant-undo-second-address').click(function(){
+            $('input[name^=address2]').each(function(){
+                $(this).removeAttr('disabled');
+            });
+
+        });
+        $('#cant-undo-first-address').click(function(){
+            $('input[name^=address1]').each(function(){
+                $(this).removeAttr('disabled');
+            });
+
         });
 
     });

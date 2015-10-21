@@ -253,7 +253,7 @@
             var otraCategoriaValue = $('#otherOptionalCategoryValue').val();
             $("input[name='abbreviationexpenditure']").val(otraCategoriaValue);
             $("#category-icon-image").attr('src', "/static/img/icons/blank-category.svg");
-            $('#category-icon-name').text("Otra categoria");
+            $('#category-icon-name').text(otraCategoriaValue);
             $('.modal').modal('hide');
         });
 
@@ -261,7 +261,7 @@
 
             var otraOptionalCategoriaValue = $('#otherSecondaryOptionalCategoryValue').val();
             $("input[name='abbreviationexpenditureoptional']").val(otraOptionalCategoriaValue);
-            $('#optionalCategoryText').text("Otra categoria");
+            $('#optionalCategoryText').text(otraOptionalCategoriaValue);
             $("#category-optional-icon-image").attr('src', "/static/img/icons/blank-category.svg");
             $('.modal').modal('hide');
         });
@@ -664,6 +664,7 @@
                         my: 'left top'
                     }
                 });
+{#                     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>#}
                this.innerText = "";
                var x = document.createElement("IMG");
                x.src = "{% static '/static/img/about.svg' %}";

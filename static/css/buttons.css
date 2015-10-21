@@ -53,6 +53,9 @@
     background: url("/static/img/slide-graphics/btn-background-102.845x31.945.svg");
     width: 104px;
     float: right;
+    position: absolute;
+    margin-left: 358px;
+    margin-top: 17px;
 }
 .qc-btn-cant-read {
     width: 131px;

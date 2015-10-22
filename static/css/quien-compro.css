@@ -8,7 +8,7 @@
     color: white;
     border: 1px solid #8E4A93;
     
-    opacity:100 !important;
+    opacity:1 !important;
 }
 .tooltip-arrow{
     display:none;

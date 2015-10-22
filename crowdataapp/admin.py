@@ -304,7 +304,6 @@ class DocumentSetAdmin(NestedModelAdmin):
                     rv[k] = 'true' if v else 'false'
                 else:
                     rv[k] = v
-
             return rv
 
         def partition(items, predicate=bool):
@@ -320,7 +319,7 @@ class DocumentSetAdmin(NestedModelAdmin):
                         .filter(document__in=document_set.documents.all())
 
         if len(entries) == 0:
-            return django.http.HttpResponse('')
+            return django.http.HttpResponse('No document inputs found.')
 
         answer_field, non_answer_field = partition([u.encode('utf8') for u in entries[0].to_dict().keys()],
                                                    lambda fn: not fn.startswith('answer_'))
@@ -328,9 +327,30 @@ class DocumentSetAdmin(NestedModelAdmin):
         writer = csv.DictWriter(response, fieldnames=sorted(non_answer_field) + sorted(answer_field),extrasaction='ignore')
 
         writer.writeheader()
+
         for entry in entries:
             writer.writerow(_encode_dict_for_csv(entry.to_dict()))
+        dictionary = []
 
+        for entry in entries:
+            dictionary.append(entry.to_dict())
+
+        doc_url = []
+        counter = 0
+        print dictionary
+        for elem in dictionary:
+            print "______________________________________________________________"
+            if len(doc_url) == 0:
+                print "First element " + elem['Document Url']
+                doc_url.append(elem['Document Url'])
+            elif elem['Document Url'] == doc_url[counter]:
+                print "Same elemnt we are not printing anything" + elem['Document Url']
+            else:
+                print "New element" + elem['Document Url']
+                doc_url.append(elem['Document Url'])
+                counter = counter + 1
+            print "______________________________________________________________"
+        print doc_url
         return response
 
 

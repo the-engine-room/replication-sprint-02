@@ -50,7 +50,6 @@ div#purple-header {
 .analytics-section{
     background:url("/static/img/slide-graphics/QC_Gf_Bkg%20Pattern%202.svg");
     background-repeat: repeat-x;
-    border-bottom:3px solid #8E4A93;
     margin-left:0px !important;
     margin-right:0px !important;
     text-align: center;
@@ -94,6 +93,7 @@ div#purple-header {
     font-family:"Open Sans Regular";
     text-align:justify;
     font-size:10px;
+    border-top: 3px solid #8E4A93;
     padding-top:40px;
     padding-bottom:30px;
 }

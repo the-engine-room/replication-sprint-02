@@ -238,7 +238,7 @@
                     '</tr>' +
                 '</table>');
         $('.category_info').append("<div id='chooseCategory'><br/><br/><p>La categoría asignada a esta factura es </p><span><img id='category-icon-image' style='float:left;' src='"+getCategoryIcon(abbreviationExpenditure[documentNameArray[3]])+"'><h1 id='category-icon-name'>" + abbreviationExpenditure[documentNameArray[3]]+"</h1></span></div>");
-        $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Selecciona otra categoría</a> <a class='qc-btn qc-btn-cant-read'>Ilegible</a></div><br/><br/><div class='optional_category'></div>");
+        $('#chooseCategory').append("<div class='es-incorrecta'><span class='doesnt-look-right'>¿Es incorrecta?</span> <a  href='' class='qc-btn qc-btn-select-other-category' data-toggle='modal' data-target='#myModal'>Selecciona otra categoría</a></div><br/><br/><div class='optional_category'></div>");
 
         $('.optional_category').append("<p>Opcional </p><div id='chooseOptionalCategory'><span><img id='category-optional-icon-image' src='/static/img/icons/blank-category.svg'></span></div>");
         $('#chooseOptionalCategory').append("<div class='add-second-category'><p id='optionalCategoryText'>Asigna una categoría secundaria</p><br><br><div class=''><a href class='qc-btn qc-btn-select-other-optional-category' data-toggle='modal' data-target='#myOptionalModal'>Agregar</a></div> </div><br/><br/><br/><br/><br/><br/><br/><br/>");

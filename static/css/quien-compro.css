@@ -4,9 +4,11 @@
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 .tooltip > .tooltip-inner {
-    background-color: white;
-    color: #8E4A93;
+    background-color:purple !important;
+    color: white;
     border: 1px solid #8E4A93;
+    
+    opacity:100 !important;
 }
 .tooltip-arrow{
     display:none;

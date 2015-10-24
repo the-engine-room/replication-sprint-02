@@ -189,6 +189,71 @@
          });
 
 
+        $(document).on('change', '#id_razon_social_del_emisor', function(e) {
+            $('input[name=razon_social_del_emisor]')[0].value = $('input[name=razon_social_del_emisor]')[1].value;
+        });
+
+        $(document).on('change', '#id_nombre_comerical_de_emisor', function(e) {
+            $('input[name=nombre_comerical_de_emisor]')[0].value = $('input[name=nombre_comerical_de_emisor]')[1].value;
+        });
+        $(document).on('change', '#id_rfc_del_emisor', function(e) {
+            $('input[name=rfc_del_emisor]')[0].value = $('input[name=rfc_del_emisor]')[1].value;
+        });
+
+        // Save address1 values
+        $(document).on('change', '#id_address1_calle', function(e) {
+            $('input[name=address1_calle]')[0].value = $('input[name=address1_calle]')[1].value;
+        });
+        $(document).on('change', '#id_address1_nnext', function(e) {
+            $('input[name=address1_nnext]')[0].value = $('input[name=address1_nnext]')[1].value;
+        });
+        $(document).on('change', '#id_address1_nint', function(e) {
+            $('input[name=address1_nint]')[0].value = $('input[name=address1_nint]')[1].value;
+        });
+        $(document).on('change', '#id_address1_colonia', function(e) {
+            $('input[name=address1_colonia]')[0].value = $('input[name=address1_colonia]')[1].value;
+        });
+        $(document).on('change', '#id_address1_municipio_o_delegacion', function(e) {
+            $('input[name=address1_municipio_o_delegacion]')[0].value = $('input[name=address1_municipio_o_delegacion]')[1].value;
+        });
+        $(document).on('change', '#id_address1_codigo_postal', function(e) {
+            $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;
+        });
+        $(document).on('change', '#id_address1_estado', function(e) {
+            $('input[name=address1_estado]')[0].value = $('input[name=address1_estado]')[1].value;
+        });
+
+         // Save address2 values
+        $(document).on('change', '#id_address2_calle', function(e) {
+            $('input[name=address2_calle]')[0].value = $('input[name=address2_calle]')[1].value;
+        });
+        $(document).on('change', '#id_address2_nnext', function(e) {
+            $('input[name=address2_nnext]')[0].value = $('input[name=address2_nnext]')[1].value;
+        });
+        $(document).on('change', '#id_address2_nint', function(e) {
+            $('input[name=address2_nint]')[0].value = $('input[name=address2_nint]')[1].value;
+        });
+        $(document).on('change', '#id_address2_colonia', function(e) {
+            $('input[name=address2_colonia]')[0].value = $('input[name=address2_colonia]')[1].value;
+        });
+        $(document).on('change', '#id_address2_municipio_o_delegacion', function(e) {
+            $('input[name=address2_municipio_o_delegacion]')[0].value = $('input[name=address2_municipio_o_delegacion]')[1].value;
+        });
+        $(document).on('change', '#id_address2_codigo_postal', function(e) {
+            $('input[name=address2_codigo_postal]')[0].value = $('input[name=address2_codigo_postal]')[1].value;
+        });
+        $(document).on('change', '#id_address2_estado', function(e) {
+            $('input[name=address2_estado]')[0].value = $('input[name=address2_estado]')[1].value;
+        });
+
+        // Save the comment in the end of the form
+        $(document).on('change', '#id_did_anything_seem_strange_on_this_factura', function(e) {
+           $('textarea[name=did_anything_seem_strange_on_this_factura]')[0].value = $('textarea[name=did_anything_seem_strange_on_this_factura]')[1].value;
+        });
+
+        $(document).on('change', '#id_fecha_de_facturacion', function(e) {
+           $('input[name=fecha_de_facturacion]')[0].value = $('input[name=fecha_de_facturacion]')[1].value;
+        });
     });
 
     function buildAddressSlideFunctionality(){

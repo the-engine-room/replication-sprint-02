@@ -157,12 +157,14 @@ def login(request):
     #     return { }
 
 @render_to('feedback.html')
-def feedback(request):
+def feedback(request, document_id):
     feedback_model = models.Feedback()
+
     if request.method == 'POST':
-        feedback_form = forms.FeedbackForm(data=request.POST, instance=feedback_model)
-        if feedback_form.is_valid():
-            feedback_result = feedback_form.save()
+        print request.META
+        feedback_form = forms.FeedbackForm(request.POST, instance=feedback_model)
+        feedback_form.save()
+
     else:
         feedback_form = forms.FeedbackForm()
 

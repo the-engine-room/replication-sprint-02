@@ -7,6 +7,8 @@
 </style>
 
 <script>
+
+
     var abbreviationBody = {"SP":"Servicios Parlamentarios",
         "SA":"Servicios Administrativos",
         "SME":"Servicios Medicos y Esteticos",
@@ -63,7 +65,6 @@
 
     $( document ).ready(function() {
 
-
         // Convert radio buttons into groups of toggle buttons.
         convertRadioButtonsToToggle();
 
@@ -113,6 +114,7 @@
 
         buildAddressSlideFunctionality();
 
+        // Adding the Helper Texts under the slide titles.
         $('.paso-1-de-5').append('<p>En este paso verificamos que la categoría de gasto preasignada a la factura sea correcta. Si es necesario, añadimos una categoría secundaria porque el documento contiene más de un tipo gasto.</p>');
         $('.paso-2-de-5').append('<p>Aquí registramos la cantidad total facturada; es decir, la suma que incluye el IVA. </p>');
         $('.paso-3-de-5').append('<p>Estos datos parecen aburridos, pero son importates para saber si los legisladores transfieren dinero a sus empresas.</p><p>Aquí capturamos la fecha en que se emitió la factura y los datos de quien la emitió.</p>');
@@ -120,12 +122,15 @@
         $('.paso-5-de-5').append('<p>¿Notaste algo extraño en la factura? ¿El precio pagado por un producto o servicio es elevado? ¿El gasto te parece inúti u ofensivo (vino, motocicletas deportivas, spa, fragancias, bares y cantinas, etcétera)? ¿El emisor de la factura es un político famoso o que tú recuerdas? ¡Anótalo! Investigaremos todo lo que te resulte sospechoso.</p>');
 
 
+        // Adding can't read buttons in the forth slide
         $('.paso-4-de-5-direccin').append('<a id="cant-read-second-address" class="qc-btn qc-btn-cant-read">Ilegible</a>');
         $('.paso-4-de-5-direccin').append('<a id="cant-undo-second-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
         $('.paso-4-de-5-direccin').append('<a id="cant-read-first-address" class="qc-btn qc-btn-cant-read">Ilegible</a>');
         $('.paso-4-de-5-direccin').append('<a id="cant-undo-first-address" class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>');
 
+        // Word count in slide 5
         $('.paso-5-de-5-hay-algo-raro').append('<div class="laWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>')
+
         $("textarea[name='did_anything_seem_strange_on_this_factura']").attr('maxlength','500');
         $("textarea[name='did_anything_seem_strange_on_this_factura']").on('keyup', function(){
 
@@ -137,11 +142,6 @@
         });
 
         $('#del-recibo').prepend('<div class="candidad-helper-text">También capturamos concepto por concepto. Si te resulta más fácil, puedes resumir. Ejemplo: En lugar de escribir el título completo de un libro, puedes colocar la palabra "Libro". <br>Esta sección es opcional, pero considera que contar con información más precisa sobre los gastos de los políticos nos da a los ciudadanos mayor control sobre ellos.</div>');
-{#        $('#del-recibo').prepend('');#}
-{#        $('input[name="amount"]').parent().append("<div class='input-group date' id='datetimepicker1'><input type='text' class='form-control' /> <span class='input-group-addon'> <span class='glyphicon glyphicon-calendar'></span> </span> </div>");#}
-{##}
-{##}
-{#        $('#datetimepicker1').datetimepicker();#}
 
 
         $('#chooseCategory').prepend('<div id="category-tooltip">'+$('.form-group input[name=detallesdelafactura]').parent()[0].children[1].outerHTML+'</div>');
@@ -151,9 +151,7 @@
         $('.paso-5-de-5-hay-algo-raro').append('<a id="submit-el-forma" class="qc-btn qc-btn-submit">Enviar</a>');
 
         $('.paso-5-de-5-hay-algo-raro .form-group #cant_read_container').css('display','none');
-        $( "#submit-el-forma" ).bind( "click", function() {
-            $('#elForm').submit();
-        });
+
 
         $('#cant-undo-first-address').css('display',"none");
         $('#cant-undo-second-address').css('display',"none");
@@ -182,7 +180,13 @@
             });
         });
 
-
+        $( "#elForm" ).submit(function( event ) {
+          event.preventDefault();
+        });
+        $( "#submit-el-forma" ).click(function(){
+             $('#elForm').submit();
+            document.location = "/cd/feedback/"+{{document.id}};
+         });
 
 
     });
@@ -329,7 +333,7 @@
         $('.paso-2-de-5-cantidad-total').append('<p class="optional">Opcional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;">' +
                 '<p style="border-color: purple;width:30%;float:left;">Descripción' +
-                '<span style="float:right; padding-right: 25px;" class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Descripcion"></span> </p>' +
+                '</p>' +
                 '<p style="width:20%;float:left;">Cantidad</p><p style="width:20%;float:left;">Precio</p><p style="width:20%;float:left;">Total</p></div>'+
                 '<form class="form-inline"><div class="form-group" >' +
                                                     ' <div class="form-group"> ' +

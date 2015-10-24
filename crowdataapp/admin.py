@@ -311,9 +311,10 @@ class DocumentSetAdmin(NestedModelAdmin):
             return ((item for pred, item in a if not pred),
                     (item for pred, item in b if pred))
 
-        document_set = get_object_or_404(self.model, pk=document_set_id)
+        document_set = get_object_or_404(self.model,pk=document_set_id)
         response = django.http.HttpResponse(mimetype="text/csv")
-
+        # las_documents = document_set.documents.get(verified=1)
+        # print las_documents
         entries = models.DocumentSetFormEntry \
                         .objects \
                         .filter(document__in=document_set.documents.all())
@@ -330,27 +331,34 @@ class DocumentSetAdmin(NestedModelAdmin):
 
         for entry in entries:
             writer.writerow(_encode_dict_for_csv(entry.to_dict()))
+
         dictionary = []
 
         for entry in entries:
             dictionary.append(entry.to_dict())
 
-        doc_url = []
+        # prsint entries
+        doc_url = {}
         counter = 0
-        print dictionary
+        # print dictionary
         for elem in dictionary:
-            print "______________________________________________________________"
-            if len(doc_url) == 0:
-                print "First element " + elem['Document Url']
-                doc_url.append(elem['Document Url'])
-            elif elem['Document Url'] == doc_url[counter]:
-                print "Same elemnt we are not printing anything" + elem['Document Url']
+            if counter == 0:
+                doc_url[elem['Document Url']] = []
+                doc_url[elem['Document Url']].append(elem)
+                # print doc_url
+            elif elem['Document Url'] == doc_url[elem['Document Url']][counter]['Document Url']:
+                doc_url[counter].push(elem)
             else:
-                print "New element" + elem['Document Url']
-                doc_url.append(elem['Document Url'])
-                counter = counter + 1
-            print "______________________________________________________________"
-        print doc_url
+                doc_url[elem['Document Url']].append(elem)
+                counter += 1
+        # print doc_url
+        converted_doc = []
+        for i in doc_url:
+            print i
+            doc = self.convert(doc_url[i])
+            converted_doc.append(doc)
+
+        # print converted_doc
         return response
 
 
@@ -360,6 +368,32 @@ class DocumentSetAdmin(NestedModelAdmin):
                                                            obj.documents.count())
         return mark_safe(l)
 
+    def convert(self, entries):
+        #!/usr/local/bin/python3.1
+        import datetime
+        import sys    # sys.setdefaultencoding is cancelled by site.py
+        reload(sys)   # to re-enable sys.setdefaultencoding()
+        sys.setdefaultencoding('utf-8')
+
+        def distinct(l):
+          checked = []
+          for item in l:
+              if str(item) not in checked:
+                  checked.append(str(item))
+          return checked
+
+        # Load in verified entries
+
+        keys = list(entries[0].keys())
+        unifiedDict = {}
+
+        for key in keys:
+           # print(key)
+           values = [entry[key] for entry in entries if key in entry]
+           values = '|'.join(distinct(values))
+           unifiedDict[key] = values
+
+        return unifiedDict
 
 class DocumentSetFormEntryInline(admin.TabularInline):
     fields = ('user_link', 'answers', 'entry_time', 'document_link', 'document_set_link')

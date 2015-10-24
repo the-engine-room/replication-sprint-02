@@ -4,16 +4,28 @@
 
 {% block landingpage %}
     <style>
-
-
-
+    label{
+        display:none;
+    }
+    #header-text{
+        display:none;
+    }
+    #purple-header{
+        height:140px;
+    }
+    input[name=document_id]{
+        display:none;
+    }
+    input[name=feedback_text]{
+    display:none;
+    }
 
     </style>
     <script type="application/javascript">
     $(document).ready(function() {
-        $('#header-text').css('display','none');
-        $('#purple-header').css('height','140px');
+
         var maxLength = 500;
+
         $("#word_count").on('keyup', function(){
 
                 var length = $(this).val().length;
@@ -24,22 +36,31 @@
 
         });
 
+        document.feedback.action = document.location.pathname;
+
         $('.feedback-submit-btn').click(function(){
+            var document_id = document.location.pathname.split('/')[document.location.pathname.split('/').length-1];
+            $('input[name=document_id]').val(document_id);
+            $('input[name=feedback_text]').val($('textarea[name=feedback_texto]').val());
+            $('form[name=feedback]').submit(function(event){
+                event.preventDefault();
+            });
+
 
 
             $( ".opcional-box" ).animate({
                opacity: 0
-            }, 500, function() {
-                // Animation complete.
-                $('.opcional-box').html('<h4 align="center" style="padding-bottom:284px;padding-top:70px;">¡GRACIAS!</h4>');
-                $('.opcional-box').animate({
-                    opacity: 1
-                }, 500);
+                }, 500, function() {
+                    // Animation complete.
+                    $('.opcional-box').html('<h4 align="center" style="padding-bottom:284px;padding-top:70px;">¡GRACIAS!</h4>');
+                    $('.opcional-box').animate({
+                        opacity: 1
+            }, 500);
             });
-            $( "#feedbackform" ).submit(function( event ) {
-                event.preventDefault();
-            });
+
         });
+
+
 
      });
     </script>
@@ -69,14 +90,18 @@
                     <p class="opcional-text">Opcional</p>
                     <div id="feedbackform-box">
                         <form action="" method="POST" id="feedbackform" name="feedback">
-                        {% csrf_token %}
+                            {% csrf_token %}
+                        {{ feedback_form }}
                             <p class="form-helper-text">Deja tus comentarios y sugerencias abajo. Por ejemplo, dinos si algún paso o campo de captura te resultó inútil o confuso o si algo no funciona.</p>
-                        </br><textarea style=" width: 100%;border: 1.5px solid purple;" maxlength="500" id="word_count" name="feedback_text" rows="5" cols="60"></textarea></br>
+                        </br><textarea style=" width: 100%;border: 1.5px solid purple;" maxlength="500" id="word_count" name="feedback_texto" rows="5" cols="60"></textarea></br>
                             <div class="elWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>
-                        <a class="qc-btn qc-btn-submit feedback-submit-btn" type="submit">Enviar</a>
-                    </form>
+
+                            <a class="qc-btn qc-btn-submit feedback-submit-btn" type="submit">Enviar</a>
+
+                        </form>
                     </div>
                 </div>
+
 {#                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" role="button">{{ _('I want to review other document') }}#}
 {#    	    	</a>#}
         </div>

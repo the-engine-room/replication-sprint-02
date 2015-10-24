@@ -158,10 +158,11 @@ def login(request):
 
 @render_to('feedback.html')
 def feedback(request, document_id):
+    import datetime
     feedback_model = models.Feedback()
 
     if request.method == 'POST':
-        print request.META
+        print request.POST
         feedback_form = forms.FeedbackForm(request.POST, instance=feedback_model)
         feedback_form.save()
 

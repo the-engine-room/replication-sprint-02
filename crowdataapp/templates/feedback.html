@@ -19,6 +19,9 @@
     input[name=feedback_text]{
     display:none;
     }
+    input[name=timestamp]{
+    display:none;
+    }
 
     </style>
     <script type="application/javascript">
@@ -42,9 +45,8 @@
             var document_id = document.location.pathname.split('/')[document.location.pathname.split('/').length-1];
             $('input[name=document_id]').val(document_id);
             $('input[name=feedback_text]').val($('textarea[name=feedback_texto]').val());
-            $('form[name=feedback]').submit(function(event){
-                event.preventDefault();
-            });
+            $('input[name=timestamp]').val(new Date());
+
 
 
 
@@ -57,7 +59,7 @@
                         opacity: 1
             }, 500);
             });
-
+            $('form[name=feedback]').submit();
         });
 
 

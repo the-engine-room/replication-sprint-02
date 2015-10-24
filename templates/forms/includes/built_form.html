@@ -254,6 +254,16 @@
         $(document).on('change', '#id_fecha_de_facturacion', function(e) {
            $('input[name=fecha_de_facturacion]')[0].value = $('input[name=fecha_de_facturacion]')[1].value;
         });
+
+        $(documen).on('change', '#same-as-above-address'), function(e){
+           $('input[name=address2_calle]')[0].value = $('input[name=address2_calle]')[1].value;
+            $('input[name=address2_nnext]')[0].value = $('input[name=address2_nnext]')[1].value;
+            $('input[name=address2_nint]')[0].value = $('input[name=address2_nint]')[1].value;
+            $('input[name=address2_colonia]')[0].value = $('input[name=address2_colonia]')[1].value;
+            $('input[name=address2_municipio_o_delegacion]')[0].value = $('input[name=address2_municipio_o_delegacion]')[1].value;
+            $('input[name=address2_codigo_postal]')[0].value = $('input[name=address2_codigo_postal]')[1].value;
+            $('input[name=address2_estado]')[0].value = $('input[name=address2_estado]')[1].value;
+        });
     });
 
     function buildAddressSlideFunctionality(){

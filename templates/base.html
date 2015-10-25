@@ -6,13 +6,13 @@
  {% include 'head.html' %}
   <body>
     <div class="container-full">
-        {% include "header.html" %}
-    {% if document_set.get_verified_documents.count > 0 %}
-        <img style="width:100%;" src="http://quiencompro.com/images/content/5be3ed595fcef13941e62fce9697e593.jpeg">
-    {% else %}
+{#        {% include "header.html" %}#}
+{#    {% if document_set.get_verified_documents.count > 0 %}#}
+{#        <img style="width:100%;" src="http://quiencompro.com/images/content/5be3ed595fcef13941e62fce9697e593.jpeg">#}
+{#    {% else %}#}
         {% block content %}
         {% endblock %}
-    {% endif %}
+{#    {% endif %}#}
         {% include "footer.html" %}
     </div>
 

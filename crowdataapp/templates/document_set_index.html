@@ -72,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 analytics-section-stats-special">
-                    {{ total.0.0|escape|intcomma}}&nbsp;$
+                    {{ total.0.0|escape|intcomma}}0&nbsp;$
                 </div>
             </div>
             <div class="row">
@@ -94,7 +94,7 @@
                             <img id="top-spending-category" height="60px" src="/static/img/icons/blank-category.svg" >
                         </div>
                         <div class="col-md-6 middle-stats-price">
-                            <span>{{ stats.0.0|escape|intcomma }}&nbsp;$</span>
+                            <span>{{ stats.0.0|escape|intcomma }}0&nbsp;$</span>
                         </div>
                     </div>
                 </div>
@@ -114,26 +114,26 @@
             <div class="row top-spending-categories-total">
                 {% if stats.0.0 %}
                 <div class="col-md-3">
-                    <img id="top-category-1" class="img-responsive" src="/static/img/icons/blank-category.svg" >
-                    {{ stats.0.0|escape|intcomma }}&nbsp;$
+                    <img data-toggle='tooltip' data-placement='top' title='{ stats.0.1 }}' aria-hidden='true'  data-original-title='ga' id="top-category-1" class="img-responsive" src="/static/img/icons/blank-category.svg" >
+                    {{ stats.0.0|escape|intcomma }}0&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.1.0 %}
                 <div class="col-md-3">
-                    <img id="top-category-2" class="img-responsive" src="/static/img/icons/blank-category.svg" >
-                    {{ stats.1.0|escape|intcomma }}&nbsp;$
+                    <img data-toggle='tooltip' data-placement='top' title='{ stats.1.1 }}' aria-hidden='true'  data-original-title='ga' id="top-category-2" class="img-responsive" src="/static/img/icons/blank-category.svg" >
+                    {{ stats.1.0|escape|intcomma }}0&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.2.0 %}
                 <div class="col-md-3">
                     <img id="top-category-3" class="img-responsive" src="/static/img/icons/blank-category.svg" >
-                    {{ stats.2.0|escape|intcomma }}&nbsp;$
+                    {{ stats.2.0|escape|intcomma }}0&nbsp;$
                 </div>
                  {% endif %}
                 {% if stats.3.0 %}
                 <div class="col-md-3">
                     <img id="top-category-4" class="img-responsive" src="/static/img/icons/blank-category.svg" >
-                    {{ stats.3.0|escape|intcomma }}&nbsp;$
+                    {{ stats.3.0|escape|intcomma }}0&nbsp;$
                 </div>
                  {% endif %}
             </div>

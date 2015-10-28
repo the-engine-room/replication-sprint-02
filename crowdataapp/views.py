@@ -23,11 +23,12 @@ from crowdataapp import models, forms
 @render_to('document_set_index.html')
 def document_set_index(request):
     stats = get_stats()
+    total = get_total()
     try:
       document_sets = models.DocumentSet.objects.all().order_by('-created_at')
     except:
       document_sets = []
-    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats }
+    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats, 'total':total }
 
 def get_stats():
     """ Get all documents that have an entry with canon """
@@ -83,6 +84,35 @@ def get_stats():
     cursor.execute(q)
     return cursor.fetchall()
 
+def get_total():
+
+    q = """
+     SELECT SUM(FT.final_amount) AS total
+       FROM (
+       SELECT DOC.DOC_ID
+       , MAX(Vals.amount) AS final_amount -- In case different values are present
+       FROM (
+          SELECT D.id AS DOC_ID
+          FROM crowdataapp_document D
+          --WHERE D.verified is TRUE
+       ) DOC
+       INNER JOIN crowdataapp_DocumentSetFormEntry DFSE
+       ON DOC.doc_id= DFSE.document_id
+       INNER JOIN (
+          SELECT DSFI1.value::NUMERIC as amount
+          ,DSFI1.entry_id
+          FROM crowdataapp_DocumentSetFieldEntry DSFI1
+          WHERE DSFI1.field_id = 88
+          --AND DSFI1.verified is TRUE
+       ) Vals
+       ON DFSE.id = Vals.entry_id
+
+       GROUP BY DOC.DOC_ID
+       ) FT
+    """
+    cursor = connection.cursor()
+    cursor.execute(q)
+    return cursor.fetchall()
 @render_to('document_set_landing.html')
 def document_set_view(request, document_set):
     document_set = get_object_or_404(models.DocumentSet,

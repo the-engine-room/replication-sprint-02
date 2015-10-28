@@ -59,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 analytics-section-details">
-                    correspondiente a <span style="color:purple;">250</span> facturas de un total de <span style="color:purple;">15,000</span>
+                    correspondiente a <span style="color:purple;">{{ document_sets.0.get_verified_documents.count }}</span> facturas de un total de <span style="color:purple;">{{ document_sets.0.documents.all.count }}</span>
                 </div>
             </div>
         </div>

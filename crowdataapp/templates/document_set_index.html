@@ -1,5 +1,6 @@
 {% extends "layout/layout_8-4.html" %}
 {% load crowdataapp_tags %}
+{% load humanize %}
 {% load static from staticfiles %}
 
 {% block landingpage %}
@@ -54,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 analytics-section-stats-special">
-                    {{ total.0.0 }}&nbsp;$
+                    {{ total.0.0|escape|intcomma}}&nbsp;$
                 </div>
             </div>
             <div class="row">
@@ -76,14 +77,14 @@
                             <img height="60px" src="/static/img/category/QC_Icon_Comunicación%20y%20Publicidad.svg" >
                         </div>
                         <div class="col-md-6 middle-stats-price">
-                            <span>{{ stats.0.0 }}&nbsp;$</span>
+                            <span>{{ stats.0.0|escape|intcomma }}&nbsp;$</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 analytics-section-details">
-                    {{ stats.0.1 }}&nbsp;$
+                    {{ stats.0.1 }}&nbsp;
                 </div>
             </div>
         </div>
@@ -97,25 +98,25 @@
                 {% if stats.0.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg" >
-                    {{ stats.0.0 }}&nbsp;$
+                    {{ stats.0.0|escape|intcomma }}&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.1.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg" >
-                    {{ stats.1.0 }}&nbsp;$
+                    {{ stats.1.0|escape|intcomma }}&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.2.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Alimentos.svg" >
-                    {{ stats.2.0 }}&nbsp;$
+                    {{ stats.2.0|escape|intcomma }}&nbsp;$
                 </div>
                  {% endif %}
                 {% if stats.3.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Peaje.svg" >
-                    {{ stats.3.0 }}&nbsp;$
+                    {{ stats.3.0|escape|intcomma }}&nbsp;$
                 </div>
                  {% endif %}
             </div>

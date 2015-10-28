@@ -329,39 +329,42 @@ class DocumentSetAdmin(NestedModelAdmin):
 
         writer.writeheader()
 
-        for entry in entries:
-            writer.writerow(_encode_dict_for_csv(entry.to_dict()))
+        # for entry in entries:
+        #     writer.writerow(_encode_dict_for_csv(entry.to_dict()))
 
         dictionary = []
 
         for entry in entries:
             dictionary.append(entry.to_dict())
 
-        # prsint entries
-        doc_url = {}
-        counter = 0
-        # print dictionary
+        list_of_dictionary_keys = []
         for elem in dictionary:
-            if counter == 0:
-                doc_url[elem['Document Url']] = []
-                doc_url[elem['Document Url']].append(elem)
-                # print doc_url
-            elif elem['Document Url'] == doc_url[elem['Document Url']][counter]['Document Url']:
-                doc_url[counter].push(elem)
-            else:
-                doc_url[elem['Document Url']].append(elem)
-                counter += 1
-        # print doc_url
-        converted_doc = []
-        for i in doc_url:
-            print i
-            doc = self.convert(doc_url[i])
-            converted_doc.append(doc)
+            list_of_dictionary_keys.append(elem['Document Url'])
 
-        # print converted_doc
+        unique_keys_list =  self.f4(list_of_dictionary_keys)
+
+        # print unique_keys_list
+        final_converted_document = []
+        for key in unique_keys_list:
+            unique_document_entries = []
+            for entry in dictionary:
+                if(entry['Document Url'] == key):
+                    unique_document_entries.append(entry)
+            final_converted_document.append(self.convert(unique_document_entries))
+        # converted_doc = self.convert(dictionary)
+
+        # print final_converted_document
+
+        for entry in final_converted_document:
+           writer.writerow(_encode_dict_for_csv(entry))
         return response
 
 
+    def f4(self,seq):
+       # order preserving
+       noDupes = []
+       [noDupes.append(i) for i in seq if not noDupes.count(i)]
+       return noDupes
     def document_count(self, obj):
         l = '<a href="%s?document_set__id=%s">%s</a>' % (reverse("admin:crowdataapp_document_changelist"),
                                                            obj.pk,

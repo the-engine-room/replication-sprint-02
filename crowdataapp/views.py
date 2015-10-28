@@ -13,6 +13,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
+from django.db import models, connection
 
 from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
@@ -21,11 +22,66 @@ from crowdataapp import models, forms
 
 @render_to('document_set_index.html')
 def document_set_index(request):
+    stats = get_stats()
     try:
       document_sets = models.DocumentSet.objects.all().order_by('-created_at')
     except:
       document_sets = []
-    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project') }
+    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats }
+
+def get_stats():
+    """ Get all documents that have an entry with canon """
+
+    q = """
+       SELECT SUM(FT.final_amount) AS total
+       , FT.category
+       FROM (
+       SELECT DOC.DOC_ID
+       , MAX(Vals.amount) AS final_amount -- In case different values are present
+       , Cats.category
+       FROM (
+          SELECT D.id AS DOC_ID
+          FROM crowdataapp_document D
+          --WHERE D.verified is TRUE
+       ) DOC
+       INNER JOIN crowdataapp_DocumentSetFormEntry DFSE
+       ON DOC.doc_id= DFSE.document_id
+       INNER JOIN (
+          SELECT DSFI1.value::NUMERIC as amount
+          ,DSFI1.entry_id
+          FROM crowdataapp_DocumentSetFieldEntry DSFI1
+          WHERE DSFI1.field_id = 117
+          --AND DSFI1.verified is TRUE
+       ) Vals
+       ON DFSE.id = Vals.entry_id
+       INNER JOIN (
+          SELECT category
+          ,entry_id
+          FROM (
+              SELECT row_number() OVER(
+                 PARTITION BY
+                 DSFI2.entry_id
+                 ORDER BY
+                 DSFI2.id) AS Row
+                 ,DSFI2.value AS category
+                 ,DSFI2.entry_id
+              FROM crowdataapp_DocumentSetFieldEntry DSFI2
+              WHERE DSFI2.field_id = 90
+          ) A
+       WHERE Row = 1 -- get the first category only in case of disagreement
+       ) Cats
+       ON DFSE.id = cats.entry_id
+       GROUP BY DOC.DOC_ID
+       , Cats.category
+       ) FT
+       GROUP BY FT.category
+       ORDER BY SUM(FT.final_amount) DESC
+       LIMIT 4
+       """
+
+    cursor = connection.cursor()
+    cursor.execute(q)
+    return cursor.fetchall()
 
 @render_to('document_set_landing.html')
 def document_set_view(request, document_set):

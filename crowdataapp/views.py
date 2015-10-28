@@ -24,6 +24,10 @@ from crowdataapp import models, forms
 def document_set_index(request):
     stats = get_stats()
     total = get_total()
+    if not stats:
+        stats = [(0,0)]
+    if not total:
+        total = [(0,0)]
     try:
       document_sets = models.DocumentSet.objects.all().order_by('-created_at')
     except:
@@ -43,7 +47,7 @@ def get_stats():
        FROM (
           SELECT D.id AS DOC_ID
           FROM crowdataapp_document D
-          --WHERE D.verified is TRUE
+          WHERE D.verified is TRUE
        ) DOC
        INNER JOIN crowdataapp_DocumentSetFormEntry DFSE
        ON DOC.doc_id= DFSE.document_id
@@ -52,7 +56,7 @@ def get_stats():
           ,DSFI1.entry_id
           FROM crowdataapp_DocumentSetFieldEntry DSFI1
           WHERE DSFI1.field_id = 88
-          --AND DSFI1.verified is TRUE
+          AND DSFI1.verified is TRUE
        ) Vals
        ON DFSE.id = Vals.entry_id
        INNER JOIN (
@@ -103,7 +107,7 @@ def get_total():
           ,DSFI1.entry_id
           FROM crowdataapp_DocumentSetFieldEntry DSFI1
           WHERE DSFI1.field_id = 88
-          --AND DSFI1.verified is TRUE
+          AND DSFI1.verified is TRUE
        ) Vals
        ON DFSE.id = Vals.entry_id
 

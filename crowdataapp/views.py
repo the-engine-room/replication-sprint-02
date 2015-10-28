@@ -50,7 +50,7 @@ def get_stats():
           SELECT DSFI1.value::NUMERIC as amount
           ,DSFI1.entry_id
           FROM crowdataapp_DocumentSetFieldEntry DSFI1
-          WHERE DSFI1.field_id = 117
+          WHERE DSFI1.field_id = 88
           --AND DSFI1.verified is TRUE
        ) Vals
        ON DFSE.id = Vals.entry_id
@@ -66,7 +66,7 @@ def get_stats():
                  ,DSFI2.value AS category
                  ,DSFI2.entry_id
               FROM crowdataapp_DocumentSetFieldEntry DSFI2
-              WHERE DSFI2.field_id = 90
+              WHERE DSFI2.field_id = 66
           ) A
        WHERE Row = 1 -- get the first category only in case of disagreement
        ) Cats

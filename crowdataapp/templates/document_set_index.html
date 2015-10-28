@@ -11,6 +11,23 @@
         var percentage = (document_count * all_documents)/100;
         $('#percentage').text(""+percentage + "%");
         $('.progress-bar').css('width',''+percentage + "%");
+
+        var top_category_1 = "{{ stats.0.1 }}".replace(' ','%20');
+        $('#top-category-1').attr('src','/static/img/category/QC_Icon_'+top_category_1+'.svg');
+
+        var top_category_2 = "{{ stats.1.1 }}".replace(' ','%20');
+        $('#top-category-2').attr('src','/static/img/category/QC_Icon_'+top_category_2+'.svg');
+
+        var top_category_3 = "{{ stats.2.1 }}".replace(' ','%20');
+        $('#top-category-3').attr('src','/static/img/category/QC_Icon_'+top_category_3+'.svg');
+
+        var top_category_4 = "{{ stats.3.1 }}".replace(' ','%20');
+        $('#top-category-4').attr('src','/static/img/category/QC_Icon_'+top_category_4+'.svg');
+
+
+
+        var top_spending_category = "{{ stats.0.1 }}".replace(' ','%20');
+        $('#top-spending-category').attr('src','/static/img/category/QC_Icon_'+top_category_1+'.svg');
     });
  </script>
     <div class="row intro">
@@ -74,7 +91,7 @@
                 <div class="col-md-12 analytics-section-stats">
                     <div class="row">
                         <div class="col-md-6">
-                            <img height="60px" src="/static/img/category/QC_Icon_Comunicación%20y%20Publicidad.svg" >
+                            <img id="top-spending-category" height="60px" src="/static/img/icons/blank-category.svg" >
                         </div>
                         <div class="col-md-6 middle-stats-price">
                             <span>{{ stats.0.0|escape|intcomma }}&nbsp;$</span>
@@ -97,25 +114,25 @@
             <div class="row top-spending-categories-total">
                 {% if stats.0.0 %}
                 <div class="col-md-3">
-                    <img class="img-responsive" src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg" >
+                    <img id="top-category-1" class="img-responsive" src="/static/img/icons/blank-category.svg" >
                     {{ stats.0.0|escape|intcomma }}&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.1.0 %}
                 <div class="col-md-3">
-                    <img class="img-responsive" src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg" >
+                    <img id="top-category-2" class="img-responsive" src="/static/img/icons/blank-category.svg" >
                     {{ stats.1.0|escape|intcomma }}&nbsp;$
                 </div>
                 {% endif %}
                 {% if stats.2.0 %}
                 <div class="col-md-3">
-                    <img class="img-responsive" src="/static/img/category/QC_Icon_Alimentos.svg" >
+                    <img id="top-category-3" class="img-responsive" src="/static/img/icons/blank-category.svg" >
                     {{ stats.2.0|escape|intcomma }}&nbsp;$
                 </div>
                  {% endif %}
                 {% if stats.3.0 %}
                 <div class="col-md-3">
-                    <img class="img-responsive" src="/static/img/category/QC_Icon_Peaje.svg" >
+                    <img id="top-category-4" class="img-responsive" src="/static/img/icons/blank-category.svg" >
                     {{ stats.3.0|escape|intcomma }}&nbsp;$
                 </div>
                  {% endif %}

@@ -94,22 +94,30 @@
                 </div>
             </div>
             <div class="row top-spending-categories-total">
+                {% if stats.0.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg" >
                     {{ stats.0.0 }}&nbsp;$
                 </div>
+                {% endif %}
+                {% if stats.1.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg" >
                     {{ stats.1.0 }}&nbsp;$
                 </div>
+                {% endif %}
+                {% if stats.2.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Alimentos.svg" >
                     {{ stats.2.0 }}&nbsp;$
                 </div>
+                 {% endif %}
+                {% if stats.3.0 %}
                 <div class="col-md-3">
                     <img class="img-responsive" src="/static/img/category/QC_Icon_Peaje.svg" >
                     {{ stats.3.0 }}&nbsp;$
                 </div>
+                 {% endif %}
             </div>
         </div>
     </div>

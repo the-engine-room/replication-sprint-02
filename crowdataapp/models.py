@@ -465,6 +465,10 @@ class Document(models.Model):
     verified = models.BooleanField(_('Verified'),
                                    help_text=_('Is this document verified?'))
 
+    updated_at = models.DateTimeField(_('Modified'), auto_now = True,
+                                   help_text=_('Is this document verified?'))
+
+
     entries_threshold_override = models.IntegerField(null=True,
                                                      blank=True,
                                                      help_text=_('Minimum number of coincidental answers for a field before marking it as valid. Overrides the default value set in the Document Set this Document belongs to'))

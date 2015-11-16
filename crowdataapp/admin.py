@@ -147,24 +147,7 @@ class CanonicalFieldEntryLabelAdmin(NestedModelAdmin):
         else:
           return redirect(reverse('admin:crowdataapp_canonicalfieldentrylabel_changelist'))
 
-class FeedbackAdmin(NestedModelAdmin):
-    fields = ('document_id', 'feedback_text',)
-    list_display = ('id', 'document_id', 'timestamp', 'feedback_text')
-    list_select_related = True
-    model = models.Feedback
-    extra = 0
 
-    def get_urls(self):
-        urls = super(FeedbackAdmin, self).get_urls()
-        extra_urls = patterns('/admin/',
-                              url('^export_feedback/$',
-                                  self.admin_site.admin_view(self.export_feedback_view),
-                                  name='export_feedback'),
-                             )
-        return extra_urls + urls
-    def export_feedback_view(self):
-
-        return render_to_response('admin/export_feedback.html')
 class DocumentSetAdmin(NestedModelAdmin):
 
     class Media:
@@ -465,9 +448,9 @@ class DocumentAdmin(admin.ModelAdmin):
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
     fields = ('name', 'url', 'document_set_link', 'verified')
-    readonly_fields = (  'document_set_link', 'verified',)
+    readonly_fields = ('document_set_link', 'verified',)
     list_display = ('id', 'name', 'verified', 'entries_count', 'document_set', 'updated_at')
-    list_filter = ('document_set__name','verified')
+    list_filter = ('document_set__name', 'verified')
     search_fields = ['form_entries__fields__value', 'name']
     inlines = [DocumentSetFormEntryInline]
     actions = ['verify_document']
@@ -563,6 +546,33 @@ class CrowDataUserAdmin(UserAdmin):
 
     readonly_fields = ('last_login', 'date_joined', )
 
+class FeedbackAdmin(NestedModelAdmin):
+    fields = ('feedback_text', 'timestamp')
+    list_display = ('document_link', 'id',  'timestamp', 'feedback_text')
+    list_display_links = ('document_link', 'id',  'timestamp', 'feedback_text')
+    readonly_fields = ('feedback_text', 'timestamp')
+    ordering = ('timestamp',)
+    list_select_related = True
+    model = models.Feedback
+    extra = 0
+
+    # inlines = [DocumentSetFormEntryInline]
+
+    def get_urls(self):
+        urls = super(FeedbackAdmin, self).get_urls()
+        extra_urls = patterns('/admin/',
+                              url('^export_feedback/$',
+                                  self.admin_site.admin_view(self.export_feedback_view),
+                                  name='export_feedback'),
+                             )
+        return extra_urls + urls
+    def export_feedback_view(self):
+
+        return render_to_response('admin/export_feedback.html')
+
+    def document_link(self, obj):
+        url = reverse('admin:crowdataapp_document_change', args=(obj.document.id,))
+        return mark_safe('<a href="%s">%s</a>' % (url, obj.document.name))
 
 admin.site.register(models.DocumentSet, DocumentSetAdmin)
 admin.site.register(models.Document, DocumentAdmin)

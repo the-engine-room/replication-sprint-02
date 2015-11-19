@@ -208,6 +208,7 @@ input#same-as-above-address {
     z-index: 999999;
     margin-top: -258px;
     margin-left: 330px;
+    position: absolute;
 }
 input#id_address1_colonia {
     width: 216px;
@@ -850,5 +851,22 @@ a#cant-undo-first-address {
     input#id_address2_nnext{
         margin-top:-6px;
 
+    }
+    input#same-as-above-address {
+        z-index: 999999;
+        margin-top: -258px;
+        margin-left: 120px;
+        position: absolute;
+        float: left;
+        left: 0;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+   input#id_address1_codigo_postal {
+        float: left;
+        width: 265px;
+        position: absolute;
+        margin-top: -74px;
     }
 }

@@ -729,20 +729,20 @@
     function buildToolTipText(){
 
        $('.help-block').each(function() {
+           if(this.innerHTML != ""){
+               $(this).attr('data-toggle','tooltip');
+             $(this).attr('data-placement','top');
+             $(this).attr('title',""+this.innerHTML+"");
+             $(this).attr('class', 'helper-block glyphicon glyphicon-question-sign');
+             $(this).attr('aria-hidden','true');
+              this.innerText = "";
+               this.innerHTML = "";
+             $(this).innerText = "";
+           }else
+           {
+                $(this).attr("style","display:none;");
+           }
 
-                 if(this.innerText != ""){
-{#       data-toggle="tooltip" data-placement="left" title="Tooltip on left"              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>#}
-
-                     $(this).attr('data-toggle','tooltip');
-                     $(this).attr('data-placement','top');
-                     $(this).attr('title',""+this.innerText+"");
-                     $(this).attr('class', 'helper-block glyphicon glyphicon-question-sign');
-                     $(this).attr('aria-hidden','true');
-                      this.innerText = "";
-{#               var x = document.createElement("IMG");#}
-{#               x.src = "{% static '/static/img/about.svg' %}";#}
-{#               this.appendChild(x);#}
-                 }
        });
 
 

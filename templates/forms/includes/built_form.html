@@ -256,7 +256,7 @@
         });
 
         $(document).on('change', '#id_fecha_de_facturacion', function (e) {
-            $('input[name=fecha_de_facturacion]')[0].value = $('.dateti input#id_fecha_de_facturacion')[1].value;
+            $('input[name=fecha_de_facturacion]')[0].value = $('.dateti input#id_fecha_de_facturacion')[1].value.split(' ')[0];
         });
 
         $(document).on('change', '#same-as-above-address'), function (e) {

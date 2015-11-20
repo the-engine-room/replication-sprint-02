@@ -2509,7 +2509,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  /* margin-bottom: 5px; */
+  margin-bottom: 5px;
   font-weight: bold;
 }
 input[type="search"] {
@@ -3993,6 +3993,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon:last-child {
   border-left: 0;
+  position: relative;
+  /* float: left; */
 }
 .input-group-btn {
   position: relative;

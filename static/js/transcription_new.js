@@ -1,4 +1,9 @@
 // https://github.com/spencertipping/jquery.fix.clone
+
+$(function () {
+
+
+});
 (function (original) {
   jQuery.fn.clone = function () {
     var result           = original.apply(this, arguments),

@@ -256,7 +256,7 @@
         });
 
         $(document).on('change', '#id_fecha_de_facturacion', function (e) {
-            $('input[name=fecha_de_facturacion]')[0].value = $('input[name=fecha_de_facturacion]')[1].value;
+            $('input[name=fecha_de_facturacion]')[0].value = $('.dateti input#id_fecha_de_facturacion')[1].value;
         });
 
         $(document).on('change', '#same-as-above-address'), function (e) {
@@ -859,29 +859,7 @@
             </div>
         </div>
     </div>
-    <div id="zgjedhesi-dates">
-        <label for=""><label for="id_amount">Fecha de la facturacion</label></label>
-        <span class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Es el día en que la persona moral o física emitió la factura a alguna de las cámaras del Congreso"></span>
-        <div class="dateti input-group date" id="">
-            <input id="id_fecha_de_facturacion" name="fecha_de_facturacion" style="width:420px !important;" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
 
-            <div id="cant_read_container">
-                <a class="qc-btn qc-btn-cant-read">Ilegible</a>
-                <a class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>
-            </div>
-
-            <span class="input-group-addon">
-                <a><span class="choose-date glyphicon glyphicon-calendar"></span></a>
-            </span>
-
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(function () {
-            $('.dateti').datetimepicker();
-        });
-    </script>
 </div>
 
 
@@ -944,3 +922,27 @@
         </div>
     </div>
 </div>
+
+ <div id="zgjedhesi-dates">
+        <label for=""><label for="id_amount">Fecha de la facturacion</label></label>
+        <span class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Es el día en que la persona moral o física emitió la factura a alguna de las cámaras del Congreso"></span>
+        <div class="dateti input-group date" id="">
+            <input id="id_fecha_de_facturacion" name="fecha_de_facturacion" style="width:420px !important;" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
+
+            <div id="cant_read_container">
+                <a class="qc-btn qc-btn-cant-read">Ilegible</a>
+                <a class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>
+            </div>
+
+            <span class="input-group-addon">
+                <a><span class="choose-date glyphicon glyphicon-calendar"></span></a>
+            </span>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.dateti').datetimepicker();
+        });
+    </script>

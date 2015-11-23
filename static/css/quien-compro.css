@@ -345,9 +345,9 @@ p#domicilio-fiscio-2 {
 }
 .input-group-addon{
     float: right;
-    margin-top: -38px;
+    margin-top: -66px;
     margin-right: -25px;
-    height: 34px !important;
+    height: 29px !important;
 }
 .choose-date{
     margin-left: -9px;

@@ -654,7 +654,9 @@ p#optionalCategoryText {
     height: 38px;
     padding-top: 5px;
 }
-
+.dropdown-menu{
+    top:34px !important;
+}
 
 /*{#    .qtip-pos-lt{#}*/
 /*{#        left:-20px;#}*/

@@ -44,6 +44,8 @@
     </script>
     <![endif]-->
 
+    <script src="/static/js/iealert.min.js"></script>
+
     <!-- link rel="stylesheet" src="{% static 'browserid/persona-buttons.css' %}">-->
     {% browserid_css %}
 
@@ -57,6 +59,8 @@
     <link rel="stylesheet" href='{% static "css/datepicker.css" %}' type="text/css" />
     <link rel="stylesheet" href='{% static "css/datepicker3.css" %}' type="text/css" />
      -->
+
+    <link rel="stylesheet" type="text/css" href="/static/iealert/style.css" />
     <!-- /style header-footer -->
     <style type="text/css">
     .btn_bg_l { background: url({% static 'img/bot_bg_l.png' %}) 0 0 no-repeat;}
@@ -66,6 +70,8 @@
     </style>
 
     <script type="text/javascript" language="JavaScript">
+
+
       <!--
       var cX = 0; var cY = 0; var rX = 0; var rY = 0;
       function UpdateCursorPosition(e){ cX = e.pageX; cY = e.pageY;}
@@ -112,6 +118,12 @@
 
 
       //-->
+    </script>
+    <script>
+        $(document).ready(function() {
+		$("body").iealert({support:"ie8"});
+	});
+
     </script>
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     <script src="{% static "js/jquery-2.0.2.js" %}"></script>

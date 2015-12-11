@@ -87,6 +87,7 @@
         // When hovering in the "?" after a field, show the help-text as a tooltip.
         buildToolTipText();
 
+        buildDateButton();
         // When a user can't read the data in the PDF he can click "Can't read" link and disable that field.
         addCantReadLink();
 
@@ -270,6 +271,10 @@
 
 
 
+
+    });
+
+    function buildDateButton(){
         var date_picker_container = $('#zgjedhesi-dates').html();
         var data = $('.datefield').parent();
         $('#zgjedhesi-dates').css('display', 'none');
@@ -311,7 +316,7 @@
 
             });
         });
-    });
+    }
     function buildAddressSlideFunctionality() {
         $('input[name="same-as-above-address"]').change(function () {
             if ($(this)['context'].checked == true) {
@@ -583,6 +588,7 @@
         $('.qc-btn-cant-read').click(function () {
             if ($(this).parent().parent().children('input').length > 0) {
                 $(this).parent().parent().children('input').prop('disabled', true);
+                $(this).parent().parent().find('.dateti').children('input').prop('disabled', true);
                 $(this).parent().find('.qc-btn-undo').css('display', 'block');
             }
             else if ($(this).parent().parent().children('textarea').length > 0) {
@@ -600,6 +606,7 @@
         $('.qc-btn-undo').click(function () {
             if ($(this).parent().parent().children('input').length > 0) {
                 $(this).parent().parent().children('input').prop('disabled', false);
+                $(this).parent().parent().find('.dateti').children('input').prop('disabled', false);
                 $(this).parent().find('.qc-btn-undo').css('display', 'none');
             }
             else if ($(this).parent().parent().children('textarea').length > 0) {
@@ -960,11 +967,6 @@
         <span class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Es el día en que la persona moral o física emitió la factura a alguna de las cámaras del Congreso"></span>
         <div class="dateti input-group date" id="">
             <input class="fecha_de_facturaciono" id="id_fecha_de_facturaciono" name="fecha_de_facturaciono" style="width:420px !important;" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
-
-            <div id="cant_read_container">
-                <a class="qc-btn qc-btn-cant-read">Ilegible</a>
-                <a class="qc-btn qc-btn-undo" style="display: block;">Deshacer</a>
-            </div>
 
             <span class="input-group-addon">
                 <a><span class="choose-date glyphicon glyphicon-calendar"></span></a>

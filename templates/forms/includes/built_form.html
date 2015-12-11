@@ -267,8 +267,7 @@
             $('input[name=address2_estado]')[0].value = $('input[name=address2_estado]')[1].value;
         };
 
-        {#        $('.datefield').attr('class','input-group date form-control');#}
-        {##}
+
 
 
         var date_picker_container = $('#zgjedhesi-dates').html();
@@ -277,25 +276,41 @@
         $('.datefield').parent().children().css('display', 'none');
         data.append(date_picker_container);
 
+{#        #YYYY-MM-DD#}
+        $('.dateti').datetimepicker({
+               widgetPositioning:{
+                   vertical: 'bottom'
+               },
+                format:"DD/MM/YYYY"
+
+        });
+
          $('.fecha_de_facturaciono').each(function(){
              $(this).change(function(){
 {#                  console.log('each');#}
              });
 
          });
-        $('input[name="fecha_de_facturaciono"]').change(function () {
-            console.log($('.datefield')[1].value);
-        });
-        $('.dateti').click(function (e){
-            var fecha_date = $('.dateti input#id_fecha_de_facturaciono')[1].value.split(' ')[0].split('/');
-            var new_date = fecha_date[2]+'-'+fecha_date[1] +'-'+ fecha_date[0];
-            $('.datefield')[1].value = new_date;
-            $('.datefield')[0].value = new_date;
-{#            console.log($('.datefield')[1].value);#}
+        $('.dateti').each(function () {
+            $(this).change(function(){ console.log("AAAA");});
 
         });
 
+        $('.fecha_de_facturaciono').each(function(idx){
+            console.log(idx);
+            $(this).parent().parent().bind('click', function() {
+                var fecha_date = $('input[name=fecha_de_facturaciono]')[1].value.split('/');
+                fecha_date = fecha_date[2] + "-" + fecha_date[1] + "-" +fecha_date[0];
+                console.log(fecha_date);
 
+                $('.datefield')[1].val = fecha_date;
+                $('.datefield')[1].value = fecha_date;
+                $('.datefield')[0].val = fecha_date;
+                $('.datefield')[0].value = fecha_date;
+                console.log($('.datefield')[1].val);
+
+            });
+        });
     });
     function buildAddressSlideFunctionality() {
         $('input[name="same-as-above-address"]').change(function () {
@@ -960,10 +975,6 @@
 
     <script type="text/javascript">
         $(function () {
-            $('.dateti').datetimepicker({
-               widgetPositioning:{
-                   vertical: 'bottom'
-               }
-            });
+
         });
     </script>

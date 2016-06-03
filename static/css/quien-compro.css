@@ -911,7 +911,7 @@ a#cant-undo-first-address {
 }
 input#id_fecha_de_facturaciono {
     width: 87% !important;
-    float: left;
+    /*float: left;*/
 }
 span.input-group-addon {
     /* width: 4%; */

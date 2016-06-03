@@ -13,7 +13,7 @@
     #purple-header{
         height:140px;
     }
-    input[name=document_id]{
+    select#id_document{
         display:none;
     }
     input[name=feedback_text]{
@@ -26,7 +26,7 @@
     </style>
     <script type="application/javascript">
     $(document).ready(function() {
-        $('#id_document').css('display','none');
+{#        $('#id_document').css('display','none');#}
         var maxLength = 500;
 
         $("#word_count").on('keyup', function(){
@@ -43,9 +43,9 @@
 
         $('.feedback-submit-btn').click(function(){
             var document_id = document.location.pathname.split('/')[document.location.pathname.split('/').length-1];
-            $('input[name=document_id]').val(document_id);
+            $('select#id_document').val(document_id);
             $('input[name=feedback_text]').val($('textarea[name=feedback_texto]').val());
-            $('input[name=timestamp]').val(new Date());
+{#            $('input[name=timestamp]').val(new Date());#}
 
 
 

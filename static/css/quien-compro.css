@@ -140,7 +140,7 @@ div#home-paragraphs {
 }
 .purple-background{
     background-color:#8E4A93;
-    height: 865px;
+    height: 893px;
 }
 .purple-header-background{
     height: 77px;
@@ -185,42 +185,49 @@ label[for*=id_address]{
     display:none;
 }
 input#id_address1_calle{
-        width: 488px;
+        width: 95%;
         /* margin-top: 0px; */
         /* margin-bottom: -1px; */
         position: absolute;
-        height: 24px;
+        /* height: 24px; */
 }
 input#id_address1_nnext{
-        width: 125px;
-        float: left;
-        margin-top: -2px !important;
-        clear: right;
+        width: 31%;
+        float: right;
+        /* margin-top: -2px !important; */
+        /* clear: right; */
+        /* margin-right: 30px !important; */
 }
 input#id_address1_nint {
-    width: 137px;
+    /* width: 32%; */
     float: left;
-    margin-top: -37px;
-    margin-left: 130px;
+    margin-top: -35px;
+    /* margin-left: 130px; */
     /* position: absolute; */
 }
 input#same-as-above-address {
-    z-index: 999999;
+    /* z-index: 999999; */
+    display: block;
+    float: left;
+    width: 3%;
+    height: 14px;
     margin-top: -258px;
-    margin-left: 330px;
-    position: absolute;
+    margin-left: 56% !important;
+    /* position: absolute; */
 }
 input#id_address1_colonia {
-    width: 216px;
+    width: 35%;
+    /* clear: right; */
     float: left;
-    margin-top: -72px;
-    margin-left: 272px;
+    margin-top: -70px;
+    margin-left: 33%;
 }
 input#id_address1_municipio_o_delegacion {
     margin-top: -72px;
-    position: absolute;
-    width: 488px;
-    /* float: left; */
+    clear: both;
+    /* position: absolute; */
+    width: 100%;
+    float: left;
 }
 input#id_address1_codigo_postal {
     float: left;
@@ -229,9 +236,10 @@ input#id_address1_codigo_postal {
 }
 input#id_address1_estado {
     margin-top: -109px;
-    float: left;
-    width: 218px;
-    margin-left: 270px;
+    float: right;
+    width: 47%;
+    /* margin-right: 24px; */
+    padding-left: 2;
 }
 input#id_domicilio_fisico_del_emisor_physical_address {
     display: none;
@@ -240,42 +248,42 @@ input#id_address2_domiscilio_fiscal_del_emisor {
     margin-top: -42px;
     display:none;
 }
-input#id_address2_nnext {
-float: right; margin-top: 7px; width: 125px; /* position: absolute; */ margin-right: 228px;}
+input#id_address2_nnext {float: right;margin-top: 14px;width: 33%;/* position: absolute; *//* margin-right: 4px; */}
 input#id_address2_nint {
-    width: 137px;
+    width: 32%;
     float: left;
     margin-top: -21px;
     /* margin-right: 229px; */
 }
 input#id_address2_colonia{
-    width: 219px;
-    /* float: left; */
+    width: 33%;
+    float: left;
     margin-top: -56px;
-    position: absolute;
-    margin-left: 269px;
+    /* position: absolute; */
+    margin-left: 33%;
 }
 input#id_address2_calle {
     margin-top: 15px;
-    width: 488px;
-    float: left;
-    height: 27px;
+    width: 100%;
+    float: right;
+    /* height: 27px; */
 }
 input#id_address2_municipio_o_delegacion{
         margin-top: -53px;
-        width: 488px;
+        width: 100%;
         float: left;
 }
 input#id_address2_codigo_postal {
     margin-top: -52px;
-    width: 265px;
+    width: 53%;
     float: left;
 }
 input#id_address2_estado {
     margin-top: -87px;
-    position: absolute;
-    width: 218px;
-    margin-left: 271px;
+    float: left;
+    /* position: absolute; */
+    width: 46%;
+    margin-left: 54%;
     /* margin-left: 270px; */
     /* float: right; */
 }
@@ -301,7 +309,7 @@ p#domicilio-fiscio-2 {
 }
 #same-as-above-address-text {
     /* position: absolute; */
-    margin-left: 338px;
+    margin-right: 5%;
     margin-top: -262px;
     color: #8E4A93;
     font-family: Glegoo Regular;
@@ -311,7 +319,9 @@ p#domicilio-fiscio-2 {
 .paso-4-de-5-direccin div#cant_read_container{
     display:none;
 }
-.paso-4-de-5-direccin div.form-group {
+.paso-4-de-5-direccin div :nth-child(2n) {
+    /* display: none; */
+    width: 30% !important;
     /* margin-bottom: 13px !important; */
 }
 
@@ -319,7 +329,7 @@ p#domicilio-fiscio-2 {
 .title-of-slide {
     height: 40px;
     margin-bottom: 70px;
-    font-size:2.4em;
+    font-size: 1.8em;
     padding-top: 12px;
     text-align: center;
 }
@@ -331,8 +341,8 @@ p#domicilio-fiscio-2 {
     margin-left: -16px;
 }
 #slidedform{
-    padding-left: 23px;
-    width: 590px;
+    padding-left: 18px;
+    width: 90%;
     background: transparent;
     border-style: none;
 }
@@ -346,11 +356,12 @@ p#domicilio-fiscio-2 {
 .input-group-addon{
     float: right;
     margin-top: -1px;
-    margin-left: -9px;
-    height: 29px !important;
+    width: 4.5% !important;
+    margin-right: 7%;
+    /* height: 29px !important; */
 }
 .choose-date{
-    margin-left: -9px;
+    margin-left: -6px;
 }
 .header-logo{
     display:none;
@@ -364,7 +375,7 @@ p#domicilio-fiscio-2 {
     background-color:#8E4A93 !important;
 }
 .bx-prev {
-    left:10px;
+    left: -9px !important;
     background: url('/static/img/slide-graphics/QC_Nav_01_Arrow%20Left%20Up.svg') !important;
     width: 37px !important;
     height: 37px !important;
@@ -398,7 +409,7 @@ label, h3{
 
 }
 .slide-title{
-    top:3%;
+    top: 7%;
     font-family: Glegoo Regular;
     color:#8E4A93;
 }
@@ -468,7 +479,7 @@ div#del-recibo p{
     border-right-style: solid;
     border-width: 1px;
     border-color: #9C3793;
-    font-size: 24px;
+    font-size: 22px;
     padding-top: 5px;
     font-family: "Glegoo Bold";
 }
@@ -536,7 +547,7 @@ input[name="precio"] {
 }
 .optional_category{
     height:150px;
-    width: 500px;
+    /* width: 500px; */
 }
 .add-second-category {
     color: #8E4A93;
@@ -687,7 +698,7 @@ div.qtip{
 }
 .bx-viewport ul li {
     /* background-color: blue; */
-    padding-left: 42px;
+    padding-left: 10px;
     padding-right: 21px;
 }
 .paso-1-de-5 ,.paso-2-de-5 ,.paso-3-de-5 , .paso-4-de-5 , .paso-5-de-5{
@@ -707,7 +718,12 @@ div.qtip{
 form.form-inline {
     padding-bottom: 12px;
 }
-@media (min-width: 992px){
+@media (max-width: 992px){
+    .footer .img-responsive {
+        float: left;
+        width: 200px;
+        margin-left: 20% !important;
+    }
 }
 
 @media (max-width: 992px){
@@ -833,11 +849,12 @@ div[id^=total_sum]{
     color: gray !important;
 }
 a#cant-read-first-address {
-    top: 418px;
-    position: absolute;
+    float: left;
+    margin-top: -374px;
+    /* position: absolute; */
 }
 a#cant-undo-first-address {
-    top: 400px;
+    top: 409px;
     margin-left: 131px;
     position: absolute;
 }
@@ -881,10 +898,40 @@ a#cant-undo-first-address {
         margin-top: -54px;
     }
    input#id_address1_codigo_postal {
-        float: left;
-        width: 265px;
+        float: right;
+        width: 48%;
         position: absolute;
-        top: 381px;
+        margin-top: -74px;
     }
 
+}
+.dateti.input-group.date {
+    width: 92%;
+    display: inline;
+}
+input#id_fecha_de_facturaciono {
+    width: 87% !important;
+    float: left;
+}
+span.input-group-addon {
+    /* width: 4%; */
+}
+input#id_address1_nnext:parent {
+    width:30%;
+}
+
+input#id_address1_nnext > .form-group {
+    width: 8%;
+    float: left;
+}
+.form-group > input#id_address1_nint {
+    width:32%;
+    float:left;
+    top: 20px !important;
+}
+.paso-4-de-5-direccin.form-group:nth-child(3){
+    display:none;
+}
+a#cant-read-second-address {
+    margin-top: -11%;
 }

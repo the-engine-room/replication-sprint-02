@@ -254,7 +254,9 @@ def feedback(request, document_id):
     if request.method == 'POST':
         print request.POST
         feedback_form = forms.FeedbackForm(request.POST, instance=feedback_model)
-        feedback_form.save()
+        if feedback_form.is_valid():
+            feedback_form.save()
+
 
     else:
         feedback_form = forms.FeedbackForm()

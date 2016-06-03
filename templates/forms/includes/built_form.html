@@ -268,7 +268,17 @@
             $('input[name=address2_estado]')[0].value = $('input[name=address2_estado]')[1].value;
         };
 
+        //gather all inputs of selected types
+        var inputs = $('.qc-btn-select-other-optional-category, .precio, .fecha_de_facturaciono, #id_address2_estado');
 
+        //bind on keydown
+        inputs.on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('.bx-next').click();
+                e.preventDefault();
+            }
+        });
 
 
 
@@ -454,7 +464,7 @@
 
         $("span[id^='total_sum_number']").autoNumeric('init');
         var candidad_class = $('.paso-2-de-5-cantidad-total div.form-group').css('display', 'none');
-        $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
+        $('.paso-2-de-5-cantidad-total').append('<div id="precio-group"><div id="totalCon">Total&nbspcon&nbspIVA</div><div id="totalInput"><input tabindex="-1" type="text" name="totalPrecioValue"/><span id="dollar-sign">&nbsp$</span></div></div>')
         $('.paso-2-de-5-cantidad-total').append('<p class="optional">Opcional</p><div id="del-recibo"></div>');
         $('#del-recibo').append('<div style="height:30px;display:inline;">' +
                 '<p style="border-color: purple;width:30%;float:left;">Descripción' +
@@ -966,7 +976,7 @@
         <label for=""><label for="id_amount">Fecha de la facturacion</label></label>
         <span class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Es el día en que la persona moral o física emitió la factura a alguna de las cámaras del Congreso"></span>
         <div class="dateti input-group date" id="">
-            <input class="fecha_de_facturaciono" id="id_fecha_de_facturaciono" name="fecha_de_facturaciono" style="width:420px !important;" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
+            <input class="fecha_de_facturaciono" id="id_fecha_de_facturaciono" name="fecha_de_facturaciono" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
 
             <span class="input-group-addon">
                 <a><span class="choose-date glyphicon glyphicon-calendar"></span></a>

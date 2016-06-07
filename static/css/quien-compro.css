@@ -140,11 +140,13 @@ div#home-paragraphs {
 }
 .purple-background{
     background-color:#8E4A93;
-    height: 893px;
+    height: 940px;
+    /* min-width: 568px; */
 }
 .purple-header-background{
     height: 77px;
     background-color:#8E4A93;
+    min-width: 50%;
 }
 .otra-categoria-text{
     font-family:"Open Sans Light";
@@ -185,10 +187,10 @@ label[for*=id_address]{
     display:none;
 }
 input#id_address1_calle{
-        width: 95%;
+        width: 100%;
         /* margin-top: 0px; */
-        /* margin-bottom: -1px; */
-        position: absolute;
+        margin-bottom: -7px;
+        /* position: absolute; */
         /* height: 24px; */
 }
 input#id_address1_nnext{
@@ -206,14 +208,14 @@ input#id_address1_nint {
     /* position: absolute; */
 }
 input#same-as-above-address {
-    /* z-index: 999999; */
-    display: block;
-    float: left;
-    width: 3%;
+    z-index: 999999;
+    /* display: block; */
+    /* float: right; */
+    /* width: 3%; */
     height: 14px;
     margin-top: -258px;
-    margin-left: 56% !important;
     /* position: absolute; */
+    /* right: -56%; */
 }
 input#id_address1_colonia {
     width: 35%;
@@ -315,6 +317,7 @@ p#domicilio-fiscio-2 {
     font-family: Glegoo Regular;
     font-weight: bold;
     float: right;
+    width: 146px;
 }
 .paso-4-de-5-direccin div#cant_read_container{
     display:none;
@@ -343,8 +346,10 @@ p#domicilio-fiscio-2 {
 #slidedform{
     padding-left: 18px;
     width: 90%;
+    min-width: 500px;
     background: transparent;
     border-style: none;
+    height: 100%;
 }
 
 #document-transcript input{
@@ -355,13 +360,14 @@ p#domicilio-fiscio-2 {
 }
 .input-group-addon{
     float: right;
+    right:;
     margin-top: -1px;
-    width: 4.5% !important;
-    margin-right: 7%;
+    width: 5.9% !important;
+    margin-right: 1%;
     /* height: 29px !important; */
 }
 .choose-date{
-    margin-left: -6px;
+    margin-left: -8px;
 }
 .header-logo{
     display:none;
@@ -845,8 +851,8 @@ a#no-gracias-link:hover{
 }
 div[id^=total_sum]{
         font-family: "Open Sans Light" !important;
-    font-size: 1em;
-    color: gray !important;
+        font-size: 1em;
+        color: gray !important;
 }
 a#cant-read-first-address {
     float: left;
@@ -854,7 +860,7 @@ a#cant-read-first-address {
     /* position: absolute; */
 }
 a#cant-undo-first-address {
-    top: 409px;
+    margin-top: -374px;
     margin-left: 131px;
     position: absolute;
 }
@@ -906,15 +912,12 @@ a#cant-undo-first-address {
 
 }
 .dateti.input-group.date {
-    width: 92%;
-    display: inline;
+    width: 90%;
+    /* display: inline; */
 }
 input#id_fecha_de_facturaciono {
-    width: 87% !important;
+    width: 92.5% !important;
     /*float: left;*/
-}
-span.input-group-addon {
-    /* width: 4%; */
 }
 input#id_address1_nnext:parent {
     width:30%;
@@ -933,5 +936,71 @@ input#id_address1_nnext > .form-group {
     display:none;
 }
 a#cant-read-second-address {
-    margin-top: -11%;
+    postion: absolute;
+    margin-top: -41px;
+}
+@media screen and (max-width: 1300px) {
+    input#same-as-above-address {
+    z-index: 999999;
+    /* display: block; */
+    /* float: right; */
+    /* width: 3%; */
+    height: 14px;
+    margin-top: -258px;
+    /* position: absolute; */
+    right: -43%;
+}
+}
+@media screen and (max-width: 1070px) {
+    input#same-as-above-address {
+        z-index: 999999;
+        /* display: block; */
+        /* float: right; */
+        /* width: 3%; */
+        height: 14px;
+        margin-top: -258px;
+        /* position: absolute; */
+        right: -49%;
+    }
+        #same-as-above-address-text {
+    /* position: absolute; */
+    /* margin-right: 5%; */
+    margin-top: -257px;
+    color: #8E4A93;
+    font-family: Glegoo Regular;
+    font-weight: bold;
+    font-size: 10px;
+    float: right;
+    width: 104px;
+}
+}
+@media screen and (min-width: 1300px) {
+    input#same-as-above-address {
+        z-index: 999999;
+        /* display: block; */
+        /* float: right; */
+        /* width: 3%; */
+        height: 14px;
+        margin-top: -258px;
+        /* position: absolute; */
+        right: -48%;
+    }
+        #same-as-above-address-text {
+    /* position: absolute; */
+    /* margin-right: 5%; */
+    margin-top: -262px;
+    color: #8E4A93;
+    font-family: Glegoo Regular;
+    font-weight: bold;
+    /* font-size: 9px; */
+    float: right;
+    /* width: 80px; */
+}
+}
+a#cant-undo-second-address {
+    /* top: -62px; */
+    margin-left: 133px;
+    float: left;
+    margin-top: -40px;
+    position: absolute;
 }

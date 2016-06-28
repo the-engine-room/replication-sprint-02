@@ -1,6 +1,6 @@
 # coding: utf-8
-import urllib, json
-
+import urllib, json, csv, itertools
+import django.http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render_to_response, render
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 from django.db import models, connection
-
+from datetime import datetime
 from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
 
@@ -394,3 +394,107 @@ def documents_by_entry_value(request, document_set, field_id, canon_id):
             'documents': documents,
             'document_set': document_set,
     }
+
+def f4(seq):
+       # order preserving
+       noDupes = []
+       [noDupes.append(i) for i in seq if not noDupes.count(i)]
+       return noDupes
+
+def convert(entries):
+    #!/usr/local/bin/python3.1
+    import datetime
+    import sys    # sys.setdefaultencoding is cancelled by site.py
+    reload(sys)   # to re-enable sys.setdefaultencoding()
+    sys.setdefaultencoding('utf-8')
+
+    def distinct(l):
+      checked = []
+      for item in l:
+          if str(item) not in checked:
+              checked.append(str(item))
+      return checked
+
+    # Load in verified entries
+
+    keys = list(entries[0].keys())
+    unifiedDict = {}
+
+    for key in keys:
+       # print(key)
+       values = [entry[key] for entry in entries if key in entry]
+       values = '|'.join(distinct(values))
+       unifiedDict[key] = values
+
+    return unifiedDict
+
+def answers_view( request, document_set_id):
+
+    def _encode_dict_for_csv(d):
+        rv = {}
+        for k,v in d.items():
+            k = k.encode('utf8') if type(k) == unicode else k
+            if type(v) == datetime:
+                rv[k] = v.strftime('%Y-%m-%d %H:%M')
+            elif type(v) == unicode:
+                rv[k] = v.encode('utf8')
+            elif type(v) == bool:
+                rv[k] = 'true' if v else 'false'
+            else:
+                rv[k] = v
+        return rv
+
+    def partition(items, predicate=bool):
+        a, b = itertools.tee((predicate(item), item) for item in items)
+        return ((item for pred, item in a if not pred),
+                (item for pred, item in b if pred))
+
+    document_set = get_object_or_404(models.DocumentSet,pk=document_set_id)
+    response = django.http.HttpResponse(mimetype="text/csv")
+    # las_documents = document_set.documents.get(verified=1)
+    # print las_documents
+    entries = models.DocumentSetFormEntry \
+                    .objects \
+                    .filter(document__in=document_set.documents.all())
+
+    if len(entries) == 0:
+        return django.http.HttpResponse('No document inputs found.')
+
+    answer_field, non_answer_field = partition([u.encode('utf8') for u in entries[0].to_dict().keys()],
+                                               lambda fn: not fn.startswith('answer_'))
+
+    writer = csv.DictWriter(response, fieldnames=sorted(non_answer_field) + sorted(answer_field),extrasaction='ignore')
+
+    writer.writeheader()
+
+    # for entry in entries:
+    #     writer.writerow(_encode_dict_for_csv(entry.to_dict()))
+
+    dictionary = []
+
+    for entry in entries:
+        dictionary.append(entry.to_dict())
+
+    list_of_dictionary_keys = []
+    for elem in dictionary:
+        list_of_dictionary_keys.append(elem['Document Url'])
+
+    unique_keys_list =  f4(list_of_dictionary_keys)
+
+    # print unique_keys_list
+    final_converted_document = []
+    for key in unique_keys_list:
+        unique_document_entries = []
+        for entry in dictionary:
+            if(entry['Document Url'] == key):
+                unique_document_entries.append(entry)
+        final_converted_document.append(convert(unique_document_entries))
+    # converted_doc = self.convert(dictionary)
+
+    # print final_converted_document
+
+    for entry in final_converted_document:
+       writer.writerow(_encode_dict_for_csv(entry))
+    return response
+
+

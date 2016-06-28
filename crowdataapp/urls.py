@@ -53,4 +53,7 @@ urlpatterns = patterns('crowdataapp.views',
                        url(r'^(?P<document_set>[\w-]+)/(?P<field_id>[\w-]+)/(?P<canon_id>[\w-]+)$',
                            'documents_by_entry_value',
                            name='documents_by_entry_value'),
+                       url('^(?P<document_set_id>[\w-]+)/answers/$',
+                                  'answers_view',
+                                  name="document_set_answers_csv"),
 )

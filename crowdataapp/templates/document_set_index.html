@@ -139,4 +139,10 @@
             </div>
         </div>
     </div>
+
+    <div class="row download-section">
+        <div class="col-sm-12 col-md-12">
+            <a href="{% url "crowdataapp.views.answers_view" document_sets.0.id  %}" class="download-section-text">{{ _("Download dataset!") }}</a>
+        </div>
+    </div>
 {% endblock %}

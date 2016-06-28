@@ -919,9 +919,7 @@ input#id_fecha_de_facturaciono {
     width: 92.5% !important;
     /*float: left;*/
 }
-input#id_address1_nnext:parent {
-    width:30%;
-}
+
 
 input#id_address1_nnext > .form-group {
     width: 8%;
@@ -1003,4 +1001,16 @@ a#cant-undo-second-address {
     float: left;
     margin-top: -40px;
     position: absolute;
+}
+.row.download-section {
+    background-color: #9c3793;
+    text-align: center;
+}
+.download-section-text{
+        margin-top: 0px;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 2.0em;
+    font-family: "Glegoo Regular";
 }

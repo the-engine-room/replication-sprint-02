@@ -24,6 +24,10 @@ from crowdataapp import models, forms
 def document_set_index(request):
     stats = get_stats()
     total = get_total()
+    categories = ["alimentos", "seguro_de_gastos_medicos", "pasajes_aereos_terrestres_maitimos","gasolina", "bienes_artisticos_y_culturales", "compra_y_renta_de_bienes_inmuebles", "communication_y_publicidad", "donativos_aydas_sociales_y_transferencias_el_extranjero", "eventos_officiales", "hospedaje", "mantienimiento_y_reperacion", "mobiliario_y_equipo_de_oficina", "papeleria", "servicios_medico_y_de_laboratorio", "servicios_basicos_luz_agua_y_telefono", "transferecias_al_sindicato" ]
+    widget_categories_stats = get_stats_by_cat()
+    liberated_amounts = dict(get_amounts_by_cat())
+    print widget_categories_stats
     if not stats:
         stats = [(0,0)]
     if not total:
@@ -32,7 +36,9 @@ def document_set_index(request):
       document_sets = models.DocumentSet.objects.all().order_by('-created_at')
     except:
       document_sets = []
-    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats, 'total':total }
+    print document_sets
+    print stats
+    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats, 'liberated_amounts':liberated_amounts,'total':total ,'alimentos':widget_categories_stats, 'alimentos_verified_docs': widget_categories_stats, 'widget_cat_stats': get_stats_by_cat()}
 
 def get_stats():
     """ Get all documents that have an entry with canon """
@@ -88,6 +94,71 @@ def get_stats():
     cursor.execute(q)
     return cursor.fetchall()
 
+def get_stats_by_cat():
+    q = """
+    SELECT a.category,
+    COUNT (a.*) as number_of_docs
+    , b.number_of_verified_docs
+    FROM crowdataapp_document a
+    LEFT OUTER JOIN (
+     SELECT category
+         , COUNT (*) as number_of_verified_docs
+     FROM crowdataapp_document
+     WHERE verified=true
+     GROUP BY category
+    ) as b
+    ON a.category = b.category
+    GROUP BY a.category, b.number_of_verified_docs
+    """
+
+    cursor = connection.cursor()
+    cursor.execute(q)
+    return cursor.fetchall()
+
+    return cursor.fetchall()
+
+def get_amounts_by_cat():
+    q = """
+         SELECT FT.category as selected_cat, SUM(FT.final_amount) AS total
+     FROM (
+       SELECT DOC.DOC_ID,
+              Cats.category,
+              MAX(Vals.amount) AS final_amount -- In case different values are present
+       FROM (
+          SELECT D.id AS DOC_ID
+          FROM crowdataapp_document D
+          --WHERE D.verified is TRUE
+           ) DOC
+       INNER JOIN crowdataapp_DocumentSetFormEntry DFSE
+           ON DOC.doc_id= DFSE.document_id
+       INNER JOIN (
+          SELECT DSFI1.value::NUMERIC as amount
+              ,DSFI1.entry_id
+          FROM crowdataapp_DocumentSetFieldEntry DSFI1
+          WHERE DSFI1.field_id = 88
+          AND DSFI1.verified is TRUE
+          ) Vals
+           ON DFSE.id = Vals.entry_id
+       INNER JOIN (
+          SELECT DSFI2.value as category
+              ,DSFI2.entry_id
+          FROM crowdataapp_DocumentSetFieldEntry DSFI2
+          WHERE DSFI2.field_id = 66
+          --AND DSFI2.verified is TRUE
+          ) Cats
+       ON DFSE.id = Cats.entry_id
+       GROUP BY DOC.DOC_ID
+            , Cats.category
+       ) FT
+        GROUP BY FT.category
+      """
+
+    cursor = connection.cursor()
+    cursor.execute(q)
+    return cursor.fetchall()
+
+    return cursor.fetchall()
+
 def get_total():
 
     q = """
@@ -117,6 +188,7 @@ def get_total():
     cursor = connection.cursor()
     cursor.execute(q)
     return cursor.fetchall()
+
 @render_to('document_set_landing.html')
 def document_set_view(request, document_set):
     document_set = get_object_or_404(models.DocumentSet,
@@ -169,7 +241,7 @@ def ranking_all(request, document_set, ranking_id):
             }
 
 @login_required
-def transcription_new(request, document_set, filename=None):
+def transcription_new(request, document_set, filename=None, category=None):
 
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
@@ -181,6 +253,16 @@ def transcription_new(request, document_set, filename=None):
         filename = filename + ".pdf"
         document = get_object_or_404(models.Document,
                                      name=filename)
+    elif category is not None:
+        candidates = doc_set.get_pending_documents_by_category(category=category).exclude(form_entries__user=request.user)
+
+        if candidates.count() == 0:
+            # TODO Redirect to a message page: "you've gone through all the documents in this project!"
+            return render_to_response('no_more_documents.html',
+                                      { 'document_set': doc_set },
+                                      context_instance=RequestContext(request))
+
+        document = candidates.order_by('?')[0]
     else:
         candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
 

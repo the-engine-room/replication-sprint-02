@@ -254,6 +254,12 @@
         //gather all inputs of selected types
         var inputs = $('.qc-btn-select-other-optional-category, .precio, #id_rfc_del_emisor, #id_address2_estado');
 
+
+
+        keyDownFieldsPatch();
+
+
+
         //bind on keydown
         inputs.on('keydown', function(e) {
             //if we pressed the tab
@@ -264,7 +270,60 @@
         });
 
     });
+    function keyDownFieldsPatch(){
 
+        $('input#id_address1_calle').on('keydown', function(e) {
+
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address1_nint').focus();
+                e.preventDefault();
+            }
+        });
+
+        $('input#id_address1_colonia').on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address1_nnext').focus();
+                e.preventDefault();
+            }
+        });
+
+
+        $('input#id_address2_nnext').on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address2_municipio_o_delegacion').focus();
+                e.preventDefault();
+            }
+        });
+
+        $('input#id_address2_calle').on('keydown', function(e) {
+
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address2_nint').focus();
+                e.preventDefault();
+            }
+        });
+
+        $('input#id_address2_colonia').on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address2_nnext').focus();
+                e.preventDefault();
+            }
+        });
+
+
+        $('input#id_address2_nnext').on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address2_municipio_o_delegacion').focus();
+                e.preventDefault();
+            }
+        });
+    }
     function buildDateButton(){
         var date_picker_container = $('#zgjedhesi-dates').html();
         var data = $('.datefield').parent();

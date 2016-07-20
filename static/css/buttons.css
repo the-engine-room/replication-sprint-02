@@ -99,3 +99,15 @@
     margin-right: auto;
     margin-left: auto;
 }
+.qc-btn-libera{
+    background: url("/static/img/slide-graphics/QC_BT_Libera_Up.svg");
+    width: 90px;
+    background-size: 115px 56px;
+    height: 33px;
+}
+.qc-btn-libera:hover{
+    background: url("/static/img/slide-graphics/QC_BT_Libera.svg");
+    width: 90px;
+    background-size: 90px 40px;
+    height: 33px;
+}

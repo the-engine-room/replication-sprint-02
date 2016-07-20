@@ -14,13 +14,56 @@
 {% endblock %}
 
 {% block dataentry %}
+    <style>
+    #category-img{
+        display:none;
+    }
+    .category-name-paragraph{
+        color:#8E4A93;
+        font-size:2em;
+        text-align:center;
+        font-family: Glegoo Regular;
+        padding-top: 12px;
+        margin-left: -20px;
+    }
+    #category-info-section{
+        margin-bottom:-5px;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){
+
+        if(document.location.pathname.includes("new_transcription_by_cat")){
+            var cat = document.location.pathname.split('/')[4];
+
+            $( '#category-img' )[0]['src'] = $( '#category-img' )[0]['src'].replace('url_here',cat);
+            $( '#category-img').css('display', 'block');
+            $('#category-name').text(cat);
+        }
+        else{
+            $('#category-info-section').css('display', 'none');
+        }
+    });
+    </script>
   <!-- Document Viewer -->
     <div class="row">
         <div class="col-md-6 purple-header-background">
 
         </div>
         <div class="col-md-6">
-            <img class="img-responsive" id="the-logo" src="/static/img/QC.png">
+            <div style="float:left;width:30%;">
+                <img class="img-responsive" id="the-logo" src="/static/img/QC.png">
+            </div>
+            <div id="category-info-section" style="float:right;width:60%;">
+                <div style="float:left;">
+                    <img id="category-img" class="img-responsive" src="/static/img/category/QC_Icon_url_here.svg" >
+                </div>
+                <div style="float:left;">
+                    <p class="category-name-paragraph" style="float:right;" id="category-name"></p>
+                </div>
+
+
+            </div>
         </div>
     </div>
     <div class="row">

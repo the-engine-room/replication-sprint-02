@@ -26,6 +26,9 @@ $(document).ready(function () {
         $('input[name=address1_codigo_postal]')[1].value = place.address_components[4]["long_name"];
         $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;
 
+        $('input[name=address1_colonia]')[1].value = place.address_components[2]["long_name"];
+        $('input[name=address1_colonia]')[0].value = $('input[name=address1_colonia]')[1].value;
+
         $('input[name=address1_estado]')[1].value = place.address_components[3]["long_name"];
         $('input[name=address1_estado]')[0].value = $('input[name=address1_estado]')[1].value;
 

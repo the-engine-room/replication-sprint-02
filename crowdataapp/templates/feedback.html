@@ -26,29 +26,35 @@
     </style>
     <script type="application/javascript">
     $(document).ready(function() {
-{#        $('#id_document').css('display','none');#}
+
         var maxLength = 500;
 
+        // limit the word count on feedback to 500 words
         $("#word_count").on('keyup', function(){
-
-                var length = $(this).val().length;
-                if(length <= 500){
-                    $('#display_count').text(500 - $(this).val().length);
-{#                    $('#word_left').text(500-length);#}
-                }
-
+            var length = $(this).val().length;
+            if(length <= 500){
+                $('#display_count').text(500 - $(this).val().length);
+            }
         });
 
         document.feedback.action = document.location.pathname;
 
+        // ** if we started the liberating process from the widget **
+        // changing the link "Libera otra fatura" to give us a document from a category
+
+        var referal = document.referrer;
+
+        if(referal.includes("new_transcription_by_cat")){
+            var cat = referal.split('/')[6];
+            $( '#another' )[0]['href'] = $( '#another' )[0]['href'].replace('new_transcription','new_transcription_by_cat') + '/'+cat;
+        }
+
+        // ** when we submit the feedback **
         $('.feedback-submit-btn').click(function(){
             var document_id = document.location.pathname.split('/')[document.location.pathname.split('/').length-1];
+
             $('select#id_document').val(document_id);
             $('input[name=feedback_text]').val($('textarea[name=feedback_texto]').val());
-{#            $('input[name=timestamp]').val(new Date());#}
-
-
-
 
             $( ".opcional-box" ).animate({
                opacity: 0
@@ -61,8 +67,6 @@
             });
             $('form[name=feedback]').submit();
         });
-
-
 
      });
     </script>
@@ -103,9 +107,6 @@
                         </form>
                     </div>
                 </div>
-
-{#                <a href="#" class="btn btn-primary btn-lg btn-block" id="another" role="button">{{ _('I want to review other document') }}#}
-{#    	    	</a>#}
         </div>
         </div>
         <div class="col-md-3"></div>

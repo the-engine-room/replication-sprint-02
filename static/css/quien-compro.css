@@ -330,10 +330,11 @@ p#domicilio-fiscio-2 {
 
 
 .title-of-slide {
-    height: 40px;
+    height: 20px;
     margin-bottom: 70px;
     font-size: 1.8em;
     padding-top: 12px;
+    border-top: 1px solid #8E4A93;
     text-align: center;
 }
 #document-transcript {
@@ -415,13 +416,13 @@ label, h3{
 
 }
 .slide-title{
-    top: 7%;
+    top: 10%;
     font-family: Glegoo Regular;
     color:#8E4A93;
 }
 .slide-first-title{
     color:grey;
-    top:3%;
+    top: 3.5%;
     font-family: Glegoo Regular;
 }
 .doesnt-look-right {
@@ -1013,4 +1014,60 @@ a#cant-undo-second-address {
     color: white;
     font-size: 2.0em;
     font-family: "Glegoo Regular";
+}
+.category-section div:first-child{
+    padding-top: 8px;
+    padding-bottom:20px;
+    height:;
+}
+
+.c-section{
+    border: 1px solid #bd94bd;
+    padding-top:20px;
+    padding-bottom:20px;
+    height: 222px;
+}
+.category-icon img {
+    /* width: 159px; */
+    /* height: 104px; */
+    /* float: left; */
+    margin-bottom: -76px;
+    margin-top: -78px;
+    margin-left: -35px;
+}
+.category-text {
+
+    color: purple;
+    font-size: 1.5em;
+}
+.category-text-section{
+     border-left: 2px solid #cea2ca;
+     /* font-family: initial; */
+     font-family: "Glegoo Bold";
+     font-size: 0.8em;
+     color: grey;
+}
+.category-price {
+    color: purple;
+    font-size: 1.6em;
+}
+.category-title{
+    color: purple;
+    /* font-family: "Open Sans Regular"; */
+    font-family: Glegoo Regular;
+    font-size: 1.2em;
+}
+.title{
+    height: 76px;
+    text-align:center;
+    font-family: "Glegoo Bold";
+    font-size: -5.5vw;
+}
+.category-icon{
+    display:block;
+    /* width: 23vw; */
+    /* height: 100vh; */
+}
+.bx-wrapper .bx-controls-direction a{
+    margin-top:800px !important;
 }

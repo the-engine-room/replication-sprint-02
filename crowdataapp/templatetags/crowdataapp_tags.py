@@ -2,6 +2,7 @@ from django.core.context_processors import csrf
 from django import template
 from django.template.loader import get_template
 from crowdataapp import models
+import json
 
 from forms_builder.forms.forms import FormForForm
 
@@ -107,3 +108,12 @@ def list_ranking_user(context, users_ranking, profile = None):
 def order_by(queryset, args):
     args = [x.strip() for x in args.split(',')]
     return queryset.order_by(*args)
+
+
+@register.filter('get_value_from_dict')
+def get_value_from_dict(dict_data, key):
+    """
+    usage example {{ your_dict|get_value_from_dict:your_key }}
+    """
+    if key:
+        return dict_data.get(key)

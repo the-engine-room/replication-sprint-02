@@ -148,6 +148,9 @@ class DocumentSet(models.Model):
     def get_pending_documents(self):
         return self.documents.filter(verified=False)
 
+    def get_pending_documents_by_category(self, category):
+        return self.documents.filter(verified=False, category=category)
+
     def get_pending_documents_with_entries(self):
         return self.documents.filter(verified=False)
 
@@ -460,6 +463,7 @@ class DocumentSetRankingDefinition(models.Model):
 
 class Document(models.Model):
     name = models.CharField(_('Document title'), max_length=256, editable=True, null=True)
+    category = models.CharField(_('Document category'), max_length=256, editable=True, null=True)
     url = models.URLField(_('Document URL'), max_length='512', editable=True)
     document_set = models.ForeignKey(DocumentSet, related_name='documents')
     verified = models.BooleanField(_('Verified'),

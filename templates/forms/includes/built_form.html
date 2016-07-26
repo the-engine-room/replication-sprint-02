@@ -23,8 +23,8 @@ $(document).ready(function () {
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var place = autocomplete.getPlace();
         console.log(place.address_components);
-        $('input[name=address1_codigo_postal]')[1].value = place.address_components[4]["long_name"];
-        $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;
+{#        $('input[name=address1_codigo_postal]')[1].value = place.address_components[4]["long_name"];#}
+{#        $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;#}
 
         $('input[name=address1_colonia]')[1].value = place.address_components[2]["long_name"];
         $('input[name=address1_colonia]')[0].value = $('input[name=address1_colonia]')[1].value;

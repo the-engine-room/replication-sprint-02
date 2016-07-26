@@ -289,6 +289,13 @@
             }
         });
 
+        $('input#id_address1_nnext').on('keydown', function(e) {
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+                $('input#id_address1_municipio_o_delegacion').focus();
+                e.preventDefault();
+            }
+        });
 
         $('input#id_address2_nnext').on('keydown', function(e) {
             //if we pressed the tab

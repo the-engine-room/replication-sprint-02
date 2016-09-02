@@ -190,7 +190,6 @@
         // Save address1 values
         $(document).on('change', '#id_address1_calle', function (e) {
             $('input[name=address1_calle]')[0].value = $('input[name=address1_calle]')[1].value;
-            console.log("Fired value");
         });
         $(document).on('change', '#id_address1_nnext', function (e) {
             $('input[name=address1_nnext]')[0].value = $('input[name=address1_nnext]')[1].value;
@@ -347,23 +346,15 @@
         });
 
 
-        $('.dateti').each(function () {
-            $(this).change(function(){ console.log("AAAA");});
-
-        });
-
         $('.fecha_de_facturaciono').each(function(idx){
-            console.log(idx);
             $(this).parent().parent().bind('click', function() {
                 var fecha_date = $('input[name=fecha_de_facturaciono]')[1].value.split('/');
                 fecha_date = fecha_date[2] + "-" + fecha_date[1] + "-" +fecha_date[0];
-                console.log(fecha_date);
 
                 $('.datefield')[1].val = fecha_date;
                 $('.datefield')[1].value = fecha_date;
                 $('.datefield')[0].val = fecha_date;
                 $('.datefield')[0].value = fecha_date;
-                console.log($('.datefield')[1].val);
 
             });
         });
@@ -454,7 +445,6 @@
                         $(this).children().attr('src', replaced_url);
                         $(this).addClass('selected');
                         var categoryName = image_url.split('_')[2].replace(/%20/g, ' ').replace('.svg', '');
-                        console.log($(this).parent());
                         $(this).click(function () {
                             $("input[name='abbreviationexpenditure']").val(categoryName);
                             $('.modal').modal('hide');
@@ -479,7 +469,6 @@
                         $(this).children().attr('src', replaced_url);
                         $(this).addClass('selected');
                         var categoryName = image_url.split('_')[2].replace(/%20/g, ' ').replace('.svg', '');
-                        console.log($(this).parent());
                         $(this).click(function () {
                             $("input[name='abbreviationexpenditureoptional']").val(categoryName);
                             $('.modal').modal('hide');

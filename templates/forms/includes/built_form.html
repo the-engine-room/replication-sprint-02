@@ -22,43 +22,32 @@ $(document).ready(function () {
     });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var place = autocomplete.getPlace();
-        console.log(place.address_components);
 
-        for(val in place.address_components){
-            console.log(place.address_components[val]['types'] + " : " + place.address_components[val]['long_name']);
-
-            if(place.address_components[val]['types']=="postal_code" || place.address_components[val]['types']=="postal_code"){
-                $('input[name=address1_codigo_postal]')[1].value = place.address_components[val]["long_name"];
+        for(idx in place.address_components){
+            var address_type = place.address_components[idx]['types'];
+            if(place.address_components[idx]['types']=="postal_code"){
+                $('input[name=address1_codigo_postal]')[1].value = place.address_components[idx]["long_name"];
                 $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;
 
-            }else if(place.address_components[val]['types'][0]=="administrative_area_level_1"){
-                $('input[name=address1_colonia]')[1].value = place.address_components[val]["long_name"];
+            }else if($.inArray("sublocality_level_1", address_type) == 0){
+                $('input[name=address1_colonia]')[1].value = place.address_components[idx]["long_name"];
                 $('input[name=address1_colonia]')[0].value = $('input[name=address1_colonia]')[1].value;
 
-            }else if(place.address_components[val]['types'][0]=="administrative_area_level_2"){
-               $('input[name=address1_municipio_o_delegacion]')[1].value = place.address_components[val]["long_name"];
+            }else if($.inArray("locality", address_type) == 0){
+               $('input[name=address1_municipio_o_delegacion]')[1].value = place.address_components[idx]["long_name"];
                $('input[name=address1_municipio_o_delegacion]')[0].value = $('input[name=address1_municipio_o_delegacion]')[1].value;
 
-            }else if(place.address_components[val]['types'][0]=="country"){
-               $('input[name=address1_estado]')[1].value = place.address_components[val]["long_name"];
+            }else if($.inArray("administrative_area_level_1", address_type) == 0){
+               $('input[name=address1_estado]')[1].value = place.address_components[idx]["long_name"];
                $('input[name=address1_estado]')[0].value = $('input[name=address1_estado]')[1].value;
-                
-            }else if(place.address_components[val]['types'][0]=="route"){
-               $('input[name=address1_calle]')[1].value = place.address_components[val]["long_name"];
+
+            }else if($.inArray("route", address_type) == 0){
+               $('input[name=address1_calle]')[1].value = place.address_components[idx]["long_name"];
                $('input[name=address1_calle]')[0].value = $('input[name=address1_calle]')[1].value;
             }
         }
-{#        $('input[name=address1_calle]')[1].value = place.address_components[0]["long_name"];#}
-{#        $('input[name=address1_calle]')[0].value = $('input[name=address1_calle]')[1].value;#}
-
-
-
-{#        $('input[name=address1_estado]')[1].value = place.address_components[3]["long_name"];#}
-{#        $('input[name=address1_estado]')[0].value = $('input[name=address1_estado]')[1].value;#}
-
 
     });
-{#    $('#id_address1_calle').on('change', function(){  console.log("calle1 fired."); })#}
 
 });
 </script>

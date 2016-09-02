@@ -324,7 +324,7 @@ p#domicilio-fiscio-2 {
 }
 .paso-4-de-5-direccin div :nth-child(2n) {
     /* display: none; */
-    width: 30% !important;
+    width: 80% !important;
     /* margin-bottom: 13px !important; */
 }
 

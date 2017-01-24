@@ -4,6 +4,29 @@
 {% load static from staticfiles %}
 
 {% block landingpage %}
+
+{% if not document_sets or not document_sets.0.documents.count %}
+    <div class="row intro">
+        <div class="col-md-4">
+            <img class="img-responsive" src="/static/img/QC.png">
+        </div>
+    </div>
+    <div class="row" id="home-paragraphs" style="font-size: x-large;text-align: center;padding-bottom:60px">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <p>This site is being configured.</p>
+            <p>&nbsp</p>
+            <p>Keep calm</p>
+            <p>and meanwhile liberate other data.</p>
+            <p>&nbsp</p>
+            <p>Dear admin,</p>
+            <p>Please <a href="/admin/crowdataapp/documentset/add/" >add new document set</a> and then <a href="/admin/crowdataapp/documentset/1/add_documents/">import some data</a>.</p>
+        </div>
+    </div>
+
+{% else %}
+
 <script type="application/javascript">
     $(document).ready(function(){
         var document_count = {% widthratio document_sets.0.get_verified_documents.count document_sets.0.documents.count 100 %};
@@ -145,44 +168,12 @@
         </div>
     </div>
 
-
-{#    <div class="row category-section">#}
-{#        <div class="col-xs-12 col-md-12">#}
-{#            <div class="col-xs-12   col-md-12">#}
-{#                <h2 style="color:purple;font-family: 'Glegoo Bold'; text-align:center;">WIDGETS</h2>#}
-{#            </div>#}
-{#            {% for cat in widget_cat_stats %}#}
-{#                <div class="col-xs-12 col-sm-6  col-md-3 c-section">#}
-{#                    <div class="col-sm-12 title">#}
-{#                             <span class="category-title">{{ cat.0 }}</span><br />#}
-{#                    </div>#}
-{#                    <div class="row">#}
-{#                        <div class="col-xs-6 col-md-6 category-icon">#}
-{#                            <img width="180" height="200"  src="/static/img/category/QC_Icon_{{ cat.0|striptags|escape }}.svg" >#}
-{#                        </div>#}
-{#                        <div class="col-xs-6 col-md-6 category-text-section">#}
-{#                            {{ _('liberadas') }} <span class="category-text">{{ cat.2 }}</span> <br />#}
-{#                            {{ _('total') }} <span class="category-text">{{ cat.1 }}</span><br />#}
-{#                            <span class="category-price">{{ liberated_amounts|get_value_from_dict:cat.0 }} $</span><br />#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-12 col-md-12">#}
-{#                        <div class="col-xs-6 col-md-6">#}
-{#                        </div>#}
-{#                        <div class="col-xs-6 col-md-6">#}
-{#                           <a id="{{ cat.0 }}" class="qc-btn qc-btn-libera" href='{% url 'new_transcription' document_sets.0.slug %}/url_here'></a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{##}
-{##}
-{##}
-{#        </div>#}
-{#    </div>#}
+    {% if document_sets.0.get_verified_documents.count > 0 %}
     <div class="row download-section">
         <div class="col-sm-12 col-md-12">
-            <a href="{% url "crowdataapp.views.answers_view" document_sets.0.id  %}" class="download-section-text">{{ _("Descargar conjunto de datos!") }}</a>
+            <a href="{% url 'crowdataapp.views.answers_view' document_sets.0.id  %}" class="download-section-text">{{ _("Descargar conjunto de datos!") }}</a>
         </div>
     </div>
+    {% endif %}
+{% endif %}
 {% endblock %}

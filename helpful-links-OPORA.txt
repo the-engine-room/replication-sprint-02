@@ -1,11 +1,10 @@
+FTP of National Agency:
+ftp://91.142.175.4/
+
 API for getting information about legal entity by ID (EDRPOU) number:
 
-
 1) https://opendatabot.com/blog/27-api-for-all
-
 2) http://edr.data-gov-ua.org/about/api
-
-
 
 Brandbook OPORA
 https://www.oporaua.org/2-uncategorised/1287-brandbook

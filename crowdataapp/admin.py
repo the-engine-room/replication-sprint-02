@@ -447,8 +447,8 @@ class DocumentAdmin(admin.ModelAdmin):
         }
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
-    fields = ('name', 'url', 'document_set_link', 'verified')
-    readonly_fields = ('document_set_link', 'verified',)
+    fields = ('name', 'url', 'document_set', 'verified')
+    readonly_fields = ('verified',)
     list_display = ('id', 'name', 'verified', 'entries_count', 'document_set', 'updated_at')
     list_filter = ('document_set__name', 'verified')
     search_fields = ['form_entries__fields__value', 'name']

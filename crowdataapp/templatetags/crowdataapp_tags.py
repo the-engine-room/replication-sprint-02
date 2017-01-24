@@ -1,5 +1,6 @@
 from django.core.context_processors import csrf
 from django import template
+from django.conf import settings
 from django.template.loader import get_template
 from crowdataapp import models
 import json
@@ -117,3 +118,7 @@ def get_value_from_dict(dict_data, key):
     """
     if key:
         return dict_data.get(key)
+
+@register.filter_function
+def get_setting(name, default):
+    return getattr(settings, name, default)

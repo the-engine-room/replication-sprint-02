@@ -2,6 +2,7 @@ from settings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+STRANDED_IN_ISTRIAN_HILLS = True # in case you're low on internet
 
 DATABASES = {
     'default': {

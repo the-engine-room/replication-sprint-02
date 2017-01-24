@@ -1,6 +1,7 @@
  {% load i18n %}
  {% load static from staticfiles %}
  {% load browserid %}
+ {% load crowdataapp_tags %}
 <!DOCTYPE html>
 <html lang="en">
  {% include 'head.html' %}
@@ -16,8 +17,14 @@
         {% include "footer.html" %}
     </div>
 
+    {% if 'STRANDED_IN_ISTRIAN_HILLS'|get_setting:False %}
+    {#  # in case you're low on internet #}
+    <script type="text/javascript" src="{% static 'js/apis-google-com-plusone.js' %}">{"parsetags": "explicit","lang": "es"}</script>
+    <script src="{% static 'js/login-persona-org-include.js' %}"></script>
+    {% else %}
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js">{"parsetags": "explicit","lang": "es"}</script>
     <script src="https://login.persona.org/include.js"></script>
+    {% endif %}
     <script src="{% static 'browserid/api.js' %}"></script>
     <script src="{% static 'browserid/browserid.js' %}"></script>
 

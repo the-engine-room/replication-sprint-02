@@ -3,8 +3,11 @@ ftp://91.142.175.4/
 
 API for getting information about legal entity by ID (EDRPOU) number:
 
-1) https://opendatabot.com/blog/27-api-for-all
-2) http://edr.data-gov-ua.org/about/api
+1) https://opendatabot.com/blog/27-api-for-all - have written the request for API key, waiting for an answer
+2) http://edr.data-gov-ua.org/about/api - have written to the owner if we can use it and when it has been updated last time
+
+Dataset of Ukrainian legal entities (EDRPOU registry), last update 23/01/2017:
+http://data.gov.ua/passport/73cfe78e-89ef-4f06-b3ab-eb5f16aea237
 
 Brandbook OPORA
 https://www.oporaua.org/2-uncategorised/1287-brandbook

@@ -28,7 +28,6 @@ from crowdataapp import models
 
 class DocumentSetFormFieldAdmin(NestedTabularInline):
     model = models.DocumentSetFormField
-    exclude = ('slug', )
     extra = 1
 
 class DocumentSetFormInline(NestedStackedInline):

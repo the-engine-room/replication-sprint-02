@@ -206,7 +206,12 @@ class DocumentSetAdmin(NestedModelAdmin):
                                   name='document_set_update_canons'),
                               url('^(?P<document_set_id>\d+)/reverify_documents/$',
                                 self.admin_site.admin_view(self.reverify_documents_view),
-                                  name='document_set_reverify_documents')
+                                  name='document_set_reverify_documents'),
+
+                              # k-monitor specific urls
+                              url('^(?P<document_set_id>\d+)/kmonitor_import_asset_declarations$',
+                                  self.admin_site.admin_view(self.kmonitor_import_asset_declarations),
+                                  name='kmonitor_import_asset_declarations')
                              )
 
         return extra_urls + urls
@@ -249,6 +254,34 @@ class DocumentSetAdmin(NestedModelAdmin):
                                       {
                                           'document_set': document_set,
                                           'current_app': self.admin_site.name,
+                                      },
+                                      RequestContext(request))
+
+    def kmonitor_import_asset_declarations(self, request, document_set_id):
+        from crowdataapp.scrapers.kmonitor import asset_declarations
+        # TODO catch requests.exceptions.ConnectionError
+
+        document_set = get_object_or_404(self.model, pk=document_set_id)
+        if request.method == 'POST' and request.REQUEST['chamber'] and int(request.REQUEST['year']):
+            year = int(request.REQUEST['year'])
+            chamber_id = request.REQUEST['chamber']
+
+            report = asset_declarations.import_declarations(document_set, chamber_id, year)
+
+            return render_to_response('admin/kmonitor_import_asset_declarations_report.html',
+                                      {
+                                          'document_set': document_set,
+                                          'current_app': self.admin_site.name,
+                                          'report': report
+                                      },
+                                      RequestContext(request))
+
+        else:
+            return render_to_response('admin/kmonitor_import_asset_declarations.html',
+                                      {
+                                          'document_set': document_set,
+                                          'current_app': self.admin_site.name,
+                                          'chambers': asset_declarations.get_chambers()
                                       },
                                       RequestContext(request))
 
@@ -447,7 +480,7 @@ class DocumentAdmin(admin.ModelAdmin):
         }
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
-    fields = ('name', 'url', 'document_set', 'verified')
+    fields = ('name', 'url', 'document_set', 'politician', 'verified')
     readonly_fields = ('verified',)
     list_display = ('id', 'name', 'verified', 'entries_count', 'document_set', 'updated_at')
     list_filter = ('document_set__name', 'verified')
@@ -581,6 +614,9 @@ admin.site.unregister(forms_builder.forms.models.Form)
 admin.site.register(models.Feedback, FeedbackAdmin)
 
 admin.site.register(models.CanonicalFieldEntryLabel, CanonicalFieldEntryLabelAdmin)
+
+admin.site.register(models.Politician)
+admin.site.register(models.Party)
 
 admin.site.unregister(User)
 admin.site.register(User, CrowDataUserAdmin)

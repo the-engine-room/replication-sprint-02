@@ -6,6 +6,7 @@ from django.db import models, connection
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
 from django_extensions.db import fields as django_extensions_fields
@@ -54,7 +55,14 @@ class UserProfile(models.Model):
                                               default=True,
                                               help_text=_("If checked, you will appear in CrowData's leaderboards"))
 
-class DocumentSetManager(models.Manager):
+class CrowManager(models.Manager):
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except ObjectDoesNotExist:
+            return None
+
+class DocumentSetManager(CrowManager):
     def get_query_set(self):
         u = get_current_user() # from LocalUserMiddleware
         rv = super(DocumentSetManager, self).get_query_set()
@@ -120,6 +128,7 @@ class DocumentSet(models.Model):
         kw = {"args": (self.id,)}
         links = [
             (_("Export all answers to CSV"), reverse("admin:document_set_answers_csv", **kw)),
+            (_("Import asset declarations"), reverse("admin:kmonitor_import_asset_declarations", **kw)),
             (_("Add Documents to this document set"), reverse("admin:document_set_add_documents", **kw)),
             (_("Update Canons to this document set"), reverse("admin:document_set_update_canons", **kw))
         ]
@@ -464,6 +473,8 @@ class DocumentSetRankingDefinition(models.Model):
 class Document(models.Model):
     name = models.CharField(_('Document title'), max_length=256, editable=True, null=True)
     category = models.CharField(_('Document category'), max_length=256, editable=True, null=True)
+    politician = models.ForeignKey("Politician",  related_name='declarations',
+                                        null=True, blank=True,)
     url = models.URLField(_('Document URL'), max_length='512', editable=True)
     document_set = models.ForeignKey(DocumentSet, related_name='documents')
     verified = models.BooleanField(_('Verified'),
@@ -662,3 +673,57 @@ class Feedback(models.Model):
     # document_id = models.IntegerField(max_length=20)
     timestamp = models.DateTimeField(auto_now_add=True)
     document = models.ForeignKey(Document)
+
+
+# K-Monitor-specific models
+class Politician(models.Model):
+    objects = CrowManager()
+
+    name = models.CharField(_('Full name'), max_length='128',)
+
+    """
+    Used in most of the urls of parliamentary website
+    """
+    parliamentary_id = models.CharField(_('Parliamentary website ID'), max_length='24',)
+    image_url = models.URLField(_('Image URL'), max_length='256',)
+    party = models.ForeignKey("Party",  related_name='members',
+                                        null=True, blank=True,
+                                        verbose_name='Current MPs party',)
+    parldata_id = models.CharField(_('External ParlData API ID'), max_length='64',)
+
+    # Audit timestamps
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def create_asset_declaration_url(self, year):
+        template = 'http://www.parlament.hu/internet/cplsql/ogy_vagyonpub.vagyon_kiir_egys?P_FNEV=/2015/{id}_j0{date}k.pdf&p_cont=application/pdf'
+        # other link; working, but longer
+        # template = 'http://www.parlament.hu/aktiv-kepviseloi-nevsor?p_p_id=pairproxy_WAR_pairproxyportlet_INSTANCE_9xd2Wc9jP4z8&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage&p_p_col_id=column-1&p_p_col_count=1&_pairproxy_WAR_pairproxyportlet_INSTANCE_9xd2Wc9jP4z8_pairAction=%2Finternet%2Fcplsql%2Fogy_vagyonpub.vagyon_kiir_egys%3FP_FNEV%3D%2F2015%2Fv050_j0151231k.pdf%26p_cont%3Dapplication%2Fpdf'
+
+        from datetime import date, timedelta
+        date_filled = date(int(year) + 1, 1, 1) - timedelta(days=1) # last day of the year
+
+        return (template.format(id=self.parliamentary_id, date=date_filled.strftime('%y%m%d')), date_filled)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Politician')
+        verbose_name_plural = _('Politicians')
+
+class Party(models.Model):
+    name = models.CharField(_('Full name'), max_length='128',)
+    short_name = models.CharField(_('Short name'), max_length='128',)
+    parldata_id = models.CharField(_('External ParlData API ID'), max_length='64',)
+
+    # Audit timestamps
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Political Party')
+        verbose_name_plural = _('Political Parties')

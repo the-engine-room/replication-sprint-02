@@ -18,7 +18,7 @@ class BuiltFormNode(template.Node):
     def render(self, context):
         request = context["request"]
         post = getattr(request, "POST", None)
-        form = template.Variable(self.value).resolve(context)
+        form = template.Variable(self.value).resolve(context) # TODO catch VariableDoesNotExist Error: Admin: Define form in given DOcumentSet (users shouldn;t be allowed to enter site if this is not set)
         t = get_template("forms/includes/built_form.html")
         context["form"] = form
         form_args = (form, context, post or None)
@@ -27,13 +27,15 @@ class BuiltFormNode(template.Node):
         # kind of a hack
         # add the 'data-verify' attribute if the field is marked
         # as a verifiable field
-        for field in filter(lambda f: f.verify,
-                            form_for_form.form_fields):
-            form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
+        for field in form_for_form.form_fields:
+            if field.verify:
+                form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
+            form_for_form.fields[field.slug].multivalued = field.multivalued
 
         for field_ in form_for_form.form_fields:
             form_for_form.fields[field_.slug].widget.attrs['group'] = field_.group
             form_for_form.fields[field_.slug].group = field_.group
+
         context["form_for_form"] = form_for_form
         return t.render(context)
 

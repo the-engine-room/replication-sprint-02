@@ -249,7 +249,7 @@ def transcription_new(request, document_set, filename=None, category=None):
 
         document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
                                  document_set=doc_set)
-    elif filename is not None:
+    elif filename is not None: # TODO document name shouldn't be used as filename
         filename = filename + ".pdf"
         document = get_object_or_404(models.Document,
                                      name=filename)

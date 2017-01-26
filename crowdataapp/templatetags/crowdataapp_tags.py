@@ -18,7 +18,7 @@ class BuiltFormNode(template.Node):
     def render(self, context):
         request = context["request"]
         post = getattr(request, "POST", None)
-        form = template.Variable(self.value).resolve(context)
+        form = template.Variable(self.value).resolve(context) # TODO catch VariableDoesNotExist Error: Admin: Define form in given DOcumentSet (users shouldn;t be allowed to enter site if this is not set)
         t = get_template("forms/includes/built_form.html")
         context["form"] = form
         form_args = (form, context, post or None)

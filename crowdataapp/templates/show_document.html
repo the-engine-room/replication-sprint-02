@@ -18,7 +18,10 @@
 {% block maincolumn %}
 <div id="document-viewer-container"></div>
 <script>
-  {{ document.document_set.template_function|safe }}
+  {# pluggable-codebase: different browser depending on filetype(doument_url) #}
+  function insertDocument(document_url) {
+      document.getElementById('document-viewer-container').innerHTML = '<object type="application/pdf" data="'+document_url+'" width="100%" height="727px"></object>';
+  }
   insertDocument('{{document.url|safe}}');
 </script>
 

@@ -71,7 +71,22 @@ $(document).ready(function () {
             <div class="sections" id="{{ field_group.group }}">
                 <label for="">{{ field.label_tag }}</label>
                 <span class="help-block">{{ field.help_text }}</span>
-                    {{ field }}
+
+                {# {{ field }} #}
+
+                <input id="id_{{field.html_name}}"
+                   type="text"
+                   name="{{field.html_name}}{% if field.multivalued %}[]{%endif%}"
+                   value="{{ field.value|default_if_none:""}}"
+                   maxlength="30"/>
+
+                {% if field.multivalued %}
+                <input id="id_{{field.html_name}}"
+                   type="text"
+                   name="{{field.html_name}}{% if field.multivalued %}[]{%endif%}"
+                   value="{{ field.value|default_if_none:""}}"
+                   maxlength="30"/>
+                {% endif %}
             </div>
         {% endfor %} <!--  field in form_for_form -->
     </div>

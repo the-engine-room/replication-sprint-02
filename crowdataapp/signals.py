@@ -3,6 +3,7 @@ from urlparse import urlparse
 
 from django.dispatch import receiver
 from django.core.urlresolvers import resolve
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from forms_builder.forms.signals import form_valid, form_invalid
 

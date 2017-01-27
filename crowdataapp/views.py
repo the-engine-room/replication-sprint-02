@@ -24,7 +24,6 @@ from crowdataapp import models, forms
 @render_to('document_set_index.html')
 def document_set_index(request):
     # TODO clean
-    # stats = get_stats() # TODO clean if not needed
     # total = get_total() # TODO clean if not needed
 
     #widget_categories_stats = get_stats_by_cat()
@@ -32,14 +31,7 @@ def document_set_index(request):
 
     try:
       document_set = models.DocumentSet.objects.filter(published=True).order_by('-created_at')[0]
-      entries_count = document_set.get_entries_count()
-      stats = { 'volunteers_count': entries_count,
-                'all_declarations_count': document_set.documents.count(),
-                'liberated_declarations': document_set.get_verified_documents().count(),
-                 # time spent estimate: 12mins each entry
-                'time_spent_minutes': entries_count * 12,
-                }
-      stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
+      stats = _get_stats()
 
     except IndexError:
       document_set = None
@@ -55,59 +47,17 @@ def document_set_index(request):
             # 'widget_cat_stats': get_stats_by_cat()
              }
 
-def get_stats():
-    """ Get all documents that have an entry with canon """
+def _get_stats(document_set):
+    entries_count = document_set.get_entries_count()
+    stats = { 'volunteers_count': entries_count,
+                'all_declarations_count': document_set.documents.count(),
+                'liberated_declarations': document_set.get_verified_documents().count(),
+                 # time spent estimate: 12mins each entry
+                'time_spent_minutes': entries_count * 12,
+                }
+    stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
 
-    q = """
-       SELECT SUM(FT.final_amount) AS total
-       , FT.category
-       FROM (
-       SELECT DOC.DOC_ID
-       , MAX(Vals.amount) AS final_amount -- In case different values are present
-       , Cats.category
-       FROM (
-          SELECT D.id AS DOC_ID
-          FROM crowdataapp_document D
-          WHERE D.verified is TRUE
-       ) DOC
-       INNER JOIN crowdataapp_DocumentSetFormEntry DFSE
-       ON DOC.doc_id= DFSE.document_id
-       INNER JOIN (
-          SELECT DSFI1.value::NUMERIC as amount
-          ,DSFI1.entry_id
-          FROM crowdataapp_DocumentSetFieldEntry DSFI1
-          WHERE DSFI1.field_id = 88
-          AND DSFI1.verified is TRUE
-       ) Vals
-       ON DFSE.id = Vals.entry_id
-       INNER JOIN (
-          SELECT category
-          ,entry_id
-          FROM (
-              SELECT row_number() OVER(
-                 PARTITION BY
-                 DSFI2.entry_id
-                 ORDER BY
-                 DSFI2.id) AS Row
-                 ,DSFI2.value AS category
-                 ,DSFI2.entry_id
-              FROM crowdataapp_DocumentSetFieldEntry DSFI2
-              WHERE DSFI2.field_id = 66
-          ) A
-       WHERE Row = 1 -- get the first category only in case of disagreement
-       ) Cats
-       ON DFSE.id = cats.entry_id
-       GROUP BY DOC.DOC_ID
-       , Cats.category
-       ) FT
-       GROUP BY FT.category
-       ORDER BY SUM(FT.final_amount) DESC
-       LIMIT 4
-       """
-
-    cursor = connection.cursor()
-    cursor.execute(q)
-    return cursor.fetchall()
+    return  stats
 
 def get_stats_by_cat():
     q = """
@@ -360,21 +310,25 @@ def login(request):
 
 @render_to('feedback.html')
 def feedback(request, document_id):
-    import datetime
     feedback_model = models.Feedback()
+    document_set = Document.objects.get(pk=document_id).document_set
+    feedback_sent = False
 
     if request.method == 'POST':
         print request.POST
         feedback_form = forms.FeedbackForm(request.POST, instance=feedback_model)
         if feedback_form.is_valid():
             feedback_form.save()
-
+            feedback_sent = True
 
     else:
         feedback_form = forms.FeedbackForm()
 
     return {
-        'feedback_form': feedback_form
+        'feedback_form': feedback_form,
+        'document_set_slug': document_set.slug,
+        'stats': _get_stats(document_set),
+        'feedback_sent': feedback_sent,
     }
 
 @render_to('login_anonymously.html')

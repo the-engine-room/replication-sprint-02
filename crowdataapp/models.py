@@ -586,7 +586,7 @@ class Document(models.Model):
               if the_choosen_one[entry] == len(form_fields):
                 # then mark entry (thus related document) as verified
                 entry.force_verify()
-                # TODO only one entry is marked as verified, but all matching should be
+                # TODO only one entry is marked as verified, but all matching should be; all non-matching shouldn't be
                 break
 
             self.updated_at = datetime.today()

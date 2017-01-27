@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load multifor %}
+{% load crowdataapp_tags %}
 <style>
     .container {
         background: linear-gradient(90deg, #A327A1 670px, white 650px);
@@ -75,8 +76,12 @@ $(document).ready(function () {
 
                 {% with multivalued=field.field.widget.attrs|dictvalue:'data-multivalued' %}
                 {# multivalue is also marked in data-multivalued #}
-                
+
                 {{ field }}
+
+                {% if multivalued %}
+                {{ field }}
+                {% endif %}
 
                 {% endwith %}
             </div>

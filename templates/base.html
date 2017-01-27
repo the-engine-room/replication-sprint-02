@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
  {% include 'head.html' %}
-  <body>
-    <div class="container-full">
-        {% include "header.html" %}
+  <body id="homepage">
+    <div class="container-fluid">
+    {% include "header.html" %}
     {% if document_set.get_verified_documents.count > 0 %}
         <img style="width:100%;" src="http://quiencompro.com/images/content/5be3ed595fcef13941e62fce9697e593.jpeg">
     {% else %}

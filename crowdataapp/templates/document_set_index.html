@@ -121,11 +121,13 @@
 
 
     {% if document_set.get_verified_documents.count > 0 %}
+    <!--
+    TG hid this because it was showing to everyone, not only super users
     <div class="row download-section">
         <div class="col-md-2 col-md-offset-5">
             <a href="{% url 'crowdataapp.views.answers_view' document_set.id  %}" class="download-section-text cta">{{ _("Teljes adatbázis letöltése") }}</a>
         </div>
-    </div>
+    </div> -->
     {% endif %}
 {% endif %}
 {% endblock %}

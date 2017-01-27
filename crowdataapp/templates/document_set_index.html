@@ -52,20 +52,20 @@
           <p>Harmadik éve tesszük átláthatóbbá önkéntesek segítségével a január 31-én elérhetővé váló vagyonbevallásokat. Nyiss meg egyet és vidd át a képviselő által megadott adatokat a beviteli lapra! Egy dokumentum kitöltéséhez körülbelül 10 percre van szükség.</p>
         </div>
         <div class="col-md-4 col-md-offset-1">
-          <h2>To date we achieved:</h2>
+          <h2>2015 óta</h2>
             <p class="infographic-top-number"><i class="fa fa-user-o" aria-hidden="true"></i> {{ stats.volunteers_count }}</p>
-            <p class="infographic-top-label">volunteers</p>
+            <p class="infographic-top-label">önkéntes</p>
+            <p class="infographic-top-number"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ stats.time_spent_minutes }} órányi</p>
+            <p class="infographic-top-label">munkája</p>
             <p class="infographic-top-number"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ stats.liberated_declarations }}</p>
-            <p class="infographic-top-label">liberated declarations</p>
-            <p class="infographic-top-number"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ stats.time_spent_minutes }} minutes</p>
-            <p class="infographic-top-label">time spent</p>
+            <p class="infographic-top-label">felszabadított nyilatkozatot eredményezett</p>
         </div>
         <a class="cta cta-main col-md-2 col-md-offset-5" href="{% url 'liberate_mp' document_set.slug %}">Kezdj bele!</a>
       </section>
 
       <section class="row progress-section-1">
             <div class="col-md-6 col-md-offset-3">
-              <h2>Progress</h2>
+              <h2>Folyamatban</h2>
               <div class="progress-border">
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="{{ stats.liberated_declarations }}" aria-valuemin="0" aria-valuemax="{{ stats.all_declarations_count }}" style="width: {{ stats.progress_percent }}%;">
@@ -79,27 +79,27 @@
       <section class="row progress-section-2">
           <!-- TODO production: hide if not filled -->
         <div class="col-md-3 col-md-offset-3">
-          <p class="label-stat">Total amount of savings liberated:</p>
+          <p class="label-stat">Összes felszabadított megtakarítás:</p>
           <p class="number-stat">9.340.000Ft</p>
         </div>
         <div class="col-md-3">
-          <p class="label-stat">Total amount of debt liberated:</p>
+          <p class="label-stat">Összes felszabadított tartozás:</p>
           <p class="number-stat">715.000Ft</p>
         </div>
         <div class="col-md-6 col-md-offset-3 blue-divider">
         </div>
         <div class="col-md-2 col-md-offset-3">
-          <p class="label-stat">MP with most properties</p>
+          <p class="label-stat">Legtöbb ingatlan:</p>
           <p class="number-stat">12 <i class="fa fa-home" aria-hidden="true"></i></p>
           <p class="mp-name-stat">Antal Rogán</p>
         </div>
         <div class="col-md-2">
-          <p class="label-stat">MP with most vehicles</p>
+          <p class="label-stat">Legtöbb jármű</p>
           <p class="number-stat">7 <i class="fa fa-car" aria-hidden="true"></i></p>
           <p class="mp-name-stat">Gábor Vona</p>
         </div>
         <div class="col-md-2">
-          <p class="label-stat">MP with most debt</p>
+          <p class="label-stat">Legtöbb tartozás</p>
           <p class="number-stat">1.2M Ft</p>
           <p class="mp-name-stat">Lajos Kósa</p>
         </div>
@@ -117,13 +117,13 @@
         </div>
         <div class="col-md-4"><div class="call-out">A Vagyonnyilatkozatok hajnalán a te segítségeddel csináljuk meg azt, ami a hatóságok feladata lenne.</div></div>
       </section>
-    
-    
+
+
 
     {% if document_set.get_verified_documents.count > 0 %}
     <div class="row download-section">
-        <div class="col-sm-12 col-md-12">
-            <a href="{% url 'crowdataapp.views.answers_view' document_set.id  %}" class="download-section-text">{{ _("Descargar conjunto de datos!") }}</a>
+        <div class="col-md-2 col-md-offset-5">
+            <a href="{% url 'crowdataapp.views.answers_view' document_set.id  %}" class="download-section-text cta">{{ _("Teljes adatbázis letöltése") }}</a>
         </div>
     </div>
     {% endif %}

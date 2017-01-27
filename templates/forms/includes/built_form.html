@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load multifor %}
+<!-- 
 <style>
     .container {
         background: linear-gradient(90deg, #A327A1 670px, white 650px);
@@ -10,8 +11,9 @@
 <script src="{% static "js/bootstrap/collapse.js" %}"></script>
 <script src="{% static "js/bootstrap/transition.js" %}"></script>
 <script src="{% static "js/bootstrap/bootstrap-datetimepicker.js" %}"></script>
-<script src="{% static "/static/js/qc.js" %}"></script>
+<script src="{% static "/static/js/qc.js" %}"></script> 
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
+-->
 
 <script>
 $(document).ready(function () {
@@ -78,15 +80,16 @@ $(document).ready(function () {
 
 </form>
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
-      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
+      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block form-horizontal">
     <p class="step-x-y"></p>
 
     <p class="step-title"></p>
     {% csrf_token %}
     <div id="slidedform" class="form">
       <ul id="slide-list">
-            <li>
+            <li class="container-fluid">
 <!-- SLIDE 1 -->
+
               <div class="row">
                 <div class="col-md-12">
                   <h1>Personal Information</h1>
@@ -94,7 +97,7 @@ $(document).ready(function () {
                     <div class="col-md-4">
                       <label for="spouse">Spouse:</label>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                       <input class="form-control" type="text" name="spouse" class="form-control">
                     </div>
                   </div>
@@ -102,7 +105,7 @@ $(document).ready(function () {
                     <div class="col-md-4">
                       <label for="child">Child:</label>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                       <input class="form-control" type="text" name="children[]" class="form-control">
                     </div>
                   </div>
@@ -110,7 +113,7 @@ $(document).ready(function () {
 
               </div>
             </li>
-            <li>
+            <li class="container-fluid">
 <!-- SLIDE 2 -->
               <div class="row">
                 <div class="col-md-12">
@@ -322,7 +325,10 @@ $(document).ready(function () {
                         <div class="col-md-12">
                           <h2>Acquisition Info</h2>
                         </div>
-                        <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="row">
+                            
                           <div class="col-md-3">
                             <select id="select1" class=" form-control" name="acquisition1[]" data-live-search="true" title="Enter value">
                               <option value="1">Fast Cars</option>
@@ -354,13 +360,15 @@ $(document).ready(function () {
                               <option value="12">December</option>
                             </select>
                           </div>
-                          <div class="col-md-3">
-                            <input class="form-control"  name="acquisition-day[]" type="number" placeholder="day" maxlength="2" min="1" max="31">
-                          </div>
+                            <div class="col-md-3">
+                                <input class="form-control"  name="acquisition-day[]" type="number" placeholder="day" maxlength="2" min="1" max="31">
+                            </div>
                         </div>
-
                         <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i> Add another entry...</button>
+  
+                      </div>
 
+                        
                       </div>
 
                       <div class="row property-type">
@@ -401,7 +409,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- slide 3 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h2>Moveable assets</h2>
@@ -538,7 +546,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- Slide 4 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
               <div class="col-md-12">
                 <h1>Are there any other savings?</h1>
@@ -617,7 +625,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- slide 5 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h1>Are there any debts?</h1>
@@ -669,7 +677,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- slide 6 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h1>Other Comments</h1>
@@ -699,7 +707,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- slide 7 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h1>Other forms of income</h1>
@@ -752,7 +760,7 @@ $(document).ready(function () {
               </div>
             </li>
 <!-- slide 8 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h1>Economic Interest</h1>
@@ -899,7 +907,7 @@ $(document).ready(function () {
             </li>
 
 <!-- slide 9 -->
-            <li>
+            <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
                   <h1>Any presents, benefits or subsidies?</h1>

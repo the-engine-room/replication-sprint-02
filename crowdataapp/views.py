@@ -17,28 +17,43 @@ from django.db import models, connection
 from datetime import datetime
 from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
+from models import DocumentSet, Document
 
 from crowdataapp import models, forms
 
 @render_to('document_set_index.html')
 def document_set_index(request):
-    stats = get_stats()
-    total = get_total()
-    categories = ["alimentos", "seguro_de_gastos_medicos", "pasajes_aereos_terrestres_maitimos","gasolina", "bienes_artisticos_y_culturales", "compra_y_renta_de_bienes_inmuebles", "communication_y_publicidad", "donativos_aydas_sociales_y_transferencias_el_extranjero", "eventos_officiales", "hospedaje", "mantienimiento_y_reperacion", "mobiliario_y_equipo_de_oficina", "papeleria", "servicios_medico_y_de_laboratorio", "servicios_basicos_luz_agua_y_telefono", "transferecias_al_sindicato" ]
-    widget_categories_stats = get_stats_by_cat()
-    liberated_amounts = dict(get_amounts_by_cat())
-    print widget_categories_stats
-    if not stats:
-        stats = [(0,0)]
-    if not total:
-        total = [(0,0)]
+    # TODO clean
+    # stats = get_stats() # TODO clean if not needed
+    # total = get_total() # TODO clean if not needed
+
+    #widget_categories_stats = get_stats_by_cat()
+    # liberated_amounts = dict(get_amounts_by_cat())
+
     try:
-      document_sets = models.DocumentSet.objects.all().order_by('-created_at')
-    except:
-      document_sets = []
-    print document_sets
-    print stats
-    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats, 'liberated_amounts':liberated_amounts,'total':total ,'alimentos':widget_categories_stats, 'alimentos_verified_docs': widget_categories_stats, 'widget_cat_stats': get_stats_by_cat()}
+      document_set = models.DocumentSet.objects.filter(published=True).order_by('-created_at')[0]
+      entries_count = document_set.get_entries_count()
+      stats = { 'volunteers_count': entries_count,
+                'all_declarations_count': document_set.documents.count(),
+                'liberated_declarations': document_set.get_verified_documents().count(),
+                 # time spent estimate: 12mins each entry
+                'time_spent_minutes': entries_count * 12,
+                }
+      stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
+
+    except IndexError:
+      document_set = None
+      stats = {}
+
+    return { 'document_set': document_set,
+             #'header_title': _('Choose one of this project'),
+             'stats': stats,
+             #'liberated_amounts':liberated_amounts,
+             #'total':total ,
+             #'alimentos':widget_categories_stats,
+            # 'alimentos_verified_docs': widget_categories_stats,
+            # 'widget_cat_stats': get_stats_by_cat()
+             }
 
 def get_stats():
     """ Get all documents that have an entry with canon """
@@ -240,23 +255,33 @@ def ranking_all(request, document_set, ranking_id):
             'search_term': request.REQUEST.get('search'),
             }
 
+@login_required
 @render_to('liberate_mp.html')
-def liberate_mp(request, document_set):
-    return {}
+def liberate_mp(request, document_set_slug):
+    doc_set = DocumentSet.objects.get_or_404(slug=document_set_slug)
+
+    candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
+    if candidates.count() == 0:
+        # TODO Redirect to a message page: "you've gone through all the documents in this project!"
+        return render_to_response('no_more_documents.html',
+                                  { 'document_set': doc_set },
+                                  context_instance=RequestContext(request))
+
+    document = candidates.order_by('?')[0]
+
+    return {'document': document,
+            'document_set': doc_set,
+            'mp': document.politician,
+            }
+
 
 @login_required
-def transcription_new(request, document_set, filename=None, category=None):
-
+def transcription_new(request, document_set, doc_id=None, category=None):
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
-    if request.GET.get('document_id') is not None and request.user.is_staff:
-
-        document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
+    if doc_id:
+        document = get_object_or_404(models.Document, pk=doc_id,
                                  document_set=doc_set)
-    elif filename is not None: # TODO document name shouldn't be used as filename
-        filename = filename + ".pdf"
-        document = get_object_or_404(models.Document,
-                                     name=filename)
     elif category is not None:
         candidates = doc_set.get_pending_documents_by_category(category=category).exclude(form_entries__user=request.user)
 

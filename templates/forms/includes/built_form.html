@@ -471,13 +471,14 @@ $(document).ready(function () {
                       <input class="form-control" name="wa_subtype[]" type="text">
                     </div>
                     <div class="col-md-4">
-                      <select class="form-control" name="aw-vehicle-ownership[]" title="ownership">
+                      <select class="form-control" name="wa_acq[]" title="ownership">
                         <option></option>
                         <option>Alfetta</option>
                         <option>500</option>
                         <option>Whatever</option>
                       </select>
                     </div>
+                    <!-- TO DO: combine aerial-water-vehicle acquisition date into a single date input name="wa_acq_time" through backend magic, or frontend fu -->
                     <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="aw-vehicle-month[]" placeholder="month" title="month" data-live-search="true">
@@ -501,7 +502,7 @@ $(document).ready(function () {
                   <h3>Artwork <small>if any</small></h3>
                   <div class="row">
                     <div class="col-md-4">
-                      <select class="form-control" name="art-type[]" title="type">
+                      <select class="form-control" name="artwork_type[]" title="type">
                         <option></option>
                         <option>Alfetta</option>
                         <option>500</option>
@@ -509,20 +510,21 @@ $(document).ready(function () {
                       </select>
                     </div>
                     <div class="col-md-4">
-                      <input class="form-control" name="art-name[]" placeholder="name" type="text">
+                      <input class="form-control" name="artwork_name[]" placeholder="name" type="text">
                     </div>
                     <div class="col-md-4">
-                      <input class="form-control" name="art-number[]" placeholder="#" type="text">
+                      <input class="form-control" name="artwork_pieces[]" placeholder="#" type="text">
                     </div>
 
                     <div class="col-md-4">
-                      <select class="form-control" name="art-ownership[]" title="ownership">
+                      <select class="form-control" name="artwork_acq[]" title="ownership">
                         <option></option>
                         <option>Alfetta</option>
                         <option>500</option>
                         <option>Whatever</option>
                       </select>
                     </div>
+                    <!-- TO DO: combine artwork acquisition date into a single date input name="artwork_acq_time" through backend magic, or frontend fu -->
                     <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="art-month[]" placeholder="month" title="month" data-live-search="true">
@@ -563,13 +565,16 @@ $(document).ready(function () {
                 <div class="hidden contents-2" id="">
                   <div class="row">
                     <div class="col-md-10">
-                      <h2>Savings Deposit</h2>
+                      <h2>Investments / Securities</h2>
                       <div class="row">
                         <div class="col-md-4">
-                          <input type="text" name="savings-number[]" class="form-control">
+                          <input type="text" name="inv_name[]" class="form-control" title="name">
                         </div>
                         <div class="col-md-4">
-                          <select class="form-control" name="savings-currency[]" title="currency">
+                          <input type="text" name="inv_value[]" title="value">
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="inv_curr[]" title="currency">
                             <option></option>
                             <option>Alfetta</option>
                             <option>500</option>
@@ -579,14 +584,16 @@ $(document).ready(function () {
                       </div>
                       <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
                     </div>
+
+                  <div class="row">
                     <div class="col-md-10">
-                      <h2>Financial institution accounts</h2>
+                      <h2>Savings Deposit</h2>
                       <div class="row">
                         <div class="col-md-4">
-                          <input type="text" name="fia-number[]" class="form-control">
+                          <input type="text" name="sec_value[]" class="form-control">
                         </div>
                         <div class="col-md-4">
-                          <select class="form-control" name="fia-currency[]" title="currency">
+                          <select class="form-control" name="sec_curr[]" title="currency">
                             <option></option>
                             <option>Alfetta</option>
                             <option>500</option>
@@ -600,7 +607,24 @@ $(document).ready(function () {
                       <h2>Cash</h2>
                       <div class="row">
                         <div class="col-md-4">
-                          <select class="form-control" name="cash-type[]" title="currency">
+                          <input type="text" name="cash[]" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="cash_curr[]" title="currency">
+                            <option></option>
+                            <option>Alfetta</option>
+                            <option>500</option>
+                            <option>Whatever</option>
+                          </select>
+                        </div>
+                      </div>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                    </div>
+                    <div class="col-md-10">
+                      <h2>Obligations</h2>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <select class="form-control" name="obligation_type[]" title="currency">
                             <option></option>
                             <option>Alfetta</option>
                             <option>500</option>
@@ -608,10 +632,10 @@ $(document).ready(function () {
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" name="cash-number[]" class="form-control">
+                          <input type="text" name="obligation_value[]" class="form-control">
                         </div>
                         <div class="col-md-4">
-                          <select class="form-control" name="cash-currency[]" title="currency">
+                          <select class="form-control" name="obligation_curr[]" title="currency">
                             <option></option>
                             <option>Alfetta</option>
                             <option>500</option>
@@ -645,7 +669,7 @@ $(document).ready(function () {
                         <h2>Debts</h2>
                         <div class="row">
                           <div class="col-md-4">
-                            <select class="form-control" name="debt-type[]" title="type">
+                            <select class="form-control" name="debt_type[]" title="type">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -653,13 +677,13 @@ $(document).ready(function () {
                             </select>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" name="debt-text[]" class="form-control" placeholder="description">
+                            <input type="text" name="debt_desc[]" class="form-control" placeholder="description">
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="debt-amount[]" class="form-control" placeholder="description">
+                            <input type="text" name="debt_value[]" class="form-control" placeholder="description">
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="debt-currency[]" title="currency">
+                            <select class="form-control" name="debt_curr[]" title="currency">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -697,7 +721,7 @@ $(document).ready(function () {
                         <h2>Comments</h2>
                         <div class="row">
                           <div class="col-md-12">
-                            <textarea name="other-comment" class="form-control" placeholder="other comments" rows="6"></textarea>
+                            <textarea name="comment" class="form-control" placeholder="other comments" rows="6"></textarea>
                           </div>
                         </div>
                       </div>
@@ -734,22 +758,22 @@ $(document).ready(function () {
                             <input type="text" name="employer[]" class="form-control" placeholder="employer">
                           </div>
                           <div class="col-md-3">
-                            <select class="form-control" name="currently-employed[]" title="curently employed">
+                            <select class="form-control" name="active[]" title="curently employed">
                               <option></option>
                               <option>yes</option>
                               <option>no</option>
                             </select>
                           </div>
-                          <div class="col-md-3"><input type="text" name="salary[]" class="form-control" placeholder="salary"></div>
+                          <div class="col-md-3"><input type="text" name="income[]" class="form-control" placeholder="salary"></div>
                           <div class="col-md-3">
-                            <select class="form-control" name="salary-currency[]" title="currency">
+                            <select class="form-control" name="income_curr[]" title="currency">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
                               <option>Whatever</option>
                             </select>
                           </div>
-                          <div class="col-md-3"><input type="text" name="frequency[]" class="form-control" placeholder="frequency"></div>
+                          <div class="col-md-3"><input type="text" name="regularity[]" class="form-control" placeholder="frequency"></div>
 
                         </div>
                       </div>
@@ -780,13 +804,13 @@ $(document).ready(function () {
                         <h2>Company Information</h2>
                         <div class="row">
                           <div class="col-md-8">
-                            <input class="form-control" name="company[]" placeholder="company">
+                            <input class="form-control" name="co_name[]" placeholder="company">
                           </div>
                           <div class="col-md-8">
-                            <input class="form-control" name="company-location[]" placeholder="address">
+                            <input class="form-control" name="co_location[]" placeholder="address">
                           </div>
                           <div class="col-md-4">
-                            <select class="form-control" name="company-type[]" title="type">
+                            <select class="form-control" name="co_type[]" title="type">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -799,7 +823,7 @@ $(document).ready(function () {
                         <h2>form of economic interest at the beginning</h2>
                         <div class="row">
                           <div class="col-md-8">
-                            <select class="form-control" name="interest-start[]" title="type">
+                            <select class="form-control" name="int_beginning[]" title="type">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -813,7 +837,7 @@ $(document).ready(function () {
                         <h2>form of economic interest at present</h2>
                         <div class="row">
                           <div class="col-md-8">
-                            <select class="form-control" name="interest-now[]" title="type">
+                            <select class="form-control" name="int_now[]" title="type">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -829,16 +853,16 @@ $(document).ready(function () {
                           <div class="col-md-8">
                             <div class="row">
                               <div class="col-md-2">
-                                <input class="form-control" name="part-of-start[]" type="text">
+                                <input class="form-control" name="ownership_ratio_beg1[]" type="text">
                               </div>
                               <div class="col-md-2"><span class="out-of center-block">/</span></div>
                               <div class="col-md-2">
-                                <input class="form-control" type="text" name="total-start[]">
+                                <input class="form-control" type="text" name="ownership_ratio_beg2[]">
                               </div>
                               <div class="col-md-2"><span class="or center-block">OR</span></div>
                               <div class="col-md-4">
                                 <div class="input-group">
-                                  <input type="text" class="form-control" name="percentage-start[]" placeholder="percentage..." aria-describedby="percent-addon">
+                                  <input type="text" class="form-control" name="ownership_ratio_beg_percent[]" placeholder="percentage..." aria-describedby="percent-addon">
                                   <span class="input-group-addon" id="percent-addon">%</span>
                                 </div>
                               </div>
@@ -853,16 +877,16 @@ $(document).ready(function () {
                           <div class="col-md-8">
                             <div class="row">
                               <div class="col-md-2">
-                                <input class="form-control" name="part-of-now[]" type="text">
+                                <input class="form-control" name="ownership_ratio_now1[]" type="text">
                               </div>
                               <div class="col-md-2"><span class="out-of center-block">/</span></div>
                               <div class="col-md-2">
-                                <input class="form-control" type="text" name="total-now[]">
+                                <input class="form-control" type="text" name="ownership_ratio_now2[]">
                               </div>
                               <div class="col-md-2"><span class="or center-block">OR</span></div>
                               <div class="col-md-4">
                                 <div class="input-group">
-                                  <input type="text" class="form-control" name="percentage-now[]" placeholder="percentage..." aria-describedby="percent-addon">
+                                  <input type="text" class="form-control" name="ownership_ratio_now_percent[]" placeholder="percentage..." aria-describedby="percent-addon">
                                   <span class="input-group-addon" id="percent-addon">%</span>
                                 </div>
                               </div>
@@ -878,7 +902,7 @@ $(document).ready(function () {
                         <div class="row">
                           <div class="col-md-8">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="percentage-start[]" placeholder="percentage..." aria-describedby="percent-addon">
+                              <input type="text" class="form-control" name="profitshare[]" placeholder="percentage..." aria-describedby="percent-addon">
                               <span class="input-group-addon" id="percent-addon">%</span>
                             </div>
                           </div>
@@ -927,10 +951,10 @@ $(document).ready(function () {
                         <h2>Benefits</h2>
                         <div class="row">
                           <div class="col-md-4">
-                            <input type="text" name="-benefit-date[]" class="form-control" placeholder="date">
+                            <input type="text" name="benefit_date[]" class="form-control" placeholder="date">
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="benefit-type[]" title="product">
+                            <select class="form-control" name="benefit_name[]" title="product">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -938,10 +962,10 @@ $(document).ready(function () {
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="benefit-amount[]" class="form-control" placeholder="amount">
+                            <input type="text" name="benefit_value[]" class="form-control" placeholder="amount">
                           </div>
                           <div class="col-md-4">
-                            <select class="form-control" name="benefit-currency[]" title="currency">
+                            <select class="form-control" name="benefit_curr[]" title="currency">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -949,11 +973,7 @@ $(document).ready(function () {
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <div class="checkbox">
-                              <label>
-                                 <input type="checkbox" name="benefit-btl[]"> By The Law!
-                              </label>
-                            </div>
+
                           </div>
                         </div>
                         <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
@@ -963,10 +983,10 @@ $(document).ready(function () {
                         <h2 class="clearfix">Presents</h2>
                         <div class="row">
                           <div class="col-md-4">
-                            <input type="text" name="present-date[]" class="form-control" placeholder="date">
+                            <input type="text" name="present_date[]" class="form-control" placeholder="date">
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="present-type[]" title="product">
+                            <select class="form-control" name="present_name[]" title="product">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -974,10 +994,10 @@ $(document).ready(function () {
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="present-amount[]" class="form-control" placeholder="amount">
+                            <input type="text" name="present_value[]" class="form-control" placeholder="amount">
                           </div>
                           <div class="col-md-4">
-                            <select class="form-control" name="present-currency[]" title="currency">
+                            <select class="form-control" name="present_currency[]" title="currency">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>
@@ -985,11 +1005,7 @@ $(document).ready(function () {
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <div class="checkbox">
-                              <label>
-                                 <input type="checkbox" name="present-btl[]"> By The Law!
-                              </label>
-                            </div>
+
                           </div>
                         </div>
                         <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
@@ -1001,28 +1017,28 @@ $(document).ready(function () {
                       <h2 class="clearfix">Subsidies</h2>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" name="subsidie-recipient[]" class="form-control" placeholder="recipient">
+                            <input type="text" name="subs_reci[]" class="form-control" placeholder="recipient">
                           </div>
                           <div class="col-md-6">
-                            <input type="text" name="subsidie-acquisition[]" class="form-control" placeholder="acquisition">
+                            <input type="text" name="subs_legal[]" class="form-control" placeholder="acquisition">
                           </div>
 
                           <div class="col-md-4">
-                            <input type="text" name="subsidie-date[]" class="form-control" placeholder="date">
+                            <input type="text" name="subs_date[]" class="form-control" placeholder="date">
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="subsidie-provider[]" class="form-control" placeholder="provider">
+                            <input type="text" name="subs_provider[]" class="form-control" placeholder="provider">
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="subsidie-purpose[]" class="form-control" placeholder="purpose">
+                            <input type="text" name="subs_purpose[]" class="form-control" placeholder="purpose">
                           </div>
 
 
                           <div class="col-md-4">
-                            <input type="text" name="subsidie-amount[]" class="form-control" placeholder="amount">
+                            <input type="text" name="subs_value[]" class="form-control" placeholder="amount">
                           </div>
                           <div class="col-md-4">
-                            <select class="form-control" name="subsidie-currency[]" title="currency">
+                            <select class="form-control" name="subs_curr[]" title="currency">
                               <option></option>
                               <option>Alfetta</option>
                               <option>500</option>

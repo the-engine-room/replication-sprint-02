@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 from django_extensions.db import fields as django_extensions_fields
 from django_countries import CountryField
@@ -61,6 +63,12 @@ class CrowManager(models.Manager):
             return self.get(**kwargs)
         except ObjectDoesNotExist:
             return None
+
+    def get_or_404(self, *args, **kwargs):
+        try:
+            return self.get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            raise Http404('No %s matches the given query.' % self.model._meta.object_name)
 
 class DocumentSetManager(CrowManager):
     def get_query_set(self):
@@ -159,6 +167,9 @@ class DocumentSet(models.Model):
 
     def get_pending_documents_with_entries(self):
         return self.documents.filter(verified=False)
+
+    def get_entries_count(self):
+        return DocumentSetFormEntry.objects.filter(document__document_set=self).count()
 
     def get_pending_documents_count_for_user(self, user):
         return self.get_pending_documents().exclude(form_entries__user=user).count()

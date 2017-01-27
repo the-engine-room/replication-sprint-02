@@ -1,6 +1,5 @@
 {% load static from staticfiles %}
 {% load multifor %}
-{% load crowdataapp_tags %}{# TODO clean it #}
 <style>
     .container {
         background: linear-gradient(90deg, #A327A1 670px, white 650px);
@@ -74,22 +73,11 @@ $(document).ready(function () {
                 <label for="">{{ field.label_tag }}</label>
                 <span class="help-block">{{ field.help_text }}</span>
 
-                {# {{ field }} #}
                 {% with multivalued=field.field.widget.attrs|dictvalue:'data-multivalued' %}
-                {{ multivalued }}
-                <input id="id_{{field.html_name}}"
-                   type="text"
-                   name="{{field.html_name}}"
-                   value="{{ field.value|default_if_none:""}}"
-                   maxlength="30"/>
+                {# multivalue is also marked in data-multivalued #}
+                
+                {{ field }}
 
-                {% if multivalued %}
-                <input id="id_{{field.html_name}}"
-                   type="text"
-                   name="{{field.html_name}}"
-                   value="{{ field.value|default_if_none:""}}"
-                   maxlength="30"/>
-                {% endif %}
                 {% endwith %}
             </div>
         {% endfor %} <!--  field in form_for_form -->

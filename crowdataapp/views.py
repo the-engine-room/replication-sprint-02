@@ -203,7 +203,6 @@ def form_detail(request, slug, template="forms/form_detail.html"):
     args = (form, request_context, request.POST or None)
 
     form_for_form = forms.DocumentSetFormForForm(*args)
-    # TODO how this form is cleaning its data? I cannot find it!!
 
     if request.method == 'POST':
         if not form_for_form.is_valid():

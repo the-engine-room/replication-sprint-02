@@ -70,31 +70,6 @@ $(document).ready(function () {
 <!-- bxSlider Javascript file -->
 
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
-      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
-    {% csrf_token %}
-    <!-- This section is using Multifor module to be able to identify the section of the field-->
-    <div class="form">
-        {% for field in form_for_form; field_group in form_for_form.form_fields %}
-            <div class="sections" id="{{ field_group.group }}">
-                <label for="">{{ field.label_tag }}</label>
-                <span class="help-block">{{ field.help_text }}</span>
-
-                {% with multivalued=field.field.widget.attrs|dictvalue:'data-multivalued' %}
-                {# multivalue is also marked in data-multivalued #}
-
-                {{ field }}
-
-                {% if multivalued %}
-                {{ field }}
-                {% endif %}
-
-                {% endwith %}
-            </div>
-        {% endfor %} <!--  field in form_for_form -->
-    </div>
-</form>
-
-<form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block form-horizontal">
     <p class="step-x-y"></p>
 

@@ -6856,19 +6856,19 @@ section.progress-section-1 h2 {
   font-size: 2em;
   font-weight: 600;
 }
-section.progress-section-1 .progress-border {
+section.progress-section-1 .progress-border, .progress-border {
   height: 110px;
   padding: 20px;
   border: 5px solid #005A9A;
   background-color: white;
   border-radius: 25px;
 }
-section.progress-section-1 .progress-border .progress {
+section.progress-section-1 .progress-border .progress, .progress-border .progress {
   height: 60px;
   background-color: #ffd799;
   border-radius: 12px;
 }
-section.progress-section-1 .progress-border .progress .progress-bar {
+section.progress-section-1 .progress-border .progress .progress-bar, .progress-border .progress .progress-bar {
   background-color: #FF9A00;
   font-size: 3em;
   font-weight: 600;
@@ -6958,14 +6958,27 @@ footer p {
 }
 
 /** Liberation HP **/
-#liberate-mp {  
+#liberate-mp, #feedback-header {  
   background: #005A9A;
   color: white;
   border-bottom: 10px solid black;
   position: relative;
   height: 385px; 
 }
-#liberate-mp header {
+#feedback-header { height: 250px; }
+#feedback-header h2 { font-size: 46px; font-weight: bold; margin: 42px 0px; }
+#feedback-another h2 {
+  font-weight: bold; font-size: 36px; color: #005A9A;
+}
+#feedback-another .btn-lg{
+  font-size: 36px; margin: 15px auto; 
+}
+.form-helper-text {
+  color: #005A9A;
+  font-size: 22px;
+  line-height: 150%; 
+}
+#liberate-mp header, #feedback-header header {
   background: transparent none no-repeat center center;
   height: auto;
   border-bottom: none; 
@@ -7052,55 +7065,23 @@ footer p {
   color: #005A9A;
   
 }
-/** radio and checkboxes **/ /*
-input[type="checkbox"] {
-    display:none;
-}
 
-input[type="checkbox"] + label {
-    color:#f2f2f2;
-}
-
-input[type="checkbox"] + label span {
-    display:inline-block;
-    width:19px;
-    height:19px;
-    margin:-2px 10px 0 0;
-    vertical-align:middle;
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
-    cursor:pointer;
-}
-
-input[type="checkbox"]:checked + label span {
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
-}
-
-input[type="radio"] {
-    display:none;
-}
-
-input[type="radio"] + label {
-    color:#f2f2f2;
-    font-family:Arial, sans-serif;
-}
-
-input[type="radio"] + label span {
-    display:inline-block;
-    width:19px;
-    height:19px;
-    margin:-2px 10px 0 0;
-    vertical-align:middle;
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -38px top no-repeat;
-    cursor:pointer;
-}
-
-input[type="radio"]:checked + label span {
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
-}
-*/
 /** the slider and it's glory **/
 ul#slide-list {
   list-style: none;
   padding: 0px;
   
 }
+
+.contact-us {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: white;
+  background: #005A9A;
+}
+.contact-us h2 {
+  margin: 0px; line-height: 28px; 
+}
+.contact-us h2 a { color: white; }
+.contact-us h2 a:hover { color: white; text-decoration: underline; }
+.contact-us p { line-height: 28px; }

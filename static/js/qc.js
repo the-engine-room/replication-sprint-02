@@ -751,7 +751,7 @@
         // First we check if there is a submit button added
         // Doing this so we don't end up adding buttons everytime we click the slide controlls.
         if ($('.bx-wrapper .bx-controls-direction').has('button').length == 0) {
-
+            $('.bx-wrapper .bx-controls-direction').append('<button id="submitForm" class="qc-btn qc-btn-submit">Enviar</button>')
         } else {
             $('.bx-wrapper .bx-controls-direction button').remove();
         }

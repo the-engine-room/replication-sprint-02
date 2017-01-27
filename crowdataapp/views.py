@@ -203,6 +203,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
     args = (form, request_context, request.POST or None)
 
     form_for_form = forms.DocumentSetFormForForm(*args)
+    # TODO how this form is cleaning its data? I cannot find it!!
 
     if request.method == 'POST':
         if not form_for_form.is_valid():
@@ -245,7 +246,7 @@ def transcription_new(request, document_set, filename=None, category=None):
 
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
-    if request.GET.get('document_id') is not None and request.user.is_staff:
+    if request.GET.get('document_id') is not None:
 
         document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
                                  document_set=doc_set)

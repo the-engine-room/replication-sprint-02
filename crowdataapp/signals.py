@@ -39,7 +39,7 @@ def create_entry(sender=None, form=None, entry=None, document_id=None, **kwargs)
         else:
             entry.document.verify()
     except Exception as e:
-        # should delete the 'entry' here
+        # should delete the 'entry' here # TODO what exceptions are caught here? we should be more specific
         entry.delete()
         raise
 

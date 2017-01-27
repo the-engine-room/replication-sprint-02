@@ -17,6 +17,7 @@ from django.db import models, connection
 from datetime import datetime
 from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
+from models import DocumentSet, Document
 
 from crowdataapp import models, forms
 
@@ -255,12 +256,26 @@ def ranking_all(request, document_set, ranking_id):
             }
 
 @render_to('liberate_mp.html')
-def liberate_mp(request, document_set):
-    return {}
+def liberate_mp(request, document_set_slug):
+    doc_set = DocumentSet.objects.get_or_404(slug=document_set_slug)
+
+    candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
+    if candidates.count() == 0:
+        # TODO Redirect to a message page: "you've gone through all the documents in this project!"
+        return render_to_response('no_more_documents.html',
+                                  { 'document_set': doc_set },
+                                  context_instance=RequestContext(request))
+
+    document = candidates.order_by('?')[0]
+
+    return {'document': document,
+            'document_set': doc_set,
+            'mp': document.politician,
+            }
+
 
 @login_required
 def transcription_new(request, document_set, filename=None, category=None):
-
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
     if request.GET.get('document_id') is not None and request.user.is_staff:

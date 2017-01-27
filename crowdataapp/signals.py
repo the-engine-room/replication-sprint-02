@@ -8,7 +8,7 @@ from forms_builder.forms.signals import form_valid, form_invalid
 
 from crowdataapp import models
 
-def create_entry(sender=None, form=None, entry=None, document_id=None, **kwargs):
+def create_entry(sender=None, form=None, entry=None, document_id=None, staff_force_verification=False, **kwargs):
 
     request = sender
 
@@ -34,10 +34,11 @@ def create_entry(sender=None, form=None, entry=None, document_id=None, **kwargs)
         entry.save()
 
         # Verify the document
-        if request.user.is_staff or request.user.is_superuser:
+        if request.user.is_staff and staff_force_verification:
             entry.force_verify()
         else:
             entry.document.verify()
+
     except Exception as e:
         # should delete the 'entry' here
         entry.delete()

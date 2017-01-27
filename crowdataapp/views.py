@@ -225,7 +225,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             return HttpResponseBadRequest(json.dumps(form_for_form.errors), content_type='application/json')
         else:
             entry = form_for_form.save()
-            form_valid.send(sender=request, form=form_for_form, entry=entry, document_id=request.session['document_id_for_entry'])
+            form_valid.send(sender=request, form=form_for_form, entry=entry, document_id=request.session['document_id_for_entry'], staff_force_verification=request.POST.get('staff_force_verification', None))
             return HttpResponse('')
     return render_to_response(template, { 'form': form }, request_context)
 

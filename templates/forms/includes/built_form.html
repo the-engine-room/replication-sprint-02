@@ -1048,6 +1048,12 @@ $(document).ready(function () {
               </div>
             </li>
           </ul>
+
+          {% if request.user.is_staff %}
+            Instantly verify this document: <input type="checkbox" name="staff_force_verification"><br/>
+            Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.
+          {% endif %}
+
           <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
     </div>
 

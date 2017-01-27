@@ -84,142 +84,955 @@ $(document).ready(function () {
     <p class="step-title"></p>
     {% csrf_token %}
     <div id="slidedform" class="form">
-        <ul style="" class="bxslideri">
-        </ul>
+      <ul id="slide-list">
+            <li>
+<!-- SLIDE 1 -->
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Personal Information</h1>
+                  <div class="form-group">
+                    <div class="col-md-4">
+                      <label for="spouse">Spouse:</label>
+                    </div>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="spouse" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-4">
+                      <label for="child">Child:</label>
+                    </div>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="child[]" class="form-control">
+                    </div>
+                  </div>
+                  <button class="btn btn-default repeater pull-right"><i class="fa fa-plus"></i> Add Field...</button>
+
+              </div>
+            </li>
+            <li>
+<!-- SLIDE 2 -->
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Any Properties declared?</h1>
+                  <div class="radio">
+                    <label for="radio1-1">
+                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio1-2">
+                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-1" id="">
+                      <div class="row">
+                        <h2>Main information</h2>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="location">Location:</label>
+                        </div>
+                        <div class="col-md-8">
+                          <input class="form-control" type="text" name="location[]" class="form-control">
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="area">Area:</label>
+                        </div>
+                        <div class="col-md-4">
+                          <input class="form-control" type="text" name="area[]" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                          <select class=" form-control" name="unit[]" title="unit">
+                              <option></option>
+                              <option value="sq">Square meters</option>
+                              <option value="ha">Hectares</option>
+                              <option value="ac">Acres</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-4">
+                            <label for="area">Cultivation:</label>
+                          </div>
+                          <div class="col-md-4">
+                            <input class="form-control" type="text" name="cultivation[]" class="form-control">
+                          </div>
+                        <div class="col-md-4">
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="cultivation-option-1[]"> Peppers
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="cultivation-option-2[]"> Peppers
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="cultivation-option-3[]"> Peppers
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="cultivation-option-4[]"> Peppers
+                            </label>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>Other:</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input type="text" name="cultivation-other[]" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <h2>Building Info</h2>
+                        <div class="col-md-4">
+                          <h3>Nature of use</h3>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="building-option-1[]"> Homes
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="building-option-2[]"> Industrial
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="building-option-3[]"> Offices
+                            </label>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>Other:</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input type="text" name="building-other[]" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-8">
+                          <label>Area:</label>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" name="building-area[]">
+                            </div>
+                            <div class="col-md-6">
+                              <select class=" form-control" name="unit[]" title="unit">
+                                  <option></option>
+                                  <option value="sq">Square meters</option>
+                                  <option value="ha">Hectares</option>
+                                  <option value="ac">Acres</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h2>Legal Designation</h2>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-option-1[]"> Homes
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-option-2[]"> Industrial
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-option-3[]"> Offices
+                            </label>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>Other:</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input type="text" name="legal-status-other[]" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <h2>Legal Status</h2>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-status-option-1[]"> Homes
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-status-option-2[]"> Industrial
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                               <input type="checkbox" name="legal-status-option-3[]"> Offices
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-4">
+                              <label>Other:</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input type="text" name="legal-status-other[]" class="form-control">
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h2>Ownership Ratio</h2>
+                        </div>
+                        <div class="col-md-2">
+                          <input class="form-control" type="text">
+                        </div>
+                        <div class="col-md-2"><span class="out-of center-block">/</span></div>
+                        <div class="col-md-2">
+                          <input class="form-control" type="text">
+                        </div>
+                        <div class="col-md-2"><span class="or center-block">OR</span></div>
+                        <div class="col-md-4">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="percentage..." aria-describedby="percent-addon">
+                            <span class="input-group-addon" id="percent-addon">%</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h2>Acquisition Info</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3">
+                            <select id="select1" class=" form-control" name="acquisition[]" data-live-search="true" title="Enter value">
+                              <option value="1">Fast Cars</option>
+                              <option value="2">Danger</option>
+                              <option value="3">Fire</option>
+                              <option value="4">Knives</option>
+                              <option value="other">Other...</option>
+                            </select>
+                            <input type="text" name="acquisition-other[]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
+                          </div>
+
+                          <div class="col-md-3">
+                            <input class="form-control" name="acquisition-year[]" type="number" placeholder="year" maxlength="4" min="1800" max="2017">
+                          </div>
+                          <div class="col-md-3">
+                            <select class="form-control "  name="acquisition-month[]" placeholder="month" title="month" data-live-search="true">
+                              <option value="1">January</option>
+                              <option value="2">February</option>
+                              <option value="3">March</option>
+                              <option value="4">April</option>
+                              <option value="5">May</option>
+                              <option value="6">June</option>
+                              <option value="7">July</option>
+                              <option value="8">August</option>
+                              <option value="9">September</option>
+                              <option value="10">October</option>
+                              <option value="11">November</option>
+                              <option value="12">December</option>
+                            </select>
+                          </div>
+                          <div class="col-md-3">
+                            <input class="form-control"  name="acquisition-day[]" type="number" placeholder="day" maxlength="2" min="1" max="31">
+                          </div>
+                        </div>
+
+                        <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i> Add another entry...</button>
+
+                      </div>
+
+                      <div class="row property-type">
+                        <div class="col-md-12">
+                          <h2>Type of property</h2>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label class="center-block text-center">
+                              <i class="fa fa-5x fa-home"></i><br />
+                              <input type="radio" name="property-type[]">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label class="center-block text-center">
+                              <i class="fa fa-5x fa-map-o"></i><br />
+                              <input type="radio" name="property-type[]">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label class="center-block text-center">
+                              <i class="fa fa-5x fa-asterisk"></i><br />
+                              <input type="radio" name="property-type[]">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button id="section-repeater" class="hidden btn btn-lg btn-default repeater"><i class="fa fa-plus"></i> Add another location</button>
+                    <textarea class="feedback-flag form-control" rows="4" placeholder="something wrong?"></textarea>
+                  <!-- eof hidden contents box -->
+                  </div>
+              </div>
+            </li>
+<!-- slide 3 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>Moveable assets</h2>
+                </div>
+                <div class="col-md-10">
+                  <h3>Classic Vehicles <small>if any</small></h3>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <select class="form-control" name="classic-vehicle-type[]" title="type">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="form-control" name="classic-vehicle-brand[]" type="text">
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="classic-vehicle-ownership[]" title="ownership">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3"><input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3">
+                      <select name="classic-vehicle-month[]" class="form-control selectpicker" placeholder="month" title="month" data-live-search="true">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+
+                  <h3>Air/Water Vehicles <small>if any</small></h3>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <select class="form-control" name="aw-vehicle-type[]" title="type">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="form-control" name="aw-vehicle-brand[]" type="text">
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="aw-vehicle-ownership[]" title="ownership">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3">
+                      <select class="form-control selectpicker" name="aw-vehicle-month[]" placeholder="month" title="month" data-live-search="true">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+
+                  <h3>Artwork <small>if any</small></h3>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <select class="form-control" name="art-type[]" title="type">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="form-control" name="art-name[]" placeholder="name" type="text">
+                    </div>
+                    <div class="col-md-4">
+                      <input class="form-control" name="art-number[]" placeholder="#" type="text">
+                    </div>
+
+                    <div class="col-md-4">
+                      <select class="form-control" name="art-ownership[]" title="ownership">
+                        <option></option>
+                        <option>Alfetta</option>
+                        <option>500</option>
+                        <option>Whatever</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3">
+                      <select class="form-control selectpicker" name="art-month[]" placeholder="month" title="month" data-live-search="true">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+
+              </div>
+            </li>
+<!-- Slide 4 -->
+            <li>
+              <div class="row">
+              <div class="col-md-12">
+                <h1>Are there any other savings?</h1>
+                <div class="radio">
+                  <label for="radio2-1">
+                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Yes
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="radio1-2">
+                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> No
+                  </label>
+                </div>
+                <div class="hidden contents-2" id="">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <h2>Savings Deposit</h2>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <input type="text" name="savings-number[]" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="savings-currency[]" title="currency">
+                            <option></option>
+                            <option>Alfetta</option>
+                            <option>500</option>
+                            <option>Whatever</option>
+                          </select>
+                        </div>
+                      </div>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                    </div>
+                    <div class="col-md-10">
+                      <h2>Financial institution accounts</h2>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <input type="text" name="fia-number[]" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="fia-currency[]" title="currency">
+                            <option></option>
+                            <option>Alfetta</option>
+                            <option>500</option>
+                            <option>Whatever</option>
+                          </select>
+                        </div>
+                      </div>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                    </div>
+                    <div class="col-md-10">
+                      <h2>Cash</h2>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <select class="form-control" name="cash-type[]" title="currency">
+                            <option></option>
+                            <option>Alfetta</option>
+                            <option>500</option>
+                            <option>Whatever</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="text" name="cash-number[]" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="cash-currency[]" title="currency">
+                            <option></option>
+                            <option>Alfetta</option>
+                            <option>500</option>
+                            <option>Whatever</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+<!-- slide 5 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Are there any debts?</h1>
+                  <div class="radio">
+                    <label for="radio3-1">
+                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio3-2">
+                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-3" id="">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <h2>Debts</h2>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <select class="form-control" name="debt-type[]" title="type">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" name="debt-text[]" class="form-control" placeholder="description">
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" name="debt-amount[]" class="form-control" placeholder="description">
+                          </div>
+                          <div class="col-md-8">
+                            <select class="form-control" name="debt-currency[]" title="currency">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                        </div>
+
+
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+<!-- slide 6 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Other Comments</h1>
+                  <div class="radio">
+                    <label for="radio4-1">
+                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio4-2">
+                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-4" id="">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <h2>Comments</h2>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <textarea name="other-comment" class="form-control" placeholder="other comments" rows="6"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+<!-- slide 7 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Other forms of income</h1>
+                  <div class="radio">
+                    <label for="radio5-1">
+                      <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio5-2">
+                      <input type="radio" id="radio5-2" name="radio5" value="no"  class="box-toggler" data-toggle-target=".contents-5"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-5" id="">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>Other Income</h2>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" name="profession[]" class="form-control" placeholder="profession">
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" name="employer[]" class="form-control" placeholder="employer">
+                          </div>
+                          <div class="col-md-3">
+                            <select class="form-control" name="currently-employed[]" title="curently employed">
+                              <option></option>
+                              <option>yes</option>
+                              <option>no</option>
+                            </select>
+                          </div>
+                          <div class="col-md-3"><input type="text" name="salary[]" class="form-control" placeholder="salary"></div>
+                          <div class="col-md-3">
+                            <select class="form-control" name="salary-currency[]" title="currency">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-3"><input type="text" name="frequency[]" class="form-control" placeholder="frequency"></div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add entry...</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+<!-- slide 8 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Economic Interest</h1>
+                  <div class="radio">
+                    <label for="radio6-1">
+                      <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio6-2">
+                      <input type="radio" id="radio6-2" name="radio6" value="no"  class="box-toggler" data-toggle-target=".contents-6"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-6" id="">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <h2>Company Information</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <input class="form-control" name="company[]" placeholder="company">
+                          </div>
+                          <div class="col-md-8">
+                            <input class="form-control" name="company-location[]" placeholder="address">
+                          </div>
+                          <div class="col-md-4">
+                            <select class="form-control" name="company-type[]" title="type">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <h2>form of economic interest at the beginning</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <select class="form-control" name="interest-start[]" title="type">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>other</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-10">
+                        <h2>form of economic interest at present</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <select class="form-control" name="interest-now[]" title="type">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>other</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-10">
+                        <h2>Share of economic interest at the beginning</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <input class="form-control" name="part-of-start[]" type="text">
+                              </div>
+                              <div class="col-md-2"><span class="out-of center-block">/</span></div>
+                              <div class="col-md-2">
+                                <input class="form-control" type="text" name="total-start[]">
+                              </div>
+                              <div class="col-md-2"><span class="or center-block">OR</span></div>
+                              <div class="col-md-4">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" name="percentage-start[]" placeholder="percentage..." aria-describedby="percent-addon">
+                                  <span class="input-group-addon" id="percent-addon">%</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-10">
+                        <h2>Share of economic interest at present</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <input class="form-control" name="part-of-now[]" type="text">
+                              </div>
+                              <div class="col-md-2"><span class="out-of center-block">/</span></div>
+                              <div class="col-md-2">
+                                <input class="form-control" type="text" name="total-now[]">
+                              </div>
+                              <div class="col-md-2"><span class="or center-block">OR</span></div>
+                              <div class="col-md-4">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" name="percentage-now[]" placeholder="percentage..." aria-describedby="percent-addon">
+                                  <span class="input-group-addon" id="percent-addon">%</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-md-10">
+                        <h2>Share of profit</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="input-group">
+                              <input type="text" class="form-control" name="percentage-start[]" placeholder="percentage..." aria-describedby="percent-addon">
+                              <span class="input-group-addon" id="percent-addon">%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <h2>Position</h2>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <select class="form-control" name="position[]" title="type">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>other</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <button class="btn btn-default repeater hidden"><i class="fa fa-plus"></i>Add entry...</button>
+                </div>
+              </div>
+            </li>
+
+<!-- slide 9 -->
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <h1>Any presents, benefits or subsidies?</h1>
+                  <div class="radio">
+                    <label for="radio7-1">
+                      <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> Yes
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label for="radio7-2">
+                      <input type="radio" id="radio7-2" name="radio7" value="no"  class="box-toggler" data-toggle-target=".contents-7"> No
+                    </label>
+                  </div>
+                  <div class="hidden contents-7" id="">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <h2>Benefits</h2>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <input type="text" name="-benefit-date[]" class="form-control" placeholder="date">
+                          </div>
+                          <div class="col-md-8">
+                            <select class="form-control" name="benefit-type[]" title="product">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" name="benefit-amount[]" class="form-control" placeholder="amount">
+                          </div>
+                          <div class="col-md-4">
+                            <select class="form-control" name="benefit-currency[]" title="currency">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="checkbox">
+                              <label>
+                                 <input type="checkbox" name="benefit-btl[]"> By The Law!
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                      </div>
+                      <div class="col-md-10">
+
+                        <h2 class="clearfix">Presents</h2>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <input type="text" name="present-date[]" class="form-control" placeholder="date">
+                          </div>
+                          <div class="col-md-8">
+                            <select class="form-control" name="present-type[]" title="product">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" name="present-amount[]" class="form-control" placeholder="amount">
+                          </div>
+                          <div class="col-md-4">
+                            <select class="form-control" name="present-currency[]" title="currency">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="checkbox">
+                              <label>
+                                 <input type="checkbox" name="present-btl[]"> By The Law!
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                      </div>
+
+
+
+                      <div class="col-md-10">
+                      <h2 class="clearfix">Subsidies</h2>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" name="subsidie-recipient[]" class="form-control" placeholder="recipient">
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" name="subsidie-acquisition[]" class="form-control" placeholder="acquisition">
+                          </div>
+
+                          <div class="col-md-4">
+                            <input type="text" name="subsidie-date[]" class="form-control" placeholder="date">
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" name="subsidie-provider[]" class="form-control" placeholder="provider">
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" name="subsidie-purpose[]" class="form-control" placeholder="purpose">
+                          </div>
+
+
+                          <div class="col-md-4">
+                            <input type="text" name="subsidie-amount[]" class="form-control" placeholder="amount">
+                          </div>
+                          <div class="col-md-4">
+                            <select class="form-control" name="subsidie-currency[]" title="currency">
+                              <option></option>
+                              <option>Alfetta</option>
+                              <option>500</option>
+                              <option>Whatever</option>
+                            </select>
+                          </div>
+
+                        </div>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>Add an entry...</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
     </div>
+
+
 
 </form>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="categories-modal-body">
-                <div class="categories-modal">
-
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Gasolina.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Alimentos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Bienes Artisticos%20y%20Culturales.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Compra%20y%20Renta%20de%20Bienes%20Inmuebles.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Comunicación%20y%20Publicidad.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Donativos,%20Ayudas%20Sociales%20y%20Transferencias%20al%20Extranjero.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Eventos%20Officiales.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Mantenimiento%20y%20Reperación.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Mobiliario%20y%20Equipo%20de%20Oficina.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Papeleria.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Servicios%20Medico%20y%20de%20Laboritorio.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Servicios%20Basicos%20(luz,%20agua%20y%20telefono).svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Transferecias al Sindicato.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Vestuario,%20Blancos,%20Articulos%20Deportivos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Servicos%20Profesionales%20y%20Cientificos.svg"></span>
-                    <span class="image-category-icon"><img class="image-category-icon"
-                                                           src="/static/img/category/QC_Icon_Peaje.svg"></span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <span class="otra-categoria-text">Otra categoria: </span><input maxlength="60"
-                                                                                id="otherOptionalCategoryValue"/><br><br>
-                <a class="qc-btn qc-btn-change-cat">Cambio de categoría</a>
-                <a href class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myOptionalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="categories-modal-body">
-                <div class="categories-modal">
-
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Seguro%20de%20gastos%20médicos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Pasajes%20aereos,%20terrestres,%20maritimos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Gasolina.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Alimentos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Bienes Artisticos%20y%20Culturales.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Compra%20y%20Renta%20de%20Bienes%20Inmuebles.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Comunicación%20y%20Publicidad.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Donativos,%20Ayudas%20Sociales%20y%20Transferencias%20al%20Extranjero.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Eventos%20Officiales.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Hospedaje.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Mantenimiento%20y%20Reperación.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Mobiliario%20y%20Equipo%20de%20Oficina.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Papeleria.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Servicios%20Medico%20y%20de%20Laboritorio.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Servicios%20Basicos%20(luz,%20agua%20y%20telefono).svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Transferecias al Sindicato.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Vehiculos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Vestuario,%20Blancos,%20Articulos%20Deportivos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Servicos%20Profesionales%20y%20Cientificos.svg"></span>
-                    <span class="image-optional-category-icon"><img class="image-category-icon"
-                                                                    src="/static/img/category/QC_Icon_Peaje.svg"></span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <span class="otra-categoria-text">Otra categoria: </span><input maxlength="60"
-                                                                                id="otherSecondaryOptionalCategoryValue"
-                                                                                type="input"/><br><br>
-                <a class="qc-btn qc-btn-change-optional-cat">Cambio de categoría</a>
-                <a class="qc-btn qc-btn-close-button" data-dismiss="modal">Cancelar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
- <div id="zgjedhesi-dates">
-    <label for=""><label for="id_amount">Fecha de la facturacion</label></label>
-    <span class="helper-block glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="" aria-hidden="true" data-original-title="Es el día en que la persona moral o física emitió la factura a alguna de las cámaras del Congreso"></span>
-    <div class="dateti input-group date" id="">
-        <input class="fecha_de_facturaciono" id="id_fecha_de_facturaciono" name="fecha_de_facturaciono" group="Paso 3 de 5: Datos fiscales" type="text" class="form-control"/>
-
-        <span class="input-group-addon">
-            <a><span class="choose-date glyphicon glyphicon-calendar"></span></a>
-        </span>
-
-    </div>
-</div>

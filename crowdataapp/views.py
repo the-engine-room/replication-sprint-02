@@ -22,23 +22,37 @@ from crowdataapp import models, forms
 
 @render_to('document_set_index.html')
 def document_set_index(request):
-    stats = get_stats()
-    total = get_total()
-    categories = ["alimentos", "seguro_de_gastos_medicos", "pasajes_aereos_terrestres_maitimos","gasolina", "bienes_artisticos_y_culturales", "compra_y_renta_de_bienes_inmuebles", "communication_y_publicidad", "donativos_aydas_sociales_y_transferencias_el_extranjero", "eventos_officiales", "hospedaje", "mantienimiento_y_reperacion", "mobiliario_y_equipo_de_oficina", "papeleria", "servicios_medico_y_de_laboratorio", "servicios_basicos_luz_agua_y_telefono", "transferecias_al_sindicato" ]
-    widget_categories_stats = get_stats_by_cat()
-    liberated_amounts = dict(get_amounts_by_cat())
-    print widget_categories_stats
-    if not stats:
-        stats = [(0,0)]
-    if not total:
-        total = [(0,0)]
+    # TODO clean
+    # stats = get_stats() # TODO clean if not needed
+    # total = get_total() # TODO clean if not needed
+
+    #widget_categories_stats = get_stats_by_cat()
+    # liberated_amounts = dict(get_amounts_by_cat())
+
     try:
-      document_sets = models.DocumentSet.objects.all().order_by('-created_at')
-    except:
-      document_sets = []
-    print document_sets
-    print stats
-    return { 'document_sets': document_sets, 'header_title': _('Choose one of this project'), 'stats': stats, 'liberated_amounts':liberated_amounts,'total':total ,'alimentos':widget_categories_stats, 'alimentos_verified_docs': widget_categories_stats, 'widget_cat_stats': get_stats_by_cat()}
+      document_set = models.DocumentSet.objects.filter(published=True).order_by('-created_at')[0]
+      entries_count = document_set.get_entries_count()
+      stats = { 'volunteers_count': entries_count,
+                'all_declarations_count': document_set.documents.count(),
+                'liberated_declarations': document_set.get_verified_documents().count(),
+                 # time spent estimate: 12mins each entry
+                'time_spent_minutes': entries_count * 12,
+                }
+      stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
+
+    except IndexError:
+      document_set = None
+      stats = {}
+
+    return { 'document_set': document_set,
+             #'header_title': _('Choose one of this project'),
+             'stats': stats,
+             #'liberated_amounts':liberated_amounts,
+             #'total':total ,
+             #'alimentos':widget_categories_stats,
+            # 'alimentos_verified_docs': widget_categories_stats,
+            # 'widget_cat_stats': get_stats_by_cat()
+             }
 
 def get_stats():
     """ Get all documents that have an entry with canon """

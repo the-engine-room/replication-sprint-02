@@ -160,6 +160,9 @@ class DocumentSet(models.Model):
     def get_pending_documents_with_entries(self):
         return self.documents.filter(verified=False)
 
+    def get_entries_count(self):
+        return DocumentSetFormEntry.objects.filter(document__document_set=self).count()
+
     def get_pending_documents_count_for_user(self, user):
         return self.get_pending_documents().exclude(form_entries__user=user).count()
 

@@ -240,6 +240,10 @@ def ranking_all(request, document_set, ranking_id):
             'search_term': request.REQUEST.get('search'),
             }
 
+@render_to('liberate_mp.html')
+def liberate_mp(request, document_set):
+    return {}
+
 @login_required
 def transcription_new(request, document_set, filename=None, category=None):
 

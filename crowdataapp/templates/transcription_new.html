@@ -69,11 +69,15 @@
     <div class="row">
         <div class="col-md-6 purple-background">
             <div id="document-viewer-container"></div>
+            {# pluggable-codebase: different browser depending on filetype(doument_url) #}
             <script>
-              {{ document.document_set.template_function|safe }}
-              var host = location.origin ? location.origin : location.host;
-              window.doc_url = host + "{% url 'show_document' document.document_set.slug document.id %}"; /* url document */
-              insertDocument('{{document.url|safe}}');
+                function insertDocument(document_url) {
+                    document.getElementById('document-viewer-container').innerHTML = '<object type="application/pdf" data="'+document_url+'" width="100%" height="727px"></object>';
+                }
+                // TODO host and doc_url not used in practice, ref https://github.com/the-engine-room/replication-sprint-02/issues/8
+                var host = location.origin ? location.origin : location.host;
+                window.doc_url = host + "{% url 'show_document' document.document_set.slug document.id %}"; /* url document */
+                insertDocument('{{document.url|safe}}');
             </script>
               <a class="qc-btn qc-btn-other-document" id="another" href="" role="button">{{ _('I want another document') }}</a>
 

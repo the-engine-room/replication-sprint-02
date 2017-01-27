@@ -42,9 +42,6 @@ $(function(){
         case 'form-0-intro':
             mode = 'text';
             break;
-        case 'template_function':
-            mode = 'javascript';
-            break;
         case 'head_html':
             mode = 'html';
             break;

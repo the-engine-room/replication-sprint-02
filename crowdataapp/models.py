@@ -95,9 +95,6 @@ class DocumentSet(models.Model):
                                         verbose_name='Field to sum on',
                                         help_text=_("Field from the form to sum total on. This will be displayed in the document set's homepage."))
 
-    template_function = models.TextField(default=DEFAULT_TEMPLATE_JS,
-                                         null=False,
-                                         help_text=_('Javascript function to insert the document into the DOM. Receives the URL of the document as its only parameter. Must be called insertDocument'))
     entries_threshold = models.IntegerField(default=3,
                                             null=False,
                                             help_text=_('Minimum number of coincidental answers for a field before marking it as valid'))

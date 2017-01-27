@@ -28,7 +28,6 @@ from crowdataapp import models
 
 class DocumentSetFormFieldAdmin(NestedTabularInline):
     model = models.DocumentSetFormField
-    exclude = ('slug', )
     extra = 1
 
 class DocumentSetFormInline(NestedStackedInline):
@@ -167,7 +166,7 @@ class DocumentSetAdmin(NestedModelAdmin):
             'fields': ('name', 'description', 'header_image', 'tosum_field', 'published')
         }),
         (_('Document Set Behaviour'), {
-            'fields': ('entries_threshold', 'template_function', 'head_html')
+            'fields': ('entries_threshold', 'head_html')
         })
     )
     inlines = ()

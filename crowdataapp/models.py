@@ -243,6 +243,7 @@ class DocumentSetFormField(forms_builder.forms.models.AbstractField):
     order = models.IntegerField(_("Order"), null=True, blank=True)
     group = models.CharField(_("Group"),max_length= 200 ,
         help_text=_("If checked, this text field will have autocompletion"))
+    multivalued = models.BooleanField(_("Multiple values"), default=False)
     verify = models.BooleanField(_("Verify"), default=True)
     objects = DocumentSetFormFieldManager()
 
@@ -576,33 +577,22 @@ class Document(models.Model):
         for field in form_fields:
             aggregate[field] = defaultdict(lambda: 0)
 
+        # Maps how many answers were given of each type
         for fe in form_entries:
             for field in form_fields:
                 aggregate[field][fe.get_answer_for_field(field)] += 1
-
-        # aggregate
-        #      defaultdict(<type 'dict'>, {<DocumentSetFormField: Tipo de gasto>:
-        #                                    defaultdict(<function <lambda> at 0x10f97dd70>,
-        #                            {u'Gastos': 1, u'Pasajes a\xe9reos, terrestres y otros': 2}),
-        #                                  <DocumentSetFormField: Adjudicatario>: defaultdict(<function <lambda> at 0x10f97dcf8>, {u'V\xeda Bariloche S.A.': 3}),
-        #                                  <DocumentSetFormField: Importe total>: defaultdict(<function <lambda> at 0x10f97dc80>, {u'14528.8': 3})})
 
         choosen = {}
 
         for field, answers in aggregate.items():
             for answer, answer_ct in answers.items():
                 if answer_ct >= self.entries_threshold():
-                    choosen[field] = answer #max(answers.items(), lambda i: i[1])[0]
-        # choosen
-        #      { <DocumentSetFormField: Tipo de gasto>: (u'viaticos por viaje', 3),
-        #        <DocumentSetFormField: Adjudicatario>: (u'Honorable Senado de la Naci\xf3n', 4),
-        #        <DocumentSetFormField: Importe total>: (u'10854.48', 4)
-        #      }
+                    # TODO it would be good to mark this document's field as verified even if the whole document is not verified (see entry.force_verify())
+                    choosen[field] = answer
 
+        # TODO rethink process below: we already know what fields are verified so why all the work
+        # if all fields has been verified
         if len(choosen.keys()) == len(form_fields):
-            # choosen is
-            #   { DocumentSetFormField -> (value, number) }
-
             the_choosen_one = {}
             for entry in self.form_entries.all():
               the_choosen_one[entry] = 0
@@ -612,15 +602,18 @@ class Document(models.Model):
                   if entry.fields.filter(canonical_label_id=canon.id):
                     the_choosen_one[entry] += 1
                 else:
-                  if entry.fields.filter(value=verified_answer):
+                  if entry.fields.filter(value=verified_answer): # TODO bug, it's also checking against other fields in entry, write test for it (but such situation won't happen as we already know all field are verified)
                     the_choosen_one[entry] += 1
+              # if all verifiable fields in this entry are verified
               if the_choosen_one[entry] == len(form_fields):
+                # then mark entry (thus related document) as verified
                 entry.force_verify()
+                # TODO only one entry is marked as verified, but all matching should be; all non-matching shouldn't be
                 break
 
             self.updated_at = datetime.today()
-        else:
-            self.verified = False
+        else: # not all fields has been verified
+            self.verified = False # mark whole document as not verified
 
         self.save()
 

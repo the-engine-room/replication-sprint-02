@@ -11,7 +11,7 @@ django-browserid==1.0.0
 django-countries==1.5
 django-email-extras==0.1.13
 django-extensions==1.2.5
-django-forms-builder==0.9
+django-forms-builder==0.11.1
 -e git://github.com/Soaa-/django-nested-inlines.git@aaf995a223720ca7d6b4bfc74fb5707cd1bd08dd#egg=django_nested_inlines-master
 django-pagination==1.0.7
 djorm-ext-pgtrgm==0.1

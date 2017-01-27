@@ -1,6 +1,7 @@
 # coding: utf-8
 import urllib, json, csv, itertools
 import django.http
+import json
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render_to_response, render
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -165,8 +166,14 @@ def document_set_view(request, document_set):
 def form_detail(request, slug, template="forms/form_detail.html"):
     form = get_object_or_404(models.DocumentSetForm, slug=slug)
     request_context = RequestContext(request)
-    args = (form, request_context, request.POST or None)
+    post = request.POST.copy() or None
 
+    # pack multiple fields in JSON
+    for f in form.fields.filter(multivalued=True):
+        value = json.dumps(post.getlist(f.slug), ensure_ascii=False) #ensure_ascii=False
+        post[f.slug] = value
+
+    args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)
 
     if request.method == 'POST':

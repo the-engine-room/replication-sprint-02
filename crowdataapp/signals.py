@@ -3,6 +3,7 @@ from urlparse import urlparse
 
 from django.dispatch import receiver
 from django.core.urlresolvers import resolve
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from forms_builder.forms.signals import form_valid, form_invalid
 
@@ -40,7 +41,7 @@ def create_entry(sender=None, form=None, entry=None, document_id=None, staff_for
             entry.document.verify()
 
     except Exception as e:
-        # should delete the 'entry' here
+        # should delete the 'entry' here # TODO what exceptions are caught here? we should be more specific
         entry.delete()
         raise
 

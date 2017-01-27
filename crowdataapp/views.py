@@ -276,17 +276,12 @@ def liberate_mp(request, document_set_slug):
 
 
 @login_required
-def transcription_new(request, document_set, filename=None, category=None):
+def transcription_new(request, document_set, doc_id=None, category=None):
     doc_set = get_object_or_404(models.DocumentSet, slug=document_set)
     document = None
-    if request.GET.get('document_id') is not None and request.user.is_staff:
-
-        document = get_object_or_404(models.Document, pk=request.GET.get('document_id'),
+    if doc_id:
+        document = get_object_or_404(models.Document, pk=doc_id,
                                  document_set=doc_set)
-    elif filename is not None: # TODO document name shouldn't be used as filename
-        filename = filename + ".pdf"
-        document = get_object_or_404(models.Document,
-                                     name=filename)
     elif category is not None:
         candidates = doc_set.get_pending_documents_by_category(category=category).exclude(form_entries__user=request.user)
 

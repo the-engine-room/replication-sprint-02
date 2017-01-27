@@ -27,13 +27,15 @@ class BuiltFormNode(template.Node):
         # kind of a hack
         # add the 'data-verify' attribute if the field is marked
         # as a verifiable field
-        for field in filter(lambda f: f.verify,
-                            form_for_form.form_fields):
-            form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
+        for field in form_for_form.form_fields:
+            if field.verify:
+                form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
+            form_for_form.fields[field.slug].widget.attrs['data-multivalued'] = field.multivalued
 
         for field_ in form_for_form.form_fields:
             form_for_form.fields[field_.slug].widget.attrs['group'] = field_.group
             form_for_form.fields[field_.slug].group = field_.group
+
         context["form_for_form"] = form_for_form
         return t.render(context)
 
@@ -122,3 +124,13 @@ def get_value_from_dict(dict_data, key):
 @register.filter_function
 def get_setting(name, default):
     return getattr(settings, name, default)
+
+@register.filter_function
+def dictvalue(the_dict, key):
+   # Try to fetch from the dict, and if it's not found return None
+   return the_dict.get(key, None)
+
+@register.filter_function
+def getattribute(the_object, attribute_name):
+   # Try to fetch from the object, and if it's not found return None.
+   return getattr(the_object, attribute_name, None)

@@ -32,7 +32,7 @@ def document_set_index(request):
 
     try:
       document_set = models.DocumentSet.objects.filter(published=True).order_by('-created_at')[0]
-      stats = _get_stats()
+      stats = _get_stats(document_set)
 
     except IndexError:
       document_set = None

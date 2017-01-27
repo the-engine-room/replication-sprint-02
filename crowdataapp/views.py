@@ -255,6 +255,7 @@ def ranking_all(request, document_set, ranking_id):
             'search_term': request.REQUEST.get('search'),
             }
 
+@login_required
 @render_to('liberate_mp.html')
 def liberate_mp(request, document_set_slug):
     doc_set = DocumentSet.objects.get_or_404(slug=document_set_slug)

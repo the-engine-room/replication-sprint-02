@@ -6796,6 +6796,14 @@ div.blue-line {
   background-color: #fff;
   height: 5px;
 }
+div.really-blue-line {
+  display: block;
+  background-color: #005A9A;
+  height: 5px;
+}
+div.blue-line.attach-right {
+  margin-right: -15px;
+}
 a.cta {
   display: block;
   background-color: #005A9A;
@@ -6947,4 +6955,90 @@ footer p {
 }
 .parallax__layer--back {
   transform: translateZ(-1px) scale(2);
+}
+
+/** Liberation HP **/
+#liberate-mp {  
+  background: #005A9A;
+  color: white;
+  border-bottom: 10px solid black;
+  position: relative;
+  height: 385px; 
+}
+#liberate-mp header {
+  background: transparent none no-repeat center center;
+  height: auto;
+  border-bottom: none; 
+}
+#liberate-mp header h1 {
+  font-weight: 700;
+  font-size: 50pt;
+}
+
+#mp-data { margin-top: 50px; }
+#mp-data img {
+  border: 5px solid #005A9A;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+  -moz-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+  box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+}
+#mp-data h1, #mp-data h3 { font-weight: 600; }
+
+.btn-kmonitor {
+  background-color: #005A9A;
+  border: 4px solid white;
+  border-radius: 16px;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 4px 4px #000;
+  text-align: center;
+  font-weight: 600;
+}
+.btn-kmonitor:hover {
+  text-decoration: none;
+  background-color: #FF9A00;
+}
+
+#mc_embed_signup {
+  margin-top: 25px; 
+}
+
+.form-control { /* the Big Bootstrap Overwrite Brawl, also known as BBOB  */
+    display: block;
+    width: 100%;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 4px solid #005A9A;
+    border-radius: 18px;
+    margin-bottom: 15px; 
+}
+
+.start-list {
+  list-style: none;
+  padding: 0px;
+  margin: 30px 0px 80px; 
+  color: #005A9A;
+  font-size: 22px; 
+}
+.start-list li { display: block; float: left; clear: both; margin: 6px 0px; width: 100%; }
+.start-list li .fa { display: block; float: left; clear: none; width: 10%; line-height: 31px;  }
+.start-list li .fa + span {  display: inline-block; float: left; clear: none;  width: 90%; }
+
+#liberate-list {
+  margin-bottom: 25px;
+  padding-bottom: 20px; 
+}
+
+.blue-text.text-center {
+  font-size: 22px;
+  padding: 15px 0px;
+  display: block;
+  color: #005A9A;
+  
 }

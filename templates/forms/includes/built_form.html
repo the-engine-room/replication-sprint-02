@@ -1,6 +1,6 @@
 {% load static from staticfiles %}
 {% load multifor %}
-<!-- 
+<!--
 <style>
     .container {
         background: linear-gradient(90deg, #A327A1 670px, white 650px);
@@ -11,7 +11,7 @@
 <script src="{% static "js/bootstrap/collapse.js" %}"></script>
 <script src="{% static "js/bootstrap/transition.js" %}"></script>
 <script src="{% static "js/bootstrap/bootstrap-datetimepicker.js" %}"></script>
-<script src="{% static "/static/js/qc.js" %}"></script> 
+<script src="{% static "/static/js/qc.js" %}"></script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
 -->
 
@@ -77,8 +77,8 @@ $(document).ready(function () {
             </div>
         {% endfor %} <!--  field in form_for_form -->
     </div>
-
 </form>
+
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block form-horizontal">
     <p class="step-x-y"></p>
@@ -92,6 +92,8 @@ $(document).ready(function () {
 
               <div class="row">
                 <div class="col-md-12">
+                  <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">
+                  <span>{{ mp.name }}</span>
                   <h1>Personal Information</h1>
                   <div class="form-group">
                     <div class="col-md-4">
@@ -326,9 +328,9 @@ $(document).ready(function () {
                           <h2>Acquisition Info</h2>
                         </div>
                         <div class="col-md-12">
-                            
+
                             <div class="row">
-                            
+
                           <div class="col-md-3">
                             <select id="select1" class=" form-control" name="acquisition1[]" data-live-search="true" title="Enter value">
                               <option value="1">Fast Cars</option>
@@ -365,10 +367,10 @@ $(document).ready(function () {
                             </div>
                         </div>
                         <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i> Add another entry...</button>
-  
+
                       </div>
 
-                        
+
                       </div>
 
                       <div class="row property-type">
@@ -1058,6 +1060,13 @@ $(document).ready(function () {
               </div>
             </li>
           </ul>
+
+          {% if request.user.is_staff %}
+            Instantly verify this document: <input type="checkbox" name="staff_force_verification"><br/>
+            Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.
+          {% endif %}
+
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
           <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
           <br />
           <br />

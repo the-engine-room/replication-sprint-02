@@ -70,45 +70,88 @@
 
      });
     </script>
-    <div class="feedbackform">
-    <div class="row">
-        <div class="col-md-3">
-            <img class="img-responsive" src="/static/img/QC.png">
-        </div>
-        <div class="col-md-6">
-                <div class="row">
-                    <h4 style="padding-top:43px;" align="center">¡GRACIAS!</h4>
-                </div>
-
-                <div class="row">
-                    <p>¡Gracias por tu apoyo! Tu opinión sobre la plataforma nos ayudará a mejorarla. </p>
-
-                </div>
-                <div class="row">
-                    <a id="another" href="/cd/quien-compro/new_transcription" class="qc-btn-lg qc-btn-continue-liberating" role="button">Libera otra factura</a><br>
-                </div>
-                <div>
-                    <a id="no-gracias-link" href="http://quiencompro.com/"> No, gracias, llévame a la página principal de ¿Quién Compró?</a><br>
-
-                </div>
-
-                <div class="row opcional-box">
-                    <p class="opcional-text">Opcional</p>
-                    <div id="feedbackform-box">
-                        <form action="" method="POST" id="feedbackform" name="feedback">
-                            {% csrf_token %}
-                        {{ feedback_form }}
-                            <p class="form-helper-text">Deja tus comentarios y sugerencias abajo. Por ejemplo, dinos si algún paso o campo de captura te resultó inútil o confuso o si algo no funciona.</p>
-                        </br><textarea style=" width: 100%;border: 1.5px solid purple;" maxlength="500" id="word_count" name="feedback_texto" rows="5" cols="60"></textarea></br>
-                            <div class="elWordCount">Te quedan <span id="display_count">500</span> de máximo <span id="word_left">500</span> caracteres.</div>
-
-                            <a class="qc-btn qc-btn-submit feedback-submit-btn" type="submit">Enviar</a>
-
-                        </form>
+        
+            <section class="row" id="feedback-header">
+                
+                <header class="col-md-10 col-md-offset-1">
+                    <h2 class="text-center">Itt a vége.<br />Nagyon köszönjük, nagyszerű vagy!</h2>        
+                </header>
+                
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="progress-border">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="{{ stats.liberated_declarations }}" aria-valuemin="0" aria-valuemax="{{ stats.all_declarations_count }}" style="width: {{ stats.progress_percent }}%;">
+                            {{ stats.liberated_declarations }}/{{ stats.all_declarations_count }}
+                          </div>
+                        </div>
                     </div>
                 </div>
-        </div>
-        </div>
-        <div class="col-md-3"></div>
+            </section>
+            
+            <section class="row" id="feedback-another">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <h2 class="text-center">Képes vagy még többre is? Szabadíts fel egy újabb dokumentumot!</h2>
+                        </div>
+                        <div class="col-md-offset-1 col-md-10 text-center">
+                            <a href="new_transcript"  class="btn btn-kmonitor btn-lg">Ide vele</a>    
+                        </div>
+                    </div>
+                </div>
+                                
+            </section>
+            
+            
+            <section class="row" id="liberate-list">
+                <div class="col-md-12">
+                    
+                        <div class="row opcional-box">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div id="feedbackform-box">
+                                    <form action="" method="POST" id="feedbackform" name="feedback">
+                                    {% csrf_token %}
+                                    {{ feedback_form }}
+                                    <p class="form-helper-text text-center">Visszajelzés</p>
+                                    <textarea
+                                        placeholder="Írd meg nekünk, ha valamilyen észrevételed van a bevitel kapcsán. Legyen az bármi, ami elbizanytalanított, nem működött, haszontalan vagy zavaró volt a kitöltés során."
+                                        style=" width: 100%;border: 3px solid #005A9A; border-radius: 8px; padding: 15px;"
+                                        maxlength="500" id="word_count" name="feedback_texto" rows="5" cols="60"></textarea>
+                                    
+                                    </br>
+                                        <div class="elWordCount">Még <span id="display_count">500</span> karaktert üthetsz le! (max <span id="word_left">500</span> karakter)</div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <a class="text-center center-block qc-btn qc-btn-submit bnt btn-kmonitor feedback-submit-btn" type="submit">Küldés</a>    
+                                        </div>
+                                    </div>
+                                        
+            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </section>
+            <div class="row">
+                <!--     <div class="col-md-10 really-blue-line"></div> -->
+                <div class="col-md-12 ">
+                    <span class="blue-text text-center">
+                        Ha fontosnak tartod a munkánkat, <a href="http://www.k-monitor.hu">támogasd te is a K-Monitort!</a>
+                    </span>
+                </div>
+            </div>                
+        
+
+        
+{% endblock %}
+
+{% block contact_us %}
+<div class="container-fluid">
+    <div class="row contact-us">
+        <div class="col-md-3"><h2><a href="mailto:vny@k-monitor.hu">Kapcsolat</a></h2></div>
+        <div class="col-md-9"><p>Az oldal látogatási statisztikáját Google Analytics segítségével mérjük. Adataidat felelőséggel kezeljük, harmadik félnek nem adjuk ki</p></div>
     </div>
+</div>
 {% endblock %}

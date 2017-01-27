@@ -101,7 +101,7 @@ $(document).ready(function () {
                       <input class="form-control" type="text" id="child" name="children[]" class="form-control">
                     </div>
                   </div>
-                  <button class="btn btn-default repeater pull-right"><i class="fa fa-plus"></i> Add Field...</button>
+                  <button class="btn btn-default repeater pull-right"><i class="fa fa-plus"></i>1 gyermek</button>
 
               </div>
             </li>
@@ -142,17 +142,18 @@ $(document).ready(function () {
                         </div>
                         <div class="col-md-4">
                           <select class=" form-control" name="area_unit[]" title="unit">
-                              <option></option>
-                              <option value="sq">Square meters</option>
-                              <option value="ha">Hectares</option>
-                              <option value="ac">Acres</option>
+                            <option value="sq" selected>négyzetméter</option>
+                            <option value="ha">hektár</option>
+                            <option value="negyszogol">négyszögöl</option>
+                            <option value="akol">akol</option>
+                            <option value="egyeb">egyéb</option>
                           </select>
                         </div>
                       </div>
 
                       <div class="row">
                           <div class="col-md-4">
-                            <label for="area">Cultivation:</label>
+                            <label for="area">Művelési ága:</label>
                           </div>
                           <div class="col-md-4">
 
@@ -173,11 +174,6 @@ $(document).ready(function () {
                                <input type="checkbox" name="cultivation_checkbox3[]"> lakás/lakóház
                             </label>
                           </div>
-                          <div class="checkbox">
-                            <label>
-                               <input type="checkbox" name="cultivation_checkbox_other">
-                            </label>
-                          </div>
                           <div class="row">
                             <div class="col-md-4">
                               <label>Egyéb:</label>
@@ -192,9 +188,9 @@ $(document).ready(function () {
 
 
                       <div class="row">
-                        <h2>Building Info</h2>
+                        <!-- It's part of the previous <h2>Building Info</h2>-->
                         <div class="col-md-4">
-                          <h3>Nature of use</h3>
+                          <h3>Fő rendeltetése</h3>
                           <div class="checkbox">
                             <label>
                                <input type="checkbox" name="building_nature1[]"> garázs
@@ -221,17 +217,18 @@ $(document).ready(function () {
                         </div>
 
                         <div class="col-md-8">
-                          <label>Building area:</label>
+                          <label>Épület alapterülete:</label>
                           <div class="row">
                             <div class="col-md-6">
                               <input type="text" class="form-control" name="building_area[]">
                             </div>
                             <div class="col-md-6">
                               <select class=" form-control" name="building_area_unit[]" title="unit">
-                                  <option></option>
-                                  <option value="sq">Square meters</option>
-                                  <option value="ha">Hectares</option>
-                                  <option value="ac">Acres</option>
+                                <option value="sq" selected>négyzetméter</option>
+                                <option value="ha">hektár</option>
+                                <option value="negyszogol">négyszögöl</option>
+                                <option value="akol">akol</option>
+                                <option value="egyeb">egyéb</option>
                               </select>
                             </div>
                           </div>
@@ -239,7 +236,7 @@ $(document).ready(function () {
                       </div>
                       <div class="row">
                         <div class="col-md-6">
-                          <h2>Legal Designation</h2>
+                          <h2>Ingatlan jogi jellege</h2>
                           <div class="checkbox">
                             <label>
                                <input type="checkbox" name="legal_designation1[]"> családi ház
@@ -304,10 +301,10 @@ $(document).ready(function () {
                         <div class="col-md-2">
                           <input class="form-control" type="text" name="ownership_ratio2[]">
                         </div>
-                        <div class="col-md-2"><span class="or center-block">OR</span></div>
+                        <div class="col-md-2"><span class="or center-block">VAGY</span></div>
                         <div class="col-md-4">
                           <div class="input-group">
-                            <input type="text" name="ownership_ratio_percent[]" class="form-control" placeholder="percentage..." aria-describedby="percent-addon">
+                            <input type="text" name="ownership_ratio_percent[]" class="form-control" placeholder="százalék" aria-describedby="percent-addon">
                             <span class="input-group-addon" id="percent-addon">%</span>
                           </div>
                         </div>
@@ -323,19 +320,22 @@ $(document).ready(function () {
 
                           <div class="col-md-3">
                             <select id="select1" class=" form-control" name="acquisition1[]" data-live-search="true" title="Enter value">
-                              <optoin value="" disabled selected>{{ form_for_form.acquisition1.label }}</optoin>
-                              <option value="1">Fast Cars</option>
-                              <option value="2">Danger</option>
-                              <option value="3">Fire</option>
-                              <option value="4">Knives</option>
-                              <option value="other">Other...</option>
+                              <!--<option value="" disabled selected></option>-->
+                              <option>adás-vétel</option>
+                              <option>ajándékozás</option>
+                              <option>életjáradéki</option>
+                              <option>szerződés</option>
+                              <option>építés</option>
+                              <option>öröklés</option>
+                              <option>telekcsere</option>
+                              <option>egyéb</option>
                             </select>
                             <input type="text" name="acquisition-other[]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
                           </div>
 
                           <div class="col-md-3">
                             <!-- TO DO: combine acquisition date into a single date input name="acquisition_date" through backend magis, or frontend fu -->
-                            <input class="form-control" name="acquisition-year[]" type="number" placeholder="year" maxlength="4" min="1800" max="2017">
+                            <input class="form-control" name="acquisition-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017">
                           </div>
                           <div class="col-md-3">
                             <select class="form-control "  name="acquisition-month[]" placeholder="month" title="month" data-live-search="true">
@@ -354,10 +354,10 @@ $(document).ready(function () {
                             </select>
                           </div>
                             <div class="col-md-3">
-                                <input class="form-control"  name="acquisition-day[]" type="number" placeholder="day" maxlength="2" min="1" max="31">
+                                <input class="form-control"  name="acquisition-day[]" type="number" placeholder="nap" maxlength="2" min="1" max="31">
                             </div>
                         </div>
-                        <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i> {% trans 'Add an entry' %}...</button>
+                        <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i>1 jogcím</button>
 
                       </div>
 
@@ -394,7 +394,7 @@ $(document).ready(function () {
                           </div>
                         </div>
                         <div class="col-md-12">
-                            <textarea class="feedback-flag form-control" rows="4" name="something_wrong[]" placeholder="something wrong?"></textarea>
+                            <textarea class="feedback-flag form-control" rows="4" name="something_wrong[]" placeholder="Láttál valami gyanúsat? Volt valami, ami nem tiszta?"></textarea>
                         </div>
                       </div>
                     </div>

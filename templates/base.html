@@ -13,9 +13,10 @@
 
         {% block content %}
         {% endblock %}
-
-        {% include "footer.html" %}
     </div>
+
+    {% include "footer.html" %}
+
 
     {% if 'STRANDED_IN_ISTRIAN_HILLS'|get_setting:False %}
     {#  # in case you're low on internet #}

@@ -7027,8 +7027,8 @@ footer p {
     color: #555555;
     background-color: #fff;
     background-image: none;
-    border: 4px solid #005A9A;
-    border-radius: 18px;
+    border: 3px solid #005A9A;
+    border-radius: 6px;
     margin-bottom: 15px; 
 }
 .input-group-addon {
@@ -7085,3 +7085,5 @@ ul#slide-list {
 .contact-us h2 a { color: white; }
 .contact-us h2 a:hover { color: white; text-decoration: underline; }
 .contact-us p { line-height: 28px; }
+
+#document-transcript {  margin-left: 50%; }

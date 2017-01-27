@@ -16,7 +16,9 @@
 <script src="{% static "/static/js/qc.js" %}"></script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
 -->
-
+<div style="float:left;width:30%;">
+                <img class="img-responsive" id="the-logo" src="/static/img/kmonitor/k-horizontalis_transp.gif">
+            </div>
 <script>
 $(document).ready(function () {
      var autocomplete = new google.maps.places.Autocomplete($('input[name=address1_calle]')[1]);
@@ -1057,7 +1059,7 @@ $(document).ready(function () {
             Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.
           {% endif %}
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
+          
           <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
           <br />
           <br />

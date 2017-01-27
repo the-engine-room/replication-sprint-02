@@ -46,8 +46,9 @@
     });
     </script>
   <!-- Document Viewer -->
-    <div class="row">
-        <div class="col-md-6 purple-header-background">
+    <!-- 
+	<div class="row">
+        <div class="col-md-6 purple-header-background" style="background-color: #005A9A;">
 
         </div>
         <div class="col-md-6">
@@ -66,8 +67,9 @@
             </div>
         </div>
     </div>
+	-->
     <div class="row">
-        <div class="col-md-6 purple-background">
+        <div class="col-md-6 purple-background" style="background-color: #005A9A; position: fixed;">
             <div id="document-viewer-container"></div>
             {# pluggable-codebase: different browser depending on filetype(doument_url) #}
             <script>
@@ -83,7 +85,7 @@
 
         </div>
         <div id="document-transcript">
-        <div class="col-sm-12 col-md-6" id="form-container">
+        <div class="col-sm-12 col-md-12" id="form-container">
             {% render_form document.document_set.form.all.0 %}
         </div>
         </div>

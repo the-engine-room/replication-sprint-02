@@ -72,7 +72,7 @@ $(document).ready(function () {
 <!-- bxSlider Javascript file -->
 
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
-      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block form-horizontal">
+      {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
     <p class="step-x-y"></p>
 
     <p class="step-title"></p>
@@ -82,84 +82,96 @@ $(document).ready(function () {
             <li class="container-fluid">
 <!-- SLIDE 1 -->
 
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">
-                  <span>{{ mp.name }}</span>
-                  <h1>Személyes információk</h1>
-                  <div class="form-group">
-                    <div class="col-md-4">
-                      <label for="spouse">Házas-/élettárs:</label>
+               <div class="row">
+                    <div class="col-md-3">
+                         <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">                         
                     </div>
-                    <div class="col-md-6">
-                      <input class="form-control" type="text" id="spouse" name="spouse" class="form-control">
+                    <div class="col-md-9">
+                         <h2>{{ mp.name }}</h2>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-4">
-                      <label for="child">Gyermek:</label>
+                    <div class="col-md-12">
+                    
+                         <h1>Személyes információk</h1>
+                         <div class="really-blue-line"></div>
                     </div>
-                    <div class="col-md-6">
-                      <input class="form-control" type="text" id="child" name="children[]" class="form-control">
+                    <div class="col-md-8">
+                         <div class="form-group">
+                              <label for="spouse">Házas-/élettárs:</label>
+                              <input class="form-control" type="text" id="spouse" name="spouse" class="form-control">
+                         </div>
+                         <div class="form-group">
+                              <label for="child">Gyermek:</label>
+                              <input class="form-control" type="text" id="child" name="children[]" class="form-control">
+                         </div>
+                    
+                         <button class="btn btn-default repeater"><i class="fa fa-plus"></i> 1 sor</button>
                     </div>
-                  </div>
-                  <button class="btn btn-default repeater pull-right"><i class="fa fa-plus"></i> Add Field...</button>
-
-              </div>
+               </div>
             </li>
             <li class="container-fluid">
 <!-- SLIDE 2 -->
               <div class="row">
-                <div class="col-md-12">
-                  <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
-                  <div class="radio">
-                    <label for="radio1-1">
-                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label for="radio1-2">
-                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-1">
-                      <div class="row">
-                        <h2>Vagyoni nyilatkozat / Ingatlanok</h2>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <label for="location">Település:</label>
-                        </div>
-                        <div class="col-md-8">
-                          <input class="form-control" type="text" name="location[]" class="form-control">
-                        </div>
-
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <label for="area">Az ingatlan teljes területe:</label>
-                        </div>
-                        <div class="col-md-4">
-                          <input class="form-control" type="text" name="area[]" class="form-control">
-                        </div>
-                        <div class="col-md-4">
-                          <select class=" form-control" name="area_unit[]" title="unit">
-                              <option></option>
-                              <option value="sq">Square meters</option>
-                              <option value="ha">Hectares</option>
-                              <option value="ac">Acres</option>
-                          </select>
-                        </div>
-                      </div>
+                    <div class="col-md-12">
+                    
+                         <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
+                         <div class="really-blue-line"></div>
+                         <div class="row">
+                              <div class="col-md-4">
+                                   <div class="radio">
+                                        <label for="radio1-1">
+                                             <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
+                                        </label>
+                                   </div>  
+                              </div>
+                              <div class="col-md-4">
+                                   <div class="radio">
+                                     <label for="radio1-2">
+                                       <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
+                                     </label>
+                                   </div>
+                              </div>
+                       </div>
+                    </div>
+                    <div class="hidden contents-1 col-md-12">
+                         <div class="row">
+                              <div class="col-md-12">
+                                   <h2>Vagyoni nyilatkozat / Ingatlanok</h2>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-md-8">
+                                   <div class="form-group">
+                                        <label for="location">Település:</label>
+                                        <input class="form-control" type="text" name="location[]" class="form-control">
+                                   </div>
+                              </div>
+                         </div>
 
                       <div class="row">
-                          <div class="col-md-4">
-                            <label for="area">Cultivation:</label>
-                          </div>
-                          <div class="col-md-4">
-
-                          </div>
+                         <div class="col-md-6">
+                              <div class="form-group">
+                                   <label for="area">Az ingatlan teljes területe:</label>
+                                   <input class="form-control" type="text" name="area[]" class="form-control">
+                              </div>
+                         </div>
+                         <div class="col-md-4">
+                              <div class="form-group">
+                                   <label>&nbsp;</label>
+                                   <select class=" form-control" name="area_unit[]" title="unit">
+                                        <option></option>
+                                        <option value="sq">Square meters</option>
+                                        <option value="ha">Hectares</option>
+                                        <option value="ac">Acres</option>
+                                   </select>
+                              </div>
+                         </div>  
+                       </div>
+                    
+                      <div class="row">
+                          
                         <div class="col-md-4">
+                                  <label for="area">Cultivation:</label>
+                    
                           <div class="checkbox">
                             <label>
                                <input type="checkbox" name="cultivation_checkbox1[]"> belterület/művelés alól kivett
@@ -403,7 +415,7 @@ $(document).ready(function () {
                     <button id="section-repeater" class="hidden btn btn-lg btn-default repeater"><i class="fa fa-plus"></i> {% trans 'Add another location'}</button>
                     <!-- eof hidden contents box -->
                   </div>
-              </div>
+              <!-- </div> -->
             </li>
 <!-- slide 3 -->
             <li class="container-fluid">

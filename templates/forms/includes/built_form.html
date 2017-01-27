@@ -77,8 +77,8 @@ $(document).ready(function () {
             </div>
         {% endfor %} <!--  field in form_for_form -->
     </div>
-
 </form>
+
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post"
       {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block form-horizontal">
     <p class="step-x-y"></p>
@@ -92,6 +92,8 @@ $(document).ready(function () {
 
               <div class="row">
                 <div class="col-md-12">
+                  <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">
+                  <span>{{ mp.name }}</span>
                   <h1>Personal Information</h1>
                   <div class="form-group">
                     <div class="col-md-4">

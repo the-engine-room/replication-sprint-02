@@ -311,6 +311,7 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                   'transcription_new.html',
                   {
                       'document': document,
+                      'mp': document.politician,
                       'head_html': document.document_set.head_html,
                       'pending_documents_count': doc_set.get_pending_documents_count_for_user(request.user),
                       'verified_documents_count': doc_set.get_verified_documents_count_for_user(request.user),

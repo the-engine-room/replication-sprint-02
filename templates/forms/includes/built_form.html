@@ -11,7 +11,8 @@
 <script src="{% static "js/bootstrap/moment.min.js" %}"></script>
 <script src="{% static "js/bootstrap/moment-locale-es.js" %}"></script>
 <script src="{% static "js/bootstrap/collapse.js" %}"></script>
-<script src="{% static "js/bootstrap/transition.js" %}"></script>
+<script src="{% static "js/bootstrap/
+ition.js" %}"></script>
 <script src="{% static "js/bootstrap/bootstrap-datetimepicker.js" %}"></script>
 <script src="{% static "/static/js/qc.js" %}"></script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
@@ -96,7 +97,7 @@ $(document).ready(function () {
                 <div class="col-md-12">
                   <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">
                   <span>{{ mp.name }}</span>
-                  <h1>{% trans 'Personal Information' %}</h1>
+                  <h1>Személyes információk</h1>
                   <div class="form-group">
                     <div class="col-md-4">
                       <label for="spouse">Házas-/élettárs:</label>
@@ -121,20 +122,20 @@ $(document).ready(function () {
 <!-- SLIDE 2 -->
               <div class="row">
                 <div class="col-md-12">
-                  <h1>{% trans 'Any Properties declared?' %}</h1>
+                  <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
                   <div class="radio">
                     <label for="radio1-1">
-                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> {% trans 'Yes' %}
+                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio1-2">
-                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> {% trans 'No' %}
+                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-1">
                       <div class="row">
-                        <h2>{% trans 'Main information' %}</h2>
+                        <h2>Vagyoni nyilatkozat / Ingatlanok</h2>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
@@ -278,7 +279,7 @@ $(document).ready(function () {
                         </div>
 
                         <div class="col-md-6">
-                          <h2>{% trans 'Legal Status' %}</h2>
+                          <h2>Nyilatkozó jogállása</h2>
                           <div class="checkbox">
                             <label>
                                <input type="checkbox" name="legal_status1[]"> tulajdonos
@@ -307,7 +308,7 @@ $(document).ready(function () {
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <h2>Ownership Ratio</h2>
+                          <h2>Tulajdoni hányad</h2>
                         </div>
                         <div class="col-md-2">
                           <input class="form-control" type="text" name="ownership_ratio1[]">
@@ -327,7 +328,7 @@ $(document).ready(function () {
 
                       <div class="row">
                         <div class="col-md-12">
-                          <h2>{% trans 'Acquisition Info' %}</h2>
+                          <h2>Szerzés jogcíme</h2>
                         </div>
                         <div class="col-md-12">
 
@@ -378,7 +379,7 @@ $(document).ready(function () {
 
                       <div class="row property-type">
                         <div class="col-md-12">
-                          <h2>{% trans 'Type of property' %}</h2>
+                          <h2>Melyik típusba sorolnád az ingatlant?</h2>
                         </div>
 
                         <div class="col-md-4">
@@ -419,7 +420,7 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h2>{% trans 'Moveable assets' %}</h2>
+                  <h2>Nagy értékű ingóságok</h2>
                 </div>
                 <div class="col-md-10">
                   <h3>Classic Vehicles <small>if any</small></h3>
@@ -564,21 +565,21 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
               <div class="col-md-12">
-                <h1>Are there any other savings?</h1>
+                <h1>Nyilatkozik-e bármilyen megtakarításról, befektetésről, pénzkövetelésről?</h1>
                 <div class="radio">
                   <label for="radio2-1">
-                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> {% trans 'Yes' %}
+                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Igen
                   </label>
                 </div>
                 <div class="radio">
                   <label for="radio1-2">
-                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> {% trans 'No' %}
+                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> Nem
                   </label>
                 </div>
                 <div class="hidden contents-2">
                   <div class="row">
                     <div class="col-md-10">
-                      <h2>Investments / Securities</h2>
+                      <h2>Értékpapír vagy egyéb befektetés</h2>
                       <div class="row">
                         <div class="col-md-4">
                           <input type="text" name="inv_name[]" class="form-control" title="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés" placeholder="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés">
@@ -597,7 +598,7 @@ $(document).ready(function () {
 
                   <div class="row">
                     <div class="col-md-10">
-                      <h2>Savings Deposit</h2>
+                      <h2>Takarék</h2>
                       <div class="row">
                         <div class="col-md-4">
                           TODO there is no sec_name Takarékban elhelyezett megtakarítás
@@ -654,15 +655,15 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>{% trans 'Are there any debts?' %}</h1>
+                  <h1>Nyilatkozik-e tartozásokról?</h1>
                   <div class="radio">
                     <label for="radio3-1">
-                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> {% trans 'Yes' %}
+                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio3-2">
-                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> {% trans 'No' %}
+                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-3" id="">
@@ -703,15 +704,15 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>Other Comments</h1>
+                  <h1>Van-e valamilyen egyéb közlendője?</h1>
                   <div class="radio">
                     <label for="radio4-1">
-                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> {% trans 'Yes' %}
+                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio4-2">
-                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> {% trans 'No' %}
+                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-4" id="">
@@ -733,7 +734,7 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>Other forms of income</h1>
+                  <h1>Jövedelemnyilatkozat</h1>
                   <div class="radio">
                     <label for="radio5-1">
                       <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> {% trans 'Yes' %}
@@ -748,7 +749,7 @@ $(document).ready(function () {
 
                     <div class="row">
                       <div class="col-md-12">
-                        <h2>Other Income</h2>
+                        <h2>Foglalkozás</h2>
                         <div class="row">
                           <div class="col-md-6">
                             <input type="text" name="profession[]" class="form-control" placeholder="Foglalkozás">
@@ -759,8 +760,8 @@ $(document).ready(function () {
                           <div class="col-md-3">
                             <select class="form-control" name="active[]" title="Szünetelteti">
                               <option value="" disabled selected>Szünetelteti</option>
-                              <option value="1">{% trans 'Yes' %}</option>
-                              <option value="0">{% trans 'No' %}</option>
+                              <option value="1">Igen</option>
+                              <option value="0">Nem</option>
                             </select>
                           </div>
                           <div class="col-md-3"><input type="text" name="income[]" class="form-control" placeholder="Jövedelme"></div>
@@ -783,7 +784,7 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>{% trans 'Economic Interest' %}</h1>
+                  <h1>Gazdasági érdekeltségi nyilatkozat</h1>
                   <div class="radio">
                     <label for="radio6-1">
                       <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> {% trans 'Yes' %}
@@ -797,7 +798,7 @@ $(document).ready(function () {
                   <div class="hidden contents-6">
                     <div class="row">
                       <div class="col-md-10">
-                        <h2>{% trans 'Company Information' %}</h2>
+                        <h2>Gazdasági társaságban fennálló tisztség vagy érdekeltség</h2>
                         <div class="row">
                           <div class="col-md-8">
                             <input class="form-control" name="co_name[]" placeholder="Gazdasági társaság neve">
@@ -844,7 +845,7 @@ $(document).ready(function () {
                       </div>
 
                       <div class="col-md-10">
-                        <h2>{% trans 'Share of economic interest at the beginning' %}</h2>
+                        <h2>Érdekeltség keletkezéskori aránya</h2>
                         <div class="row">
                           <div class="col-md-8">
                             <div class="row">
@@ -868,7 +869,7 @@ $(document).ready(function () {
                       </div>
 
                       <div class="col-md-10">
-                        <h2>{% trans 'Share of economic interest at present' %}</h2>
+                        <h2>Érdekeltség keletkezéskori aránya jelenleg</h2>
                         <div class="row">
                           <div class="col-md-8">
                             <div class="row">
@@ -879,7 +880,7 @@ $(document).ready(function () {
                               <div class="col-md-2">
                                 <input class="form-control" type="text" name="ownership_ratio_now2[]">
                               </div>
-                              <div class="col-md-2"><span class="or center-block">OR</span></div>
+                              <div class="col-md-2"><span class="or center-block">vagy</span></div>
                               <div class="col-md-4">
                                 <div class="input-group">
                                   <input type="text" class="form-control" name="ownership_ratio_now_percent[]" placeholder="percentage..." aria-describedby="percent-addon">
@@ -898,7 +899,7 @@ $(document).ready(function () {
                         <div class="row">
                           <div class="col-md-8">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="profitshare[]" placeholder="{% trans 'percentage' %}..." aria-describedby="percent-addon">
+                              <input type="text" class="form-control" name="profitshare[]" placeholder="%..." aria-describedby="percent-addon">
                               <span class="input-group-addon" id="percent-addon">%</span>
                             </div>
                           </div>
@@ -930,7 +931,7 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>{% trans 'Any presents, benefits or subsidies?' %}</h1>
+                  <h1>Nyilatkozik-e bármilyen juttatásról, ajándékról, támogatásról?</h1>
                   <div class="radio">
                     <label for="radio7-1">
                       <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> {% trans 'Yes' %}

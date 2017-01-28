@@ -489,8 +489,9 @@ class Document(models.Model):
     verified = models.BooleanField(_('Verified'),
                                    help_text=_('Is this document verified?'))
 
-    updated_at = models.DateTimeField(_('Modified'), auto_now = True,
-                                   help_text=_('Is this document verified?'))
+    opened_count = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(_('Modified'), auto_now = True)
 
 
     entries_threshold_override = models.IntegerField(null=True,

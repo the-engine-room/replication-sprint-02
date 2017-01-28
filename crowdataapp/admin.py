@@ -481,12 +481,12 @@ class DocumentAdmin(admin.ModelAdmin):
         }
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
-    fields = ('name', 'url', 'document_set', 'politician', 'verified', 'verified_fields')
-    readonly_fields = ('verified', 'verified_fields', 'document_set')
+    fields = ('name', 'url', 'document_set', 'opened_count', 'politician', 'verified', 'verified_fields')
+    readonly_fields = ('verified', 'verified_fields', 'document_set', 'opened_count')
     inlines = [DocumentSetFormEntryInline]
 
     actions = ['verify_document']
-    list_display = ('id', 'name', 'verified', 'entries_count', 'document_set', 'updated_at')
+    list_display = ('id', 'name', 'verified', 'entries_count', 'opened_count', 'document_set', 'updated_at')
     list_filter = ('document_set__name', 'verified')
     search_fields = ['form_entries__fields__value', 'name']
 

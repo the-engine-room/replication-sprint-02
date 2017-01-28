@@ -96,10 +96,12 @@ class Migration(SchemaMigration):
         u'crowdataapp.document': {
             'Meta': {'object_name': 'Document'},
             'category': ('django.db.models.fields.CharField', [], {'max_length': '256', 'null': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'document_set': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'documents'", 'to': u"orm['crowdataapp.DocumentSet']"}),
             'entries_threshold_override': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '256', 'null': 'True'}),
+            'opened_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'politician': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'declarations'", 'null': 'True', 'to': u"orm['crowdataapp.Politician']"}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': "'512'"}),
@@ -116,7 +118,6 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': "'128'"}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'slug': ('django_extensions.db.fields.AutoSlugField', [], {'allow_duplicates': 'False', 'max_length': '50', 'separator': "u'-'", 'blank': 'True', 'populate_from': "'name'", 'overwrite': 'False'}),
-            'template_function': ('django.db.models.fields.TextField', [], {'default': "'// Javascript function to insert the document into the DOM.\\n// Receives the URL of the document as its only parameter.\\n// Must be called insertDocument\\n// JQuery is available\\n// resulting element should be inserted into div#document-viewer-container\\nfunction insertDocument(document_url) {\\n}\\n'"}),
             'tosum_field': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'tosum_fields'", 'null': 'True', 'to': u"orm['crowdataapp.DocumentSetFormField']"}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
@@ -125,6 +126,7 @@ class Migration(SchemaMigration):
             'canonical_label': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'null': 'True', 'to': u"orm['crowdataapp.CanonicalFieldEntryLabel']"}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
             'entry': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': u"orm['crowdataapp.DocumentSetFormEntry']"}),
+            'field': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['crowdataapp.DocumentSetFormField']"}),
             'field_id': ('django.db.models.fields.IntegerField', [], {}),
             'group': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),

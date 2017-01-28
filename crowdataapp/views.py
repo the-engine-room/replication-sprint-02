@@ -263,7 +263,7 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       { 'document_set': doc_set },
                                       context_instance=RequestContext(request))
 
-        document = candidates.order_by('?')[0]
+        document = candidates.order_by('+opened_count','?')[0]
     else:
         candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
 
@@ -273,7 +273,10 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       { 'document_set': doc_set },
                                       context_instance=RequestContext(request))
 
-        document = candidates.order_by('?')[0] # TODO prioritize least opened
+        document = candidates.order_by('+opened_count','?')[0]
+
+    document.opened_count += 1
+    document.save() # TODO can incrment and save can be done in one step?
 
     return render(request,
                   'transcription_new.html',

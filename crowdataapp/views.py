@@ -170,13 +170,15 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
     # pack multiple fields in JSON
     for f in form.fields.filter(multivalued=True):
-        value = json.dumps(post.getlist(f.slug), ensure_ascii=False) #ensure_ascii=False
-        post[f.slug] = value
+        values = post.getlist(f.slug)
+        if len(values):
+            post[f.slug] = json.dumps(values, ensure_ascii=False)
+        else:
+            post[f.slug] = ''
 
     args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)
     doc_id = post.get('__document_id')
-    # doc_id = request.session['document_id_for_entry']
 
     if request.method == 'POST':
         if not form_for_form.is_valid():
@@ -263,10 +265,6 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       context_instance=RequestContext(request))
 
         document = candidates.order_by('?')[0]
-
-    # save the candidate document in the session, for later use
-    # in signals.create_entry
-    request.session['document_id_for_entry'] = document.id
 
     return render(request,
                   'transcription_new.html',

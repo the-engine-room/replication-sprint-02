@@ -242,8 +242,7 @@ class DocumentSetFormField(forms_builder.forms.models.AbstractField):
     form = models.ForeignKey(DocumentSetForm, related_name="fields")
     order = models.IntegerField(_("Order"), null=True, blank=True)
     group = models.CharField(_("Group"),max_length= 200 ,
-        help_text=_("If checked, this text field will have autocompletion"))
-    multivalued = models.BooleanField(_("Multiple values"), default=False)
+    help_text=_("If checked, this text field will have autocompletion"))
     verify = models.BooleanField(_("Verify"), default=True)
     objects = DocumentSetFormFieldManager()
 

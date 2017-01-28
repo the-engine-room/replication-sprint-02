@@ -167,14 +167,23 @@ def form_detail(request, slug, template="forms/form_detail.html"):
     form = get_object_or_404(models.DocumentSetForm, slug=slug)
     request_context = RequestContext(request)
     post = request.POST.copy() or None
+    packed_multiples = {}
 
     # pack multiple fields in JSON
-    for f in form.fields.filter(multivalued=True):
-        values = post.getlist(f.slug)
-        if len(values):
-            post[f.slug] = json.dumps(values, ensure_ascii=False)
-        else:
-            post[f.slug] = ''
+    for k in post.keys():
+        # if it is multivalued
+        if len(k) > 2 and k[-2:] == '[]':
+            values = post.getlist(k)
+            if values == [u'']:
+                values = [] # TODO or '' if it happens anywhere
+
+            k = k[:-2]
+            if len(values): # if not empty
+                packed_multiples[k] = json.dumps(values, ensure_ascii=False)
+            else:
+                packed_multiples[k] = '' # e,[ty string instead of '[]'
+
+    post.update(packed_multiples)
 
     args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)
@@ -264,7 +273,7 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       { 'document_set': doc_set },
                                       context_instance=RequestContext(request))
 
-        document = candidates.order_by('?')[0]
+        document = candidates.order_by('?')[0] # TODO prioritize least opened
 
     return render(request,
                   'transcription_new.html',

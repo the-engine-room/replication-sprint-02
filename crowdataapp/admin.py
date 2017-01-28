@@ -20,6 +20,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 
+from models import DocumentSetFieldEntry
+
 from django_ace import AceWidget
 from nested_inlines.admin import NestedModelAdmin,NestedTabularInline, NestedStackedInline
 import forms_builder
@@ -432,8 +434,8 @@ class DocumentSetAdmin(NestedModelAdmin):
         return unifiedDict
 
 class DocumentSetFormEntryInline(admin.TabularInline):
-    fields = ('user_link', 'answers', 'entry_time', 'document_link', 'document_set_link')
-    readonly_fields = ('user_link', 'answers', 'entry_time', 'document_link', 'document_set_link')
+    fields = ('user_link', 'answers', 'entry_time', 'document_link')
+    readonly_fields = ('user_link', 'answers', 'entry_time', 'document_link')
     ordering = ('document',)
     list_select_related = True
     model = models.DocumentSetFormEntry
@@ -479,13 +481,14 @@ class DocumentAdmin(admin.ModelAdmin):
         }
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
-    fields = ('name', 'url', 'document_set', 'politician', 'verified')
-    readonly_fields = ('verified',)
+    fields = ('name', 'url', 'document_set', 'politician', 'verified', 'verified_fields')
+    readonly_fields = ('verified', 'verified_fields', 'document_set')
+    inlines = [DocumentSetFormEntryInline]
+
+    actions = ['verify_document']
     list_display = ('id', 'name', 'verified', 'entries_count', 'document_set', 'updated_at')
     list_filter = ('document_set__name', 'verified')
     search_fields = ['form_entries__fields__value', 'name']
-    inlines = [DocumentSetFormEntryInline]
-    actions = ['verify_document']
 
     def queryset(self, request):
         return models.Document.objects.annotate(entries_count=Count('form_entries'))
@@ -498,6 +501,13 @@ class DocumentAdmin(admin.ModelAdmin):
                                name='document_set_field_entry_change')
         )
         return my_urls + urls
+
+    def verified_fields(self, document):
+        if not document.verified:
+            return ''
+
+        verified_answers = [a for a in DocumentSetFieldEntry.objects.filter(entry__document=document, verified=True).order_by('field_id').distinct().values('field__label', 'value')]
+        return mark_safe('<div><ul>' + ''.join(['<li><b>'+ a['field__label']+'</b>: ' + a['value'] + '</li></div>' for a in verified_answers]) + '</ul>')
 
     def field_entry_set(self, request, document, document_set_field_entry):
         """ Set verify status for form field entries """

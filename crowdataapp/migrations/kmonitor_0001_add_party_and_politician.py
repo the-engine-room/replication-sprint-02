@@ -126,7 +126,6 @@ class Migration(SchemaMigration):
             'canonical_label': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'null': 'True', 'to': u"orm['crowdataapp.CanonicalFieldEntryLabel']"}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
             'entry': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': u"orm['crowdataapp.DocumentSetFormEntry']"}),
-            'field': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['crowdataapp.DocumentSetFormField']"}),
             'field_id': ('django.db.models.fields.IntegerField', [], {}),
             'group': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),

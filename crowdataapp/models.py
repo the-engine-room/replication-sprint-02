@@ -311,7 +311,6 @@ class DocumentSetFormEntry(forms_builder.forms.models.AbstractFormEntry):
 
 class DocumentSetFieldEntry(forms_builder.forms.models.AbstractFieldEntry):
     entry = models.ForeignKey("DocumentSetFormEntry", related_name="fields")
-    field = models.ForeignKey("DocumentSetFormField")
     verified = models.BooleanField(default=False, null=False)
     canonical_label = models.ForeignKey("CanonicalFieldEntryLabel", related_name="fields", null=True)
     group = models.CharField(max_length=200)

@@ -506,8 +506,7 @@ class DocumentAdmin(admin.ModelAdmin):
         if not document.verified:
             return ''
 
-        verified_answers = [a for a in DocumentSetFieldEntry.objects.filter(entry__document=document, verified=True).order_by('field_id').distinct().values('field__label', 'value')]
-        return mark_safe('<div><ul>' + ''.join(['<li><b>'+ a['field__label']+'</b>: ' + a['value'] + '</li></div>' for a in verified_answers]) + '</ul>')
+        return mark_safe('<div><ul>' + ''.join(['<li><b>'+ f.label +'</b>: ' +answer + '</li></div>' for f, answer in document.verified_answers().iteritems()]) + '</ul>')
 
     def field_entry_set(self, request, document, document_set_field_entry):
         """ Set verify status for form field entries """

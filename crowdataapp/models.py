@@ -1,10 +1,12 @@
 from collections import defaultdict
+from crowdataapp.middleware import get_current_user
 from itertools import ifilter
 from datetime import datetime
 
 from django.db import models, connection
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
@@ -16,8 +18,7 @@ from django_countries import CountryField
 import forms_builder
 import forms_builder.forms.fields
 import forms_builder.forms.models
-
-from crowdataapp.middleware import get_current_user
+import logging
 
 DEFAULT_TEMPLATE_JS = """// Javascript function to insert the document into the DOM.
 // Receives the URL of the document as its only parameter.
@@ -287,7 +288,17 @@ class DocumentSetFormEntry(forms_builder.forms.models.AbstractFormEntry):
         return rv
 
     def get_answer_for_field(self, field):
-        answer_for_field = self.fields.filter(field_id=field.pk)[0]
+        answer_qs = self.fields.filter(field_id=field.pk)
+        try:
+            answer_for_field = answer_qs[0]
+        except IndexError: # there is no answer for this field
+            msg = "Haven't received value for field {0}. Check if your form isn't missing this field.".format(field.label)
+            if settings.DEBUG:
+                raise IndexError(msg + " On production server this will be only logged.")
+
+            logging.getLogger('crowdata.crowdataapp.views.input').error(msg)
+            return None
+
         if answer_for_field.canonical_label is None:
           return answer_for_field.value
         else:

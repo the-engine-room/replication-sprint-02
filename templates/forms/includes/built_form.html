@@ -113,12 +113,12 @@ $(document).ready(function () {
                   <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
                   <div class="radio">
                     <label for="radio1-1">
-                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
+                      <input type="radio" id="radio1-1" name="radio1" value="1" class="box-toggler" data-toggle-target=".contents-1"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio1-2">
-                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
+                      <input type="radio" id="radio1-2" name="radio1" value="0"  class="box-toggler" data-toggle-target=".contents-1"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-1">
@@ -399,7 +399,7 @@ $(document).ready(function () {
                         </div>
                       </div>
                     </div>
-                    <button id="section-repeater" class="hidden btn btn-lg btn-default repeater"><i class="fa fa-plus"></i> {% trans 'Add another location'}</button>
+                    <button id="section-repeater" class="hidden btn btn-lg btn-default repeater"><i class="fa fa-plus"></i>1 ingatlan hozzáadása</button>
                     <!-- eof hidden contents box -->
                   </div>
               </div>
@@ -411,14 +411,14 @@ $(document).ready(function () {
                   <h2>Nagy értékű ingóságok</h2>
                 </div>
                 <div class="col-md-10">
-                  <h3>Classic Vehicles <small>if any</small></h3>
+                  <h3>Gépjárművek <small>if any</small></h3>
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="vehicle_type[]" title="type">
-                        <option value="" disabled selected>{{ form_for_form.vehicle_type.label }}</option>
-                        <option>Alfetta</option>
-                        <option>500</option>
-                        <option>Whatever</option>
+                        <option value="" disabled selected>Gépjármű jellege</option>
+                        <option>személygépkocsi</option>
+                        <option>tehergépjármű/autóbusz</option>
+                        <option>motorkerékpár</option>
                       </select>
                     </div>
                     <div class="col-md-4">
@@ -436,7 +436,7 @@ $(document).ready(function () {
                       </select>
                     </div>
                     <!-- TO DO: combine vehicle acquisition date into a single date input name="acq_time" through backend magic, or frontend fu -->
-                    <div class="col-md-3"><input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3"><input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select name="classic-vehicle-month[]" class="form-control selectpicker" placeholder="month" title="month" data-live-search="true">
                         <option value="1">January</option>
@@ -454,17 +454,12 @@ $(document).ready(function () {
                       </select>
                     </div>
                   </div>
-                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 gépjármű</button>
 
                   <h3>Vízi vagy légi jármű jellege <small>if any</small></h3>
                   <div class="row">
                     <div class="col-md-4">
-                      <select class="form-control" name="water_aero_type[]" title="Vízi vagy légi jármű jellege">
-                        <option></option>
-                        <option>Alfetta</option>
-                        <option>500</option>
-                        <option>Whatever</option>
-                      </select>
+                      <input class="form-control" name="water_aero_type[]" placeholder="Vízi vagy légi jármű jellege">
                     </div>
                     <div class="col-md-4">
                       <input class="form-control" name="wa_subtype[]" type="text" placeholder="Típus">
@@ -481,7 +476,7 @@ $(document).ready(function () {
                       </select>
                     </div>
                     <!-- TO DO: combine aerial-water-vehicle acquisition date into a single date input name="wa_acq_time" through backend magic, or frontend fu -->
-                    <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="aw-vehicle-month[]" placeholder="month" title="month" data-live-search="true">
                         <option value="1">January</option>
@@ -499,13 +494,12 @@ $(document).ready(function () {
                       </select>
                     </div>
                   </div>
-                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 jármű</button>
 
-                  <h3>Artwork <small>if any</small></h3>
+                  <h3>Védett műalkotás, védett gyűjtemény és egyéb nagyobb értékű ingóságok <small>if any</small></h3>
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="artwork_type[]" title="Védett műalkotás, védett gyűjtemény, egyéb értékes ingóság jellege">
-                        <option value="" disabled selected>Védett műalkotás, védett gyűjtemény, egyéb értékes ingóság jellege</option>
                         <option>egyedi alkotás</option>
                         <option>gyűjtemény</option>
                         <option>egyéb értéktárgy</option>
@@ -520,14 +514,14 @@ $(document).ready(function () {
 
                     <div class="col-md-4">
                       <select class="form-control" name="artwork_acq[]" title="ownership">
-                        <option></option>
+                        <option value="" disabled selected>ownership</option>
                         <option>Alfetta</option>
                         <option>500</option>
                         <option>Whatever</option>
                       </select>
                     </div>
                     <!-- TO DO: combine artwork acquisition date into a single date input name="artwork_acq_time" through backend magic, or frontend fu -->
-                    <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="year" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="art-month[]" placeholder="month" title="month" data-live-search="true">
                         <option value="1">January</option>
@@ -545,7 +539,7 @@ $(document).ready(function () {
                       </select>
                     </div>
                   </div>
-                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add field</button>
+                  <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 műtárgy</button>
 
               </div>
             </li>
@@ -556,12 +550,12 @@ $(document).ready(function () {
                 <h1>Nyilatkozik-e bármilyen megtakarításról, befektetésről, pénzkövetelésről?</h1>
                 <div class="radio">
                   <label for="radio2-1">
-                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Igen
+                    <input type="radio" id="radio2-1" name="radio2" value="1" class="box-toggler" data-toggle-target=".contents-2"> Igen
                   </label>
                 </div>
                 <div class="radio">
                   <label for="radio1-2">
-                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> Nem
+                    <input type="radio" id="radio2-2" name="radio2" value="0"  class="box-toggler" data-toggle-target=".contents-2"> Nem
                   </label>
                 </div>
                 <div class="hidden contents-2">
@@ -578,10 +572,16 @@ $(document).ready(function () {
                         <div class="col-md-4">
                           <select class="form-control" name="inv_curr[]" title="pénznem">
                             <option>HUF</option>
+                            <option>EUR</option>
+                            <option>CHF</option>
+                            <option>GBP</option>
+                            <option>USD</option>
+                            <option>darab</option>
+                            <option>egyéb</option>
                           </select>
                         </div>
                       </div>
-                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
                     </div>
 
                   <div class="row">
@@ -589,16 +589,22 @@ $(document).ready(function () {
                       <h2>Takarék</h2>
                       <div class="row">
                         <div class="col-md-4">
-                          TODO there is no sec_name Takarékban elhelyezett megtakarítás
-                          <input type="text" name="sec_value[]" class="form-control" placeholder="Névérték">
+                          <input type="text" name="sec_name[]" class="form-control" placeholder="Takarékbetétben elhelyezett megtakarítás"/>
+                          <input type="text" name="sec_value[]" class="form-control" placeholder="Névérték"/>
                         </div>
                         <div class="col-md-4">
                           <select class="form-control" name="sec_curr[]" title="pénznem">
                             <option>HUF</option>
+                            <option>EUR</option>
+                            <option>CHF</option>
+                            <option>GBP</option>
+                            <option>USD</option>
+                            <option>darab</option>
+                            <option>egyéb</option>
                           </select>
                         </div>
                       </div>
-                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
                     </div>
                     <div class="col-md-10">
                       <h2>Készpénz</h2>
@@ -609,20 +615,25 @@ $(document).ready(function () {
                         <div class="col-md-4">
                           <select class="form-control" name="cash_curr[]" title="pénznem">
                             <option>HUF</option>
+                            <option>EUR</option>
+                            <option>CHF</option>
+                            <option>GBP</option>
+                            <option>USD</option>
+                            <option>darab</option>
+                            <option>egyéb</option>
                           </select>
                         </div>
                       </div>
-                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
                     </div>
                     <div class="col-md-10">
-                      <h2>Obligations</h2>
+                      <h2>Pénzintézeti számlakövetelés vagy más pénzkövetelés</h2>
                       <div class="row">
                         <div class="col-md-4">
                           <select class="form-control" name="obligation_type[]" title="Számla- vagy pénzkövetelés">
                             <option value="" disabled selected>Számla- vagy pénzkövetelés</option>
-                            <option>Alfetta</option>
-                            <option>500</option>
-                            <option>Whatever</option>
+                            <option>pénzintézeti számlakövetelés</option>
+                            <option>más számlakövetelés</option>
                           </select>
                         </div>
                         <div class="col-md-4">
@@ -631,6 +642,12 @@ $(document).ready(function () {
                         <div class="col-md-4">
                           <select class="form-control" name="obligation_curr[]" title="pénznem">
                             <option>HUF</option>
+                            <option>EUR</option>
+                            <option>CHF</option>
+                            <option>GBP</option>
+                            <option>USD</option>
+                            <option>darab</option>
+                            <option>egyéb</option>
                           </select>
                         </div>
                       </div>
@@ -646,25 +663,25 @@ $(document).ready(function () {
                   <h1>Nyilatkozik-e tartozásokról?</h1>
                   <div class="radio">
                     <label for="radio3-1">
-                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Igen
+                      <input type="radio" id="radio3-1" name="radio3" value="1" class="box-toggler" data-toggle-target=".contents-3"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio3-2">
-                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> Nem
+                      <input type="radio" id="radio3-2" name="radio3" value="0"  class="box-toggler" data-toggle-target=".contents-3"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-3" id="">
                     <div class="row">
                       <div class="col-md-10">
-                        <h2>Debts</h2>
+                        <h2>Tartozások</h2>
                         <div class="row">
                           <div class="col-md-4">
                             <select class="form-control" name="debt_type[]" title="Tartozás típusa">
                               <option value="" disabled selected>Tartozás típusa</option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>Whatever</option>
+                              <option>köztartozás</option>
+                              <option>pénzintézeti</option>
+                              <option>magánszemélyi</option>
                             </select>
                           </div>
                           <div class="col-md-8">
@@ -676,12 +693,18 @@ $(document).ready(function () {
                           <div class="col-md-8">
                             <select class="form-control" name="debt_curr[]" title="pénznem">
                               <option>HUF</option>
+                              <option>EUR</option>
+                              <option>CHF</option>
+                              <option>GBP</option>
+                              <option>USD</option>
+                              <option>darab</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
                         </div>
 
 
-                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 tartozás</button>
                       </div>
                     </div>
                   </div>
@@ -695,18 +718,18 @@ $(document).ready(function () {
                   <h1>Van-e valamilyen egyéb közlendője?</h1>
                   <div class="radio">
                     <label for="radio4-1">
-                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Igen
+                      <input type="radio" id="radio4-1" name="radio4" value="1" class="box-toggler" data-toggle-target=".contents-4"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio4-2">
-                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> Nem
+                      <input type="radio" id="radio4-2" name="radio4" value="0"  class="box-toggler" data-toggle-target=".contents-4"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-4" id="">
                     <div class="row">
                       <div class="col-md-10">
-                        <h2>Comments</h2>
+                        <h2>Egyéb közlendők</h2>
                         <div class="row">
                           <div class="col-md-12">
                             <textarea name="comment" class="form-control" placeholder="Egyéb közlendők" rows="6"></textarea>
@@ -725,12 +748,12 @@ $(document).ready(function () {
                   <h1>Jövedelemnyilatkozat</h1>
                   <div class="radio">
                     <label for="radio5-1">
-                      <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> {% trans 'Yes' %}
+                      <input type="radio" id="radio5-1" name="radio5" value="1" class="box-toggler" data-toggle-target=".contents-5"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio5-2">
-                      <input type="radio" id="radio5-2" name="radio5" value="no"  class="box-toggler" data-toggle-target=".contents-5"> {% trans 'No' %}
+                      <input type="radio" id="radio5-2" name="radio5" value="0"  class="box-toggler" data-toggle-target=".contents-5"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-5">
@@ -746,8 +769,8 @@ $(document).ready(function () {
                             <input type="text" name="employer[]" class="form-control" placeholder="Munkahelye/kifizető">
                           </div>
                           <div class="col-md-3">
-                            <select class="form-control" name="active[]" title="Szünetelteti">
-                              <option value="" disabled selected>Szünetelteti</option>
+                            <select class="form-control" name="active[]" title="Szünetelteti?">
+                              <option value="" disabled selected>Szünetelteti?</option>
                               <option value="1">Igen</option>
                               <option value="0">Nem</option>
                             </select>
@@ -756,14 +779,20 @@ $(document).ready(function () {
                           <div class="col-md-3">
                             <select class="form-control" name="income_curr[]" title="pénznem">
                               <option>HUF</option>
+                              <option>EUR</option>
+                              <option>CHF</option>
+                              <option>GBP</option>
+                              <option>USD</option>
+                              <option>darab</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
-                          <div class="col-md-3"><input type="text" name="regularity[]" class="form-control" placeholder="frequency"></div>
+                          <div class="col-md-3"><input type="text" name="regularity[]" class="form-control" placeholder="gyakoriság"></div>
 
                         </div>
                       </div>
                     </div>
-                    <button class="btn btn-default repeater"><i class="fa fa-plus"></i> Add entry...</button>
+                    <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
                   </div>
                 </div>
               </div>
@@ -775,12 +804,12 @@ $(document).ready(function () {
                   <h1>Gazdasági érdekeltségi nyilatkozat</h1>
                   <div class="radio">
                     <label for="radio6-1">
-                      <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> {% trans 'Yes' %}
+                      <input type="radio" id="radio6-1" name="radio6" value="1" class="box-toggler" data-toggle-target=".contents-6"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio6-2">
-                      <input type="radio" id="radio6-2" name="radio6" value="no"  class="box-toggler" data-toggle-target=".contents-6"> {% trans 'No' %}
+                      <input type="radio" id="radio6-2" name="radio6" value="0"  class="box-toggler" data-toggle-target=".contents-6"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-6">
@@ -797,9 +826,15 @@ $(document).ready(function () {
                           <div class="col-md-4">
                             <select class="form-control" name="co_type[]" title="Formája">
                               <option value="" disabled selected>Formája</option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>Whatever</option>
+                              <option>Bt.</option>
+                              <option>erdőbirtoklási társulás</option>
+                              <option>Kft.</option>
+                              <option>nonprofit Kft.</option>
+                              <option>Nyrt.</option>
+                              <option>szövetkezet</option>
+                              <option>ügyvédi iroda</option>
+                              <option>Zrt.</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
                         </div>
@@ -809,10 +844,13 @@ $(document).ready(function () {
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="int_beginning[]" title="Érdekeltség formája keletkezéskor">
-                              <option></option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>other</option>
+                              <option value="" disabled selected>Érdekeltség formája keletkezéskor</option>
+                              <option>alapító</option>
+                              <option>beltag</option>
+                              <option>kültag</option>
+                              <option>részvényes</option>
+                              <option>tulajdonos</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
                         </div>
@@ -823,17 +861,20 @@ $(document).ready(function () {
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="int_now[]" title="Érdekeltség formája jelenleg">
-                              <option></option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>other</option>
+                              <option value="" disabled selected>Érdekeltség formája jelenleg</option>
+                              <option>alapító</option>
+                              <option>beltag</option>
+                              <option>kültag</option>
+                              <option>részvényes</option>
+                              <option>tulajdonos</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
                         </div>
                       </div>
 
                       <div class="col-md-10">
-                        <h2>Érdekeltség keletkezéskori aránya</h2>
+                        <h2>Érdekeltség aránya keletkezéskor</h2>
                         <div class="row">
                           <div class="col-md-8">
                             <div class="row">
@@ -857,7 +898,7 @@ $(document).ready(function () {
                       </div>
 
                       <div class="col-md-10">
-                        <h2>Érdekeltség keletkezéskori aránya jelenleg</h2>
+                        <h2>Érdekeltség aránya jelenleg</h2>
                         <div class="row">
                           <div class="col-md-8">
                             <div class="row">
@@ -899,9 +940,15 @@ $(document).ready(function () {
                           <div class="col-md-8">
                             <select class="form-control" name="position[]" title="Tisztség">
                               <option value="" disabled selected>Tisztség</option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>other</option>
+                              <option>beltag</option>
+                              <option>elnök</option>
+                              <option>igazgatóság elnöke</option>
+                              <option>képviselő</option>
+                              <option>kültag</option>
+                              <option>szüneteltetve</option>
+                              <option>tag</option>
+                              <option>ügyvezető</option>
+                              <option>egyéb</option>
                             </select>
                           </div>
                         </div>
@@ -910,7 +957,7 @@ $(document).ready(function () {
 
                     </div>
                   </div>
-                  <button class="btn btn-default repeater hidden"><i class="fa fa-plus"></i>Add entry...</button>
+                  <button class="btn btn-default repeater hidden"><i class="fa fa-plus"></i>1 érdekeltség</button>
                 </div>
               </div>
             </li>
@@ -922,46 +969,45 @@ $(document).ready(function () {
                   <h1>Nyilatkozik-e bármilyen juttatásról, ajándékról, támogatásról?</h1>
                   <div class="radio">
                     <label for="radio7-1">
-                      <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> {% trans 'Yes' %}
+                      <input type="radio" id="radio7-1" name="radio7" value="1" class="box-toggler" data-toggle-target=".contents-7"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio7-2">
-                      <input type="radio" id="radio7-2" name="radio7" value="no"  class="box-toggler" data-toggle-target=".contents-7"> {% trans 'No' %}
+                      <input type="radio" id="radio7-2" name="radio7" value="0"  class="box-toggler" data-toggle-target=".contents-7"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-7" id="">
                     <div class="row">
                       <div class="col-md-10">
-                        <h2>Benefits</h2>
+                        <h2>Juttatás</h2>
                         <div class="row">
                           <div class="col-md-4">
                             <input type="text" name="benefit_date[]" class="form-control" placeholder="Juttatás ideje">
                           </div>
                           <div class="col-md-8">
                             <select class="form-control" name="benefit_name[]" title="Juttatás megnevezése">
-                              <option></option>
+                              <option>TODO</option>
                               <option>Alfetta</option>
                               <option>500</option>
                               <option>Whatever</option>
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="benefit_value[]" class="form-control" placeholder="amount">
+                            <input type="text" name="benefit_value[]" class="form-control" placeholder="értéke">
                           </div>
                           <div class="col-md-4">
-                            <select class="form-control" name="benefit_curr[]" title="currency">
-                              <option></option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>Whatever</option>
+                            <select class="form-control" name="benefit_curr[]" title="pénznem">
+                              <option selected>HUF</option>
+                              <option>törvényben</option>
+                              <option>alapján</option>
                             </select>
                           </div>
                           <div class="col-md-4">
 
                           </div>
                         </div>
-                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 juttatás</button>
                       </div>
                       <div class="col-md-10">
 
@@ -972,32 +1018,27 @@ $(document).ready(function () {
                           </div>
                           <div class="col-md-8">
                             <!-- shouldn't it be input field -->
-                            <select class="form-control" name="present_name[]" title="Ajándék megnevezése">
-                              <option value="" disabled selected>Ajándék megnevezése</option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>Whatever</option>
-                            </select>
+                            <input class="form-control" name="present_name[]" title="Ajándék megnevezése" placeholder="Ajándék megnevezése"/>
                           </div>
                           <div class="col-md-4">
                             <input type="text" name="present_value[]" class="form-control" placeholder="Ajándék értéke">
                           </div>
                           <div class="col-md-4">
                             <select class="form-control" name="present_currency[]" title="pénznem">
-                              <option selected>HUF</option>
+                              <option>HUF</option>
+                              <option>törvényben alapján</option>
                             </select>
                           </div>
                           <div class="col-md-4">
-
                           </div>
                         </div>
-                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 ajándék</button>
                       </div>
 
 
 
                       <div class="col-md-10">
-                      <h2 class="clearfix">Subsidies</h2>
+                      <h2 class="clearfix">Támogatások</h2>
                         <div class="row">
                           <div class="col-md-6">
                             <input type="text" name="subs_reci[]" class="form-control" placeholder="Támogatás jogosultja">
@@ -1022,16 +1063,18 @@ $(document).ready(function () {
                           </div>
                           <div class="col-md-4">
                             <select class="form-control" name="subs_curr[]" title="pénznem">
-                              <option value="" disabled selectd>pénznem</option>
-                              <option></option>
-                              <option>Alfetta</option>
-                              <option>500</option>
-                              <option>Whatever</option>
+                            <option>HUF</option>
+                            <option>EUR</option>
+                            <option>CHF</option>
+                            <option>GBP</option>
+                            <option>USD</option>
+                            <option>darab</option>
+                            <option>egyéb</option>
                             </select>
                           </div>
 
                         </div>
-                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>{% trans 'Add an entry' %}...</button>
+                        <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 támogatás</button>
                       </div>
 
                     </div>
@@ -1046,8 +1089,8 @@ $(document).ready(function () {
             Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.
           {% endif %}
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
-          <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> Felszabadítom!</button >
+          <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> Felszabadítom!</button >
           <br />
           <br />
           <br />

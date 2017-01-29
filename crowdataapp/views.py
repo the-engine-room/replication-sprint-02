@@ -50,11 +50,12 @@ def document_set_index(request):
 
 def _get_stats(document_set):
     entries_count = document_set.get_entries_count()
-    stats = { 'volunteers_count': entries_count,
+    stats = { 'volunteers_count': 124 + entries_count,
                 'all_declarations_count': document_set.documents.count(),
                 'liberated_declarations': document_set.get_verified_documents().count(),
-                 # time spent estimate: 12mins each entry
-                'time_spent_minutes': entries_count * 12,
+                'liberated_declarations_since_iceage': 397 + document_set.get_verified_documents().count(),
+                 # time spent estimate: 16 minutes each entry
+                'time_spent_hours': 99 + (entries_count * 16) / 60,
                 }
     stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
 

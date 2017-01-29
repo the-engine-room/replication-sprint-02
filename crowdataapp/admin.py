@@ -30,7 +30,7 @@ from crowdataapp import models
 
 class DocumentSetFormFieldAdmin(NestedTabularInline):
     model = models.DocumentSetFormField
-    extra = 1
+    extra = 0
 
 class DocumentSetFormInline(NestedStackedInline):
     fields = ("title", "intro", "button_text")

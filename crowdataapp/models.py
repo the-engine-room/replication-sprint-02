@@ -292,7 +292,7 @@ class DocumentSetFormEntry(forms_builder.forms.models.AbstractFormEntry):
         try:
             answer_for_field = answer_qs[0]
         except IndexError: # there is no answer for this field
-            msg = "Haven't received value for field {0}. Check if your form isn't missing this field.".format(field.label)
+            msg = "Haven't received value for field {0}. Check if your form isn't missing this field.".format(field.slug)
             if settings.DEBUG:
                 raise IndexError(msg + " On production server this will be only logged.")
 

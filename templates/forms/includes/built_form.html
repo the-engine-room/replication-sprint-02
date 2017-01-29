@@ -19,6 +19,7 @@ ition.js" %}"></script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
 -->
 
+<!--
 <script>
 $(document).ready(function () {
      var autocomplete = new google.maps.places.Autocomplete($('input[name=address1_calle]')[1]);
@@ -57,6 +58,7 @@ $(document).ready(function () {
 
 });
 </script>
+-->
 
 <!-- bxSlider Javascript file -->
 <script src="{% static "/static/js/jquery.bxslider.min.js" %}"></script>
@@ -113,12 +115,12 @@ $(document).ready(function () {
                   <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
                   <div class="radio">
                     <label for="radio1-1">
-                      <input type="radio" id="radio1-1" name="radio1" value="1" class="box-toggler" data-toggle-target=".contents-1"> Igen
+                      <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio1-2">
-                      <input type="radio" id="radio1-2" name="radio1" value="0"  class="box-toggler" data-toggle-target=".contents-1"> Nem
+                      <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-1">
@@ -550,12 +552,12 @@ $(document).ready(function () {
                 <h1>Nyilatkozik-e bármilyen megtakarításról, befektetésről, pénzkövetelésről?</h1>
                 <div class="radio">
                   <label for="radio2-1">
-                    <input type="radio" id="radio2-1" name="radio2" value="1" class="box-toggler" data-toggle-target=".contents-2"> Igen
+                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Igen
                   </label>
                 </div>
                 <div class="radio">
                   <label for="radio1-2">
-                    <input type="radio" id="radio2-2" name="radio2" value="0"  class="box-toggler" data-toggle-target=".contents-2"> Nem
+                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> Nem
                   </label>
                 </div>
                 <div class="hidden contents-2">
@@ -663,12 +665,12 @@ $(document).ready(function () {
                   <h1>Nyilatkozik-e tartozásokról?</h1>
                   <div class="radio">
                     <label for="radio3-1">
-                      <input type="radio" id="radio3-1" name="radio3" value="1" class="box-toggler" data-toggle-target=".contents-3"> Igen
+                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio3-2">
-                      <input type="radio" id="radio3-2" name="radio3" value="0"  class="box-toggler" data-toggle-target=".contents-3"> Nem
+                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-3" id="">
@@ -718,12 +720,12 @@ $(document).ready(function () {
                   <h1>Van-e valamilyen egyéb közlendője?</h1>
                   <div class="radio">
                     <label for="radio4-1">
-                      <input type="radio" id="radio4-1" name="radio4" value="1" class="box-toggler" data-toggle-target=".contents-4"> Igen
+                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio4-2">
-                      <input type="radio" id="radio4-2" name="radio4" value="0"  class="box-toggler" data-toggle-target=".contents-4"> Nem
+                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-4" id="">
@@ -748,12 +750,12 @@ $(document).ready(function () {
                   <h1>Jövedelemnyilatkozat</h1>
                   <div class="radio">
                     <label for="radio5-1">
-                      <input type="radio" id="radio5-1" name="radio5" value="1" class="box-toggler" data-toggle-target=".contents-5"> Igen
+                      <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio5-2">
-                      <input type="radio" id="radio5-2" name="radio5" value="0"  class="box-toggler" data-toggle-target=".contents-5"> Nem
+                      <input type="radio" id="radio5-2" name="radio5" value="no"  class="box-toggler" data-toggle-target=".contents-5"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-5">
@@ -804,12 +806,12 @@ $(document).ready(function () {
                   <h1>Gazdasági érdekeltségi nyilatkozat</h1>
                   <div class="radio">
                     <label for="radio6-1">
-                      <input type="radio" id="radio6-1" name="radio6" value="1" class="box-toggler" data-toggle-target=".contents-6"> Igen
+                      <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio6-2">
-                      <input type="radio" id="radio6-2" name="radio6" value="0"  class="box-toggler" data-toggle-target=".contents-6"> Nem
+                      <input type="radio" id="radio6-2" name="radio6" value="no"  class="box-toggler" data-toggle-target=".contents-6"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-6">
@@ -969,12 +971,12 @@ $(document).ready(function () {
                   <h1>Nyilatkozik-e bármilyen juttatásról, ajándékról, támogatásról?</h1>
                   <div class="radio">
                     <label for="radio7-1">
-                      <input type="radio" id="radio7-1" name="radio7" value="1" class="box-toggler" data-toggle-target=".contents-7"> Igen
+                      <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> Igen
                     </label>
                   </div>
                   <div class="radio">
                     <label for="radio7-2">
-                      <input type="radio" id="radio7-2" name="radio7" value="0"  class="box-toggler" data-toggle-target=".contents-7"> Nem
+                      <input type="radio" id="radio7-2" name="radio7" value="no"  class="box-toggler" data-toggle-target=".contents-7"> Nem
                     </label>
                   </div>
                   <div class="hidden contents-7" id="">

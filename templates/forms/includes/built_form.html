@@ -3,79 +3,9 @@
 {% load i18n %}
 {% load crowdataapp_tags %}
 
-<!--
-<style>
-    .container {
-        background: linear-gradient(90deg, #A327A1 670px, white 650px);
-    }
-</style>
-<script src="{% static "js/bootstrap/moment.min.js" %}"></script>
-<script src="{% static "js/bootstrap/moment-locale-es.js" %}"></script>
-<script src="{% static "js/bootstrap/collapse.js" %}"></script>
-<script src="{% static "js/bootstrap/
-ition.js" %}"></script>
-<script src="{% static "js/bootstrap/bootstrap-datetimepicker.js" %}"></script>
-<script src="{% static "/static/js/qc.js" %}"></script>
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyC_fC5wB4jiOb4hqJG2cZpIhZrzlRvMQ0w&sensor=false&libraries=places&language=en-AU"></script>
--->
-
-<div style="float:left;width:30%;">
-                <img class="img-responsive" id="the-logo" src="/static/img/kmonitor/k-horizontalis_transp.gif">
-            </div>
 
 
-<!--
 
-<script>
-$(document).ready(function () {
-     var autocomplete = new google.maps.places.Autocomplete($('input[name=address1_calle]')[1]);
-    $("#submit-el-forma").click(function () {
-        $('#elForm').submit();
-        document.location = "/cd/feedback/" +{{document.id}};
-    });
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        var place = autocomplete.getPlace();
-
-        for(idx in place.address_components){
-            var address_type = place.address_components[idx]['types'];
-            if(place.address_components[idx]['types']=="postal_code"){
-                $('input[name=address1_codigo_postal]')[1].value = place.address_components[idx]["long_name"];
-                $('input[name=address1_codigo_postal]')[0].value = $('input[name=address1_codigo_postal]')[1].value;
-
-            }else if($.inArray("sublocality_level_1", address_type) == 0){
-                $('input[name=address1_colonia]')[1].value = place.address_components[idx]["long_name"];
-                $('input[name=address1_colonia]')[0].value = $('input[name=address1_colonia]')[1].value;
-
-            }else if($.inArray("locality", address_type) == 0){
-               $('input[name=address1_municipio_o_delegacion]')[1].value = place.address_components[idx]["long_name"];
-               $('input[name=address1_municipio_o_delegacion]')[0].value = $('input[name=address1_municipio_o_delegacion]')[1].value;
-
-            }else if($.inArray("administrative_area_level_1", address_type) == 0){
-               $('input[name=address1_estado]')[1].value = place.address_components[idx]["long_name"];
-               $('input[name=address1_estado]')[0].value = $('input[name=address1_estado]')[1].value;
-
-            }else if($.inArray("route", address_type) == 0){
-               $('input[name=address1_calle]')[1].value = place.address_components[idx]["long_name"];
-               $('input[name=address1_calle]')[0].value = $('input[name=address1_calle]')[1].value;
-            }
-        }
-
-    });
-
-});
-</script>
--->
-
-<!-- bxSlider Javascript file -->
-<script src="{% static "/static/js/jquery.bxslider.min.js" %}"></script>
-
-
-<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
-
-<link href="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
-<!-- bxSlider CSS file -->
-<link href="{% static "/static/css/jquery.bxslider.css" %}" rel="stylesheet">
-<!-- bxSlider Javascript file -->
 
 <form name="elForma" id="elForm" action="{{ form.get_absolute_url }}" method="post" {% if form_for_form.is_multipart %}enctype="multipart/form-data"{% endif %} role="form" class="center-block">
     <input type="hidden" name="__document_id" value="{{ document.id }}"/>
@@ -90,11 +20,16 @@ $(document).ready(function () {
         <!-- SLIDE 1 -->
 
            <div class="row">
+              <div class="col-md-12">
+                <div style="float:left;width:30%;">
+                  <img class="img-responsive" id="the-logo" src="/static/img/kmonitor/k-horizontalis_transp.gif">
+                </div>
+              </div>
                 <div class="col-md-3">
                      <img class="img-responsive mp-profile-pic" src="{{ mp.image_url }}" alt="{{ mp.name }}">
                 </div>
                 <div class="col-md-9">
-                     <h2>{{ mp.name }}</h2>
+                     <h1>{{ mp.name }}</h1>
                 </div>
 
                 <div class="col-md-12">
@@ -119,111 +54,104 @@ $(document).ready(function () {
         </li>
         <li class="container-fluid">
 <!-- SLIDE 2 -->
-              <div class="row">
-                    <div class="col-md-12">
+	<div class="row">
+		<!-- question -->
+		<div class="col-md-12">
+			<h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
+            <div class="really-blue-line"></div>
+			<div class="row">
+				<div class="col-md-4">
+					 <div class="radio">
+						  <label for="radio1-1">
+							   <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
+						  </label>
+					 </div>
+				</div>
+				<div class="col-md-4">
+					 <div class="radio">
+					   <label for="radio1-2">
+						 <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
+					   </label>
+					 </div>
+				</div>
+            </div>
+        </div>
+		<!-- EOF question -->
 
-                         <h1>Nyilatkozott-e valamilyen ingatlanról?</h1>
-                         <div class="really-blue-line"></div>
-                         <div class="row">
-                              <div class="col-md-4">
-                                   <div class="radio">
-                                        <label for="radio1-1">
-                                             <input type="radio" id="radio1-1" name="radio1" value="yes" class="box-toggler" data-toggle-target=".contents-1"> Igen
-                                        </label>
-                                   </div>
-                              </div>
-                              <div class="col-md-4">
-                                   <div class="radio">
-                                     <label for="radio1-2">
-                                       <input type="radio" id="radio1-2" name="radio1" value="no"  class="box-toggler" data-toggle-target=".contents-1"> Nem
-                                     </label>
-                                   </div>
-                              </div>
-                       </div>
+
+		<!-- START OF HIIDEN BOX 1 -->
+		<div class="hidden contents-1 col-md-12">
+            <div class="row">
+				<div class="col-md-12">
+					<h2>Vagyoni nyilatkozat / Ingatlanok</h2>
+                </div>
+            </div>
+            <div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="location">Település:</label>
+						<input class="form-control" type="text" name="location[]" class="form-control">
+					</div>
+                </div>
+            </div>
+
+            <div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						 <label for="area">Az ingatlan teljes területe:</label>
+						 <input class="form-control" type="text" name="area[]" class="form-control">
+					</div>
+                </div>
+                <div class="col-md-4">
+					<div class="form-group">
+						<label>&nbsp;</label>
+						<select class=" form-control" name="area_unit[]" title="unit">
+							<option value="sq" selected>négyzetméter</option>
+							<option value="ha">hektár</option>
+							<option value="negyszogol">négyszögöl</option>
+							<option value="akol">akol</option>
+							<option value="egyeb">egyéb</option>
+						</select>
+					</div>
+                </div>
+            </div>
+
+            <div class="row">
+				<div class="col-md-6">
+
+
+
+					<label for="area">Művelési ága:</label>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="cultivation_checkbox1[]"> belterület/művelés alól kivett
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="cultivation_checkbox2[]"> külterület
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="cultivation_checkbox3[]"> lakás/lakóház
+						</label>
+					</div>
+          <div class="row">
+					<!-- 	<div class="col-md-4">
+							<label>Egyéb:</label>
+						</div> -->
+						<div class="col-md-8">
+							<input type="text" name="cultivation-other[]" class="form-control" placeholder="Egyéb">
+						</div>
                     </div>
-                    <div class="hidden contents-1 col-md-12">
-                         <div class="row">
-                              <div class="col-md-12">
-                                   <h2>Vagyoni nyilatkozat / Ingatlanok</h2>
-                              </div>
-                         </div>
-                         <div class="row">
-                              <div class="col-md-8">
-                                   <div class="form-group">
-                                        <label for="location">Település:</label>
-                                        <input class="form-control" type="text" name="location[]" class="form-control">
-                                   </div>
-                              </div>
-                         </div>
-
-                      <div class="row">
-
-
-                        <div class="col-md-6">
-                             <div class="form-group">
-                                  <label for="area">Az ingatlan teljes területe:</label>
-                                  <input class="form-control" type="text" name="area[]" class="form-control">
-                             </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                               <label>&nbsp;</label>
-                                <select class=" form-control" name="area_unit[]" title="unit">
-                                  <option value="sq" selected>négyzetméter</option>
-                                  <option value="ha">hektár</option>
-                                  <option value="negyszogol">négyszögöl</option>
-                                  <option value="akol">akol</option>
-                                  <option value="egyeb">egyéb</option>
-                                </select>
-                            </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                          <div class="col-md-4">
-                            <label for="area">Művelési ága:</label>
-                          </div>
-                          <div class="col-md-4">
-
-                          </div>
-
-
-
-                        <div class="col-md-4">
-                                  <label for="area">Cultivation:</label>
-
-                          <div class="checkbox">
-                            <label>
-                               <input type="checkbox" name="cultivation_checkbox1[]"> belterület/művelés alól kivett
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                               <input type="checkbox" name="cultivation_checkbox2[]"> külterület
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                               <input type="checkbox" name="cultivation_checkbox3[]"> lakás/lakóház
-                            </label>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <label>Egyéb:</label>
-                            </div>
-                            <div class="col-md-8">
-                               <input type="text" name="cultivation-other[]" class="form-control" placeholder="egyéb">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <div class="row">
+                </div>
+            </div>
+			<div class="row">
                         <!-- It's part of the previous <h2>Building Info</h2>-->
                         <div class="col-md-4">
-                          <h3>Fő rendeltetése</h3>
+                          <label>Fő rendeltetése</label>
                           <div class="checkbox">
                             <label>
                                <input type="checkbox" name="building_nature1[]"> garázs
@@ -240,11 +168,11 @@ $(document).ready(function () {
                             </label>
                           </div>
                           <div class="row">
-                            <div class="col-md-4">
+                          <!--   <div class="col-md-4">
                               <label>Egyéb:</label>
-                            </div>
-                            <div class="col-md-8">
-                               <input type="text" name="building_nature_other[]" class="form-control">
+                            </div> -->
+                            <div class="col-md-12">
+                               <input type="text" name="building_nature_other[]" class="form-control" placeholder="Egyéb">
                             </div>
                           </div>
                         </div>
@@ -286,11 +214,11 @@ $(document).ready(function () {
                             </label>
                           </div>
                           <div class="row">
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                               <label>Egyéb:</label>
-                            </div>
+                            </div> -->
                             <div class="col-md-8">
-                               <input type="text" name="legal_designation_other[]" class="form-control">
+                               <input type="text" name="legal_designation_other[]" class="form-control" placeholder="Egyéb">
                             </div>
                           </div>
                         </div>
@@ -312,12 +240,12 @@ $(document).ready(function () {
                                <input type="checkbox" name="legal_status3[]"> bérlő
                             </label>
                           </div>
-                          <div class="form-group">
-                            <div class="col-md-4">
+                          <div class="row">
+                          <!--  <div class="col-md-4">
                               <label>Egyéb:</label>
-                            </div>
+                            </div> -->
                             <div class="col-md-8">
-                               <input type="text" name="legal_status_other[]" class="form-control">
+                               <input type="text" name="legal_status_other[]" class="form-control" placeholder="Egyéb">
                             </div>
                           </div>
 
@@ -439,11 +367,33 @@ $(document).ready(function () {
 <!-- slide 3 -->
             <li class="container-fluid">
               <div class="row">
+              <!-- question -->
                 <div class="col-md-12">
-                  <h2>Nagy értékű ingóságok</h2>
-                </div>
+                <h1>Nyilatkozott-e valamilyen nagy értékű ingóságról (járművek, műtárgyak)?</h1>
+                <div class="really-blue-line"></div>
+                <div class="row">
+                  <div class="col-md-4">
+                     <div class="radio">
+                        <label for="radio1-v">
+                           <input type="radio" id="radio1-v" name="radiov" value="yes" class="box-toggler" data-toggle-target=".vehicles"> Igen
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="radio">
+                       <label for="radio1-v">
+                       <input type="radio" id="radio1-v" name="radiov" value="no"  class="box-toggler" data-toggle-target=".vehicles"> Nem
+                       </label>
+                     </div>
+                  </div>
+                      </div>
+                  </div>
+              <!-- EOF question -->
+
+                <div class="col-md-12 hidden vehicles">
+                <div class="row">
                 <div class="col-md-10">
-                  <h3>Gépjárművek <small>if any</small></h3>
+                  <h2>Gépjárművek</h2>
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="vehicle_type[]" title="type">
@@ -488,7 +438,7 @@ $(document).ready(function () {
                   </div>
                   <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 gépjármű</button>
 
-                  <h3>Vízi vagy légi jármű jellege <small>if any</small></h3>
+                  <h2>Vízi vagy légi jármű jellege </h2>
                   <div class="row">
                     <div class="col-md-4">
                       <input class="form-control" name="water_aero_type[]" placeholder="Vízi vagy légi jármű jellege">
@@ -528,7 +478,7 @@ $(document).ready(function () {
                   </div>
                   <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 jármű</button>
 
-                  <h3>Védett műalkotás, védett gyűjtemény és egyéb nagyobb értékű ingóságok <small>if any</small></h3>
+                  <h2>Védett műalkotás, védett gyűjtemény és egyéb nagyobb értékű ingóságok </h2>
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="artwork_type[]" title="Védett műalkotás, védett gyűjtemény, egyéb értékes ingóság jellege">
@@ -574,54 +524,72 @@ $(document).ready(function () {
                   <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 műtárgy</button>
 
               </div>
-            </li>
+              </div>
+          </li>
+
+
 <!-- Slide 4 -->
             <li class="container-fluid">
               <div class="row">
               <div class="col-md-12">
                 <h1>Nyilatkozik-e bármilyen megtakarításról, befektetésről, pénzkövetelésről?</h1>
-                <div class="radio">
-                  <label for="radio2-1">
-                    <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Igen
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radio1-2">
-                    <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> Nem
-                  </label>
-                </div>
-                <div class="hidden contents-2">
+                <div class="really-blue-line"></div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="radio">
+                      <label for="radio2-1">
+                        <input type="radio" id="radio2-1" name="radio2" value="yes" class="box-toggler" data-toggle-target=".contents-2"> Igen
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="radio">
+                      <label for="radio1-2">
+                        <input type="radio" id="radio2-2" name="radio2" value="no"  class="box-toggler" data-toggle-target=".contents-2"> Nem
+                      </label>
+                    </div>
+                  </div>
+              </div>
+          <!-- EOF question -->
+                <div class="hidden contents-2 col-md-12">
                   <div class="row">
                     <div class="col-md-10">
                       <h2>Értékpapír vagy egyéb befektetés</h2>
                       <div class="row">
-                        <div class="col-md-4">
-                          <input type="text" name="inv_name[]" class="form-control" title="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés" placeholder="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés">
-                        </div>
-                        <div class="col-md-4">
-                          <input type="text" name="inv_value[]" title="Névérték" placeholder="Névérték">
-                        </div>
-                        <div class="col-md-4">
-                          <select class="form-control" name="inv_curr[]" title="pénznem">
-                            <option>HUF</option>
-                            <option>EUR</option>
-                            <option>CHF</option>
-                            <option>GBP</option>
-                            <option>USD</option>
-                            <option>darab</option>
-                            <option>egyéb</option>
-                          </select>
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <input type="text" name="inv_name[]" class="form-control" title="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés" placeholder="Értékpapírban elhelyezett megtakarítás, vagy egyéb befektetés">
+                            </div>
+                            <div class="col-md-4">
+                              <input type="text" name="inv_value[]" class="form-control" title="Névérték" placeholder="Névérték">
+                            </div>
+                            <div class="col-md-4">
+                              <select class="form-control" name="inv_curr[]" title="pénznem">
+                                <option>HUF</option>
+                                <option>EUR</option>
+                                <option>CHF</option>
+                                <option>GBP</option>
+                                <option>USD</option>
+                                <option>darab</option>
+                                <option>egyéb</option>
+                              </select>
+                            </div>
+                          </div>
+                          <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
                         </div>
                       </div>
-                      <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
-                    </div>
 
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-md-10">
                       <h2>Takarék</h2>
                       <div class="row">
                         <div class="col-md-4">
                           <input type="text" name="sec_name[]" class="form-control" placeholder="Takarékbetétben elhelyezett megtakarítás"/>
+                        </div>
+                        <div class="col-md-4">
                           <input type="text" name="sec_value[]" class="form-control" placeholder="Névérték"/>
                         </div>
                         <div class="col-md-4">
@@ -693,17 +661,29 @@ $(document).ready(function () {
               <div class="row">
                 <div class="col-md-12">
                   <h1>Nyilatkozik-e tartozásokról?</h1>
-                  <div class="radio">
-                    <label for="radio3-1">
-                      <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Igen
-                    </label>
+                  <div class="really-blue-line"></div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio3-1">
+                          <input type="radio" id="radio3-1" name="radio3" value="yes" class="box-toggler" data-toggle-target=".contents-3"> Igen
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio3-2">
+                          <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> Nem
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <label for="radio3-2">
-                      <input type="radio" id="radio3-2" name="radio3" value="no"  class="box-toggler" data-toggle-target=".contents-3"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-3" id="">
+
+
+
+
+
+                  <div class="hidden contents-3 col-md-12" id="">
                     <div class="row">
                       <div class="col-md-10">
                         <h2>Tartozások</h2>
@@ -748,17 +728,27 @@ $(document).ready(function () {
               <div class="row">
                 <div class="col-md-12">
                   <h1>Van-e valamilyen egyéb közlendője?</h1>
-                  <div class="radio">
-                    <label for="radio4-1">
-                      <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Igen
-                    </label>
+                  <div class="really-blue-line"></div>
+                  <div class="row">
+                    <div class="col-md-4">
+
+                      <div class="radio">
+                        <label for="radio4-1">
+                          <input type="radio" id="radio4-1" name="radio4" value="yes" class="box-toggler" data-toggle-target=".contents-4"> Igen
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio4-2">
+                          <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> Nem
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <label for="radio4-2">
-                      <input type="radio" id="radio4-2" name="radio4" value="no"  class="box-toggler" data-toggle-target=".contents-4"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-4" id="">
+
+
+                  <div class="hidden contents-4 col-md-12" id="">
                     <div class="row">
                       <div class="col-md-10">
                         <h2>Egyéb közlendők</h2>
@@ -777,22 +767,29 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>Jövedelemnyilatkozat</h1>
-                  <div class="radio">
-                    <label for="radio5-1">
-                      <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> Igen
-                    </label>
+                  <h1>Nyilatkozik-e egyéb jövedelmeiről (Jövedelemnyilatkozat)?</h1>
+                  <div class="really-blue-line"></div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio5-1">
+                          <input type="radio" id="radio5-1" name="radio5" value="yes" class="box-toggler" data-toggle-target=".contents-5"> Igen
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio5-2">
+                          <input type="radio" id="radio5-2" name="radio5" value="no"  class="box-toggler" data-toggle-target=".contents-5"> Nem
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <label for="radio5-2">
-                      <input type="radio" id="radio5-2" name="radio5" value="no"  class="box-toggler" data-toggle-target=".contents-5"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-5">
 
+                  <div class="hidden contents-5 col-md-12">
+                    <h2>Foglalkozás</h2>
                     <div class="row">
                       <div class="col-md-12">
-                        <h2>Foglalkozás</h2>
                         <div class="row">
                           <div class="col-md-6">
                             <input type="text" name="profession[]" class="form-control" placeholder="Foglalkozás">
@@ -833,18 +830,28 @@ $(document).ready(function () {
             <li class="container-fluid">
               <div class="row">
                 <div class="col-md-12">
-                  <h1>Gazdasági érdekeltségi nyilatkozat</h1>
-                  <div class="radio">
-                    <label for="radio6-1">
-                      <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> Igen
-                    </label>
+                  <h1>Nyilatkozik-e gazdasági érdekeltségekről?</h1>
+                  <div class="really-blue-line"></div>
+                  <div class="row">
+                    <div class="col-md-4">
+
+                      <div class="radio">
+                        <label for="radio6-1">
+                          <input type="radio" id="radio6-1" name="radio6" value="yes" class="box-toggler" data-toggle-target=".contents-6"> Igen
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio6-2">
+                          <input type="radio" id="radio6-2" name="radio6" value="no"  class="box-toggler" data-toggle-target=".contents-6"> Nem
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <label for="radio6-2">
-                      <input type="radio" id="radio6-2" name="radio6" value="no"  class="box-toggler" data-toggle-target=".contents-6"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-6">
+
+                  <div class="hidden contents-6 col-md-12">
+
                     <div class="row">
                       <div class="col-md-10">
                         <h2>Gazdasági társaságban fennálló tisztség vagy érdekeltség</h2>
@@ -908,7 +915,7 @@ $(document).ready(function () {
                       <div class="col-md-10">
                         <h2>Érdekeltség aránya keletkezéskor</h2>
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-12">
                             <div class="row">
                               <div class="col-md-2">
                                 <input class="form-control" name="ownership_ratio_beg1[]" type="text">
@@ -917,7 +924,7 @@ $(document).ready(function () {
                               <div class="col-md-2">
                                 <input class="form-control" type="text" name="ownership_ratio_beg2[]">
                               </div>
-                              <div class="col-md-2"><span class="or center-block">OR</span></div>
+                              <div class="col-md-2"><span class="or center-block">vagy</span></div>
                               <div class="col-md-4">
                                 <div class="input-group">
                                   <input type="text" class="form-control" name="ownership_ratio_beg_percent[]" placeholder="percentage..." aria-describedby="percent-addon">
@@ -932,7 +939,7 @@ $(document).ready(function () {
                       <div class="col-md-10">
                         <h2>Érdekeltség aránya jelenleg</h2>
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-12">
                             <div class="row">
                               <div class="col-md-2">
                                 <input class="form-control" name="ownership_ratio_now1[]" type="text">
@@ -999,17 +1006,25 @@ $(document).ready(function () {
               <div class="row">
                 <div class="col-md-12">
                   <h1>Nyilatkozik-e bármilyen juttatásról, ajándékról, támogatásról?</h1>
-                  <div class="radio">
-                    <label for="radio7-1">
-                      <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> Igen
-                    </label>
+
+                  <div class="really-blue-line"></div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio7-1">
+                          <input type="radio" id="radio7-1" name="radio7" value="yes" class="box-toggler" data-toggle-target=".contents-7"> Igen
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="radio">
+                        <label for="radio7-2">
+                          <input type="radio" id="radio7-2" name="radio7" value="no"  class="box-toggler" data-toggle-target=".contents-7"> Nem
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <label for="radio7-2">
-                      <input type="radio" id="radio7-2" name="radio7" value="no"  class="box-toggler" data-toggle-target=".contents-7"> Nem
-                    </label>
-                  </div>
-                  <div class="hidden contents-7" id="">
+                  <div class="hidden contents-7 col-md-12" id="">
                     <div class="row">
                       <div class="col-md-10">
                         <h2>Juttatás</h2>
@@ -1117,17 +1132,15 @@ $(document).ready(function () {
           </ul>
 
           {% if request.user.is_staff %}
-            Instantly verify this document: <input type="checkbox" name="staff_force_verification"><br/>
-            Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.
+            <p> Instantly verify this document: <input type="checkbox" name="staff_force_verification"><br/>
+            Dear {{ request.user }}, leave it unchecked if you want this entry to be verified by others. Check if you're really sure it's correct and you don't want to wait for others.</p>
           {% endif %}
+          <br />
+          <br />
+          <br />
 
-<<<<<<< HEAD
-
-          <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> LIBERATE!</button >
-=======
-          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-heartbeat"></i> Felszabadítom!</button >
           <button class="btn btn-lg btn-kmonitor btn-lg" type="submit"><i class="fa fa-heartbeat"></i> Felszabadítom!</button >
->>>>>>> a9db0b40f638e0023e3f4dbb722d1fe6e2559905
+
           <br />
           <br />
           <br />

@@ -6781,7 +6781,7 @@ body#homepage .container-fluid {
   /* padding: 0;*/
 }
 header {
-  background-color: #FF9A00;
+  background-color: #f39a00;
   background-image: url(/static/img/kmonitor/header-visual.jpg);
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -6958,12 +6958,12 @@ footer p {
 }
 
 /** Liberation HP **/
-#liberate-mp, #feedback-header {  
+#liberate-mp, #feedback-header {
   background: #005A9A;
   color: white;
   border-bottom: 10px solid black;
   position: relative;
-  height: 385px; 
+  height: 385px;
 }
 #feedback-header { height: 250px; }
 #feedback-header h2 { font-size: 46px; font-weight: bold; margin: 42px 0px; }
@@ -6971,17 +6971,17 @@ footer p {
   font-weight: bold; font-size: 36px; color: #005A9A;
 }
 #feedback-another .btn-lg{
-  font-size: 36px; margin: 15px auto; 
+  font-size: 36px; margin: 15px auto;
 }
 .form-helper-text {
   color: #005A9A;
   font-size: 22px;
-  line-height: 150%; 
+  line-height: 150%;
 }
 #liberate-mp header, #feedback-header header {
   background: transparent none no-repeat center center;
   height: auto;
-  border-bottom: none; 
+  border-bottom: none;
 }
 #liberate-mp header h1 {
   font-weight: 700;
@@ -6989,7 +6989,7 @@ footer p {
 }
 
 #mp-data { margin-top: 50px; }
-#mp-data img {
+#mp-data img, .mp-profile-pic {
   border: 5px solid #005A9A;
   border-radius: 10px;
   -webkit-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
@@ -7014,19 +7014,19 @@ footer p {
 }
 
 #mc_embed_signup {
-  margin-top: 25px; 
+  margin-top: 25px;
 }
 
 /** main form **/
 
 #elForm h1 {
-  font-size: 30px; font-weight: bold; color: #005A9A; 
+  font-size: 30px; font-weight: bold; color: #005A9A;
 }
 #elForm h2 {
-  font-size: 24px; font-weight: bold; color: #005A9A; 
+  font-size: 24px; font-weight: bold; color: #005A9A;
 }
 #elForm .really-blue-line {
-  margin-right: -15px; margin-bottom: 20px; 
+  margin-right: -15px; margin-bottom: 20px;
 }
 
 #elForm label { color: #005A9A; margin-bottom: 8px; font-weight: bold; font-size: 16px; }
@@ -7042,7 +7042,7 @@ footer p {
     background-image: none;
     border: 3px solid #005A9A;
     border-radius: 6px;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 .input-group-addon {
     padding: 6px 12px;
@@ -7058,9 +7058,9 @@ footer p {
 .start-list {
   list-style: none;
   padding: 0px;
-  margin: 30px 0px 80px; 
+  margin: 30px 0px 80px;
   color: #005A9A;
-  font-size: 22px; 
+  font-size: 22px;
 }
 .start-list li { display: block; float: left; clear: both; margin: 6px 0px; width: 100%; }
 .start-list li .fa { display: block; float: left; clear: none; width: 10%; line-height: 31px;  }
@@ -7068,7 +7068,7 @@ footer p {
 
 #liberate-list {
   margin-bottom: 25px;
-  padding-bottom: 20px; 
+  padding-bottom: 20px;
 }
 
 .blue-text.text-center {
@@ -7076,14 +7076,14 @@ footer p {
   padding: 15px 0px;
   display: block;
   color: #005A9A;
-  
+
 }
 
 /** the slider and it's glory **/
 ul#slide-list {
   list-style: none;
   padding: 0px;
-  
+
 }
 
 .contact-us {
@@ -7093,10 +7093,23 @@ ul#slide-list {
   background: #005A9A;
 }
 .contact-us h2 {
-  margin: 0px; line-height: 28px; 
+  margin: 0px; line-height: 28px;
 }
 .contact-us h2 a { color: white; }
 .contact-us h2 a:hover { color: white; text-decoration: underline; }
 .contact-us p { line-height: 28px; }
 
-#document-transcript {  margin-left: 50%; }
+.document-box {
+   background-color: #005A9A;
+   position: fixed;
+   z-index: 0;
+   top: 0px;
+   bottom: 259px;
+   left: 0px;
+   height:100%;
+   min-height: 747px;
+   padding-top: 10px;
+   margin-bottom: 259px;
+ }
+#new-transcription footer { display: none; }
+#document-transcript {  margin-left: 50%; width: 50%; padding-right: 0px;  }

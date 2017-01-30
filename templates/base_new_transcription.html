@@ -7,16 +7,15 @@
 <html lang="hu">
   {% include 'head.html' %}
 
-  <body>
+  <body id="new-transcription">
   <!--<script src="{% static "js/transcription_new.js" %}"></script>-->
   <!-- TODO WTF, why a second base template? -->
-    <div class="container-full">
+      <div class="container-fluid">
         {% block content %}
         {% endblock %}
 
         {% include "footer.html" %}
-    </div>
-
+      </div>
     <script src="{% static 'browserid/api.js' %}"></script>
     <script src="{% static 'browserid/browserid.js' %}"></script>
 

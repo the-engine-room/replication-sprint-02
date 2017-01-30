@@ -175,6 +175,8 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
     args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)
+    doc_id = post.get('__document_id')
+    # doc_id = request.session['document_id_for_entry']
 
     if request.method == 'POST':
         if not form_for_form.is_valid():
@@ -182,8 +184,10 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             return HttpResponseBadRequest(json.dumps(form_for_form.errors), content_type='application/json')
         else:
             entry = form_for_form.save()
-            form_valid.send(sender=request, form=form_for_form, entry=entry, document_id=request.session['document_id_for_entry'], staff_force_verification=request.POST.get('staff_force_verification', None))
-            return HttpResponse('')
+            form_valid.send(sender=request, form=form_for_form, entry=entry, document_id=doc_id, staff_force_verification=request.POST.get('staff_force_verification', None))
+
+            return HttpResponseRedirect(reverse('feedback', kwargs={'document_id':doc_id}))
+
     return render_to_response(template, { 'form': form }, request_context)
 
 def show_document(request, document_set,document_id):

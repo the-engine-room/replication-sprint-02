@@ -50,11 +50,12 @@ def document_set_index(request):
 
 def _get_stats(document_set):
     entries_count = document_set.get_entries_count()
-    stats = { 'volunteers_count': entries_count,
+    stats = { 'volunteers_count': 124 + entries_count,
                 'all_declarations_count': document_set.documents.count(),
                 'liberated_declarations': document_set.get_verified_documents().count(),
-                 # time spent estimate: 12mins each entry
-                'time_spent_minutes': entries_count * 12,
+                'liberated_declarations_since_iceage': 397 + document_set.get_verified_documents().count(),
+                 # time spent estimate: 16 minutes each entry
+                'time_spent_hours': 99 + (entries_count * 16) / 60,
                 }
     stats['progress_percent'] = int(100 * stats['liberated_declarations'] / stats['all_declarations_count'])
 
@@ -167,16 +168,27 @@ def form_detail(request, slug, template="forms/form_detail.html"):
     form = get_object_or_404(models.DocumentSetForm, slug=slug)
     request_context = RequestContext(request)
     post = request.POST.copy() or None
+    packed_multiples = {}
 
     # pack multiple fields in JSON
-    for f in form.fields.filter(multivalued=True):
-        value = json.dumps(post.getlist(f.slug), ensure_ascii=False) #ensure_ascii=False
-        post[f.slug] = value
+    for k in post.keys():
+        # if it is multivalued
+        if len(k) > 2 and k[-2:] == '[]':
+            values = post.getlist(k)
+            if values == [u'']:
+                values = [] # TODO or '' if it happens anywhere
+
+            k = k[:-2]
+            if len(values): # if not empty
+                packed_multiples[k] = json.dumps(values, ensure_ascii=False)
+            else:
+                packed_multiples[k] = '' # e,[ty string instead of '[]'
+
+    post.update(packed_multiples)
 
     args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)
     doc_id = post.get('__document_id')
-    # doc_id = request.session['document_id_for_entry']
 
     if request.method == 'POST':
         if not form_for_form.is_valid():
@@ -252,7 +264,7 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       { 'document_set': doc_set },
                                       context_instance=RequestContext(request))
 
-        document = candidates.order_by('?')[0]
+        document = candidates.order_by('+opened_count','?')[0]
     else:
         candidates = doc_set.get_pending_documents().exclude(form_entries__user=request.user)
 
@@ -262,11 +274,10 @@ def transcription_new(request, document_set, doc_id=None, category=None):
                                       { 'document_set': doc_set },
                                       context_instance=RequestContext(request))
 
-        document = candidates.order_by('?')[0]
+        document = candidates.order_by('+opened_count','?')[0]
 
-    # save the candidate document in the session, for later use
-    # in signals.create_entry
-    request.session['document_id_for_entry'] = document.id
+    document.opened_count += 1
+    document.save() # TODO can incrment and save can be done in one step?
 
     return render(request,
                   'transcription_new.html',

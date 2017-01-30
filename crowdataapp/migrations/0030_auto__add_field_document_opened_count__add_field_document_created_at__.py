@@ -8,16 +8,22 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'DocumentSetFormField.multivalued'
-        db.add_column(u'crowdataapp_documentsetformfield', 'multivalued',
-                      self.gf('django.db.models.fields.BooleanField')(default=False),
+        # Adding field 'Document.opened_count'
+        db.add_column(u'crowdataapp_document', 'opened_count',
+                      self.gf('django.db.models.fields.IntegerField')(default=0),
                       keep_default=False)
 
+        # Adding field 'Document.created_at'
+        db.add_column(u'crowdataapp_document', 'created_at',
+                      self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2017, 1, 27, 0, 0), blank=True),
+                      keep_default=False)
 
     def backwards(self, orm):
-        # Deleting field 'DocumentSetFormField.multivalued'
-        db.delete_column(u'crowdataapp_documentsetformfield', 'multivalued')
+        # Deleting field 'Document.opened_count'
+        db.delete_column(u'crowdataapp_document', 'opened_count')
 
+        # Deleting field 'Document.created_at'
+        db.delete_column(u'crowdataapp_document', 'created_at')
 
     models = {
         u'auth.group': {
@@ -66,10 +72,13 @@ class Migration(SchemaMigration):
         u'crowdataapp.document': {
             'Meta': {'object_name': 'Document'},
             'category': ('django.db.models.fields.CharField', [], {'max_length': '256', 'null': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'document_set': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'documents'", 'to': u"orm['crowdataapp.DocumentSet']"}),
             'entries_threshold_override': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '256', 'null': 'True'}),
+            'opened_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'politician': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'declarations'", 'null': 'True', 'to': u"orm['crowdataapp.Politician']"}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': "'512'"}),
             'verified': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
@@ -115,7 +124,7 @@ class Migration(SchemaMigration):
             'publish_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'response': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'send_email': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'default': '[1]', 'to': u"orm['sites.Site']", 'symmetrical': 'False'}),
+            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'default': '[1]', 'related_name': "u'crowdataapp_documentsetform_forms'", 'symmetrical': 'False', 'to': u"orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'}),
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '50'})
@@ -139,11 +148,10 @@ class Migration(SchemaMigration):
             'help_text': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'label': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'multivalued': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'order': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'placeholder_text': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'required': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'default': "''", 'max_length': '100', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'default': "u''", 'max_length': '100', 'blank': 'True'}),
             'verify': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'visible': ('django.db.models.fields.BooleanField', [], {'default': 'True'})
         },
@@ -164,6 +172,26 @@ class Migration(SchemaMigration):
             'feedback_text': ('django.db.models.fields.CharField', [], {'max_length': '10000'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
+        },
+        u'crowdataapp.party': {
+            'Meta': {'object_name': 'Party'},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': "'128'"}),
+            'parldata_id': ('django.db.models.fields.CharField', [], {'max_length': "'64'"}),
+            'short_name': ('django.db.models.fields.CharField', [], {'max_length': "'128'"}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
+        },
+        u'crowdataapp.politician': {
+            'Meta': {'object_name': 'Politician'},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image_url': ('django.db.models.fields.URLField', [], {'max_length': "'256'"}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': "'128'"}),
+            'parldata_id': ('django.db.models.fields.CharField', [], {'max_length': "'64'"}),
+            'parliamentary_id': ('django.db.models.fields.CharField', [], {'max_length': "'24'"}),
+            'party': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'members'", 'null': 'True', 'to': u"orm['crowdataapp.Party']"}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
         u'crowdataapp.userprofile': {
             'Meta': {'object_name': 'UserProfile'},

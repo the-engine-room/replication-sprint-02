@@ -1,10 +1,12 @@
 from collections import defaultdict
+from crowdataapp.middleware import get_current_user
 from itertools import ifilter
 from datetime import datetime
 
 from django.db import models, connection
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
@@ -16,8 +18,7 @@ from django_countries import CountryField
 import forms_builder
 import forms_builder.forms.fields
 import forms_builder.forms.models
-
-from crowdataapp.middleware import get_current_user
+import logging
 
 DEFAULT_TEMPLATE_JS = """// Javascript function to insert the document into the DOM.
 // Receives the URL of the document as its only parameter.
@@ -242,8 +243,7 @@ class DocumentSetFormField(forms_builder.forms.models.AbstractField):
     form = models.ForeignKey(DocumentSetForm, related_name="fields")
     order = models.IntegerField(_("Order"), null=True, blank=True)
     group = models.CharField(_("Group"),max_length= 200 ,
-        help_text=_("If checked, this text field will have autocompletion"))
-    multivalued = models.BooleanField(_("Multiple values"), default=False)
+    help_text=_("If checked, this text field will have autocompletion"))
     verify = models.BooleanField(_("Verify"), default=True)
     objects = DocumentSetFormFieldManager()
 
@@ -288,7 +288,17 @@ class DocumentSetFormEntry(forms_builder.forms.models.AbstractFormEntry):
         return rv
 
     def get_answer_for_field(self, field):
-        answer_for_field = self.fields.filter(field_id=field.pk)[0]
+        answer_qs = self.fields.filter(field_id=field.pk)
+        try:
+            answer_for_field = answer_qs[0]
+        except IndexError: # there is no answer for this field
+            msg = "Haven't received value for field {0}. Check if your form isn't missing this field.".format(field.slug)
+            if settings.DEBUG:
+                raise IndexError(msg + " On production server this will be only logged.")
+
+            logging.getLogger('crowdata.crowdataapp.views.input').error(msg)
+            return None
+
         if answer_for_field.canonical_label is None:
           return answer_for_field.value
         else:
@@ -489,8 +499,9 @@ class Document(models.Model):
     verified = models.BooleanField(_('Verified'),
                                    help_text=_('Is this document verified?'))
 
-    updated_at = models.DateTimeField(_('Modified'), auto_now = True,
-                                   help_text=_('Is this document verified?'))
+    opened_count = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(_('Modified'), auto_now = True)
 
 
     entries_threshold_override = models.IntegerField(null=True,
@@ -539,6 +550,8 @@ class Document(models.Model):
         if not self.verified:
             return {}
 
+        # oneliner: [a for a in DocumentSetFieldEntry.objects.filter(entry__document=document, verified=True).order_by('field_id').distinct().values('field__label', 'value')]
+
         verified_answers = {}
         for form_entry in self.form_entries.all():
             for entry in form_entry.fields \
@@ -570,49 +583,46 @@ class Document(models.Model):
         # almost direct port from ProPublica's Transcribable.
         # Thanks @ashaw! :)
 
-        form_entries = self.form_entries.all().distinct('user')
-        form_fields = self.document_set.form.all()[0].fields.filter(verify=True)
+        entries = self.form_entries.all().distinct('user')
+        field_to_verify = self.document_set.form.all()[0].fields.filter(verify=True)
 
         aggregate = defaultdict(dict)
-        for field in form_fields:
+        for field in field_to_verify:
             aggregate[field] = defaultdict(lambda: 0)
 
         # Maps how many answers were given of each type
-        for fe in form_entries:
-            for field in form_fields:
-                aggregate[field][fe.get_answer_for_field(field)] += 1
+        for entry in entries:
+            for field in field_to_verify:
+                answer = entry.get_answer_for_field(field)
+                if answer != '' and answer != None: # don't map empties
+                    aggregate[field][answer] += 1
 
         choosen = {}
+        choosen_count = {}
 
         for field, answers in aggregate.items():
             for answer, answer_ct in answers.items():
-                if answer_ct >= self.entries_threshold():
-                    # TODO it would be good to mark this document's field as verified even if the whole document is not verified (see entry.force_verify())
+                # number of identical entries is higher or equal to `entries_threshold'`
+                if answer_ct >= self.entries_threshold() and answer_ct > choosen_count.get(field, 0):
                     choosen[field] = answer
+                    choosen_count[field] = answer_ct # count maximum occurences
 
-        # TODO rethink process below: we already know what fields are verified so why all the work
+        if len(choosen):
+            # verified fields can change, mark all document's field entries as unverified
+            DocumentSetFieldEntry.objects.filter(entry__document=self).update(verified=False)
+
+            # mark verified field entries
+            for field, answer in choosen.iteritems():
+                DocumentSetFieldEntry.objects.filter(entry__document=self, field_id=field.id, value=answer).update(verified=True)
+
+
         # if all fields has been verified
-        if len(choosen.keys()) == len(form_fields):
-            the_choosen_one = {}
-            for entry in self.form_entries.all():
-              the_choosen_one[entry] = 0
-              for field, verified_answer in choosen.items():
-                if CanonicalFieldEntryLabel.objects.filter(value=verified_answer):
-                  canon=CanonicalFieldEntryLabel.objects.filter(value=verified_answer)[0]
-                  if entry.fields.filter(canonical_label_id=canon.id):
-                    the_choosen_one[entry] += 1
-                else:
-                  if entry.fields.filter(value=verified_answer): # TODO bug, it's also checking against other fields in entry, write test for it (but such situation won't happen as we already know all field are verified)
-                    the_choosen_one[entry] += 1
-              # if all verifiable fields in this entry are verified
-              if the_choosen_one[entry] == len(form_fields):
-                # then mark entry (thus related document) as verified
-                entry.force_verify()
-                # TODO only one entry is marked as verified, but all matching should be; all non-matching shouldn't be
-                break
-
+        if len(choosen.keys()) == len(field_to_verify):
+            # verify the document
+            self.verified = True
             self.updated_at = datetime.today()
-        else: # not all fields has been verified
+
+        else:
             self.verified = False # mark whole document as not verified
 
         self.save()

@@ -27,10 +27,9 @@ class BuiltFormNode(template.Node):
         # kind of a hack
         # add the 'data-verify' attribute if the field is marked
         # as a verifiable field
-        for field in form_for_form.form_fields:
-            if field.verify:
-                form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
-            form_for_form.fields[field.slug].widget.attrs['data-multivalued'] = field.multivalued
+        for field in form_for_form.form_fields.filter(verify=True):
+            form_for_form.fields[field.slug].widget.attrs['data-verify'] = True
+
 
         for field_ in form_for_form.form_fields:
             form_for_form.fields[field_.slug].widget.attrs['group'] = field_.group

@@ -55,9 +55,9 @@
           <h2>2015 óta</h2>
             <p class="infographic-top-number"><i class="fa fa-user-o" aria-hidden="true"></i> {{ stats.volunteers_count }}</p>
             <p class="infographic-top-label">önkéntes</p>
-            <p class="infographic-top-number"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ stats.time_spent_minutes }} órányi</p>
+            <p class="infographic-top-number"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ stats.time_spent_hours }} órányi</p>
             <p class="infographic-top-label">munkája</p>
-            <p class="infographic-top-number"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ stats.liberated_declarations }}</p>
+            <p class="infographic-top-number"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ stats.liberated_declarations_since_iceage }}</p>
             <p class="infographic-top-label">felszabadított nyilatkozatot eredményezett</p>
         </div>
         <a class="cta cta-main col-md-2 col-md-offset-5" href="{% url 'liberate_mp' document_set.slug %}">Kezdj bele!</a>
@@ -76,8 +76,7 @@
             </div>
       </section>
 
-      <section class="row progress-section-2">
-          <!-- TODO production: hide if not filled -->
+      <section class="row progress-section-2" style="display: none">
         <div class="col-md-3 col-md-offset-3">
           <p class="label-stat">Összes felszabadított megtakarítás:</p>
           <p class="number-stat">9.340.000Ft</p>

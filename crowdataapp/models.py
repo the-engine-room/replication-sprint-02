@@ -594,8 +594,9 @@ class Document(models.Model):
         for entry in entries:
             for field in field_to_verify:
                 answer = entry.get_answer_for_field(field)
-                if answer != '' and answer != None: # don't map empties
-                    aggregate[field][answer] += 1
+                if answer == None:
+                    answer = '' # also map empties
+                aggregate[field][answer] += 1
 
         choosen = {}
         choosen_count = {}

@@ -708,14 +708,16 @@ class Politician(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
     def create_asset_declaration_url(self, year):
-        template = 'http://www.parlament.hu/internet/cplsql/ogy_vagyonpub.vagyon_kiir_egys?P_FNEV=/2015/{id}_j0{date}k.pdf&p_cont=application/pdf'
+        template = 'http://www.parlament.hu/internet/cplsql/ogy_vagyonpub.vagyon_kiir_egys?P_FNEV=/{year}/{id}_j0{date}k.pdf&p_cont=application/pdf'
         # other link; working, but longer
         # template = 'http://www.parlament.hu/aktiv-kepviseloi-nevsor?p_p_id=pairproxy_WAR_pairproxyportlet_INSTANCE_9xd2Wc9jP4z8&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage&p_p_col_id=column-1&p_p_col_count=1&_pairproxy_WAR_pairproxyportlet_INSTANCE_9xd2Wc9jP4z8_pairAction=%2Finternet%2Fcplsql%2Fogy_vagyonpub.vagyon_kiir_egys%3FP_FNEV%3D%2F2015%2Fv050_j0151231k.pdf%26p_cont%3Dapplication%2Fpdf'
 
         from datetime import date, timedelta
         date_filled = date(int(year) + 1, 1, 1) - timedelta(days=1) # last day of the year
 
-        return (template.format(id=self.parliamentary_id, date=date_filled.strftime('%y%m%d')), date_filled)
+        return (template.format(id=self.parliamentary_id,
+                                date=date_filled.strftime('%y%m%d'),
+                                year=year), date_filled)
 
     def __unicode__(self):
         return self.name

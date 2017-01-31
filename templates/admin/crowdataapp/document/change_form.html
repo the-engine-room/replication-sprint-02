@@ -1,0 +1,33 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+
+{% block after_field_sets %}
+<div class="inline-group" id="form_entries-group">
+    <div class="tabular inline-related last-related">
+        <fieldset class="module">
+            <h2>Entries by field</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Slug</th>
+                    <th>Answers</th>
+                    <th>Verified answer</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <td>
+                        <p>Un</p>
+                    </td>
+                    <td>
+                        <p>Dos</p>
+                    </td>
+                    <td>
+                        <p>TODO</p>
+                    </td>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>
+{% endblock %}

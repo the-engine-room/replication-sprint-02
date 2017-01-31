@@ -18,6 +18,7 @@ from django.db import models, connection
 from datetime import datetime
 from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
+import logging
 from models import DocumentSet, Document
 
 from crowdataapp import models, forms
@@ -182,9 +183,29 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             if len(values): # if not empty
                 packed_multiples[k] = json.dumps(values, ensure_ascii=False)
             else:
-                packed_multiples[k] = '' # e,[ty string instead of '[]'
+                packed_multiples[k] = '' # empty string instead of '[]'
 
+    # insert packed values in dictionary
     post.update(packed_multiples)
+
+    # remove old unpacked entries
+    [post.pop(key + '[]', None) for key in packed_multiples.keys()]
+
+    # check if we forgot to map any form field in DB
+    unmapped_by_design = getattr(settings, 'UNMAPPED_FORM_FIELDS', [])
+    unmapped_by_accident = []
+
+    dbfields = [f['slug'] for f in models.DocumentSetFormField.objects.filter(form__slug=slug).values('slug')]
+    for fieldname in post.keys():
+        if not fieldname in dbfields and not fieldname in unmapped_by_design and not fieldname[:2] == '__':
+            unmapped_by_accident.append(fieldname)
+
+    if len(unmapped_by_accident):
+        msg = 'Form fields {} are not mapped in the database.'.format(unmapped_by_accident)
+        if getattr(settings, 'DEBUG', False):
+            raise IndexError(msg + " On production server this will be only logged.")
+        else:
+            logging.getLogger('crowdata.crowdataapp.views.input').error(msg)
 
     args = (form, request_context, post)
     form_for_form = forms.DocumentSetFormForForm(*args)

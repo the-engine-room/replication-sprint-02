@@ -6,6 +6,9 @@
   width: 35%;
 }
 
+.form-row .keep-margin {
+    margin-left: 140px;
+}
 
 #form_entries-group tr.add-row {
   display: none;

@@ -451,7 +451,7 @@ class DocumentSetFormEntryInline(admin.TabularInline):
                                          e.value,
                                          'checked' if e.verified else '',
                                          'verify' if f.verify else '',
-                                         f.label,
+                                         f.slug,
                                          e.value,
                                          e.assigned_canonical_value())
                        for f, e in zip(form_fields,
@@ -506,7 +506,7 @@ class DocumentAdmin(admin.ModelAdmin):
         if not document.verified:
             return ''
 
-        return mark_safe('<div><ul>' + ''.join(['<li><b>'+ f.label +'</b>: ' +answer + '</li></div>' for f, answer in document.verified_answers().iteritems()]) + '</ul>')
+        return mark_safe('<div class="keep-margin"><ul>' + ''.join(['<li><b>'+ f.slug +'</b>: ' +answer + '</li>' for f, answer in document.verified_answers().iteritems()]) + '</ul></div>')
 
     def field_entry_set(self, request, document, document_set_field_entry):
         """ Set verify status for form field entries """

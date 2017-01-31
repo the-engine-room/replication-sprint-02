@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-4">
 					<div class="form-group">
-						<label>&nbsp;</label>
+						<label>Válassz</label>
 						<select class=" form-control" name="area_unit[]" title="unit">
 							<option value="sq" selected>négyzetméter</option>
 							<option value="ha">hektár</option>
@@ -112,6 +112,7 @@
 							<option value="akol">akol</option>
 							<option value="egyeb">egyéb</option>
 						</select>
+						<input type="text" class="form-control hidden other-input" name="area_unit_other[]" >
 					</div>
                 </div>
             </div>
@@ -178,12 +179,15 @@
                         </div>
 
                         <div class="col-md-8">
-                          <label>Épület alapterülete:</label>
+                          
                           <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" class="form-control" name="building_area[]">
+                          
+						    <div class="col-md-6">
+								<label>Épület alapterülete:</label>
+						      <input type="text" class="form-control" name="building_area[]">
                             </div>
                             <div class="col-md-6">
+								<label>Válassz</label>
                               <select class=" form-control" name="building_area_unit[]" title="unit">
                                 <option value="sq" selected>négyzetméter</option>
                                 <option value="ha">hektár</option>
@@ -191,6 +195,7 @@
                                 <option value="akol">akol</option>
                                 <option value="egyeb">egyéb</option>
                               </select>
+							  <input type="text" class="form-control hidden other-input" name="building_area_unit_other[]" >
                             </div>
                           </div>
                         </div>
@@ -279,25 +284,28 @@
 
                             <div class="row">
 
-                          <div class="col-md-3">
-                            <select id="select1" class=" form-control" name="acquisition1[0][]" data-live-search="true" title="Enter value">
-                              <option value="choose" selected></option>
-                              <option>adás-vétel</option>
-                              <option>ajándékozás</option>
-                              <option>életjáradéki</option>
-                              <option>szerződés</option>
-                              <option>építés</option>
-                              <option>öröklés</option>
-                              <option>telekcsere</option>
-                              <option>egyéb</option>
-                            </select>
-                            <input type="text" name="acquisition-other[0][]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
-                          </div>
+								<div class="col-md-3">
+									<label>Szerzés jogcíme</label>
+								  <select id="select1" class=" form-control" name="acquisition1[0][]" data-live-search="true" title="Enter value" placeholder="">
+									<option value="choose" selected></option>
+									<option>adás-vétel</option>
+									<option>ajándékozás</option>
+									<option>életjáradéki</option>
+									<option>szerződés</option>
+									<option>építés</option>
+									<option>öröklés</option>
+									<option>telekcsere</option>
+									<option value="egyeb">egyéb</option>
+								  </select>
+								  <input type="text" name="acquisition-other[0][]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
+								</div>
 
                           <div class="col-md-3">
+							<label>&Egrave;v</label>
                             <input class="form-control" name="acquisition-year[0][]" type="number" placeholder="év" maxlength="4" min="1800" max="2017">
                           </div>
                           <div class="col-md-3">
+							<label>Hónap</label>
                             <select class="form-control "  name="acquisition-month[0][]" placeholder="month" title="month" data-live-search="true">
                               <option value="choose" selected>hónap</option>
                               <option value="1">január</option>
@@ -315,6 +323,7 @@
                             </select>
                           </div>
                             <div class="col-md-3">
+								<label>Nap</label>
                                 <input class="form-control"  name="acquisition-day[0][]" type="number" placeholder="nap" maxlength="2" min="1" max="31">
                             </div>
                         </div>
@@ -396,7 +405,8 @@
                   <h2>Gépjárművek</h2>
                   <div class="row">
                     <div class="col-md-4">
-                      <select class="form-control" name="vehicle_type[]" title="type">
+						<label>Gépjármű jellege</label>
+						<select class="form-control" name="vehicle_type[]" title="type">
                         <option value="choose" selected>Gépjármű jellege</option>
                         <option>személygépkocsi</option>
                         <option>tehergépjármű/autóbusz</option>
@@ -404,9 +414,11 @@
                       </select>
                     </div>
                     <div class="col-md-4">
+						<label>Típusa</label>
                       <input class="form-control" name="subtype[]" type="text" placeholder="Típusa">
                     </div>
                     <div class="col-md-4">
+						<label>Szerzés jogcíme</label>
                       <select class="form-control" name="acq[]" title="Szerzés jogcíme">
                         <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
@@ -414,11 +426,15 @@
                         <option>bérlés</option>
                         <option>lízing</option>
                         <option>öröklés</option>
-                        <option>egyéb</option>
+                        <option value="egyeb">egyéb</option>
                       </select>
+					  <input type="text" name="acq_other[]" class="form-control hidden other-input">
                     </div>
-                    <div class="col-md-3"><input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
+						<label>&Egrave;v</label>
+						<input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3">
+						<label>Hónap</label>
                       <select name="classic-vehicle-month[]" class="form-control selectpicker" placeholder="month" title="month" data-live-search="true">
                         <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
@@ -441,12 +457,14 @@
                   <h2>Vízi vagy légi jármű jellege </h2>
                   <div class="row">
                     <div class="col-md-4">
+						<label>Egyéb jármű jellege</label>
                       <input class="form-control" name="water_aero_type[]" placeholder="Vízi vagy légi jármű jellege">
                     </div>
                     <div class="col-md-4">
+						<label>Típus</label>
                       <input class="form-control" name="wa_subtype[]" type="text" placeholder="Típus">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4"><label>Szerzés jogcíme</label>
                       <select class="form-control" name="wa_acq[]" title="Szerzés jogcíme">
                         <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
@@ -456,9 +474,11 @@
                         <option>öröklés</option>
                         <option>egyéb</option>
                       </select>
+					  <input type="text" name="wa_acq_other[]" class="form-control hidden other-input">
                     </div>
-                    <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3"><label>&Egrave;v</label><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
+						<label>Hónap</label>
                       <select class="form-control selectpicker" name="aw-vehicle-month[]" placeholder="month" title="month" data-live-search="true">
                         <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
@@ -481,6 +501,7 @@
                   <h2>Védett műalkotás, védett gyűjtemény és egyéb nagyobb értékű ingóságok </h2>
                   <div class="row">
                     <div class="col-md-4">
+						
                       <select class="form-control" name="artwork_type[]" title="Védett műalkotás, védett gyűjtemény, egyéb értékes ingóság jellege">
                         <option value="choose" selected></option>
                         <option>egyedi alkotás</option>
@@ -496,6 +517,7 @@
                     </div>
 
                     <div class="col-md-4">
+						<label >Szerzés jogcíme</label>
                       <select class="form-control" name="artwork_acq[]" title="Szerzés jogcíme">
                         <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
@@ -505,9 +527,11 @@
                         <option>öröklés</option>
                         <option>egyéb</option>
                       </select>
+					  <input type="text" name="artwork_acq_other[]" class="form-control hidden other-input">
                     </div>
-                    <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
+                    <div class="col-md-3"><label >&Egrave;v</label><input name="art-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
+						<label >Hónap</label>
                       <select class="form-control selectpicker" name="art-month[]" placeholder="month" title="month" data-live-search="true">
                         <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
@@ -578,6 +602,7 @@
                                 <option>darab</option>
                                 <option>egyéb</option>
                               </select>
+							  <input type="text" class="form-control hidden other-input " name="inv_curr_other[]">
                             </div>
                           </div>
                           <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
@@ -606,6 +631,7 @@
                             <option>darab</option>
                             <option>egyéb</option>
                           </select>
+						  <input type="text" class="form-control hidden other-input " name="sec_curr_other[]">
                         </div>
                       </div>
                       <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
@@ -626,6 +652,7 @@
                             <option>darab</option>
                             <option>egyéb</option>
                           </select>
+						  <input type="text" class="form-control hidden other-input " name="cash_curr_other[]">
                         </div>
                       </div>
                       <button class="btn btn-default repeater"><i class="fa fa-plus"></i>1 hozzáadása</button>
@@ -634,6 +661,7 @@
                       <h2>Pénzintézeti számlakövetelés vagy más pénzkövetelés</h2>
                       <div class="row">
                         <div class="col-md-4">
+							<label>Számla- vagy pénzkövetelés</label>
                           <select class="form-control" name="obligation_type[]" title="Számla- vagy pénzkövetelés">
                             <option value="choose" selected>Számla- vagy pénzkövetelés</option>
                             <option>pénzintézeti számlakövetelés</option>
@@ -641,9 +669,11 @@
                           </select>
                         </div>
                         <div class="col-md-4">
+							<label>&nbsp;</label>
                           <input type="text" name="obligation_value[]" class="form-control">
                         </div>
                         <div class="col-md-4">
+							<label>Válassz</label>
                           <select class="form-control" name="obligation_curr[]" title="pénznem">
                             <option selected>HUF</option>
                             <option>EUR</option>
@@ -653,6 +683,7 @@
                             <option>darab</option>
                             <option>egyéb</option>
                           </select>
+						  <input type="text" class="form-control hidden other-input " name="obligation_curr_other[]">
                         </div>
                       </div>
                     </div>
@@ -716,6 +747,7 @@
                               <option>darab</option>
                               <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="debt_curr_other[]">
                           </div>
                         </div>
 
@@ -819,6 +851,7 @@
                               <option>darab</option>
                               <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="income_curr_other[]">
                           </div>
                           <div class="col-md-3"><input type="text" name="regularity[]" class="form-control" placeholder="gyakoriság"></div>
 
@@ -879,6 +912,7 @@
                               <option>Zrt.</option>
                               <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="co_type_other[]">
                           </div>
                         </div>
                       </div>
@@ -895,6 +929,7 @@
                               <option>tulajdonos</option>
                               <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="int_beginning_other[]">
                           </div>
                         </div>
                       </div>
@@ -912,6 +947,7 @@
                               <option>tulajdonos</option>
                               <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="int_now_other[]">
                           </div>
                         </div>
                       </div>
@@ -992,7 +1028,9 @@
                               <option>tag</option>
                               <option>ügyvezető</option>
                               <option>egyéb</option>
+							  
                             </select>
+							<input type="text" class="form-control hidden other-input " name="position_other[]">
                           </div>
                         </div>
                       </div>
@@ -1122,6 +1160,7 @@
                             <option>darab</option>
                             <option>egyéb</option>
                             </select>
+							<input type="text" class="form-control hidden other-input " name="subs_curr_other[]">
                           </div>
 
                         </div>

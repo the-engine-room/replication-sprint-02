@@ -20,6 +20,7 @@ from annoying.decorators import render_to
 from forms_builder.forms.signals import form_valid, form_invalid
 import logging
 from models import DocumentSet, Document
+import re
 
 from crowdataapp import models, forms
 
@@ -207,6 +208,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
 
     # pack multiple fields in JSON
+    nested_multiline = {}
     for k in post.keys():
         # if it is multivalued
         if len(k) > 2 and k[-2:] == '[]':
@@ -219,10 +221,26 @@ def form_detail(request, slug, template="forms/form_detail.html"):
                 values = []
 
             k = k[:-2]
-            if len(values): # if not empty
-                packed_multiples[k] = json.dumps(values, ensure_ascii=False)
-            else:
-                packed_multiples[k] = '' # empty string instead of '[]'
+            packed_multiples[k] = json.dumps(values, ensure_ascii=False)
+
+            # detect nested multilines
+            m = re.search(r"^([\w\-_]+)\[(\d+)\]$", k)
+            if m:
+                nested_multiline[m.group(1)] = ''
+
+    for k in nested_multiline.keys():
+        i = 0
+        list_of_lists = []
+        while True:
+            jarr = packed_multiples.pop(k + '[' + str(i) + ']', None)
+            if jarr == None:
+                break
+
+            jarr = json.loads(jarr)
+            list_of_lists.append(jarr)
+            i += 1
+
+        packed_multiples[k] = json.dumps(list_of_lists, ensure_ascii=True)
 
     # insert packed values in dictionary
     post.update(packed_multiples)

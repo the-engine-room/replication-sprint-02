@@ -16,6 +16,19 @@ function sectionRepeat(){
     repeaterClone.find('select').val('choose');
     repeaterClone.find('select + input[type="text"]').addClass('hidden').removeClass('show');
 
+    if ($(this).hasClass('have-nested-repeats')) {
+        // index nested multiline items
+        nested = $(repeaterClone).find("*[name*='][]']");
+        nested.each(function(input) {
+            var g = $(this).attr('name').match(/([\w-_]+)\[(\d+)\]\[\]/);
+            var incremented = g[1] + '[' + (parseInt(g[2])+1) + '][]';
+
+            $(this).attr('name', incremented);
+        });
+
+        // TODO nice-to-have is that cloned nested multiline have just one position (even if in previous section user has added two or more (hidden template out of form to be copied? or deleting uneccessary here based on some classes)
+    }
+
     $(repeaterClone).insertAfter($(this).prev());
 
     /** bind recursively to newly generated elements **/

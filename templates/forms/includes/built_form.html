@@ -280,7 +280,7 @@
                             <div class="row">
 
                           <div class="col-md-3">
-                            <select id="select1" class=" form-control" name="acquisition1[]" data-live-search="true" title="Enter value">
+                            <select id="select1" class=" form-control" name="acquisition1[0][]" data-live-search="true" title="Enter value">
                               <option value="choose" selected></option>
                               <option>adás-vétel</option>
                               <option>ajándékozás</option>
@@ -291,14 +291,14 @@
                               <option>telekcsere</option>
                               <option>egyéb</option>
                             </select>
-                            <input type="text" name="acquisition-other[]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
+                            <input type="text" name="acquisition-other[0][]" id="select1-other" class="hidden form-control other-input" placeholder="Enter value for the selection here">
                           </div>
 
                           <div class="col-md-3">
-                            <input class="form-control" name="acquisition-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017">
+                            <input class="form-control" name="acquisition-year[0][]" type="number" placeholder="év" maxlength="4" min="1800" max="2017">
                           </div>
                           <div class="col-md-3">
-                            <select class="form-control "  name="acquisition-month[]" placeholder="month" title="month" data-live-search="true">
+                            <select class="form-control "  name="acquisition-month[0][]" placeholder="month" title="month" data-live-search="true">
                               <option value="choose" selected>hónap</option>
                               <option value="1">január</option>
                               <option value="2">február</option>
@@ -315,7 +315,7 @@
                             </select>
                           </div>
                             <div class="col-md-3">
-                                <input class="form-control"  name="acquisition-day[]" type="number" placeholder="nap" maxlength="2" min="1" max="31">
+                                <input class="form-control"  name="acquisition-day[0][]" type="number" placeholder="nap" maxlength="2" min="1" max="31">
                             </div>
                         </div>
                         <button class="btn btn-default repeater" type="button"><i class="fa fa-plus"></i>1 jogcím</button>
@@ -359,7 +359,7 @@
                         </div>
                       </div>
                     </div>
-                    <button id="section-repeater" class="hidden btn btn-lg btn-default repeater"><i class="fa fa-plus"></i>1 ingatlan hozzáadása</button>
+                    <button id="section-repeater" class="hidden btn btn-lg btn-default repeater have-nested-repeats"><i class="fa fa-plus"></i>1 ingatlan hozzáadása</button>
                     <!-- eof hidden contents box -->
                   </div>
               <!-- </div> -->

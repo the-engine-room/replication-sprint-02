@@ -35,6 +35,7 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
+        {% if stats.liberated_declarations < stats.all_declarations_count %}
         <div class="col-md-12">
             <div class="row">
               <div class="blue-line col-md-11">
@@ -44,6 +45,7 @@
               </div>
             </div>
         </div>
+        {% endif %}
       </header>
 
       <section class="row context-section">
@@ -60,8 +62,26 @@
             <p class="infographic-top-number"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ stats.liberated_declarations_since_iceage }}</p>
             <p class="infographic-top-label">felszabadított nyilatkozatot eredményezett</p>
         </div>
+          {% if stats.liberated_declarations < stats.all_declarations_count %}
         <a class="cta cta-main col-md-2 col-md-offset-5" href="{% url 'liberate_mp' document_set.slug %}">Kezdj bele!</a>
+          {% else %}
+          <a class="cta cta-main col-md-2 col-md-offset-5" href="#" onclick="return false;">Nagyszerűek vagytok!</a>
+          {% endif %}
       </section>
+
+ {% if stats.liberated_declarations == stats.all_declarations_count %}
+    <section class="row context-section-2" style="margin-top: 20px;margin-bottom: -100px;">
+        <div class="col-md-11 col-md-offset-1">
+            <h2>Nagyszerűek vagytok!</h2>
+            <p>
+                Elértük a 100 százalékos feldolgozottságot a 2016-os nyilatkozatok tekintetében! Nagyszerűek vagytok!
+                Csatlakozz hozzánk jövőre is! Az elkészült adatbázist letöltheted [innen](link to the final database), vagy hamarosan a <a href="http://vagyonkereso.hu/">Vagyonkereső.hu</a>-ról.
+                <br/><br/>
+                Ha fontosnak tartod a munkánkat, <a href="http://k-monitor.hu/tamogatas">támogasd te is a K-Monitort</a>!
+            </p>
+        </div>
+    </section>
+{% endif %}
 
       <section class="row progress-section-1">
             <div class="col-md-6 col-md-offset-3">

@@ -193,6 +193,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
     # check if we forgot to map any form field in DB
     unmapped_by_design = getattr(settings, 'UNMAPPED_FORM_FIELDS', [])
+    unmapped_by_design += ['csrfmiddlewaretoken']
     unmapped_by_accident = []
 
     dbfields = [f['slug'] for f in models.DocumentSetFormField.objects.filter(form__slug=slug).values('slug')]

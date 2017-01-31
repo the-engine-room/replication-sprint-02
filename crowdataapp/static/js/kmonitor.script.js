@@ -13,7 +13,7 @@ function sectionRepeat(){
     var repeaterClone = $(this).prev().clone();
     /** reset inputs and selects **/
     repeaterClone.find('input').val('');
-    repeaterClone.find('select').val('');
+    repeaterClone.find('select').val('choose');
     repeaterClone.find('select + input[type="text"]').addClass('hidden').removeClass('show');
 
     $(repeaterClone).insertAfter($(this).prev());

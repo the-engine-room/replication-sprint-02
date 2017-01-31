@@ -281,7 +281,7 @@
 
                           <div class="col-md-3">
                             <select id="select1" class=" form-control" name="acquisition1[]" data-live-search="true" title="Enter value">
-                              <!--<option value="" disabled selected></option>-->
+                              <option value="choose" selected></option>
                               <option>adás-vétel</option>
                               <option>ajándékozás</option>
                               <option>életjáradéki</option>
@@ -300,6 +300,7 @@
                           </div>
                           <div class="col-md-3">
                             <select class="form-control "  name="acquisition-month[]" placeholder="month" title="month" data-live-search="true">
+                              <option value="choose" selected>hónap</option>
                               <option value="1">január</option>
                               <option value="2">február</option>
                               <option value="3">március</option>
@@ -397,7 +398,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="vehicle_type[]" title="type">
-                        <option value="" disabled selected>Gépjármű jellege</option>
+                        <option value="choose" selected>Gépjármű jellege</option>
                         <option>személygépkocsi</option>
                         <option>tehergépjármű/autóbusz</option>
                         <option>motorkerékpár</option>
@@ -408,7 +409,7 @@
                     </div>
                     <div class="col-md-4">
                       <select class="form-control" name="acq[]" title="Szerzés jogcíme">
-                        <option value="" disabled selected>Szerzés jogcíme</option>
+                        <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
                         <option>ajándékozás</option>
                         <option>bérlés</option>
@@ -421,6 +422,7 @@
                     <div class="col-md-3"><input class="form-control" name="classic-vehicle-year[]" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select name="classic-vehicle-month[]" class="form-control selectpicker" placeholder="month" title="month" data-live-search="true">
+                        <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
                         <option value="2">február</option>
                         <option value="3">március</option>
@@ -448,7 +450,7 @@
                     </div>
                     <div class="col-md-4">
                       <select class="form-control" name="wa_acq[]" title="Szerzés jogcíme">
-                        <option value="" disabled selected>Szerzés jogcíme</option>
+                        <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
                         <option>ajándékozás</option>
                         <option>bérlés</option>
@@ -461,6 +463,7 @@
                     <div class="col-md-3"><input name="aw-vehicle-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="aw-vehicle-month[]" placeholder="month" title="month" data-live-search="true">
+                        <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
                         <option value="2">február</option>
                         <option value="3">március</option>
@@ -482,6 +485,7 @@
                   <div class="row">
                     <div class="col-md-4">
                       <select class="form-control" name="artwork_type[]" title="Védett műalkotás, védett gyűjtemény, egyéb értékes ingóság jellege">
+                        <option value="choose" selected></option>
                         <option>egyedi alkotás</option>
                         <option>gyűjtemény</option>
                         <option>egyéb értéktárgy</option>
@@ -496,7 +500,7 @@
 
                     <div class="col-md-4">
                       <select class="form-control" name="artwork_acq[]" title="Szerzés jogcíme">
-                        <option value="" disabled selected>Szerzés jogcíme</option>
+                        <option value="choose" selected>Szerzés jogcíme</option>
                         <option>adás-vétel</option>
                         <option>ajándékozás</option>
                         <option>bérlés</option>
@@ -509,6 +513,7 @@
                     <div class="col-md-3"><input name="art-year[]" class="form-control" type="number" placeholder="év" maxlength="4" min="1800" max="2017"></div>
                     <div class="col-md-3">
                       <select class="form-control selectpicker" name="art-month[]" placeholder="month" title="month" data-live-search="true">
+                        <option value="choose" selected>hónap</option>
                         <option value="1">január</option>
                         <option value="2">február</option>
                         <option value="3">március</option>
@@ -569,7 +574,7 @@
                             </div>
                             <div class="col-md-4">
                               <select class="form-control" name="inv_curr[]" title="pénznem">
-                                <option>HUF</option>
+                                <option selected>HUF</option>
                                 <option>EUR</option>
                                 <option>CHF</option>
                                 <option>GBP</option>
@@ -597,7 +602,7 @@
                         </div>
                         <div class="col-md-4">
                           <select class="form-control" name="sec_curr[]" title="pénznem">
-                            <option>HUF</option>
+                            <option selected>HUF</option>
                             <option>EUR</option>
                             <option>CHF</option>
                             <option>GBP</option>
@@ -617,7 +622,7 @@
                         </div>
                         <div class="col-md-4">
                           <select class="form-control" name="cash_curr[]" title="pénznem">
-                            <option>HUF</option>
+                            <option selected>HUF</option>
                             <option>EUR</option>
                             <option>CHF</option>
                             <option>GBP</option>
@@ -634,7 +639,7 @@
                       <div class="row">
                         <div class="col-md-4">
                           <select class="form-control" name="obligation_type[]" title="Számla- vagy pénzkövetelés">
-                            <option value="" disabled selected>Számla- vagy pénzkövetelés</option>
+                            <option value="choose" selected>Számla- vagy pénzkövetelés</option>
                             <option>pénzintézeti számlakövetelés</option>
                             <option>más számlakövetelés</option>
                           </select>
@@ -644,7 +649,7 @@
                         </div>
                         <div class="col-md-4">
                           <select class="form-control" name="obligation_curr[]" title="pénznem">
-                            <option>HUF</option>
+                            <option selected>HUF</option>
                             <option>EUR</option>
                             <option>CHF</option>
                             <option>GBP</option>
@@ -693,7 +698,7 @@
                         <div class="row">
                           <div class="col-md-4">
                             <select class="form-control" name="debt_type[]" title="Tartozás típusa">
-                              <option value="" disabled selected>Tartozás típusa</option>
+                              <option value="choose" selected>Tartozás típusa</option>
                               <option>köztartozás</option>
                               <option>pénzintézeti</option>
                               <option>magánszemélyi</option>
@@ -707,7 +712,7 @@
                           </div>
                           <div class="col-md-8">
                             <select class="form-control" name="debt_curr[]" title="pénznem">
-                              <option>HUF</option>
+                              <option selected>HUF</option>
                               <option>EUR</option>
                               <option>CHF</option>
                               <option>GBP</option>
@@ -802,7 +807,7 @@
                           </div>
                           <div class="col-md-3">
                             <select class="form-control" name="active[]" title="Szünetelteti?">
-                              <option value="" disabled selected>Szünetelteti?</option>
+                              <option value="choose" selected>Szünetelteti?</option>
                               <option value="1">Igen</option>
                               <option value="0">Nem</option>
                             </select>
@@ -810,7 +815,7 @@
                           <div class="col-md-3"><input type="text" name="income[]" class="form-control" placeholder="Jövedelme"></div>
                           <div class="col-md-3">
                             <select class="form-control" name="income_curr[]" title="pénznem">
-                              <option>HUF</option>
+                              <option selected>HUF</option>
                               <option>EUR</option>
                               <option>CHF</option>
                               <option>GBP</option>
@@ -867,7 +872,7 @@
                           </div>
                           <div class="col-md-4">
                             <select class="form-control" name="co_type[]" title="Formája">
-                              <option value="" disabled selected>Formája</option>
+                              <option value="choose" selected>Formája</option>
                               <option>Bt.</option>
                               <option>erdőbirtoklási társulás</option>
                               <option>Kft.</option>
@@ -886,7 +891,7 @@
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="int_beginning[]" title="Érdekeltség formája keletkezéskor">
-                              <option value="" disabled selected>Érdekeltség formája keletkezéskor</option>
+                              <option value="choose" selected>Érdekeltség formája keletkezéskor</option>
                               <option>alapító</option>
                               <option>beltag</option>
                               <option>kültag</option>
@@ -903,7 +908,7 @@
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="int_now[]" title="Érdekeltség formája jelenleg">
-                              <option value="" disabled selected>Érdekeltség formája jelenleg</option>
+                              <option value="choose" selected>Érdekeltség formája jelenleg</option>
                               <option>alapító</option>
                               <option>beltag</option>
                               <option>kültag</option>
@@ -981,7 +986,7 @@
                         <div class="row">
                           <div class="col-md-8">
                             <select class="form-control" name="position[]" title="Tisztség">
-                              <option value="" disabled selected>Tisztség</option>
+                              <option value="choose" selected>Tisztség</option>
                               <option>beltag</option>
                               <option>elnök</option>
                               <option>igazgatóság elnöke</option>
@@ -1075,7 +1080,7 @@
                           </div>
                           <div class="col-md-4">
                             <select class="form-control" name="present_currency[]" title="pénznem">
-                              <option>HUF</option>
+                              <option selected>HUF</option>
                               <option>törvényben alapján</option>
                             </select>
                           </div>
@@ -1113,7 +1118,7 @@
                           </div>
                           <div class="col-md-4">
                             <select class="form-control" name="subs_curr[]" title="pénznem">
-                            <option>HUF</option>
+                            <option selected>HUF</option>
                             <option>EUR</option>
                             <option>CHF</option>
                             <option>GBP</option>

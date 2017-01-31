@@ -171,13 +171,52 @@ def form_detail(request, slug, template="forms/form_detail.html"):
     post = request.POST.copy() or None
     packed_multiples = {}
 
+
+    # pack dates from multiple fields (professionaly it should be done by form widgets)
+    packed_dates = {}
+    for k in post.keys():
+        if "-year" in k or "-month" in k or "-day" in k:
+            keytemplate = k.replace('-year', '-DATEPART').replace('-month', '-DATEPART').replace('-day', '-DATEPART')
+
+            years = post.getlist(keytemplate.replace('-DATEPART', '-year'))
+            months = post.getlist(keytemplate.replace('-DATEPART', '-month'))
+            days = post.getlist(keytemplate.replace('-DATEPART', '-day'))
+
+            dates = []
+            if len(years) and years[0]:
+                for i in range(len(years)):
+                    dates.append('{:0>2}-{:0>2}-{:0>2}'.format(years[i], months[i].replace('choose',''), days[i]))
+
+            packed_dates[keytemplate.replace('-DATEPART', '_date')] = dates
+
+    # insert packed values in dictionary
+    for key, dates in packed_dates.iteritems():
+        if '[]' in key:
+            post.setlist(key, dates)
+        else:
+            if len(dates):
+                post[key] = dates[0]
+            else:
+                post[key] = ''
+
+    # remove old unpacked entries
+    [post.pop(key.replace('_date', '-year'), None) for key in packed_dates.keys()]
+    [post.pop(key.replace('_date', '-month'), None) for key in packed_dates.keys()]
+    [post.pop(key.replace('_date', '-day'), None) for key in packed_dates.keys()]
+
+
+
     # pack multiple fields in JSON
     for k in post.keys():
         # if it is multivalued
         if len(k) > 2 and k[-2:] == '[]':
             values = post.getlist(k)
+            for i in range(len(values)):
+                if values[i] == 'choose': # hack to get multivalued selects # TODO strip also if we have in future non-multivalue selects
+                    values[i] = ''
+
             if values == [u'']:
-                values = [] # TODO or '' if it happens anywhere
+                values = []
 
             k = k[:-2]
             if len(values): # if not empty

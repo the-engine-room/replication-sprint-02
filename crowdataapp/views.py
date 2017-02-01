@@ -189,7 +189,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             dates = []
             if len(years) and years[0]:
                 for i in range(len(years)):
-                    dates.append('{:0>2}-{:0>2}-{:0>2}'.format(getelem(years.i,''), getelem(months.i,'').replace('choose',''), getelem(days.i,'')))
+                    dates.append('{:0>2}-{:0>2}-{:0>2}'.format(getelem(years,i,''), getelem(months,i,'').replace('choose',''), getelem(days,i,'')))
 
             packed_dates[keytemplate.replace('-DATEPART', '_date')] = dates
 

@@ -16,15 +16,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for f in fields %}
+                <tr style="outline: thin solid">
+                    <td>{{ f.slug }}</td>
                     <td>
-                        <p>Un</p>
+                        <ul style="list-style-type:none">
+                            {% for a in f.answers %}
+                            <li>{{ a }}</li>
+                            {% endfor %}
+                        </ul>
                     </td>
-                    <td>
-                        <p>Dos</p>
-                    </td>
-                    <td>
-                        <p>TODO</p>
-                    </td>
+                    <td>{{ f.verified_answer }}</td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </fieldset>

@@ -490,6 +490,24 @@ class DocumentAdmin(admin.ModelAdmin):
     list_filter = ('document_set__name', 'verified')
     search_fields = ['form_entries__fields__value', 'name']
 
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        doc = models.Document.objects.get(pk=object_id)
+        dbfields = models.DocumentSetFormField.objects.filter(form__document_set__id=doc.document_set_id)
+
+        fields = []
+        for f in dbfields:
+            answers = [a['value'] for a in DocumentSetFieldEntry.objects.filter(field_id=f.id, entry__document=doc).order_by('value').values('value')]
+
+            fields.append({
+                'slug': f.slug,
+                'answers': answers,
+                'verified_answer': 'TODO'
+            })
+
+        extra_context = extra_context or {}
+        extra_context['fields'] = fields
+        return super(DocumentAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
+
     def queryset(self, request):
         return models.Document.objects.annotate(entries_count=Count('form_entries'))
 

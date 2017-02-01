@@ -174,6 +174,9 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
 
     # pack dates from multiple fields (professionaly it should be done by form widgets)
+    def getelem(arr, i, default):
+        return arr[i] if len(arr) > i else default
+
     packed_dates = {}
     for k in post.keys():
         if "-year" in k or "-month" in k or "-day" in k:
@@ -186,7 +189,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             dates = []
             if len(years) and years[0]:
                 for i in range(len(years)):
-                    dates.append('{:0>2}-{:0>2}-{:0>2}'.format(years[i], months[i].replace('choose',''), days[i]))
+                    dates.append('{:0>2}-{:0>2}-{:0>2}'.format(getelem(years,i,''), getelem(months,i,'').replace('choose',''), getelem(days,i,'')))
 
             packed_dates[keytemplate.replace('-DATEPART', '_date')] = dates
 
@@ -208,6 +211,7 @@ def form_detail(request, slug, template="forms/form_detail.html"):
 
 
     # pack multiple fields in JSON
+    pop_me = []
     nested_multiline = {}
     for k in post.keys():
         # if it is multivalued
@@ -227,6 +231,8 @@ def form_detail(request, slug, template="forms/form_detail.html"):
             m = re.search(r"^([\w\-_]+)\[(\d+)\]$", k)
             if m:
                 nested_multiline[m.group(1)] = ''
+                pop_me.append(k + '[]')
+    [post.pop(k,None) for k in pop_me]
 
     for k in nested_multiline.keys():
         i = 0

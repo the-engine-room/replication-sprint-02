@@ -19,6 +19,7 @@ import forms_builder
 import forms_builder.forms.fields
 import forms_builder.forms.models
 import logging
+import re
 
 DEFAULT_TEMPLATE_JS = """// Javascript function to insert the document into the DOM.
 // Receives the URL of the document as its only parameter.
@@ -134,6 +135,8 @@ class DocumentSet(models.Model):
         kw = {"args": (self.id,)}
         links = [
             (_("Export all answers to CSV"), reverse("admin:document_set_answers_csv", **kw)),
+            (_("Export all answers to JSON"), reverse("document_set_statements_json", **kw)),
+            (_("Export all politicians to JSON"), reverse("politicians_json")),
             (_("Import asset declarations"), reverse("admin:kmonitor_import_asset_declarations", **kw)),
             (_("Add Documents to this document set"), reverse("admin:document_set_add_documents", **kw)),
             (_("Update Canons to this document set"), reverse("admin:document_set_update_canons", **kw))
@@ -638,6 +641,14 @@ class Document(models.Model):
     def has_entry_for_user(self, user):
         form_entries_for_user = self.form_entries.filter(user=user)
         return form_entries_for_user
+
+    def kmonitor_extract_filled_date(self):
+        # template = 'http://www.parlament.hu/internet/cplsql/ogy_vagyonpub.vagyon_kiir_egys?P_FNEV=/{year}/{id}_j0{date}k.pdf&p_cont=application/pdf'
+        m = re.search('_j0(\d{6})k', self.url)
+        if not m:
+            raise Exception("Could not parse url: " + self.url)
+
+        return m.group(1)
 
     class Meta:
         verbose_name = _('Document')

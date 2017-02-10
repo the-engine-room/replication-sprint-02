@@ -601,6 +601,528 @@ def convert(entries):
 
     return unifiedDict
 
+def politicians_json(self):
+    politicians = [{
+        '_id': {
+            'km_id': p.id,
+            'parliamentary_id': p.parliamentary_id
+        },
+        'name': {
+            'value': p.name
+        }
+                   } for p in models.Politician.objects.all()]
+
+    return HttpResponse(json.dumps(politicians), content_type="application/json")
+
+def statements_json(request, document_set_id, document_id=None):
+    statements = []
+    if document_id:
+        docs = models.Document.objects.select_related('politician').filter(verified=True, document_set__id=document_set_id, id=document_id)
+    else:
+        docs = models.Document.objects.select_related('politician').filter(verified=True, document_set__id=document_set_id)
+
+    for doc in docs:
+        ds = {
+            "name": doc.politician.name,
+            'familyMembers': [],
+            'residentialProperties': []
+        }
+
+        vfs = {}
+        for k, value in doc.verified_answers().iteritems():
+            if value and (value[0] == '{' or value[0] == '['):
+                value = json.loads(value)
+            vfs[k.slug] = value
+
+        # =============================
+        # FAMILY
+        # =============================
+
+        if vfs.get('spouse', None):
+            ds['familyMembers'].append({
+                'status': 'Házas-/élettárs',
+                'name': vfs['spouse']
+            })
+
+        if vfs.get('children',[]):
+            for c in vfs['children']:
+                if c:
+                    ds['familyMembers'].append({
+                        'status': 'gyermek',
+                        'name': c
+                    })
+
+        # =============================
+        # RESIDENTIAL PROPERTIES
+        # =============================
+
+        residentialProperties_fields = [
+            'location',
+            'area',
+            'area_unit',
+            'area_unit_other',
+            'cultivation_checkbox1',
+            'cultivation_checkbox2',
+            'cultivation_checkbox3',
+            'cultivation_other',
+            'building_nature1',
+            'building_nature2',
+            'building_nature3',
+            'building_nature_other',
+            'building_area',
+            'building_area_unit',
+            'building_area_unit_other',
+            'legal_designation1',
+            'legal_designation2',
+            'legal_designation3',
+            'legal_designation_other',
+            'legal_status1',
+            'legal_status2',
+            'legal_status3',
+            'legal_status_other',
+            'ownership_ratio1',
+            'ownership_ratio2',
+            'ownership_ratio_percent',
+            'acquisition1',
+            'acquisition_date',
+            'property_category',
+        ]
+        residentialProperties_count = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in residentialProperties_fields])
+
+        def elemat(arr, i, default=None):
+            if i < len(arr):
+                v = arr[i]
+                if v == '' or v == u'':
+                    v = None
+                return v
+
+            else:
+                return default
+
+        for i in range(residentialProperties_count):
+            prop = {}
+
+            # RATIO
+            ratio1 = elemat(vfs['ownership_ratio1'], i)
+            ratio2 = elemat(vfs['ownership_ratio2'], i)
+            ratiop = elemat(vfs['ownership_ratio_percent'], i)
+            ratio = None
+            if ratiop:
+                complex = re.match('^(\d+)[/](\d+)$', ratiop)
+                if complex:
+                    ratiop = 100 * int(complex.group(1)) / int(complex.group(2))
+                else:
+                    ratio = int(ratiop)
+
+            elif ratio1 and ratio2:
+                ratio = 100 * int(ratio1) / int(ratio2)
+
+            # AREA
+            area = elemat(vfs['area'], i)
+            area_unit = elemat(vfs['area_unit'], i)
+            if area_unit == 'egyeb':
+                area_unit = elemat(vfs['area_unit_other'], i)
+
+            building_area = elemat(vfs['building_area'], i)
+            building_area_unit = elemat(vfs['building_area_unit'], i)
+            if building_area_unit == 'egyeb':
+                area_unit = elemat(vfs['building_area_unit_other'], i)
+
+            if building_area and building_area_unit:
+                building_area += building_area_unit
+            if area and area_unit:
+                area += area_unit
+
+            def aggregate_checkboxes(i, prefix, options, other):
+                value = []
+                for k, v in options.iteritems():
+                    if elemat(vfs[prefix + k], i):
+                        value.append(v)
+
+                if other:
+                    key = other if type(other) == str else prefix + '_other'
+                    v = elemat(vfs[key], i)
+                    if v:
+                        value.append(v)
+
+                if value:
+                    value = u', '.join(value)
+                else:
+                    value = None
+                return  value
+
+            # CHECK BOXES
+            # TODO this should be transformed while saving the data and supported in widgets
+            legalNature = aggregate_checkboxes(i, 'legal_designation', {
+                '1': u'családi ház',
+                '2': u'társasház',
+                '3': u'garázs'
+            }, True)
+
+            cultivation = aggregate_checkboxes(i, 'cultivation_checkbox', {
+                '1': u'belterület/művelés alól kivett',
+                '2': u'külterület',
+                '3': u'lakás/lakóház'
+            }, 'cultivation_other')
+
+            building_nature = aggregate_checkboxes(i, 'building_nature', {
+                '1': u'garázs',
+                '2': u'lakóház',
+                '3': u'üdülő/nyaraló'
+            }, True)
+
+            legal_status = aggregate_checkboxes(i, 'legal_status', {
+                '1': u'tulajdonos',
+                '2': u'haszonélvező',
+                '3': u'bérlő'
+            }, True)
+
+            acquisitions = []
+            acq_type = elemat(vfs['acquisition1'], i, [])
+            acq_date = elemat(vfs['acquisition_date'], i, [])
+            for j in range(max(len(acq_type), len(acq_date))):
+                d = elemat(acq_date, j)
+                if d:
+                    d = d.replace('-', '. ') # "2002. 06. 20." format
+                acquisitions.append({
+                    'type': elemat(acq_type, j),
+                    'acquiredAt': d,
+                })
+
+            ds['residentialProperties'].append({
+                "function": 'howtomapit?', # TODO how to map it?
+                "category": elemat(vfs.get('property_category',[]), i),
+                "legalNature": legalNature,
+                'legalStatus': legal_status, # TODO EXTRA FIELD
+                'cultivation': cultivation,
+                "area": area,
+                'buildingNature': building_nature,
+                "buildingArea": building_area, # TODO EXTRA FIELD
+                "place": elemat(vfs['location'], i), # TODO
+                "ownership": ratio,
+                "acquisitions": acquisitions, # TODO these are multiple fields
+                #"acquisition": None,
+                #"acquiredAt": elemat(vfs['acquisition_date'], i, "NONE") + "2002. 06. 20."
+            })
+
+        # TODO how to map lands?
+        # 		"lands": [
+			# {
+			# 	"function": "",
+			# 	"area": "",
+			# 	"place": "",
+			# 	"legalStatus": "",
+			# 	"acquisition": "",
+			# 	"acquiredAt": ""
+			# }
+        # ],
+
+        # TODO vehicles not mapped - Nyilatkozott-e valamilyen nagy értékű ingóságról (járművek, műtárgyak)?
+        # 		"vehicles": [
+			# {
+			# 	"type": "",
+			# 	"make": "",
+			# 	"acquisition": "",
+			# 	"acquiredAt": "1994"
+			# }
+
+        # =============================
+        # SAVINGS
+        # =============================
+
+        # TODO how to map
+        # "claims": [
+			# {
+			# 	"type": "",
+			# 	"amount": ""
+			# }
+        # ],
+
+        savings = []
+
+        # Értékpapír vagy egyéb befektetés - Securities or other investments
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['inv_name', 'inv_value', 'inv_curr', 'inv_curr_other']])
+
+        for i in range(icount):
+            iname = elemat(vfs['inv_name'], i)
+            ivalue = elemat(vfs['inv_value'], i)
+            icurr = elemat(vfs['inv_curr'], i)
+            icurrother = elemat(vfs['inv_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                savings.append({
+                    '_type': 'investments',
+                    'type': iname,
+                    'amount': ivalue,
+                })
+
+        # Takarék - savings
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['sec_name', 'sec_value', 'sec_curr', 'sec_curr_other']])
+
+        for i in range(icount):
+            iname = elemat(vfs['sec_name'], i)
+            ivalue = elemat(vfs['sec_value'], i)
+            icurr = elemat(vfs['sec_curr'], i)
+            icurrother = elemat(vfs['sec_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                savings.append({
+                    '_type': 'savings',
+                    'type': iname,
+                    'amount': ivalue,
+                })
+
+        # Készpénz - cash
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['cash', 'cash_curr', 'cash_curr_other']])
+
+        for i in range(icount):
+            ivalue = elemat(vfs['cash'], i)
+            icurr = elemat(vfs['cash_curr'], i)
+            icurrother = elemat(vfs['cash_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                savings.append({
+                    '_type': 'cash',
+                    'amount': ivalue,
+                })
+
+        # Pénzintézeti számlakövetelés vagy más pénzkövetelés - Financial Institutions account receivables or other financial assets
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['obligation_type', 'obligation_value', 'obligation_curr', 'obligation_curr_other']]) # TODO
+
+        for i in range(icount):
+            iname = elemat(vfs['obligation_type'], i)
+            ivalue = elemat(vfs['obligation_value'], i)
+            icurr = elemat(vfs['obligation_curr'], i)
+            icurrother = elemat(vfs['obligation_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                savings.append({
+                    '_type': 'obligation',
+                    'type': iname,
+                    'amount': ivalue,
+                })
+
+        ds['savings'] = savings
+
+        # =============================
+        # DEBTS - Nyilatkozik-e tartozásokról?
+        # =============================
+
+        allowances = []
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['debt_type', 'debt_desc', 'debt_value', 'debt_curr', 'debt_curr_other']])
+
+        for i in range(icount):
+            iname = elemat(vfs['debt_type'], i)
+            idesc = elemat(vfs['debt_desc'], i)
+            ivalue = elemat(vfs['debt_value'], i)
+            icurr = elemat(vfs['debt_curr'], i)
+            icurrother = elemat(vfs['debt_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue or idesc:
+                allowances.append({
+                    'type': iname,
+                    'amount': ivalue,
+                    'notes': idesc
+                })
+
+        ds['debits'] = allowances
+
+        # =============================
+        # INCOME - Nyilatkozik-e egyéb jövedelmeiről (Jövedelemnyilatkozat)?
+        # =============================
+
+        allowances = []
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['profession', 'employer', 'active', 'income', 'income_curr', 'income_curr_other', 'regularity']])
+
+        for i in range(icount):
+            iprofession = elemat(vfs['profession'], i)
+
+            ivalue = elemat(vfs['income'], i)
+            icurr = elemat(vfs['income_curr'], i)
+            icurrother = elemat(vfs['income_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            active = elemat(vfs['active'], i)
+            if type(active) == str:
+                active = bool(active)
+
+            if iprofession or ivalue:
+                allowances.append({
+                    'job': iprofession,
+                    'workplace': elemat(vfs['employer'], i),
+                    'isActive': active,
+                    'amount': ivalue, # TODO EXTRA monthly amount divided in two fields
+                    'regularity': elemat(vfs['regularity'], i),
+                })
+
+        ds['incomes'] = allowances
+
+        # =============================
+        # ALLOWANCES - Nyilatkozik-e bármilyen juttatásról, ajándékról, támogatásról?
+        # =============================
+
+        allowances = []
+
+        # Benefits - Juttatás
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['benefit_date', 'benefit_name', 'benefit_value', 'benefit_curr']])
+
+        for i in range(icount):
+            iname = elemat(vfs['benefit_name'], i)
+            ivalue = elemat(vfs['benefit_value'], i)
+            icurr = elemat(vfs['benefit_curr'], i)
+            idate = elemat(vfs['benefit_date'], i) or None
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                allowances.append({
+                    '_type': 'benefit-juttatas',
+                    'name': iname,
+                    'receivedAt': idate,
+                    'worth': ivalue,
+                })
+
+        # Present - Ajándék
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['present_date', 'present_name', 'present_value', 'present_currency']])
+
+        for i in range(icount):
+            iname = elemat(vfs['present_name'], i)
+            ivalue = elemat(vfs['present_value'], i)
+            icurr = elemat(vfs['present_currency'], i)
+            idate = elemat(vfs['present_date'], i) or None
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if iname or ivalue:
+                allowances.append({
+                    '_type': 'present-ajandek',
+                    'name': iname,
+                    'receivedAt': idate,
+                    'worth': ivalue,
+                })
+
+        # Subsidies - Támogatások
+        icount = reduce(
+            lambda len1, len2: max(len1,len2),
+            [len(vfs.get(fld, [])) for fld in ['subs_reci', 'subs_legal', 'subs_date', 'subs_provider', 'subs_purpose', 'subs_value', 'subs_curr', 'subs_curr_other']])
+
+        for i in range(icount):
+            ireci = elemat(vfs['subs_reci'], i)
+            ilegal = elemat(vfs['subs_legal'], i)
+            idate = elemat(vfs['subs_date'], i) or None
+            iprovider = elemat(vfs['subs_provider'], i)
+            ipurpose = elemat(vfs['subs_purpose'], i)
+            ivalue = elemat(vfs['subs_value'], i)
+            icurr = elemat(vfs['present_currency'], i)
+            icurrother = elemat(vfs['income_curr_other'], i)
+
+            if icurr == u'egyéb':
+                icurr = icurrother
+
+            if ivalue and icurr:
+                ivalue += icurr
+
+            if ireci or ivalue or ilegal or iprovider or ipurpose:
+                allowances.append({
+                    '_type': 'subsidy-tamogatasok',
+                    'recipient': ireci,
+                    'legal': ilegal,
+                    'provider': iprovider,
+                    'purpose': ipurpose,
+                    'receivedAt': idate,
+                    'worth': ivalue,
+                })
+
+
+        ds['allowances'] = allowances
+
+        # Date filled
+        ds['date'] = doc.kmonitor_extract_filled_date()
+
+        # TODO Nyilatkozik-e gazdasági érdekeltségekről? not mapped
+
+        st = {
+            "_id": {
+                "Document.id": doc.id,
+                "Document.url": doc.url,
+                "self": request.build_absolute_uri(reverse('document_set_statements_json', kwargs={'document_set_id':document_set_id, 'document_id':doc.id}))
+            },
+            "officer": {
+                "$ref": "officers",
+                "$id": {
+                    "km_id": doc.politician_id
+                },
+                "name": doc.politician.name,
+                "parliamentary_id": doc.politician.parliamentary_id
+            },
+            "year": {
+                "$numberLong": "2016"
+            },
+            "dataSheet": ds,
+        }
+
+        statements.append(st)
+
+    if document_id:
+        statements = statements[0]
+
+    return HttpResponse(json.dumps(statements, indent=2), content_type="application/json")
+
 def answers_view( request, document_set_id):
 
     def _encode_dict_for_csv(d):

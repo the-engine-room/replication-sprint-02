@@ -59,7 +59,19 @@ urlpatterns = patterns('crowdataapp.views',
                        url(r'^(?P<document_set>[\w-]+)/(?P<field_id>[\w-]+)/(?P<canon_id>[\w-]+)$',
                            'documents_by_entry_value',
                            name='documents_by_entry_value'),
+
                        url('^(?P<document_set_id>[\w-]+)/answers/$',
                                   'answers_view',
                                   name="document_set_answers_csv"),
+
+                       url('^officers.json$',
+                                  'politicians_json',
+                                  name="politicians_json"),
+
+                       url('^(?P<document_set_id>\d+)/statements/(?P<document_id>\d+).json$',
+                                  'statements_json',
+                                  name="document_set_statements_json"),
+                       url('^(?P<document_set_id>\d+)/statements.json$',
+                                  'statements_json',
+                                  name="document_set_statements_json"),
 )

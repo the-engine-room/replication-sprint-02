@@ -492,7 +492,8 @@ class DocumentAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         doc = models.Document.objects.get(pk=object_id)
-        dbfields = models.DocumentSetFormField.objects.filter(form__document_set__id=doc.document_set_id)
+        dbfields = models.DocumentSetFormField.objects.filter(form__document_set__id=doc.document_set_id).\
+            order_by('order')
 
         fields = []
         for f in dbfields:

@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 
-from models import DocumentSetFieldEntry
+from models import DocumentSetFieldEntry, DocumentSetForm, DocumentSetFormField
 
 from django_ace import AceWidget
 from nested_inlines.admin import NestedModelAdmin,NestedTabularInline, NestedStackedInline
@@ -444,8 +444,11 @@ class DocumentSetFormEntryInline(admin.TabularInline):
     def answers(self, obj):
         field_template = "<li><input type=\"checkbox\" data-change-url=\"%s\" data-field-entry=\"%d\" data-document=\"%d\" data-entry-value=\"%s\" %s><span class=\"%s\">%s</span>: <strong>%s</strong> - <em>%s</em></li>"
         rv = '<ul>'
-        form_fields = obj.form.fields.order_by('id').all()
-        rv += ''.join([field_template % (reverse('admin:document_set_field_entry_change', args=(obj.document.pk, e.pk,)),
+        form_fields = {f.id: f for f in obj.form.fields.order_by('id').all()}
+
+        for e in obj.fields.order_by('field_id').all():
+            f = form_fields[e.field_id]
+            rv += field_template % (reverse('admin:document_set_field_entry_change', args=(obj.document.pk, e.pk,)),
                                          e.pk,
                                          obj.document.pk,
                                          e.value,
@@ -454,8 +457,6 @@ class DocumentSetFormEntryInline(admin.TabularInline):
                                          f.slug,
                                          e.value,
                                          e.assigned_canonical_value())
-                       for f, e in zip(form_fields,
-                                       obj.fields.order_by('field_id').all())])
         rv += '</ul>'
 
         return mark_safe(rv)
@@ -481,7 +482,7 @@ class DocumentAdmin(admin.ModelAdmin):
         }
         js = ('admin/js/jquery-2.0.3.min.js', 'admin/js/nested.js', 'admin/js/document_admin.js',)
 
-    fields = ('name', 'url', 'document_set', 'opened_count', 'politician', 'verified', 'verified_fields')
+    fields = ('name', 'url', 'document_set', 'opened_count', 'politician', 'verified')
     readonly_fields = ('verified', 'verified_fields', 'document_set', 'opened_count')
     inlines = [DocumentSetFormEntryInline]
 
@@ -496,17 +497,62 @@ class DocumentAdmin(admin.ModelAdmin):
 
         fields = []
         for f in dbfields:
-            answers = [a['value'] for a in DocumentSetFieldEntry.objects.filter(field_id=f.id, entry__document=doc).order_by('value').values('value')]
+            answers = DocumentSetFieldEntry.objects.filter(field_id=f.id, entry__document=doc).select_related(
+                'entry__user__username').order_by('value').values('value', 'verified', 'entry__user__username')
+            verified = None
+            if answers:
+                verified = reduce(lambda x,y: x or y, map(lambda a: a['value'] if a['verified'] else None, answers))
+
+            verified_status = True
+            if verified is None:
+                verified_status = False
+                verified = ''
 
             fields.append({
                 'slug': f.slug,
                 'answers': answers,
-                'verified_answer': 'TODO'
+                'verified': verified_status,
+                'verified_answer': verified
             })
+        fields.sort(key=lambda a: a['verified'])
 
         extra_context = extra_context or {}
         extra_context['fields'] = fields
         return super(DocumentAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
+
+    def save_model(self, request, obj, form, change):
+        # check to save verified fields
+        verified_answers = {f.slug: a for f, a in obj.verified_answers(True).iteritems()}
+        fields = {f.slug: f for f in DocumentSetFormField.objects.all()}
+
+        # get moderator's entry
+        (moderator_entry, me_created) = obj.form_entries.prefetch_related('fields').get_or_create(user=request.user,
+                                                                                                  document=obj,
+                                                         defaults={'form': DocumentSetForm.objects.all()[0],
+                                                                   'entry_time': datetime.now()})
+
+        updated_any = False
+        for fldname, value in form.data.iteritems():
+            if not fldname.startswith('_verified_') or not value:
+                continue
+            fldname = fldname[10:]
+
+            # option 1 - field is already verified with that value -> do nothing
+            if verified_answers.has_key(fldname) and value == verified_answers.get(fldname):
+                continue
+
+            # option 2 - admin has chosen one of the fields as verified
+            # option 3 - or admin has entered new value
+            (fldentry, fe_created) = moderator_entry.fields.get_or_create(field_id=fields[fldname].id)
+            fldentry.value = value
+            fldentry.verified = True
+            fldentry.save()
+            updated_any = True
+
+        if updated_any:
+            moderator_entry.save()
+
+        super(DocumentAdmin, self).save_model(request, obj, form, change)
 
     def queryset(self, request):
         return models.Document.objects.annotate(entries_count=Count('form_entries'))
@@ -632,6 +678,8 @@ class FeedbackAdmin(NestedModelAdmin):
     def document_link(self, obj):
         url = reverse('admin:crowdataapp_document_change', args=(obj.document.id,))
         return mark_safe('<a href="%s">%s</a>' % (url, obj.document.name))
+
+admin.site.register(models.DocumentSetFormEntry)
 
 admin.site.register(models.DocumentSet, DocumentSetAdmin)
 admin.site.register(models.Document, DocumentAdmin)

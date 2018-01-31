@@ -546,11 +546,11 @@ class Document(models.Model):
 
       return False
 
-    def verified_answers(self):
+    def verified_answers(self, any_fields=False):
         """ get a dict of verified answers (entries) for this Document
               { <DocumentSetFormField>: <value>, ... }
         """
-        if not self.verified:
+        if not self.verified and not any_fields:
             return {}
 
         # oneliner: [a for a in DocumentSetFieldEntry.objects.filter(entry__document=document, verified=True).order_by('field_id').distinct().values('field__label', 'value')]

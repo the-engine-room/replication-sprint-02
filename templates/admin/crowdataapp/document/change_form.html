@@ -3,8 +3,17 @@
 {% load admin_urls %}
 
 {% block after_field_sets %}
+  <script type="text/javascript">
+$(document).ready(function () {
+  $(document).on('click', '.manual-verification .verify-action', function () {
+    var value = $(this).siblings('.verify-value').text();
+    var target = $(this).data('target');
+    $('input[name="' + target + '"]').val(value);
+  });
+});
+  </script>
 <div class="inline-group" id="form_entries-group">
-    <div class="tabular inline-related last-related">
+    <div class="tabular inline-related last-related manual-verification">
         <fieldset class="module">
             <h2>Entries by field</h2>
             <table>
@@ -22,11 +31,13 @@
                     <td>
                         <ul style="list-style-type:none">
                             {% for a in f.answers %}
-                            <li>{{ a }}</li>
+                            <li class="entry-field"><span class="verify-value">{{ a.value }}</span> :{{ a.entry__user__username }}: <span class="verify-action" data-target="_verified_{{ f.slug }}" style="cursor: copy"> &#x27a1</span></li>
                             {% endfor %}
                         </ul>
                     </td>
-                    <td>{{ f.verified_answer }}</td>
+                  <td>{% if f.verified %}&#x2714{% else %}&#x274E{% endif %}
+                    <input class="verified" name="_verified_{{ f.slug }}" type="text" value="{{ f.verified_answer }}">
+                  </td>
                 </tr>
                 {% endfor %}
                 </tbody>

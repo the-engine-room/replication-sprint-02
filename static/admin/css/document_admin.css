@@ -1,13 +1,9 @@
-#form_entries-group table thead th:first-child {
-  width: 25%;
-}
-
-#form_entries-group table thead th:nth-child(2) {
-  width: 35%;
-}
-
 .form-row .keep-margin {
     margin-left: 140px;
+}
+
+.manual-verification .module table th {
+    width: auto;
 }
 
 #form_entries-group tr.add-row {

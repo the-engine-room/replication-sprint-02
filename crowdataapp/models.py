@@ -323,6 +323,9 @@ class DocumentSetFormEntry(forms_builder.forms.models.AbstractFormEntry):
         self.document.verified = True
         self.document.save()
 
+    def __str__(self):
+        return str(self.document) + ' ' + str(self.user)
+
 class DocumentSetFieldEntry(forms_builder.forms.models.AbstractFieldEntry):
     entry = models.ForeignKey("DocumentSetFormEntry", related_name="fields")
     verified = models.BooleanField(default=False, null=False)

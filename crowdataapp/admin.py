@@ -508,12 +508,12 @@ class DocumentAdmin(admin.ModelAdmin):
                 verified = ''
 
             fields.append({
+                'label': f.label,
                 'slug': f.slug,
                 'answers': answers,
                 'verified': verified_status,
                 'verified_answer': verified
             })
-        fields.sort(key=lambda a: a['verified'])
 
         extra_context = extra_context or {}
         extra_context['fields'] = fields
@@ -530,7 +530,6 @@ class DocumentAdmin(admin.ModelAdmin):
                                                          defaults={'form': DocumentSetForm.objects.all()[0],
                                                                    'entry_time': datetime.now()})
 
-        updated_any = False
         for fldname, value in form.data.iteritems():
             if not fldname.startswith('_verified_') or not value:
                 continue
@@ -546,10 +545,6 @@ class DocumentAdmin(admin.ModelAdmin):
             fldentry.value = value
             fldentry.verified = True
             fldentry.save()
-            updated_any = True
-
-        if updated_any:
-            moderator_entry.save()
 
         super(DocumentAdmin, self).save_model(request, obj, form, change)
 
@@ -678,7 +673,12 @@ class FeedbackAdmin(NestedModelAdmin):
         url = reverse('admin:crowdataapp_document_change', args=(obj.document.id,))
         return mark_safe('<a href="%s">%s</a>' % (url, obj.document.name))
 
-admin.site.register(models.DocumentSetFormEntry)
+
+class DocumentSetFormEntryAdmin(admin.ModelAdmin):
+    def queryset(self, request):
+        return models.DocumentSetFormEntry.objects.select_related('document', 'user')
+
+admin.site.register(models.DocumentSetFormEntry, DocumentSetFormEntryAdmin)
 
 admin.site.register(models.DocumentSet, DocumentSetAdmin)
 admin.site.register(models.Document, DocumentAdmin)

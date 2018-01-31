@@ -19,6 +19,7 @@ $(document).ready(function () {
             <table>
                 <thead>
                 <tr>
+                    <th>Label</th>
                     <th>Slug</th>
                     <th>Answers</th>
                     <th>Verified answer</th>
@@ -27,7 +28,8 @@ $(document).ready(function () {
                 <tbody>
                 {% for f in fields %}
                 <tr style="outline: thin solid">
-                    <td>{{ f.slug }}</td>
+                  <td>{{ f.label }}</td>
+                  <td>{{ f.slug }}</td>
                     <td>
                         <ul style="list-style-type:none">
                             {% for a in f.answers %}

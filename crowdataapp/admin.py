@@ -484,7 +484,6 @@ class DocumentAdmin(admin.ModelAdmin):
 
     fields = ('name', 'url', 'document_set', 'opened_count', 'politician', 'verified')
     readonly_fields = ('verified', 'verified_fields', 'document_set', 'opened_count')
-    inlines = [DocumentSetFormEntryInline]
 
     actions = ['verify_document']
     list_display = ('id', 'name', 'verified', 'entries_count', 'opened_count', 'document_set', 'updated_at')

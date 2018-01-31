@@ -34,6 +34,9 @@ def import_declarations(document_set, chamber_id, year):
 
     for related in chamber.memberships:
         if related.person_id:
+            if hasattr(related, 'end_date') and int(related.end_date[0:4]) < year:
+                continue
+
             politician = Politician.objects.get_or_none(parldata_id=related.person_id)
 
             if not politician:

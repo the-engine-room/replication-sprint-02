@@ -559,21 +559,16 @@ class Document(models.Model):
         # oneliner: [a for a in DocumentSetFieldEntry.objects.filter(entry__document=document, verified=True).order_by('field_id').distinct().values('field__label', 'value')]
 
         verified_answers = {}
-        for form_entry in self.form_entries.all():
-            for entry in form_entry.fields \
-                                   .filter(verified=True) \
-                                   .prefetch_related('canonical_label'):
+        for entry in DocumentSetFieldEntry.objects \
+                .filter(verified=True, entry__document=self) \
+                .prefetch_related('canonical_label'):
 
-                if entry.canonical_label is None:
-                    value = entry.value
-                else:
-                    value = entry.canonical_label.value
+            value = entry.value
 
-                form_field = None
-                if entry.field_id not in self._form_field_cache:
-                    self._form_field_cache[entry.field_id] = DocumentSetFormField.objects.get(id=entry.field_id)
+            if entry.field_id not in self._form_field_cache:
+                self._form_field_cache[entry.field_id] = DocumentSetFormField.objects.get(id=entry.field_id)
 
-                verified_answers.update({self._form_field_cache[entry.field_id]: value})
+            verified_answers.update({self._form_field_cache[entry.field_id]: value})
 
         return verified_answers
 

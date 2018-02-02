@@ -628,10 +628,36 @@ def statements_json(request, document_set_id, document_id=None):
             'residentialProperties': []
         }
 
-        vfs = {}
+        class DDict(dict):
+            def __getitem__(self, k):
+                try:
+                    return super(DDict, self).__getitem__(k)
+                except KeyError:
+                    return ''
+        vfs = DDict()
+
         for k, value in doc.verified_answers().iteritems():
-            if value and (value[0] == '{' or value[0] == '['):
-                value = json.loads(value)
+            if not value or not value.strip():
+                continue
+            value = value.strip()
+
+            if k.slug not in ['spouse','comment','newsletter_email'] and value[0] != '[':
+                if value[0] != "\"":
+                    value = "\"" + value
+                if value[len(value)-1] != '"' and value[len(value)-1] != ']':
+                    value = value + '"'
+                try:
+                    value = json.loads("[" + value + "]")
+                except ValueError:
+                    print 'J1: ' + k.slug + ' ' + value
+                    continue
+            elif value[0] == '{' or value[0] == '[':
+                try:
+                    value = json.loads(value)
+                except ValueError:
+                    print 'J2: ' + value
+                    continue
+
             vfs[k.slug] = value
 
         # =============================
@@ -695,7 +721,7 @@ def statements_json(request, document_set_id, document_id=None):
             if i < len(arr):
                 v = arr[i]
                 if v == '' or v == u'':
-                    v = None
+                    v = default
                 return v
 
             else:
@@ -709,15 +735,24 @@ def statements_json(request, document_set_id, document_id=None):
             ratio2 = elemat(vfs['ownership_ratio2'], i)
             ratiop = elemat(vfs['ownership_ratio_percent'], i)
             ratio = None
-            if ratiop:
+            if ratiop and ratiop.strip():
                 complex = re.match('^(\d+)[/](\d+)$', ratiop)
                 if complex:
                     ratiop = 100 * int(complex.group(1)) / int(complex.group(2))
                 else:
-                    ratio = int(ratiop)
+                    try:
+                        ratio = int(ratiop)
+                    except ValueError:
+                        ratio = ratiop
 
             elif ratio1 and ratio2:
-                ratio = 100 * int(ratio1) / int(ratio2)
+                try:
+                    if int(ratio2) == 0:
+                        ratio = ratio1 + ' / ' + ratio2
+                    else:
+                        ratio = 100 * int(ratio1) / int(ratio2)
+                except ValueError:
+                    ratio = ratio1 + ' / ' + ratio2
 
             # AREA
             area = elemat(vfs['area'], i)
@@ -735,14 +770,14 @@ def statements_json(request, document_set_id, document_id=None):
             if area and area_unit:
                 area += area_unit
 
-            def aggregate_checkboxes(i, prefix, options, other):
+            def aggregate_checkboxes(i, prefix, options, should_have_other):
                 value = []
                 for k, v in options.iteritems():
                     if prefix + k in vfs and elemat(vfs[prefix + k], i):
                         value.append(v)
 
-                if other:
-                    key = other if type(other) == str else prefix + '_other'
+                if should_have_other:
+                    key = should_have_other if type(should_have_other) == str else prefix + '_other'
                     v = elemat(vfs[key], i)
                     if v:
                         value.append(v)

@@ -738,7 +738,7 @@ def statements_json(request, document_set_id, document_id=None):
             def aggregate_checkboxes(i, prefix, options, other):
                 value = []
                 for k, v in options.iteritems():
-                    if elemat(vfs[prefix + k], i):
+                    if prefix + k in vfs and elemat(vfs[prefix + k], i):
                         value.append(v)
 
                 if other:
